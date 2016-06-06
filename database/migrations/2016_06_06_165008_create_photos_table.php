@@ -11,9 +11,9 @@ class CreatePhotosTable extends Migration
             $table->increments('id');
             $table->string('full_path');
             $table->string('thumb_path');
-            $table->int('profile_id');
+            $table->integer('profile_id');
             $table->timestamps();
-            $table->foreign('profile_id')->references('id')->on('profiles')->onDelete('cascade');;
+            //$table->foreign('profile_id')->references('id')->on('profiles');
         });
     }
 
