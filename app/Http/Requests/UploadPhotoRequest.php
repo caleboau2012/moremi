@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Requests;
-
 use App\Http\Requests\Request;
 
 class UploadPhotoRequest extends Request
@@ -25,8 +24,8 @@ class UploadPhotoRequest extends Request
     {
 
             return [
-                'profile_id' => 'required',
-                'photo' => 'required|mimes:jpeg,bmp,png|size:5000',
+                'profile_id' => 'required|numeric',
+                'photo' => 'required|mimes:jpeg,bmp,png|max:5000',
             ];
 
     }

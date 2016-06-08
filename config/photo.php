@@ -7,8 +7,8 @@
  */
 return [
     'uploads' => [
-        'full_path' => '/uploads/',
-        'thumb_path' => '/thumbs/',
+        'full_path' => 'uploads',
+        'thumb_path' => 'thumbs',
 
     ],
     'standard_width' =>600,
