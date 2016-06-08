@@ -24,7 +24,7 @@ class UploadPhotoRequest extends Request
     {
 
             return [
-                'profile_id' => 'required|numeric',
+                config('settings.userId') => 'required|numeric',
                 'photo' => 'required|mimes:jpeg,bmp,png|max:5000',
             ];
 
@@ -33,7 +33,7 @@ class UploadPhotoRequest extends Request
     public function messages()
     {
         return [
-            'profile_id.required' => 'Your user Id is required!',
+            config('settings.userId').'.required' => 'Your user Id is required!',
             'photo.required'  => 'Your photo is required',
             'photo.mimes'  => 'Only jpeg,bmp and png files are allowed',
             'photo.size'  => 'Photo size must not be more than 5MB',

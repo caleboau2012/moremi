@@ -44,7 +44,7 @@ class PhotoController extends Controller
      */
     public function store(Requests\UploadPhotoRequest $request)
     {
-        $profile_id  = $request->input('profile_id');
+        $profile_id  = $request->input(config('settings.userId'));
         $upload =new UploadPicture();
         $upload->process($request);
         $photo = new Photo();
