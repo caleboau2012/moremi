@@ -16,3 +16,5 @@ Route::get('/', function () {
 });
 
 Route::resource('photo', 'PhotoController');
+
+Route::post('login', 'LoginController');

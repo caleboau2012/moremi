@@ -8,4 +8,11 @@
 
 ## HOW TO UPLOAD PHOTO
 Post url : Local Host  http://localhost/moremi/public/photo   Live Url http://site/photo
-Post Param {pofile_id:100,photo:binary data}
+Post Params {pofile_id:100,photo:file}
+
+##HOW TO LOGIN
+Post url : Local Host  http://localhost/moremi/public/login   Live Url http://site/login
+Post Params            {'first_name': 'FIRST NAME HERE',
+            'last_name' : 'LAST NAME HERE',
+            'facebook_id': 'FACEBOOK ID',
+            'email' :'EMAIL REQUIRED'}

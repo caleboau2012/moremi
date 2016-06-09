@@ -7,6 +7,7 @@
  */
 
 namespace App\Services;
+use App\Profile;
 use App\User;
 
  class UserService
@@ -22,4 +23,14 @@ use App\User;
          return false;
 
      }
+
+     public function findOrCreate(array $facebookUser){
+        $facebook_id =$facebookUser->facebook_id; //facebook Id
+         $authUser =Profile::where('facebook_id', $facebook_id)->first();
+         if($authUser) {
+             return $authUser;
+         }
+         return Profile::create($facebookUser);
+     }
+
 }
