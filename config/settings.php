@@ -9,5 +9,7 @@
 return [
     'encryption_key'=>'414c57415953205553452041205354524f4e472050415353574f5244',
     'encryption_salt'=>'!kQm*fF3pXe1Kbm%9',
-    'userId'=>'profile_id'
+    'userId'=>'profile_id',
+    'vote_counter'=>1,
+    'days_allow_before_next_vote'=>2
 ];

@@ -17,4 +17,6 @@ Route::get('/', function () {
 
 Route::resource('photo', 'PhotoController');
 
-Route::post('login', 'LoginController');
+Route::post('login', 'LoginController@login');
+
+Route::post('vote','VoteController@vote');

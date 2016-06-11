@@ -14,6 +14,19 @@ use App\User;
 {
 
 
+     private static $instance = null;
+
+     public function __construct(){
+
+
+     }
+
+     public static function  instance(){
+         if(self::$instance == null) {
+             self::$instance = new UserService();
+         }
+         return self::$instance;
+     }
 
      public function isValid($userId){
          $count = User::where('facebook_id', $userId)->count();

@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Photo;
+use App\Profile;
+use App\Services\UserService;
+use App\User;
 use Illuminate\Http\Request;
 use App\Services\UploadPicture;
 
@@ -17,13 +20,24 @@ class PhotoController extends Controller
      * @return \Illuminate\Http\Response
      */
     protected $_upload;
-
-    public function __construct() {
-
+    private $_userId;
+    private $auth=false;
+    public function __construct(Request $request) {
+        $access_token = $request->header('authToken');
+        $userId =null;
+        if(!is_null($access_token)) {
+            $userId =customdecrypt($access_token);
+            $userInstance = UserService::instance();
+            if($userInstance->isValid($userId)){
+                $this->auth =true;
+            }
+        }
+        $this->_userId =$userId;
     }
 
-    public function index()
+    public function index(Request $request)
     {
+       return response()->json($request->header('authToken'));
     }
 
     /**
@@ -44,7 +58,10 @@ class PhotoController extends Controller
      */
     public function store(Requests\UploadPhotoRequest $request)
     {
-        $profile_id  = $request->input(config('settings.userId'));
+        if(!$this->auth) {
+            abort(403, 'Unauthorized action.');
+        }
+        $profile_id  =$this->_userId;
         $upload =new UploadPicture();
         $upload->process($request);
         $photo = new Photo();
@@ -68,7 +85,13 @@ class PhotoController extends Controller
      */
     public function show($id)
     {
-        //
+        $photo =Photo::findOrFail($id);
+        return response()->json(['status'=>true,
+            'photo'=>['thumb_path'=>$photo->thumb_path,
+                'full_path'=>$photo->full_path],
+            'first_name'=>$photo->profile->first_name,
+            'last_name'=>$photo->profile->last_name
+        ]);
     }
 
     /**
@@ -102,6 +125,6 @@ class PhotoController extends Controller
      */
     public function destroy($id)
     {
-        //
+
     }
 }
