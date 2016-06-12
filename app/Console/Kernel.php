@@ -13,7 +13,9 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        // Commands\Inspire::class,
+        // Commands\In
+        //spire::class,
+        Commands\ResetVote::class
     ];
 
     /**
@@ -26,5 +28,6 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')
         //          ->hourly();
+        $schedule->command('reset:vote')->weekly()->sundays()->at(config('settings.time-to-reset-vote'));
     }
 }

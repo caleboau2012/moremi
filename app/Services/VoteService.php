@@ -11,6 +11,7 @@ namespace App\Services;
 
 use App\Profile;
 use App\Vote;
+use App\Voter;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Symfony\Component\HttpFoundation\Cookie;
@@ -38,9 +39,9 @@ class VoteService
     public function  HasVoted($profile_id){
         $cookie = $this->_request->cookie('vote');
         $date =Carbon::parse(config('settings.days_allow_before_next_vote').' days ago')->toDateTimeString(); //2 days ago
-        $row =Vote::where('cookie',$cookie)->where('created_at','>',$date)->where('profile_id',$profile_id)->first();
+        $row =Voter::where('cookie',$cookie)->where('created_at','>',$date)->where('profile_id',$profile_id)->first();
         if(empty($row)){
-            $row =Vote::where('ip_address',$this->_request->ip())->where('user_agent',$this->_request->user-agent)->where('created_at','>',$date)->where('profile_id',$profile_id)->first();
+            $row =Voter::where('ip_address',$this->_request->ip())->where('user_agent',$this->_request->user_agent)->where('created_at','>',$date)->where('profile_id',$profile_id)->first();
         }
         if(empty($row)){
             return false;
@@ -49,16 +50,16 @@ class VoteService
     }
 
 
-    public function storeRequest($photo_id) {
-        $cookie = Cookie::make('vote', str_random(48), 2880);
-        $this->cookie =$cookie;
+    public function storeRequest($profile_id) {
+        //$cookie = Cookie::queue('vote', str_random(48), 2880);
+        $this->cookie =str_random(48);
         $array=[
             'ip_address'=>$this->_request->ip(),
-            'user_agent'=>$this->_request->user-agent,
-            'cookie'=>$cookie,
-            'photo_id'=>$photo_id
+            'user_agent'=>$this->_request->header('User-Agent'),
+            'cookie'=>$this->cookie,
+            'profile_id'=>$profile_id
         ];
-        $vote =new Vote($array);
+        $vote =new Voter($array);
         $vote->save();
     }
 

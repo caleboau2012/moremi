@@ -15,9 +15,10 @@ class LoginController extends Controller
         $userService = new UserService();
         $user =$userService->findOrCreate($request);
         if(!empty($user)) {
-            $token =customencrypt($user->facebook_id);
+            $token =customencrypt($user->id);
             return response()->json(['status'=>true,
-                'message'=>$user,'authToken'=>$token]);
+                'message'=>'Authentication successful',
+                'user'=>$user,'authToken'=>$token]);
         }
     }
 

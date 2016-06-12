@@ -29,7 +29,7 @@ use App\User;
      }
 
      public function isValid($userId){
-         $count = User::where('facebook_id', $userId)->count();
+         $count = Profile::where('id', $userId)->count();
          if($count==1) {
              return true;
          }
@@ -37,13 +37,19 @@ use App\User;
 
      }
 
-     public function findOrCreate(array $facebookUser){
+     public function findOrCreate($facebookUser){
         $facebook_id =$facebookUser->facebook_id; //facebook Id
          $authUser =Profile::where('facebook_id', $facebook_id)->first();
          if($authUser) {
              return $authUser;
          }
-         return Profile::create($facebookUser);
+         return Profile::create([
+             'first_name'=>$facebookUser->first_name,
+             'last_name'=>$facebookUser->last_name,
+             'phone'=>$facebookUser->phone,
+             'facebook_id'=>$facebookUser->facebook_id,
+             'email'=>$facebookUser->email
+         ]);
      }
 
 }

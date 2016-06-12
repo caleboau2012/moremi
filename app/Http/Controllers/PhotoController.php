@@ -59,7 +59,7 @@ class PhotoController extends Controller
     public function store(Requests\UploadPhotoRequest $request)
     {
         if(!$this->auth) {
-            abort(403, 'Unauthorized action.');
+            return response()->json(['status'=>false,'message'=>'You must be logged in to upload photo']);
         }
         $profile_id  =$this->_userId;
         $upload =new UploadPicture();
@@ -69,6 +69,13 @@ class PhotoController extends Controller
         $photo->thumb_path =$upload->thumb_path;
         $photo->profile_id =$profile_id;
         $photo->save();
+
+        //go ahead and set as feature photo
+        $profile =Profile::find($this->_userId);
+       // echo $photo->id;
+        $profile->photo_id=$photo->id;
+        $profile->save();
+
         return response()->json(['status'=>true,
             'message'=>"Your photo was uploaded successfully",
             'photo'=>['thumb_path'=>$photo->thumb_path,
