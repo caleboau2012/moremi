@@ -1,0 +1,52 @@
+﻿
+.logo{width:174px;height:40px;background-image:url(../images/home1/logo-yellow.jpg);display:block;}
+.font-white{color:#fff;}
+.font-gray{color:#808080 !important;}
+.font-red{color:#ED834E;}
+.font-black{color:#000 !important;}
+.font-white{color:#fff;}
+a{color:#ED834E;text-transform:none;}
+a:hover{color:#ED834E;}
+.text-primary{color:#ED834E;}
+.text-info{color:#ED834E;}
+#weather i{color:#6B717E;}
+.btn-primary{background:#ED834E none repeat scroll 0 0;border-radius:0px;border:0;}
+.btn-primary:hover{background:#212121;}
+input[type="button"]{background-color:#ED834E;color:#fff;}
+.form-small input[type="button"]{background-color:#212121;color:#fff;}
+.sectionheadbg{background-color:#595643;}
+.sectionbg{background-color:#f6f6f6;}
+.topsectionbg{background-color:#ED834E;}
+.sectionheadinnerbg{background-color:#f6f6f6;border-top:4px solid #212121;border-bottom:1px solid #f4f4f4;}
+.sectionimportant{background-color:#ED834E;}
+.section-border{width:100%;border-radius:0px;margin-bottom:0px;margin-top:40px;}
+.section-border h3{margin-bottom:30px;margin-top:3px;border-top:2px solid #212121;border-bottom:1px solid #212121;background-color:rgba(255,255,255,0.6);padding:20px;}
+.social-icons ul > li{background-color:#595643;}
+.social-icons ul > li:nth-child(even){background-color:#4E6B66;}
+.searchbg{background-color:#EBCC6E;}
+.loginbg{background-color:#ED834E;}
+.colored-section{background-color:#ED834E;}
+.search-listing a:hover{color:#666 !important;background-color:#f6f6f6;}
+.footerbg2{background-color:#090909;baclgrpimd-color;}
+.footerbg1{background-color:#060606;}
+.linkbg{background-color:#595643;color:#fff;}
+.csstransforms3d .cl-effect-2 a span::before{background-color:#ED834E;}
+.light-gray{background-color:#f4f4f4;}
+.Extralight-gray{background-color:#f9f9f9;}
+.whitebg{background-color:#fff;}
+.white{background-color:#fff;}
+.hovercolor a:hover{background-color:#F9F9F9;text-decoration:none;}
+.hovercolor li:hover{background-color:#ED834E;text-decoration:none;}
+.slider-handle{background-color:#ED834E;}
+.menubg{background-color:#ED834E;}
+.submenucolor{background-color:#ED834E;color:#fff;z-index:1000000;}
+.submenucolor h2{color:#fff;}
+.menucolor{background-color:#595643;color:#fff;}
+ul.main-nav > li:hover > a{background:#ED834E;}
+@media only screen and (max-width:768px){.submenucolor{background-color:transparent;background-image:none;}
+}
+@media only screen and (min-width:768px){.menuhovercolor ul li:hover{background-color:#ED834E;color:#fff;}
+}
+.menucolor a, .menucolor span{color:#fff;}
+.view-first:hover .mask{background-color:rgba(235,204,110, 0.9);}
+.switcher #switch-panel{background-color:#EBCC6E;}

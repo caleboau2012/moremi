@@ -1,0 +1,52 @@
+﻿
+.logo{width:174px;height:40px;background-image:url(../images/home1/logo-red.jpg);display:block;}
+.font-white{color:#fff;}
+.font-gray{color:#808080 !important;}
+.font-red{color:#E74C3C;}
+.font-black{color:#000 !important;}
+.font-white{color:#fff;}
+a{color:#E74C3C;text-transform:none;}
+a:hover{color:#E74C3C;text-decoration:none;}
+.text-primary{color:#212121;}
+.text-info{color:#e74c3c;}
+#weather i{color:#e74c3c;}
+.btn-primary{background:#e74c3c none repeat scroll 0 0;border-radius:0px;border:0;}
+.btn-primary:hover{background:#666;}
+input[type="button"]{background-color:#E74C3C;color:#fff;}
+.form-small input[type="button"]{background-color:#212121;color:#fff;}
+.sectionheadbg{background-color:#212121;}
+.sectionbg{background-color:#f6f6f6;}
+.topsectionbg{background-color:#E74C3C;}
+.sectionheadinnerbg{background-color:#f6f6f6;border-top:4px solid #212121;border-bottom:1px solid #f4f4f4;}
+.sectionimportant{background-color:#c08f44;}
+.section-border{width:100%;border-radius:0px;margin-bottom:0px;margin-top:40px;}
+.section-border h3{margin-bottom:30px;margin-top:3px;border-top:2px solid #212121;border-bottom:1px solid #212121;background-color:rgba(255,255,255,0.6);padding:20px;}
+.social-icons ul > li{background-color:#060606;}
+.social-icons ul > li:nth-child(even){background-color:#090909;}
+.searchbg{background-color:#E74C3C;}
+.loginbg{background-color:#b83c30;}
+.colored-section{background-color:#E74C3C;}
+.search-listing a:hover{color:#666 !important;background-color:#f6f6f6;}
+.footerbg2{background-color:#090909;baclgrpimd-color;}
+.footerbg1{background-color:#060606;}
+.linkbg{background-color:#060606;color:#fff;}
+.csstransforms3d .cl-effect-2 a span::before{background:#E74C3C;}
+.light-gray{background-color:#f4f4f4;}
+.Extralight-gray{background-color:#f9f9f9;}
+.whitebg{background-color:#fff;}
+.white{background-color:#fff;}
+.hovercolor a:hover{background-color:#F9F9F9;text-decoration:none;}
+.hovercolor li:hover{background-color:#E74C3C;color:#fff;text-decoration:none;}
+.slider-handle{background-color:#e74c3c;}
+.menubg{background-color:#b83c30;}
+.submenucolor{background-color:#E74C3C;color:#fff;z-index:1000000;}
+ul.main-nav > li:hover > a{background-color:#E74C3C;color:gray;}
+.submenucolor h2{color:#fff;}
+.menucolor{background-color:#060606;color:#fff;}
+@media only screen and (max-width:768px){.submenucolor{background-color:transparent;background-image:none;}
+}
+@media only screen and (min-width:768px){.menuhovercolor ul li:hover{background-color:#E74C3C;text-decoration:none;color:#fff;}
+}
+.menucolor a, .menucolor span{color:#fff;}
+.switcher #switch-panel{background-color:#e74c3c;}
+.view-first:hover .mask{background-color:rgba(231,91,76, 0.9);}
