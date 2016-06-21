@@ -20,10 +20,15 @@ class HomeController extends Controller
 
 
     public function index(){
-        return view('home.home');
+        return view('home');
     }
 
-    //face of the week
+    //profile page
+    public function profile(){
+        return view('profile');
+    }
+
+    //cheek of the week
     public function winner(){
       $user=Profile::max('vote');
        $profile_pic =Photo::find($user->photo_id);

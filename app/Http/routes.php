@@ -13,6 +13,8 @@
 
 Route::get('/', 'HomeController@index');
 
+Route::get('profile', 'HomeController@profile');
+
 Route::resource('photo', 'PhotoController');
 
 Route::post('login', 'LoginController@login');

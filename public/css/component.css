@@ -1131,7 +1131,7 @@ ul.main-nav img:hover {
 
 .form-small a{ margin-left:5%; width:90%;
                margin-bottom:20px;display:block;}
-.form-small input[type="button"] {
+.form-small input[type="button"], .form-small button {
     background-color: #212121;
     color: #fff;
     line-height:30px;
@@ -1329,6 +1329,7 @@ height:280px;}*/
     position: absolute;
     bottom: 10px;
     left: 12px;
+    width: 90%;
 }
 
 
@@ -2228,7 +2229,7 @@ margin-right:0px;
     width: 60%;
 }
 
-.horizontal-banner input {
+.horizontal-banner input, .horizontal-banner button {
     margin-left: 10%;
 }
 

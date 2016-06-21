@@ -19,7 +19,7 @@ $(document).ready(function () {
         var imgs = document.getElementsByTagName("img");
       
         for (var i = 0; i < imgs.length; i++) {
-            imgs[i].src = imgs[i].src.replace("images/home1/desktop", "images/home1/tablet");
+            //imgs[i].src = imgs[i].src.replace("images/home1/desktop", "images/home1/tablet");
         }  // some code..
     }
 
