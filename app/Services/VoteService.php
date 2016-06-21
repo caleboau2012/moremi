@@ -63,4 +63,5 @@ class VoteService
         $vote->save();
     }
 
+
 }
