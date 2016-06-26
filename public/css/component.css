@@ -1131,7 +1131,7 @@ ul.main-nav img:hover {
 
 .form-small a{ margin-left:5%; width:90%;
                margin-bottom:20px;display:block;}
-.form-small input[type="button"], .form-small button {
+.form-small input[type="button"], .form-small button, .form-small a.btn {
     background-color: #212121;
     color: #fff;
     line-height:30px;

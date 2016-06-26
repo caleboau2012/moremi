@@ -20,3 +20,9 @@ Route::resource('photo', 'PhotoController');
 Route::post('login', 'LoginController@login');
 
 Route::post('vote','VoteController@vote');
+
+/*
+ * Facebook routes
+ */
+Route::get('/redirect', 'SocialAuthController@redirect');
+Route::get('/callback', 'SocialAuthController@callback');
