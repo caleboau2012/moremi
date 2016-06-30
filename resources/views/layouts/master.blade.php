@@ -102,8 +102,8 @@
                             <div class="login-link">
                                 <i class="fa fa-user font-white"></i>
                                 <div class="login-controls loginbg group">
-                                    <h3 class="font-white">Welcome</h3>
-                                    <a href="redirect" class="btn btn-sm btn-primary text-center"><b class="fa fa-facebook-official"></b> <b>Login with Facebook</b></a>
+                                    <span class="font-white">Welcome</span>
+                                    <button type="button" class="btn btn-sm btn-primary"><span class="fa fa-facebook-official"></span> <span>Login with Facebook</span></button>
                                     {{--<input type="button" title="Submit" value="submit" />--}}
                                     <span>New user? Login now</span>
                                 </div>
@@ -124,6 +124,8 @@
                                 </div>
                             </div>
                             <!---   <input id="search" name="search" type="text" placeholder="What're we looking for ?">
+
+
 
                             <input id="search_submit" value="&#xf002;" type="submit">-->
                         </div>

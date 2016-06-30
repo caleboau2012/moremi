@@ -160,8 +160,8 @@ return [
          * Custom Provider
          *
          */
-        Intervention\Image\ImageServiceProvider::class,
-        Laravel\Socialite\SocialiteServiceProvider::class
+        Intervention\Image\ImageServiceProvider::class
+
 
 
     ],
@@ -213,8 +213,7 @@ return [
         /**
          * Custom alias
          */
-        'Image' => Intervention\Image\Facades\Image::class,
-        'Socialite' => Laravel\Socialite\Facades\Socialite::class
+        'Image' => Intervention\Image\Facades\Image::class
 
 
     ],
