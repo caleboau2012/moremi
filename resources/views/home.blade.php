@@ -314,4 +314,9 @@
             </div>
         </div>
         <!--/. Horizontal Banner End-->
-@endsection
+@stop
+
+@section('scripts')
+    @parent
+    <script src="{{asset('js/app/Home.js')}}" ></script>
+@stop

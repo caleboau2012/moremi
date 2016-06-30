@@ -13,10 +13,10 @@
 
 Route::get('/', 'HomeController@index');
 
-Route::get('profile', 'HomeController@profile');
+Route::get('profile', array("as" => "profile", "uses" => 'HomeController@profile'));
 
 Route::resource('photo', 'PhotoController');
 
-Route::post('login', 'LoginController@login');
+Route::post('login', array("as" => "login", "uses" => 'LoginController@login'));
 
 Route::post('vote','VoteController@vote');

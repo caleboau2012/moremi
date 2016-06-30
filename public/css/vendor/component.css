@@ -1131,16 +1131,15 @@ ul.main-nav img:hover {
 
 .form-small a{ margin-left:5%; width:90%;
                margin-bottom:20px;display:block;}
-.form-small input[type="button"], .form-small button {
+.form-small input[type="button"], .form-small button, .profile-button {
     background-color: #212121;
     color: #fff;
     line-height:30px;
-
     border: 0px;
-    margin-left: 5%;
-    width:90%;
+    /*margin-left: 5%;*/
+    width:100%;
     display:block;
-    margin-bottom:10px;
+    /*margin-bottom:10px;*/
 
     font-weight: 200;
 }
@@ -1880,11 +1879,11 @@ margin-right:0px;
 
 @font-face {
     font-family: 'weather';
-    src: url('../fonts/artill_clean_icons-webfont.eot');
+    src: url('../../fonts/artill_clean_icons-webfont.eot');
 
-    src:url('../fonts/artill_clean_icons-webfont.woff');
+    src:url('../../fonts/artill_clean_icons-webfont.woff');
 
-    src:url('../fonts/artill_clean_icons-webfont.ttf');
+    src:url('../../fonts/artill_clean_icons-webfont.ttf');
     font-weight: normal;
     font-style: normal;
 }
@@ -2184,7 +2183,7 @@ margin-right:0px;
 
 @media only screen and (max-width: 480px){
     .horizontal-banner {
-        background-image: url('../images/home1/mobile/horizontal_image.jpg');
+        background-image: url('../../images/home1/mobile/horizontal_image.jpg');
         height: 300px;
     }
     .horizontal-banner h1 {
@@ -2195,7 +2194,7 @@ margin-right:0px;
 
 @media only screen and (min-width:481px) and (max-width: 1024px){
     .horizontal-banner {
-        background-image: url('../images/home1/tablet/horizontal_image.jpg');
+        background-image: url('../../images/home1/tablet/horizontal_image.jpg');
         height:400px;
 
     }
@@ -2206,7 +2205,7 @@ margin-right:0px;
 }
 @media screen and (min-width: 1025px) {
     .horizontal-banner {
-        background-image: url('../images/home1/desktop/horizontal_image.jpg');
+        background-image: url('../../images/home1/desktop/horizontal_image.jpg');
         height: 600px;
     }
     .horizontal-banner h1 {
