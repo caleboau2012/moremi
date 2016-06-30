@@ -22,8 +22,6 @@ class CreateVotersTable extends Migration
             $table->integer('profile_id');
 
             $table->timestamps();
-
-            $table->foreign('profile_id')->references('id')->on('profiles')->onDelete('cascade');;
         });
     }
 
