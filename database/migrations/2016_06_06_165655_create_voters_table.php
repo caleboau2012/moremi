@@ -14,10 +14,10 @@ class CreateVotersTable extends Migration
 
             $table->string('user_agent');
 
-            $table->string('lat');
-            $table->string('lon');
+            $table->string('lat')->nullable();
+            $table->string('lon')->nullable();
 
-            $table->string('cookie');
+            $table->string('cookie')->nullable();
 
             $table->integer('profile_id');
 

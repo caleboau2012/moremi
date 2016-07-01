@@ -12,11 +12,11 @@ class CreateProfileTable extends Migration
             $table->string('first_name');
             $table->string('last_name');
             $table->string('email')->unique();
-            $table->string('phone');
+            $table->string('phone')->nullable();
             $table->string('facebook_id');
-            $table->boolean('show_private_info');
-            $table->integer('vote');
-            $table->string('photo_id');
+            $table->boolean('show_private_info')->nullable();
+            $table->integer('vote')->nullable();;
+            $table->string('photo_id')->nullable();
             $table->timestamps();
         });
     }
