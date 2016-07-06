@@ -27,13 +27,14 @@ class ProfilePhotoTableSeeder extends Seeder
             for ($a = 0; $a < 6; $a++) {
                 $full = $faker->image(config('photo.uploads.full_path'), 600, 400, 'cats');  // 'tmp/13b73edae8443990be1aa8f1a483bc27.jpg' it's a cat!
                 $thumb = $faker->image(config('photo.uploads.full_path').DIRECTORY_SEPARATOR.'thumbs', 200, 200, 'cats');  // 'tmp/13b73edae8443990be1aa8f1a483bc27.jpg' it's a cat!
-                $profile = \App\Photo::create([
+                $photo = \App\Photo::create([
                     'profile_id' => $profile->id,
                     'full_path' => $full,
                     'thumb_path' => $thumb
 
                 ]);
             }
+            $profile->update(['photo_id'=>$photo->id]);
         }
 
     }

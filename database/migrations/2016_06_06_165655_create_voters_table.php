@@ -16,7 +16,6 @@ class CreateVotersTable extends Migration
 
             $table->string('lat')->nullable();
             $table->string('lon')->nullable();
-
             $table->string('cookie')->nullable();
 
             $table->integer('profile_id');

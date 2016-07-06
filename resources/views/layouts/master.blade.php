@@ -75,7 +75,7 @@
                 <div class=" col-lg-3 col-md-12 col-xs-12">
 
                     <a class="navbar-brand" href="#">
-                        <div class="logo"></div>
+                        <div class="lgo"><img src="{{asset('images/logo.png')}}"  height="40" alt="Logo"/></div>
                     </a>
 
                 </div>  <!--/. Logo Div End-->

@@ -11,9 +11,17 @@ class Profile extends Model
                             'facebook_id','photo_id','show_private_info'];
 
 
+
+
     public function photos()
     {
-        return $this->hasMany('App\Photo');
+        return $this->hasMany('App\Photo','profile_id','id');
+    }
+
+
+    public function photo()
+    {
+        return $this->hasOne('App\Photo','id','photo_id');
     }
 
 

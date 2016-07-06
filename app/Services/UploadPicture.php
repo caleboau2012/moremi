@@ -42,11 +42,11 @@ class UploadPicture
                 $img->fit(config('photo.standard_width'),config('photo.standard_height'));
                 $this->create_thumb($thumb_dir.DIRECTORY_SEPARATOR.$filename);
                 $this->thumb_path =$thumb_dir.DIRECTORY_SEPARATOR.$filename;
-
             }
 
 
         }
+
     public function create_thumb($path){
         $img = Image::make($this->full_path);
         $img->fit(config('photo.thumb_width'),config('photo.thumb_height'));

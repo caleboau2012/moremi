@@ -14,6 +14,7 @@ class Photo extends Model
 
     public function profile()
     {
-        return $this->hasOne('App\Profile');
+        return $this->belongsTo('App\Profile');
     }
+
 }

@@ -8,6 +8,7 @@ use App\Services\VoteService;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -15,12 +16,17 @@ class HomeController extends Controller
     private $_vote;
 
     public function __construct(){
+
+
     }
 
 
 
     public function index(){
-        return view('home');
+        $profiles= Profile::orderBy('vote', 'desc')->paginate(20);
+        $topsix = Profile::orderBy('vote', 'desc')->take(6)->get();
+        $winner = Profile::whereRaw('vote = (select max(`vote`) from profiles)')->first();
+        return view('home',['profiles'=>$profiles,'topsix'=>$topsix,'winner'=>$winner]);
     }
 
     //profile page
@@ -41,13 +47,46 @@ class HomeController extends Controller
         ]);
     }
     //contestants
-    public function contestants(){
-        $winner_id =$this->winner()->id;
-     $profile= Profile::where('id','!=',$winner_id)->orderBy('vote', 'desc');
-        return response()->json([
-           'status'=>true,
-            'user'=>$profile
-        ]);
+    public function getAll(){
+     $profile= Profile::orderBy('vote', 'desc')->get();
+
+        $data=[];
+        $data['status']=true;
+        foreach($profile as $p ){
+            $data['user'][] =[
+                'profile'=>$p,
+                'profile_pic'=>['thumb_path'=>$p->photo->thumb_path,'full_path'=>$p->photo->full_path],
+                'photos'=>$p->photos
+            ];
+        }
+        return response()->json([$data]);
+    }
+    public function seed(){
+
+        $faker = \Faker\Factory::create();
+        for ($i = 0; $i < 20;$i++) {
+            $profile = new \App\Profile();
+            $profile->first_name = $faker->firstName;
+            $profile->last_name = $faker->lastName;
+            $profile->email = $faker->email;
+            $profile->phone = $faker->phoneNumber;
+            $profile->facebook_id = $faker->randomNumber(8);
+            $profile->show_private_info = 0;
+
+            $profile->save();
+            for ($a = 0; $a < 6; $a++) {
+                $full = $faker->image(config('photo.uploads.full_path'), 600, 400, 'cats');  // 'tmp/13b73edae8443990be1aa8f1a483bc27.jpg' it's a cat!
+                $thumb = $faker->image(config('photo.uploads.full_path').DIRECTORY_SEPARATOR.'thumbs', 200, 200, 'cats');  // 'tmp/13b73edae8443990be1aa8f1a483bc27.jpg' it's a cat!
+                $photo = \App\Photo::create([
+                    'profile_id' => $profile->id,
+                    'full_path' => $full,
+                    'thumb_path' => $thumb
+
+                ]);
+            }
+            $profile->update(['photo_id'=>$photo->id]);
+        }
+
     }
 
 
