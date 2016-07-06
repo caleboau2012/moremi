@@ -20,3 +20,4 @@ Route::resource('photo', 'PhotoController');
 Route::post('login', array("as" => "login", "uses" => 'LoginController@login'));
 
 Route::post('vote','VoteController@vote');
+
