@@ -29,10 +29,22 @@ class HomeController extends Controller
         return view('home',['profiles'=>$profiles,'topsix'=>$topsix,'winner'=>$winner]);
     }
 
-    public  function getContestants(){
-        $profiles= Profile::orderBy('vote', 'desc')->paginate(20);
-        return response()->json(['status'=>true,'data'=>$profiles]);
+
+    public  function getContestants($total=10){
+        $total =(int)$total;
+        $profiles= Profile::orderBy('vote', 'desc')->paginate($total);
+       $data=[];
+        foreach($profiles as $p){
+        $data[] =[
+            'name'=>$p->first_name." ".$p->last_name,
+            'vote'=>$p->vote,
+            'id'=>$p->id,
+            'image'=>Photo::find($p->photo_id)->thumb_path,
+        ];
+       }
+        return response()->json(['status'=>true,'data'=>$data]);
     }
+
     //profile page
     public function profile(){
         return view('profile');

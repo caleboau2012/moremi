@@ -7,10 +7,11 @@ Vote ={
     },
 
     init: function(){
-        $('.vote-c').click( function(){
+        $('#contestant-parent').on('click','.vote-c', function(e){
+        //$('.vote-c').click( function(e){
+            e.preventDefault();
           var id =$(this).attr('data-id');
             $(this).attr('disabled');
-            alert(id);
             Vote.voteProfile(id);
         });
     },
@@ -48,6 +49,7 @@ Vote ={
     }
      if(data.status==true){
          swal('Success',data.msg,'success')
+         ProfileSidebar.getProfiles(); //re arrange profile bar
      }
  }
 }

@@ -11,6 +11,8 @@
 |
 */
 
+
+
 Route::get('/', 'HomeController@index');
 
 Route::get('profile', array("as" => "profile", "uses" => 'HomeController@profile'));
@@ -25,3 +27,4 @@ Route::get('cheeks','HomeController@getAll');
 
 Route::get('seed','HomeController@seed');
 
+Route::get('profiles/{total}', 'HomeController@getContestants');

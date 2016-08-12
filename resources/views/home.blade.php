@@ -134,7 +134,11 @@
     @parent
     <script src="{{asset('js/app/Home.js')}}" ></script>
     <script src="{{asset('js/app/Vote.js')}}"></script>
+    <script src="{{asset('js/app/ProfileSidebar.js')}}"></script>
     <script type="application/javascript">
-        Vote.init();
+        $(document).ready( function(){
+            Vote.init();
+        })
+
     </script>
 @stop
