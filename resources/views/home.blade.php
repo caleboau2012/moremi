@@ -3,7 +3,7 @@
 @section('content')
         <!--- Main Visual Div-->
 <div class="container-fluid cheek-of-the-week">
-
+    <div class="container">
         <div class="row">
             <div id="owl-main">
                 <div class="item">
@@ -35,6 +35,7 @@
                 @endforeach
             </div>
         </div>
+    </div>
 </div>
 <!--/ Main Visual Div End-->
 <div class="container homecontainer-margin group">
