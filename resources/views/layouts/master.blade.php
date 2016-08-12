@@ -28,6 +28,7 @@
     <link href="{{asset('css/vendor/socialicons.min.css')}}" rel="stylesheet" />
     <!--popup css-->
     <link href="{{asset('css/vendor/magnific-popup.min.css')}}" rel="stylesheet" />
+    <link href="{{asset('js/vendor/sweetalert.css')}}" rel="stylesheet" />
     <!--Color CSS files-->
     <link href="{{asset('css/vendor/custom-blue.min.css')}}" rel="stylesheet">
     <link href="{{asset('css/vendor/custom-yellow.min.css')}}" rel="stylesheet">
@@ -203,7 +204,9 @@
 
 @section('scripts')
 <!--JQuery Script-->
-<script src="{{asset('js/vendor/jquery-1.9.1.min.js')}}" ></script>
+    @include('config.App')
+
+    <script src="{{asset('js/vendor/jquery-1.9.1.min.js')}}" ></script>
 <!--Owl Carousel Script-->
 <script src="{{asset('js/vendor/owl.carousel.min.js')}}"></script>
 <!--Bootstrap Script-->
@@ -227,6 +230,9 @@
 <script src="{{asset('js/vendor/custom2.js')}}"></script>
 <!--FacebookScript-->
 <script src="{{asset('js/app/Facebook.js')}}"></script>
+    <script src="{{asset('js/vendor/sweetalert.min.js')}}" ></script>
+    <script src="{{asset('js/app/Routes.js')}}" ></script>
+
 @show
 </body>
 

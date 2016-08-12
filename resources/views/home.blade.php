@@ -55,7 +55,7 @@
                                 <br>
                                 <p>{{$t->vote}} votes</p>
                                 <label class="link-effect cl-effect-5">
-                                    <button class="btn btn-primary btn-block"><span class="fa fa-square-o"></span> Vote</button>
+                                    <button type="button" class="btn btn-primary btn-block vote-c" data-id="{{$t->id}}"><span class="fa fa-square-o"></span> Vote</button>
                                 </label>
 
                             </div>
@@ -74,7 +74,7 @@
                         </div>
                         <div class="listing-div hovercolor latest-div white group">
 
-                            <ul>
+                            <ul id="contestant-parent">
                                 @foreach($profiles as $p)
                                 <li>
                                     <a href="#">
@@ -83,7 +83,7 @@
                                                    {{$p->first_name." ".$p->last_name}}
                                                 </span>
                                         <span>{{$p->vote}} votes</span>
-                                        <span><button class="btn btn-primary btn-xs"><i class="fa fa-square-o"></i> Vote</button></span>
+                                        <span><button class="btn btn-primary btn-xs vote-c" type="button" data-id="{{$p->id}}"><i class="fa fa-square-o"></i> Vote</button></span>
                                     </a>
                                 </li>
                                 @endforeach
@@ -119,7 +119,22 @@
         <!--/. Horizontal Banner End-->
 @stop
 
+<script type="text/html" id="contestant">
+    <li>
+        <a href="#">
+            <img src="[[image]]" alt="[[name]]">
+            <span>[[name]]</span>
+            <span>[[vote]]</span>
+            <span><button data-id="[[id]]" type="button" class="btn btn-primary btn-xs vote-c"><i class="fa fa-square-o"></i> Vote</button></span>
+        </a>
+    </li>
+</script>
+
 @section('scripts')
     @parent
     <script src="{{asset('js/app/Home.js')}}" ></script>
+    <script src="{{asset('js/app/Vote.js')}}"></script>
+    <script type="application/javascript">
+        Vote.init();
+    </script>
 @stop

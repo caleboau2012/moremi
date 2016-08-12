@@ -29,6 +29,10 @@ class HomeController extends Controller
         return view('home',['profiles'=>$profiles,'topsix'=>$topsix,'winner'=>$winner]);
     }
 
+    public  function getContestants(){
+        $profiles= Profile::orderBy('vote', 'desc')->paginate(20);
+        return response()->json(['status'=>true,'data'=>$profiles]);
+    }
     //profile page
     public function profile(){
         return view('profile');
