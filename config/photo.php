@@ -12,7 +12,7 @@ return [
 
     ],
     'standard_width' =>600,
-    'standard_height'=>360,
+    'standard_height'=>300,
     'thumb_width'=>200,
     'thumb_height'=>200,
 

@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+﻿﻿<!DOCTYPE html>
 <html lang="en" class="no-js">
 <head>
 
@@ -43,8 +43,9 @@
             FB.init({
                 appId      : '469144689836682',
                 xfbml      : true,
-                version    : 'v2.6'
+                version    : 'v2.7'
             });
+            FB.Event.subscribe('xfbml.render', Facebook.status);
         };
 
         (function(d, s, id){
@@ -98,10 +99,10 @@
                             <span class="fa fa-facebook-official"></span>
                             <span>Login with Facebook</span>
                         </button>
-                        <a id="login-cheek" href="{{route("profile")}}" class="profile-button btn hidden">
+                        <button id="login-cheek" href="{{route("profile")}}" class="profile-button btn btn-danger hidden" style="background-color: #d9534f">
                             <span class="fa fa-user"></span>
                             <span>Edit your profile</span>
-                        </a>
+                        </button>
                         <a class="profile-button btn hidden" id="login-not-cheek">
                             <span>Please vote for cheeks to enjoy Moremi</span>
                         </a>

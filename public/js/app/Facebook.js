@@ -10,6 +10,7 @@ var Facebook = {
     },
     login: function(){
         FB.login(function(response) {
+            console.log(response);
             Facebook.status();
         }, {scope: 'public_profile,email'});
     },
@@ -27,6 +28,12 @@ var Facebook = {
                     //    console.log(data)
                     //}, "json");
                 });
+                $("#login").addClass("hidden");
+                $("#login-cheek").removeClass("hidden");
+            }
+            else{
+                $("#login").removeClass("hidden");
+                $("#login-cheek").addClass("hidden");
             }
         });
     }
