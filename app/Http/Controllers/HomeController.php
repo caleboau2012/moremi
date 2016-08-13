@@ -14,25 +14,40 @@ class HomeController extends Controller
 {
 
     private $_vote;
+    private $_request;
 
-    public function __construct(){
-
+    public function __construct(Request $request){
+        $this->_request =$request;
 
     }
 
 
 
     public function index(){
-        $profiles= Profile::orderBy('vote', 'desc')->paginate(20);
+        $profiles= Profile::orderBy('vote', 'desc')->paginate(10);
         $topsix = Profile::orderBy('vote', 'desc')->take(6)->get();
         $winner = Profile::whereRaw('vote = (select max(`vote`) from profiles)')->first();
-        return view('home',['profiles'=>$profiles,'topsix'=>$topsix,'winner'=>$winner]);
+        return view('home',['profiles'=>$profiles,'topsix'=>$topsix,'winner'=>$winner, 'pagination' =>
+            ['link' => (string)$profiles->links(),
+                'current_page' => $profiles->currentPage(),
+                'total' => $profiles->total(),
+                'per_page' => $profiles->perPage()
+            ]]);
     }
 
 
     public  function getContestants($total=10){
         $total =(int)$total;
-        $profiles= Profile::orderBy('vote', 'desc')->paginate($total);
+        if($this->_request->search!=null){
+            $search=$this->_request->search;
+            $profiles= Profile::orderBy('vote', 'desc')
+                 ->where("first_name", "LIKE","%$search%")
+                ->orWhere("last_name", "LIKE", "%$search%")
+                ->paginate($total);
+        }else {
+            $profiles = Profile::orderBy('vote', 'desc')
+                ->paginate($total);
+        }
        $data=[];
         foreach($profiles as $p){
         $data[] =[
@@ -42,7 +57,15 @@ class HomeController extends Controller
             'image'=>Photo::find($p->photo_id)->thumb_path,
         ];
        }
-        return response()->json(['status'=>true,'data'=>$data]);
+
+        return response()->json(['status'=>true,'data'=>$data,
+            'pagination' =>
+                ['link' => (string)$profiles->links(),
+                    'current_page' => $profiles->currentPage(),
+                    'total' => $profiles->total(),
+                    'per_page' => $profiles->perPage()
+                ]]);
+
     }
 
     //profile page

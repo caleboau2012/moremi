@@ -87,10 +87,14 @@
                                         <span><button class="btn btn-primary btn-xs vote-c" type="button" data-id="{{$p->id}}"><i class="fa fa-square-o"></i> Vote</button></span>
                                     </a>
                                 </li>
+
                                 @endforeach
 
 
                     </ul>
+                    <div id="pagination">
+
+                    </div>
 
 
                 </div>
@@ -136,6 +140,9 @@
     <script src="{{asset('js/app/Home.js')}}" ></script>
     <script src="{{asset('js/app/Vote.js')}}"></script>
     <script src="{{asset('js/app/ProfileSidebar.js')}}"></script>
+    <script src="{{asset('js/vendor/jquery.infinitescroll.min.js')}}"></script>
+
+
     <script type="application/javascript">
         $(document).ready( function(){
             Vote.init();
