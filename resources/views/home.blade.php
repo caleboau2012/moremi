@@ -71,7 +71,12 @@
             <!-- Latest Stories Section(Listing)-->
             <div class=" latest-div group">
                 <div class="section-head topsectionbg ">
-                    <h4>Cheeks</h4>
+                    <div class="cheek-search">
+                        <div class="inner-addon right-addon">
+                            <i class="fa fa-search"></i>
+                            <input id="cheek-search" type="text" placeholder="Search" class="form-control"/>
+                        </div>
+                    </div>
                 </div>
                 <div class="listing-div hovercolor latest-div white group pre-scrollable cheeks">
 

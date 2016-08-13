@@ -4,6 +4,13 @@
 var Home = {
     init: function(){
         Home.fetchCheeks();
+        $("#cheek-search").on("keyup", function(e){
+            console.log(this.value);
+        }).on("keydown", function(e){
+            if(e.keyCode == 13){
+                e.preventDefault();
+            }
+        });
     },
     fetchCheeks: function(){
         var url = $("#cheeks").attr("data-url");
