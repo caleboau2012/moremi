@@ -1,3 +1,18 @@
 .bg-blue{
     background-color: #025DAC;
 }
+
+.cheek-of-the-week{
+    position: relative;
+    background: black; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(left, rgba(100, 0, 0, 0.5) 15%, rgba(255, 255, 255, 0.5) 70%, rgba(100, 0, 0, 0.5) 15%), url("../../images/background.png"); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(right, rgba(100, 0, 0, 0.5) 15%, rgba(255, 255, 255, 0.5) 70%, rgba(100, 0, 0, 0.5) 15%), url("../../images/background.png"); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(right, rgba(100, 0, 0, 0.5) 15%, rgba(255, 255, 255, 0.5) 70%, rgba(100, 0, 0, 0.5) 15%), url("../../images/background.png"); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(to right, rgba(100, 0, 0, 0.5) 15%, rgba(255, 255, 255, 0.5) 70%, rgba(100, 0, 0, 0.5) 15%), url("../../images/background.png"); /* Standard syntax */
+    background-size: cover;
+    background-position: center top;
+}
+
+.cheeks{
+    max-height: 500px;
+}
