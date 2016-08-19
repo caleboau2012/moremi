@@ -32,7 +32,6 @@ class UploadPicture
                 if(!File::exists($path_dir)) File::makeDirectory($path_dir, 775);
 
                 if(!File::exists($thumb_dir)) File::makeDirectory($thumb_dir, 775);
-
                 //get file extension
             $extension = $request->file('photo')->getClientOriginalExtension();
             $filename =$this->filename.".".$extension;
