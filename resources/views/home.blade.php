@@ -97,12 +97,13 @@
 
 
                     </ul>
+
+
                     <div id="pagination">
-
+                        {!! $pagination['link'] !!}
                     </div>
-
-
                 </div>
+
             </div>
             <!--/  Latest Stories Section (Listing) End-->
 
@@ -145,13 +146,24 @@
     <script src="{{asset('js/app/Home.js')}}" ></script>
     <script src="{{asset('js/app/Vote.js')}}"></script>
     <script src="{{asset('js/app/ProfileSidebar.js')}}"></script>
-    <script src="{{asset('js/vendor/jquery.infinitescroll.min.js')}}"></script>
-
+    <script src="{{asset('js/vendor/jquery.jscroll.min.js')}}"></script>
 
     <script type="application/javascript">
-        $(document).ready( function(){
+        $(document).ready( function() {
             Vote.init();
         })
-
+                $(function() {
+                    $('#contestant-parent').jscroll({
+                        autoTrigger: true,
+                                nextSelector: '.pagination li.active + li a',
+                        contentSelector: 'div.scroll',
+                        loadingHtml:'<small>Loading...</small>',
+                        pagingSelector:'p',
+                                callback: function() {
+                            $('ul.pagination:visible:first').hide();
+                        }
+                    });
+                });
     </script>
+
 @stop

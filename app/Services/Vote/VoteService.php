@@ -23,8 +23,8 @@ class VoteService
     public $count;
     public function __construct($request) {
     $this->_request =$request;
-        if(Cookie::get('vote')){
-            $this->cookie =Cookie::get('vote');
+        if(Cookie::get(config('settings.vote-cookie-name'))){
+            $this->cookie =Cookie::get(config('settings.vote-cookie-name'));
         }
         else{
             $this->cookie =str_random(50);

@@ -21,7 +21,7 @@ class VoteController extends Controller
         $vote->vote($profile_id);
         $vote->storeRequest($profile_id);
         $msg =['status'=>true,'msg'=>'Photo voted successfully','count'=>$vote->count];
-        return response()->json($msg)->withCookie('vote', $vote->cookie, 2880);
+        return response()->json($msg)->withCookie(config('settings.vote-cookie-name'), $vote->cookie, 2880);
     }
 
 
