@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Services\VoteService;
+use App\Services\Vote\VoteService;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 

@@ -6,7 +6,7 @@
  * Time: 8:51 PM
  */
 
-namespace App\Services;
+namespace App\Services\Vote;
 
 
 use App\Profile;

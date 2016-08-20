@@ -4,11 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Photo;
 use App\Profile;
+use app\Services\Photo\DeletePhoto;
+use App\Services\Photo\UploadPicture;
 use App\Services\UserService;
 use App\User;
 use Illuminate\Http\Request;
-use App\Services\UploadPicture;
-
 use App\Http\Requests;
 
 
@@ -132,6 +132,10 @@ class PhotoController extends Controller
      */
     public function destroy($id)
     {
-
+        if($this->_userId!='') {
+            $delete = new DeletePhoto($this->_userId, $id);
+            $delete->delete();
+        }
+        return $this->index();
     }
 }

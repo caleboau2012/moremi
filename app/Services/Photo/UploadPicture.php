@@ -6,7 +6,7 @@
  * Date: 6/6/2016
  * Time: 11:07 PM
  */
-namespace App\Services;
+namespace App\Services\Photo;
 
 use Illuminate\Support\Facades\File;
 use Intervention\Image\Facades\Image;

@@ -4,9 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Photo;
 use App\Profile;
-use App\Services\VoteService;
 use Illuminate\Http\Request;
-
 use App\Http\Requests;
 use Illuminate\Support\Facades\DB;
 
