@@ -4,7 +4,7 @@
 ProfileSidebar ={
     CONSTANTS: {
       url: Routes.Contentant,
-      per_page: 10,
+      per_page: 10
     },
 
 init: function(){

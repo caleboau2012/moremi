@@ -13,7 +13,7 @@
 
 
 
-Route::get('/', 'HomeController@index');
+Route::get('/', array("as" => "home", "uses" => 'HomeController@index'));
 
 Route::get('profile', array("as" => "profile", "uses" => 'HomeController@profile'));
 

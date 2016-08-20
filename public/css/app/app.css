@@ -41,3 +41,40 @@
 /* add padding  */
 .left-addon input  { padding-left:  30px; }
 .right-addon input { padding-right: 30px; }
+
+.image-box{
+    width: 100%;
+    padding: 10px;
+}
+
+textarea{
+    resize: none;
+}
+
+.status-message{
+    height: 200px;
+}
+
+.image-box img, .profile-pic img, .picture-pane img{
+    display: block;
+    width: 100%;
+}
+
+.image-box .fa{
+    position: absolute;
+    top: 0px;
+    right: 16px;
+}
+
+.image-placeholder{
+    margin: 45% auto;
+    display: block;
+}
+
+.profile-pic:hover, .picture-pane:hover{
+    border-color: yellow;
+}
+
+.pointer{
+    cursor: pointer;
+}

@@ -11,6 +11,10 @@ var Home = {
                 e.preventDefault();
             }
         });
+
+        $("#login-cheek").click(function(e){
+            location.href = $(this).attr("data-url");
+        })
     },
     fetchCheeks: function(){
         var url = $("#cheeks").attr("data-url");
