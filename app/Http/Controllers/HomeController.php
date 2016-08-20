@@ -101,7 +101,7 @@ class HomeController extends Controller
     public function seed(){
 
         $faker = \Faker\Factory::create();
-        for ($i = 0; $i < 20;$i++) {
+        for ($i = 0; $i < 10 ;$i++) {
             $profile = new \App\Profile();
             $profile->first_name = $faker->firstName;
             $profile->last_name = $faker->lastName;

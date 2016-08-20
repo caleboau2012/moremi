@@ -54,9 +54,9 @@
                                     I'm trendy and fashionable
                                 </p>
                                 <br>
-                                <p>{{$t->vote}} votes</p>
+                                <p class="v-count">{{$t->vote}} votes</p>
                                 <label class="link-effect cl-effect-5">
-                                    <button type="button" class="btn btn-primary btn-block vote-c" data-id="{{$t->id}}"><span class="fa fa-square-o"></span> Vote</button>
+                                    <button type="button" class="btn btn-primary btn-block vote-c-tw" data-id="{{$t->id}}"><span class="fa fa-square-o"></span> Vote</button>
                                 </label>
 
                         </div>
