@@ -54,9 +54,9 @@
                                     I'm trendy and fashionable
                                 </p>
                                 <br>
-                                <p>{{$t->vote}} votes</p>
+                                <p class="v-count">{{$t->vote}} votes</p>
                                 <label class="link-effect cl-effect-5">
-                                    <button type="button" class="btn btn-primary btn-block vote-c" data-id="{{$t->id}}"><span class="fa fa-square-o"></span> Vote</button>
+                                    <button type="button" class="btn btn-primary btn-block vote-c-tw" data-id="{{$t->id}}"><span class="fa fa-square-o"></span> Vote</button>
                                 </label>
 
                         </div>
@@ -97,12 +97,13 @@
 
 
                     </ul>
+
+
                     <div id="pagination">
-
+                        {!! $pagination['link'] !!}
                     </div>
-
-
                 </div>
+
             </div>
             <!--/  Latest Stories Section (Listing) End-->
 
@@ -145,13 +146,24 @@
     <script src="{{asset('js/app/Home.js')}}" ></script>
     <script src="{{asset('js/app/Vote.js')}}"></script>
     <script src="{{asset('js/app/ProfileSidebar.js')}}"></script>
-    <script src="{{asset('js/vendor/jquery.infinitescroll.min.js')}}"></script>
-
+    <script src="{{asset('js/vendor/jquery.jscroll.min.js')}}"></script>
 
     <script type="application/javascript">
-        $(document).ready( function(){
+        $(document).ready( function() {
             Vote.init();
         })
-
+                $(function() {
+                    $('#contestant-parent').jscroll({
+                        autoTrigger: true,
+                                nextSelector: '.pagination li.active + li a',
+                        contentSelector: 'div.scroll',
+                        loadingHtml:'<small>Loading...</small>',
+                        pagingSelector:'p',
+                                callback: function() {
+                            $('ul.pagination:visible:first').hide();
+                        }
+                    });
+                });
     </script>
+
 @stop

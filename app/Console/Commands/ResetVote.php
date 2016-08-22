@@ -3,7 +3,9 @@
 namespace App\Console\Commands;
 
 use App\Profile;
+use app\Services\Vote\VoteResetter;
 use Illuminate\Console\Command;
+
 
 class ResetVote extends Command
 {
@@ -38,13 +40,9 @@ class ResetVote extends Command
      */
     public function handle()
     {
-        
-        $profiles =Profile::all();
-        foreach($profiles as $profile) {
-            $profile->vote =0;
-            $profiles->save();
-        }
-        $this->info;
+       $reset =new VoteResetter();
+        $reset->reset(); ///reset vote;
+        $this->info('Vote successfully reset');
 
     }
 }

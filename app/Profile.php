@@ -19,6 +19,7 @@ class Profile extends Model
     }
 
 
+
     public function photo()
     {
         return $this->hasOne('App\Photo','id','photo_id');

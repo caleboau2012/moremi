@@ -6,7 +6,7 @@
  * Date: 6/6/2016
  * Time: 11:07 PM
  */
-namespace App\Services;
+namespace App\Services\Photo;
 
 use Illuminate\Support\Facades\File;
 use Intervention\Image\Facades\Image;
@@ -32,7 +32,6 @@ class UploadPicture
                 if(!File::exists($path_dir)) File::makeDirectory($path_dir, 775);
 
                 if(!File::exists($thumb_dir)) File::makeDirectory($thumb_dir, 775);
-
                 //get file extension
             $extension = $request->file('photo')->getClientOriginalExtension();
             $filename =$this->filename.".".$extension;

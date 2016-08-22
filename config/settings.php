@@ -12,5 +12,6 @@ return [
     'userId'=>'profile_id',
     'vote_counter'=>1,
     'days_allow_before_next_vote'=>2,
-    'time-to-reset-vote'=>'12.00'
+    'time-to-reset-vote'=>'12.00',
+    'vote-cookie-name'=>'vote',
 ];

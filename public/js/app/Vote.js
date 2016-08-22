@@ -12,18 +12,28 @@ Vote ={
             e.preventDefault();
           var id =$(this).attr('data-id');
             $(this).attr('disabled');
-            Vote.voteProfile(id);
+            Vote.voteProfile(id,Vote.showResponse);
         });
+
+        $('.vote-c-tw').click( function(e){
+        e.preventDefault();
+        var id =$(this).attr('data-id');
+
+        $(this).attr('disabled');
+        Vote.voteProfile(id,Vote.increaseCount);
+    });
     },
+
     disableBtn: function (object) {
         object.attr('disabled');
     },
-   voteProfile : function (id) {
+
+   voteProfile : function (id,callback) {
        var data ={'profile_id':id};
-       Vote.sendVote(data);
+       Vote.sendVote(data,callback);
    },
 
-  sendVote: function(data){
+  sendVote: function(data,callback){
       $.ajax({
           url: Vote.CONSTANT.url,
           type: 'POST',
@@ -33,7 +43,7 @@ Vote ={
           beforeSend: function () {
           },
           success: function (result) {
-             Vote.showResponse(result)
+             callback(result)
           },
           complete: function () {
           },
@@ -51,5 +61,14 @@ Vote ={
          swal('Success',data.msg,'success')
          ProfileSidebar.getProfiles(); //re arrange profile bar
      }
- }
+ },
+    increaseCount: function(data){
+        if(data.status==false){
+            swal('Oops..',data.msg,'error');
+        }
+        if(data.status==true){
+            swal('Success',data.msg,'success')
+            ProfileSidebar.getProfiles(); //re arrange profile bar
+        }
+    }
 }

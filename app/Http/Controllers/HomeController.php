@@ -4,9 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Photo;
 use App\Profile;
-use App\Services\VoteService;
 use Illuminate\Http\Request;
-
 use App\Http\Requests;
 use Illuminate\Support\Facades\DB;
 
@@ -24,7 +22,7 @@ class HomeController extends Controller
 
 
     public function index(){
-        $profiles= Profile::orderBy('vote', 'desc')->paginate(10);
+        $profiles= Profile::orderBy('vote', 'desc')->paginate(4);
         $topsix = Profile::orderBy('vote', 'desc')->take(6)->get();
         $winner = Profile::whereRaw('vote = (select max(`vote`) from profiles)')->first();
         return view('home',['profiles'=>$profiles,'topsix'=>$topsix,'winner'=>$winner, 'pagination' =>
@@ -103,7 +101,7 @@ class HomeController extends Controller
     public function seed(){
 
         $faker = \Faker\Factory::create();
-        for ($i = 0; $i < 20;$i++) {
+        for ($i = 0; $i < 10 ;$i++) {
             $profile = new \App\Profile();
             $profile->first_name = $faker->firstName;
             $profile->last_name = $faker->lastName;

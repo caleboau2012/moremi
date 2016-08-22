@@ -6,23 +6,29 @@
  * Time: 8:51 PM
  */
 
-namespace App\Services;
+namespace App\Services\Vote;
 
 
 use App\Profile;
-use App\Vote;
 use App\Voter;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\DB;
-use Symfony\Component\HttpFoundation\Cookie;
 
 class VoteService
 {
 
     private $_request;
     public $cookie;
+    public $count;
     public function __construct($request) {
     $this->_request =$request;
+        if(Cookie::get(config('settings.vote-cookie-name'))){
+            $this->cookie =Cookie::get(config('settings.vote-cookie-name'));
+        }
+        else{
+            $this->cookie =str_random(50);
+        }
     }
 
     public function  vote($profile_id) {
@@ -30,6 +36,7 @@ class VoteService
         if(!is_null($profile_id)) {
             $profile->vote =$profile->vote+config('settings.vote_counter');
             $profile->save();
+            $this->count=$profile->vote;
             return true;
         }
         return false;
@@ -52,7 +59,7 @@ class VoteService
 
     public function storeRequest($profile_id) {
         //$cookie = Cookie::queue('vote', str_random(48), 2880);
-        $this->cookie =str_random(48);
+        //$this->cookie =str_random(48);
         $array=[
             'ip_address'=>$this->_request->ip(),
             'user_agent'=>$this->_request->header('User-Agent'),
