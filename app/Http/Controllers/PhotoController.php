@@ -35,6 +35,7 @@ class PhotoController extends Controller
         $this->_userId =$userId;
     }
 
+
     public function index(Request $request)
     {
        return response()->json($request->header('authToken'));
@@ -78,7 +79,9 @@ class PhotoController extends Controller
 
         return response()->json(['status'=>true,
             'message'=>"Your photo was uploaded successfully",
-            'photo'=>['thumb_path'=>$photo->thumb_path,
+            'photo'=>[
+                'id'=>$photo->id,
+                'thumb_path'=>$photo->thumb_path,
                 'full_path'=>$photo->full_path]]);
 
 
