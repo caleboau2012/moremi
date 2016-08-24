@@ -71,4 +71,4 @@ Vote ={
             ProfileSidebar.getProfiles(); //re arrange profile bar
         }
     }
-}
+};

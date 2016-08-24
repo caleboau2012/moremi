@@ -71,10 +71,3 @@
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
 @endsection
-
-
-
-@section('scripts')
-    @parent
-    <script src="{{asset('js/app/Profile.js')}}" ></script>
-@stop

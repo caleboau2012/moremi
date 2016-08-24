@@ -231,10 +231,12 @@
     <!--Custom Javascript-->
     <script src="{{asset('js/vendor/custom2.js')}}"></script>
     <script src="{{asset('js/app/Utils.js')}}" ></script>
+    <script src="{{asset('js/app/Constants.js')}}" ></script>
     <script src="{{asset('js/vendor/sweetalert.min.js')}}" ></script>
     <script src="{{asset('js/app/Routes.js')}}" ></script>
     <!--FacebookScript-->
     <script src="{{asset('js/app/Facebook.js')}}"></script>
+    <script src="{{asset('js/app/Profile.js')}}" ></script>
 
 @show
 </body>

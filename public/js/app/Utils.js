@@ -11,3 +11,21 @@ Array.prototype.remove = function(from, to) {
     this.length = from < 0 ? this.length + from : from;
     return this.push.apply(this, rest);
 };
+
+Utils = {
+    post: function(url, data, type, callback, error){
+        var token = Profile.token;
+
+        $.ajax({
+            url: url,
+            data: data,
+            error: error,
+            success: callback,
+            dataType: "json",
+            type: type,
+            headers: {
+                authToken: token
+            }
+        });
+    }
+};

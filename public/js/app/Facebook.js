@@ -12,40 +12,54 @@ var Facebook = {
     },
     login: function(){
         FB.login(function(response) {
-            //console.log(response);
+            console.log(response);
             Facebook.status();
         }, {scope: 'public_profile,email,user_photos'});
     },
     status: function(){
         FB.getLoginStatus(function(response) {
             if(response.status == "connected"){
-                //console.log(response);
+                console.log(response);
                 Facebook.authResponse = response.authResponse;
                 FB.api('/me?fields=id,first_name,last_name,email,gender', function(response) {
                     //console.log(response);
                     Facebook.profile = response;
-                    //$.post($("#login").attr("data-url"), {
-                    //    first_name: response.first_name,
-                    //    last_name: response.last_name,
-                    //    email: response.email,
-                    //    facebook_id: response.id
-                    //}, function(data){
-                    //    console.log(data)
-                    //}, "json");
+
+                    if(Profile.checkToken()){
+                        var url = $("#login").attr("data-url");
+
+                        Utils.post(url,
+                            {
+                                first_name: response.first_name,
+                                last_name: response.last_name,
+                                email: response.email,
+                                facebook_id: response.id
+                            }, "POST", Facebook.saveToken
+                        );
+                    }
+                    else{
+                        $(".profile-actions").addClass("hidden");
+                        $("#login").removeClass("hidden");
+                    }
                 });
-                $(".profile-actions").addClass("hidden");
-                if(location.pathname == "/profile"){
-                    $("#facebook-fetch").removeClass("hidden");
-                }
-                else{
-                    $("#login-cheek").removeClass("hidden");
-                }
+
             }
             else{
                 $(".profile-actions").addClass("hidden");
                 $("#login").removeClass("hidden");
             }
         });
+    },
+    saveToken: function(response){
+        Profile.saveToken(response);
+
+        $(".profile-actions").addClass("hidden");
+        if(location.pathname == "/profile"){
+            $("#facebook-fetch").removeClass("hidden");
+        }
+        else{
+            $("#login-cheek").removeClass("hidden");
+        }
     },
     userPicture: function(){
         FB.api('/v2.7/' + Facebook.profile.id + '/picture?type=large', function(response){

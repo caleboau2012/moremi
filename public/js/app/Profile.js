@@ -90,6 +90,18 @@ var Profile = {
     deletePicture: function(picture){
         picture.remove();
     },
+    saveToken: function(response){
+        console.log(response);
+
+        localStorage.setItem(TOKEN, JSON.stringify(response));
+    },
+    getToken: function(){
+        return localStorage.getItem(TOKEN);
+    },
+    checkToken: function(){
+        if(Profile.getToken)
+            return true;
+    },
     loadLocalPix: function(files){
         console.log(files);
         var HTML, template, reader;
