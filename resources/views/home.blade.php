@@ -2,7 +2,7 @@
 
 @section('content')
         <!--- Main Visual Div-->
-<div class="container-fluid cheek-of-the-week">
+<div class="container-fluid">
     <div class="container">
         <div class="row">
             <div id="owl-main">
