@@ -18,4 +18,3 @@ interface QueueableCollection
      */
     public function getQueueableIds();
 }
-}
