@@ -51,7 +51,7 @@ var Facebook = {
         });
     },
     loginError: function () {
-        swal('Error','Error logging you in ','error');
+        swal('Error','Error logging you in with facebook','error');
     },
     saveToken: function(response){
         Profile.saveToken(response);

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Photo;
 use App\Profile;
+use App\Services\Vote\VoteResetter;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use Illuminate\Support\Facades\DB;
@@ -18,6 +19,7 @@ class HomeController extends Controller
         $this->_request =$request;
 
     }
+
 
 
 
@@ -73,7 +75,7 @@ class HomeController extends Controller
 
     //cheek of the week
     public function winner(){
-      $user=Profile::max('vote');
+      $user=DB::table('profiles')->where('vote', DB::raw("(select max(`vote`) from profiles)"))->first();
        $profile_pic =Photo::find($user->photo_id);
         return response()->json(['status'=>true,
             'user'=>$user,
@@ -97,6 +99,10 @@ class HomeController extends Controller
             ];
         }
         return response()->json([$data]);
+    }
+
+    public function test(){
+        $new =new VoteResetter();
     }
     public function seed(){
 
