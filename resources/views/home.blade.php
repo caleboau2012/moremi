@@ -48,16 +48,16 @@
                     <div class="view view-first shadow imgheight col-md-4">
                         <img class="img-responsive"  src="{{asset($t->photo->full_path)}}" width="600"  alt="{{$t->first_name." ".$t->last_name}}">
 
-                            <div class="mask1 mask shadow thumbEffect">
-                                <h3 class="font-white">{{$t->first_name." ".$t->last_name}}</h3>
-                                <p>
-                                    I'm trendy and fashionable
-                                </p>
-                                <br>
-                                <p class="v-count">{{$t->vote}} votes</p>
-                                <label class="link-effect cl-effect-5">
-                                    <button type="button" class="btn btn-primary btn-block vote-c-tw" data-id="{{$t->id}}"><span class="fa fa-square-o"></span> Vote</button>
-                                </label>
+                        <div class="mask1 mask shadow thumbEffect">
+                            <h3 class="font-white">{{$t->first_name." ".$t->last_name}}</h3>
+                            <p>
+                                I'm trendy and fashionable
+                            </p>
+                            <br>
+                            <p class="v-count">{{$t->vote}} votes</p>
+                            <label class="link-effect cl-effect-5">
+                                <button type="button" class="btn btn-primary btn-block vote-c-tw" data-id="{{$t->id}}"><span class="fa fa-square-o"></span> Vote</button>
+                            </label>
 
                         </div>
                     </div>
@@ -78,24 +78,41 @@
                         </div>
                     </div>
                 </div>
-                <div class="listing-div hovercolor latest-div white group pre-scrollable cheeks">
 
-                            <ul id="contestant-parent">
-                                @foreach($profiles as $p)
-                                <li>
-                                    <a href="#">
-                                        <img alt="" src="{{asset($p->photo->thumb_path)}}" alt="{{$p->first_name." ".$p->last_name}}" />
+                <script id="cheeks-template" type="text/html">
+                    <li>
+                        <a href="#">
+                            <img src="[[img-url]]" alt="[[name]]" />
+                            <span>[[name]]</span>
+                            <span>[[votes]] votes</span>
+                            <span><button class="btn btn-primary btn-xs vote-c" type="button" data-id="[[id]]"><i class="fa fa-square-o"></i> Vote</button></span>
+                        </a>
+                    </li>
+                </script>
+
+                <script id="cheeks-none" type="text/html">
+                    <li>
+                        <a>
+                            <p>And... Your query matched no Cheek</p>
+                        </a>
+                    </li>
+                </script>
+
+                <div class="listing-div hovercolor latest-div white group pre-scrollable cheeks" id="cheeks" data-url="{{route("cheeks", 10)}}">
+                    <div id="cheeks-loading" class="loading hidden"></div>
+                    <ul id="contestant-parent">
+                        @foreach($profiles as $p)
+                            <li>
+                                <a href="#">
+                                    <img alt="" src="{{asset($p->photo->thumb_path)}}" alt="{{$p->first_name." ".$p->last_name}}" />
                                                 <span>
                                                    {{$p->first_name." ".$p->last_name}}
                                                 </span>
-                                        <span>{{$p->vote}} votes</span>
-                                        <span><button class="btn btn-primary btn-xs vote-c" type="button" data-id="{{$p->id}}"><i class="fa fa-square-o"></i> Vote</button></span>
-                                    </a>
-                                </li>
-
-                                @endforeach
-
-
+                                    <span>{{$p->vote}} votes</span>
+                                    <span><button class="btn btn-primary btn-xs vote-c" type="button" data-id="{{$p->id}}"><i class="fa fa-square-o"></i> Vote</button></span>
+                                </a>
+                            </li>
+                        @endforeach
                     </ul>
 
 
@@ -152,18 +169,18 @@
         $(document).ready( function() {
             Vote.init();
         })
-                $(function() {
-                    $('#contestant-parent').jscroll({
-                        autoTrigger: true,
-                                nextSelector: '.pagination li.active + li a',
-                        contentSelector: 'div.scroll',
-                        loadingHtml:'<small>Loading...</small>',
-                        pagingSelector:'p',
-                                callback: function() {
-                            $('ul.pagination:visible:first').hide();
-                        }
-                    });
-                });
+        $(function() {
+            $('#contestant-parent').jscroll({
+                autoTrigger: true,
+                nextSelector: '.pagination li.active + li a',
+                contentSelector: 'div.scroll',
+                loadingHtml:'<small>Loading...</small>',
+                pagingSelector:'p',
+                callback: function() {
+                    $('ul.pagination:visible:first').hide();
+                }
+            });
+        });
     </script>
 
 @stop
