@@ -34,7 +34,7 @@ var Facebook = {
                                 last_name: response.last_name,
                                 email: response.email,
                                 facebook_id: response.id
-                            }, "POST", Facebook.saveToken
+                            }, "POST", Facebook.saveToken,Facebook.loginError
                         );
                     }
                     else{
@@ -49,6 +49,9 @@ var Facebook = {
                 $("#login").removeClass("hidden");
             }
         });
+    },
+    loginError: function () {
+        swal('Error','Error logging you in with facebook','error');
     },
     saveToken: function(response){
         Profile.saveToken(response);

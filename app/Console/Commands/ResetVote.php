@@ -3,7 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Profile;
-use app\Services\Vote\VoteResetter;
+use App\Services\Vote\VoteResetter;
 use Illuminate\Console\Command;
 
 
