@@ -13,13 +13,27 @@ var Home = {
         }).on("keydown", function(e){
             if(e.keyCode == 13){
                 e.preventDefault();
+            }
+            if(this.value.length > 2){
                 Home.fetchCheeks(this.value);
             }
         });
 
         $("#login-cheek").click(function(e){
             location.href = $(this).attr("data-url");
-        })
+        });
+
+        var cheeks = $("#contestant-parent");
+
+        cheeks.scroll(function() {
+            console.log({
+                element: cheeks,
+                top: cheeks.scrollTop()
+            });
+            //if(cheeks.scrollTop() == cheeks.height() - $(window).height()) {
+            //    // ajax call get data from server and append to the div
+            //}
+        });
     },
     fetchCheeks: function(query){
         $("#cheeks-loading").removeClass("hidden");
@@ -41,7 +55,7 @@ var Home = {
             $("#contestant-parent").empty();
 
             if(response.status){
-                for(var i = 0; i < response.data.length; i++){
+                for(var i = response.data.length - 1; i >= 0; i--){
                     HTML = $("#cheeks-template").html();
                     HTML = HTML.replaceAll("[[img-url]]", response.data[i].image);
                     HTML = HTML.replaceAll("[[name]]", response.data[i].name);
