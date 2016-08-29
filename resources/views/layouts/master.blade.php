@@ -69,32 +69,21 @@
     <form class="content">
         <!--End Preview Toolbar HTML-->
         <!--Logo and Social Icons Div Start-->
-        <div class=" container-fluid whitebg nopadding">
 
-            <div class="container nopadding">
-                <div class="row  ">
-                    <!-- Logo Div Start-->
+        <!--Logo and Social Icons Div End-->
+        <!--Main Menu Div Start-->
+        <div class=" container-fluid">
+            <div class="container  nav-div nopadding">
+                <div class="row ">
                     <div class=" col-lg-3 col-md-12 col-xs-12">
 
                         <a class="navbar-brand" href="{{route("home")}}">
-                            <div class="lgo"><img src="{{asset('images/logo.png')}}"  height="40" alt="Logo"/></div>
+                            <div class="lgo"><img src="{{asset('images/logo.png')}}"  height="30" alt="Logo"/></div>
                         </a>
 
                     </div>  <!--/. Logo Div End-->
-                    <!-- Optional Ad Div -->
-                    <div class="col-md-6 ">
-                    </div>
 
-                </div>
-            </div>
-
-        </div>
-        <!--Logo and Social Icons Div End-->
-        <!--Main Menu Div Start-->
-        <div class=" container-fluid menucolor">
-            <div class="container  nav-div nopadding">
-                <div class="row ">
-                    <div class="col-lg-3 col-lg-offset-9 col-md-12 col-xs-12 loginbg loginsearch-div group  ">
+                    <div class="col-lg-3 col-lg-offset-6 col-md-12 col-xs-12 loginbg loginsearch-div group  ">
                         <div class="row form-small text-center">
                             <button data-url="{{route("login")}}" id="login" class="profile-actions btn btn-primary hidden" type="button" style="background-color: #025DAC">
                                 <span class="fa fa-facebook-official"></span>

@@ -23,7 +23,6 @@ Route::post('login', array("as" => "login", "uses" => 'LoginController@login'));
 
 Route::post('vote','VoteController@vote');
 
-Route::get('cheeks','HomeController@getAll');
 Route::get('test','HomeController@test');
 Route::get('seed','HomeController@seed');
 
