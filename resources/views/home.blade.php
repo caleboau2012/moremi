@@ -14,8 +14,10 @@
                             {{$winner->first_name." ".$winner->last_name}}
                         </h1>
                     </div>
+                    <div class="row">
+                        <img class="" src="{{$winner->photo->full_path}}" width="300"   alt=" {{$winner->first_name." ".$winner->last_name}}"/>
 
-                    <img class="img-responsive" src="{{$winner->photo->full_path}}" width="600"   alt=" {{$winner->first_name." ".$winner->last_name}}"/>
+                    </div>
                 </div>
                 <?php $i =1;?>
                 @foreach($winner->photos as $p)
