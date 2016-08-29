@@ -3,7 +3,7 @@
  */
 String.prototype.replaceAll = function(search, replacement) {
     var target = this;
-    return target.replace(new RegExp(search, 'g'), replacement);
+    return target.split(search).join(replacement);
 };
 
 Array.prototype.remove = function(from, to) {

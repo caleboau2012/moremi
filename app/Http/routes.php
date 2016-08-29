@@ -27,4 +27,4 @@ Route::get('cheeks','HomeController@getAll');
 Route::get('test','HomeController@test');
 Route::get('seed','HomeController@seed');
 
-Route::get('profiles/{total}', 'HomeController@getContestants');
+Route::get('cheeks/{total}', array("as" => "cheeks", "uses" => 'HomeController@getContestants'));

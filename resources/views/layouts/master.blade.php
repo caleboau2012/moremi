@@ -28,7 +28,7 @@
     <link href="{{asset('css/vendor/socialicons.min.css')}}" rel="stylesheet" />
     <!--popup css-->
     <link href="{{asset('css/vendor/magnific-popup.min.css')}}" rel="stylesheet" />
-    <link href="{{asset('js/vendor/sweetalert.css')}}" rel="stylesheet" />
+    <link href="{{asset('css/vendor/sweetalert.css')}}" rel="stylesheet" />
     <!--Color CSS files-->
     <link href="{{asset('css/vendor/custom-blue.min.css')}}" rel="stylesheet">
     <link href="{{asset('css/vendor/custom-yellow.min.css')}}" rel="stylesheet">
