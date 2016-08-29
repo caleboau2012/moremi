@@ -15,7 +15,7 @@ class VoteController extends Controller
         $vote = new VoteService($request);
         $profile_id =$request->profile_id;
         if($vote->HasVoted($profile_id)) {
-            $msg =['status'=>false,'msg'=>'You have voted this profile less than 2 days ago'];
+            $msg =['status'=>false,'msg'=>'You can only vote one person in a day'];
             return response()->json($msg);
         }
         $vote->vote($profile_id);
