@@ -59,7 +59,7 @@ Vote ={
     }
      if(data.status==true){
          swal('Success',data.msg,'success')
-         ProfileSidebar.getProfiles(); //re arrange profile bar
+         Home.fetchCheeks(); //re arrange profile bar
      }
  },
     increaseCount: function(data){
@@ -68,7 +68,7 @@ Vote ={
         }
         if(data.status==true){
             swal('Success',data.msg,'success')
-            ProfileSidebar.getProfiles(); //re arrange profile bar
+            Home.fetchCheeks(); //re arrange profile bar
         }
     }
 };

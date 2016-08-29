@@ -4,5 +4,5 @@
 
 Routes={
     Vote: App.url+'/vote',
-    Contentant: App.url+'/profile'
+    Contentant: App.url+'/cheeks'
 };
