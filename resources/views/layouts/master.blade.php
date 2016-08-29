@@ -1,7 +1,6 @@
 ﻿<!DOCTYPE html>
 <html lang="en" class="no-js">
 <head>
-
     <title>Moremi</title>
     <link rel="shortcut icon" href="{{asset('images/home1/icon.ico')}}">
     <meta name="viewport" content="width=device-width">
@@ -73,37 +72,84 @@
         <!--Logo and Social Icons Div End-->
         <!--Main Menu Div Start-->
         <div class=" container-fluid">
-            <div class="container  nav-div nopadding">
-                <div class="row ">
-                    <div class=" col-lg-3 col-md-12 col-xs-12">
+            <div class="row ">
+                <div class="col-lg-2">
+                    <!-- Latest Stories Section(Listing)-->
+                    <div class=" latest-div group">
+                        <div class="section-head">
+                            <div class="cheek-search">
+                                <div class="inner-addon right-addon">
+                                    <i class="fa fa-search"></i>
+                                    <input id="cheek-search" type="text" placeholder="Search" class="form-control"/>
+                                </div>
+                            </div>
+                        </div>
 
-                        <a class="navbar-brand" href="{{route("home")}}">
-                            <div class="lgo"><img src="{{asset('images/logo.png')}}"  height="30" alt="Logo"/></div>
-                        </a>
+                        <script id="cheeks-template" type="text/html">
+                            <li>
+                                <a href="#">
+                                    <div class="row">
+                                        <div>
+                                            <img src="[[img-url]]" alt="[[name]]" />
+                                        </div>
+                                        <div class="col-sm-8">
+                                            <span>[[name]]</span>
+                                            <span>[[votes]] votes</span>
+                                            <span><button class="btn btn-primary btn-xs vote-c" type="button" data-id="[[id]]"><i class="fa fa-square-o"></i> Vote</button></span>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                        </script>
 
-                    </div>  <!--/. Logo Div End-->
+                        <script id="cheeks-none" type="text/html">
+                            <li>
+                                <a>
+                                    <p>And... Your query matched no Cheek</p>
+                                </a>
+                            </li>
+                        </script>
 
-                    <div class="col-lg-3 col-lg-offset-6 col-md-12 col-xs-12 loginbg loginsearch-div group  ">
-                        <div class="row form-small text-center">
-                            <button data-url="{{route("login")}}" id="login" class="profile-actions btn btn-primary hidden" type="button" style="background-color: #025DAC">
-                                <span class="fa fa-facebook-official"></span>
-                                <span>Login with Facebook</span>
-                            </button>
-                            <button id="login-cheek" data-url="{{route("profile")}}" class="profile-actions profile-button btn btn-danger hidden" type="button" style="background-color: #d9534f">
-                                <span class="fa fa-user"></span>
-                                <span>Edit your profile</span>
-                            </button>
-                            <button id="facebook-fetch" class="profile-actions btn btn-primary hidden" type="button" style="background-color: #025DAC">
-                                <span>Complete profile with </span>
-                                <span class="fa fa-facebook-official"></span>
-                            </button>
+                        <div class="listing-div hovercolor latest-div white group pre-scrollable cheeks" id="cheeks" data-url="{{route("cheeks", 10)}}">
+                            <div id="cheeks-loading" class="loading hidden"></div>
+                            <ul id="contestant-parent">
+                            </ul>
+                        </div>
+
+                    </div>
+                    <!--/  Latest Stories Section (Listing) End-->
+                </div>
+                <div class="col-lg-8">
+                    <div class="row">
+                        <div class=" col-lg-3 col-md-12 col-xs-12">
+                            <a class="navbar-brand" href="{{route("home")}}">
+                                <div class="lgo"><img src="{{asset('images/logo.png')}}"  height="30" alt="Logo"/></div>
+                            </a>
+                        </div>  <!--/. Logo Div End-->
+
+                        <div class="col-lg-3 col-lg-offset-6 col-md-12 col-xs-12 loginbg loginsearch-div group  ">
+                            <div class="row form-small text-center">
+                                <button data-url="{{route("login")}}" id="login" class="profile-actions btn btn-primary hidden" type="button" style="background-color: #025DAC">
+                                    <span class="fa fa-facebook-official"></span>
+                                    <span>Login with Facebook</span>
+                                </button>
+                                <button id="login-cheek" data-url="{{route("profile")}}" class="profile-actions profile-button btn btn-danger hidden" type="button" style="background-color: #d9534f">
+                                    <span class="fa fa-user"></span>
+                                    <span>Edit your profile</span>
+                                </button>
+                                <button id="facebook-fetch" class="profile-actions btn btn-primary hidden" type="button" style="background-color: #025DAC">
+                                    <span>Complete profile with </span>
+                                    <span class="fa fa-facebook-official"></span>
+                                </button>
+                            </div>
                         </div>
                     </div>
-
                 </div>
-
             </div>
         </div>
+
+        <br>
+
         <!--Main Menu Div End-->
         @yield('content')
         <div class="container-fluid">
@@ -227,6 +273,8 @@
     <script src="{{asset('js/app/Facebook.js')}}"></script>
     <script src="{{asset('js/app/Profile.js')}}" ></script>
 
+    <script src="{{asset('js/app/Home.js')}}" ></script>
+    <script src="{{asset('js/app/Vote.js')}}"></script>
 @show
 </body>
 

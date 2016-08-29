@@ -3,7 +3,7 @@
 }
 
 .cheeks{
-    max-height: 500px;
+    max-height: 700px;
 }
 
 .cheek-search{
@@ -76,4 +76,12 @@ textarea{
     top: 80px;
     left: 15px;
     z-index: 999;
+}
+
+.latest-div{
+    position: absolute;
+}
+
+.profile-tab{
+    min-height: 700px;
 }

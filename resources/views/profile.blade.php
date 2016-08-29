@@ -3,7 +3,7 @@
 @section('content')
     <br>
     <div class="container">
-        <div class="row">
+        <div class="row profile-tab">
             <div class="col-sm-4">
                 <div class="well profile-pic">
                     <div class="image">

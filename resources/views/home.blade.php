@@ -66,67 +66,6 @@
 
         </div>
 
-        <div class="col-lg-3 shift-up  col-md-pull-9">
-
-            <!-- Latest Stories Section(Listing)-->
-            <div class=" latest-div group">
-                <div class="section-head topsectionbg ">
-                    <div class="cheek-search">
-                        <div class="inner-addon right-addon">
-                            <i class="fa fa-search"></i>
-                            <input id="cheek-search" type="text" placeholder="Search" class="form-control"/>
-                        </div>
-                    </div>
-                </div>
-
-                <script id="cheeks-template" type="text/html">
-                    <li>
-                        <a href="#">
-                            <img src="[[img-url]]" alt="[[name]]" />
-                            <span>[[name]]</span>
-                            <span>[[votes]] votes</span>
-                            <span><button class="btn btn-primary btn-xs vote-c" type="button" data-id="[[id]]"><i class="fa fa-square-o"></i> Vote</button></span>
-                        </a>
-                    </li>
-                </script>
-
-                <script id="cheeks-none" type="text/html">
-                    <li>
-                        <a>
-                            <p>And... Your query matched no Cheek</p>
-                        </a>
-                    </li>
-                </script>
-
-                <div class="listing-div hovercolor latest-div white group pre-scrollable cheeks" id="cheeks" data-url="{{route("cheeks", 10)}}">
-                    <div id="cheeks-loading" class="loading hidden"></div>
-                    <ul id="contestant-parent">
-                        @foreach($profiles as $p)
-                            <li>
-                                <a href="#">
-                                    <img alt="" src="{{asset($p->photo->thumb_path)}}" alt="{{$p->first_name." ".$p->last_name}}" />
-                                                <span>
-                                                   {{$p->first_name." ".$p->last_name}}
-                                                </span>
-                                    <span>{{$p->vote}} votes</span>
-                                    <span><button class="btn btn-primary btn-xs vote-c" type="button" data-id="{{$p->id}}"><i class="fa fa-square-o"></i> Vote</button></span>
-                                </a>
-                            </li>
-                        @endforeach
-                    </ul>
-
-
-                    <div id="pagination">
-                        {!! $pagination['link'] !!}
-                    </div>
-                </div>
-
-            </div>
-            <!--/  Latest Stories Section (Listing) End-->
-
-
-        </div>
-
     </div>
 </div>
 <!--Horizontal Banner Start-->
@@ -145,23 +84,10 @@
     </div>
 </div>
 <!--/. Horizontal Banner End-->
-@stop
-
-<script type="text/html" id="contestant">
-    <li>
-        <a href="#">
-            <img src="[[image]]" alt="[[name]]">
-            <span>[[name]]</span>
-            <span>[[vote]]</span>
-            <span><button data-id="[[id]]" type="button" class="btn btn-primary btn-xs vote-c"><i class="fa fa-square-o"></i> Vote</button></span>
-        </a>
-    </li>
-</script>
+@endsection
 
 @section('scripts')
     @parent
-    <script src="{{asset('js/app/Home.js')}}" ></script>
-    <script src="{{asset('js/app/Vote.js')}}"></script>
     <script src="{{asset('js/app/ProfileSidebar.js')}}"></script>
     <script src="{{asset('js/vendor/jquery.jscroll.min.js')}}"></script>
 
@@ -183,4 +109,4 @@
         });
     </script>
 
-@stop
+@endsection
