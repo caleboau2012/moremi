@@ -10,7 +10,6 @@
     width: 90%;
     padding-top: 10px;
 }
-
 /* enable absolute positioning */
 .inner-addon {
     position: relative;
@@ -92,6 +91,7 @@ textarea{
     left: 0;
     background-color: #fff;
 }
+
 /**Scrollbar Styling***/
 
 .fixed-sidebar::-webkit-scrollbar {
@@ -130,4 +130,11 @@ textarea{
     padding-top: 50%;
     text-align: center;
     width: 100%;
+}
+.img-circle {
+    border-radius: 50%;
+}
+img.center {
+    display: block;
+    margin: 0 auto;
 }

@@ -4,50 +4,39 @@
         <!--- Main Visual Div-->
 <div class="container-fluid">
     <div class="container">
-        <div class="row">
-            <div id="owl-main">
-                <div class="item">
-                    <div class="svgoverlay1 bannerEffect"></div>
-                    <div class="textoverlay ">
-                        <h1><small class="font-white"> CHEEK OF THE WEEK</small></h1>
-                        <h1>
-                            {{$winner->first_name." ".$winner->last_name}}
-                        </h1>
-                    </div>
-                    <div class="row">
-                        <img class="" src="{{$winner->photo->full_path}}" width="300"   alt=" {{$winner->first_name." ".$winner->last_name}}"/>
-
-                    </div>
-                </div>
-                <?php $i =1;?>
-                @foreach($winner->photos as $p)
-
-                    <div class="item">
-                        <div class="svgoverlay1 bannerEffect"></div>
-                        <div class="textoverlay">
-                            <h1><small class="font-white"> CHEEK OF THE WEEK</small></h1>
-                            <h1>
-                                {{$winner->first_name." ".$winner->last_name}}
-                            </h1>
+        <div class="">
+            <h3 class="text-center">CHEEK OF THE WEEK</h3>
+            <div class="row">
+                <img class="text-center img-circle center" src="{{$winner->photo->full_path}}" width="300" height="300"   alt=" {{$winner->first_name." ".$winner->last_name}}"/>
+                <h3 class="text-center">{{$winner->first_name." ".$winner->last_name}}</h3>
+                <div class="col-md-12">
+                    <div class="clearfix" id="owl-man">
+                    <?php $i =1;?>
+                    @foreach($winner->photos as $p)
+                        <div class="col-md-2" style="margin: 0px auto">
+                            <img class="img-circle" width="150" height="150"  src="{{asset($p->full_path)}}" alt=" {{$winner->first_name." ".$winner->last_name}}">
                         </div>
-                        <img class="img-responsive"  src="{{asset($p->full_path)}}" alt=" {{$winner->first_name." ".$winner->last_name}}">
-
+                    @endforeach
+                </div>
                     </div>
 
-                @endforeach
+
+                </div>
             </div>
         </div>
     </div>
 </div>
+<div class="clearfix"></div>
+<br/>
+<br/>
+
 <!--/ Main Visual Div End-->
 <div class="container homecontainer-margin group">
     <div class="row">
-
-        <div class="col-lg-9 col-lg-push-3 ">
             <!--Images Section Start-->
-            <div class="row col-md-12">
+            <div class="col-md-12">
                 @foreach($topsix as $t)
-                    <div class="view view-first shadow imgheight col-md-4">
+                    <div class="view view-first shadow imgheight col-md-3">
                         <img class="img-responsive"  src="{{asset($t->photo->full_path)}}" width="600"  alt="{{$t->first_name." ".$t->last_name}}">
 
                         <div class="mask1 mask shadow thumbEffect">
@@ -66,7 +55,7 @@
                 @endforeach
             </div>
 
-        </div>
+
 
     </div>
 </div>

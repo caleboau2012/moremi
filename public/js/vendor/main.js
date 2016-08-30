@@ -161,11 +161,14 @@ $(document).ready(function () {
 
     var owl = $("#owl-main");
     owl.owlCarousel({
-        items: 1,
+        items: 3,
+        itemsDesktop :	[1199,3],
+        itemsDesktopSmall:	[979,3],
+        itemsTablet:	[768,2],
         autoplay: true,
         nav: false,
         dots: true,
-        margin: 10,
+        margin: 0,
         loop: true,
         autoplayHoverPause: true
     });
