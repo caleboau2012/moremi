@@ -1,6 +1,7 @@
 @extends('layouts.master')
 
 @section('content')
+
         <!--- Main Visual Div-->
 <div class="container-fluid">
     <div class="container">
@@ -31,11 +32,11 @@
 <br/>
 
 <!--/ Main Visual Div End-->
-<div class="container homecontainer-margin group">
+<div class="container-fluid homecontainer-margin group">
     <div class="row">
             <!--Images Section Start-->
             <div class="col-md-12">
-                @foreach($topsix as $t)
+               <!-- @foreach($topsix as $t)
                     <div class="view view-first shadow imgheight col-md-3">
                         <img class="img-responsive"  src="{{asset($t->photo->full_path)}}" width="600"  alt="{{$t->first_name." ".$t->last_name}}">
 
@@ -53,6 +54,7 @@
                         </div>
                     </div>
                 @endforeach
+                  -->
             </div>
 
 
@@ -61,18 +63,39 @@
 </div>
 <!--Horizontal Banner Start-->
 <div class="container-fluid  group ">
-    <div class=" horizontal-banner row">
-        <div class="container">
-            <h1>
-                <small>I'm hot and spicy</small>
-                <br>
-                <i>FEATURED CHEEK</i>
-            </h1>
-            <br>
-            <button class="btn btn-lg btn-primary"><span class="fa fa-square-o"></span> Vote Now</button>
-            {{--<input type="button" value="Get your copy now" />--}}
+<!--- new profile template comes-->
+    <!---An image-->
+    <div id="cheeks-inf">
+    @foreach($topsix as $t)
+    <div class="profile_img">
+        <header>
+    <div class="user">
+        <div class="avatar">
+            <img alt="{{$t->first_name." ".$t->last_name}}" src="{{$t->photo->full_path}}">
         </div>
+        <h2>{{$t->first_name." ".$t->last_name}}</h2>
+        <p>{{$t->vote}} votes</p>
+        <a href="#"  class="follow vote-c-tw" data-id="{{$t->id}}"><span><i class="fa fa-heart"></i> </span>Vote</a>
     </div>
+            </header>
+        </div>
+    @endforeach
+    </div>
+    <div class="loading-area"></div>
+    <script type="text/html" id="profile_TMP">
+        <div class="profile_img">
+            <header>
+                <div class="user">
+                    <div class="avatar">
+                        <img alt="[[NAME]]" src="[[PHOTO]]">
+                    </div>
+                    <h2>[[NAME]]</h2>
+                    <p>[[VOTE]] votes</p>
+                    <a href="#"  class="follow vote-c-tw" data-id="[[ID]]"><span><i class="fa fa-heart"></i> </span>Vote</a>
+                </div>
+            </header>
+        </div>
+</script>
 </div>
 <!--/. Horizontal Banner End-->
 @endsection
@@ -81,6 +104,7 @@
     @parent
     <script src="{{asset('js/app/ProfileSidebar.js')}}"></script>
     <script src="{{asset('js/vendor/jquery.jscroll.min.js')}}"></script>
+    <script src="{{asset('js/app/infiniteScroll.js')}}"></script>
 
     <script type="application/javascript">
         $(document).ready( function() {
@@ -97,7 +121,9 @@
                     $('ul.pagination:visible:first').hide();
                 }
             });
-        });
+            InfiniteScroll.init();
+        })
+
     </script>
 
 @endsection

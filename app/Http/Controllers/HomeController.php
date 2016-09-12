@@ -63,7 +63,8 @@ class HomeController extends Controller
                 ['link' => (string)$profiles->links(),
                     'current_page' => $profiles->currentPage(),
                     'total' => $profiles->total(),
-                    'per_page' => $profiles->perPage()
+                    'per_page' => $profiles->perPage(),
+                    'last_page'=>$profiles->lastPage()
                 ]]);
 
     }

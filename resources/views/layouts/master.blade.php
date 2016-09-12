@@ -71,7 +71,7 @@
 
         <!--Logo and Social Icons Div End-->
         <!--Main Menu Div Start-->
-        <div class=" container-fluid">
+        <div class="container-fluid">
             <div class="row ">
                 <div class="col-lg-2 fixed-sidebar">
                     <!-- Latest Stories Section(Listing)-->
