@@ -7,7 +7,6 @@
 }
 
 .cheek-search{
-    width: 90%;
     padding-top: 10px;
 }
 /* enable absolute positioning */
@@ -143,8 +142,8 @@ img.center {
     width: 100%;
 }
 .profile_img header .user {
-    float: right;
-    width: 335px;
+    /*float: right;*/
+    /*width: 335px;*/
     padding: 30px 0;
 }
 .profile_img header .user .avatar {
@@ -163,7 +162,7 @@ img.center {
 .profile_img header .user h2 {
     margin: 15px 0 0;
     color: #000;
-    font: normal 24px/1 "GothamRoundedMedium", sans-serif;
+    font: normal 24px/1 "Ubuntu Condensed", sans-serif;
 }
 .profile_img header .user p {
     color: #b0b0b0;
@@ -179,7 +178,7 @@ img.center {
     height: 50px;
     margin: 15px 0 0;
     color: #fff;
-    font: normal 18px/50px "GothamRoundedBold", sans-serif;
+    font: normal 18px/50px "Ubuntu Condensed", sans-serif;
     -webkit-transition: all ease 0.2s;
     transition: all ease 0.2s;
 }

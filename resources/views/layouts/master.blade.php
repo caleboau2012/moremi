@@ -12,8 +12,8 @@
     <!--Main Custom Css-->
     <link href="{{asset('css/vendor/component.css')}}" rel="stylesheet" />
     <!-- Google Fonts-->
-    <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Ubuntu:400,700,500' rel='stylesheet' type='text/css'>
+    {{--<link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>--}}
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu|Ubuntu+Condensed|Ubuntu+Mono" rel="stylesheet">
     <!-- Font Awesome-->
     <link rel="stylesheet" href="{{asset('font-awesome/4.5.0/css/font-awesome.min.css')}}">
     <!--Css Animation-->
@@ -71,55 +71,48 @@
 
         <!--Logo and Social Icons Div End-->
         <!--Main Menu Div Start-->
-        <div class="container-fluid">
-            <div class="row ">
-                <div class="col-lg-2 fixed-sidebar">
-                    <!-- Latest Stories Section(Listing)-->
-                    <div class=" latest-div group">
-                        <div class="section-head">
-                            <div class="cheek-search">
-                                <div class="inner-addon right-addon">
-                                    <i class="fa fa-search"></i>
-                                    <input id="cheek-search" type="text" placeholder="Search" class="form-control"/>
-                                </div>
-                            </div>
-                        </div>
+        <div class="container">
+            {{--<div class="row ">--}}
+                {{--<div class="col-lg-2 fixed-sidebar">--}}
+                    {{--<!-- Latest Stories Section(Listing)-->--}}
+                    {{--<div class=" latest-div group">--}}
 
-                        <script id="cheeks-template" type="text/html">
-                            <li>
-                                <a href="#">
-                                    <div class="row">
-                                        <div>
-                                            <img src="[[img-url]]" alt="[[name]]" />
-                                        </div>
-                                        <div class="col-sm-8">
-                                            <span>[[name]]</span>
-                                            <span>[[votes]] votes</span>
-                                            <span><button class="btn btn-primary btn-xs vote-c" type="button" data-id="[[id]]"><i class="fa fa-square-o"></i> Vote</button></span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
-                        </script>
 
-                        <script id="cheeks-none" type="text/html">
-                            <li>
-                                <a>
-                                    <p>And... Your query matched no Cheek</p>
-                                </a>
-                            </li>
-                        </script>
+                        {{--<script id="cheeks-template" type="text/html">--}}
+                            {{--<li>--}}
+                                {{--<a href="#">--}}
+                                    {{--<div class="row">--}}
+                                        {{--<div>--}}
+                                            {{--<img src="[[img-url]]" alt="[[name]]" />--}}
+                                        {{--</div>--}}
+                                        {{--<div class="col-sm-8">--}}
+                                            {{--<span>[[name]]</span>--}}
+                                            {{--<span>[[votes]] votes</span>--}}
+                                            {{--<span><button class="btn btn-primary btn-xs vote-c" type="button" data-id="[[id]]"><i class="fa fa-square-o"></i> Vote</button></span>--}}
+                                        {{--</div>--}}
+                                    {{--</div>--}}
+                                {{--</a>--}}
+                            {{--</li>--}}
+                        {{--</script>--}}
 
-                        <div class="listing-div hovercolor latest-div white group pre-scrollable cheeks" id="cheeks" data-url="{{route("cheeks", 10)}}">
-                            <div id="cheeks-loading" class="loading hidden"></div>
-                            <ul id="contestant-parent">
-                            </ul>
-                        </div>
+                        {{--<script id="cheeks-none" type="text/html">--}}
+                            {{--<li>--}}
+                                {{--<a>--}}
+                                    {{--<p>And... Your query matched no Cheek</p>--}}
+                                {{--</a>--}}
+                            {{--</li>--}}
+                        {{--</script>--}}
 
-                    </div>
-                    <!--/  Latest Stories Section (Listing) End-->
-                </div>
-                <div class="col-lg-8">
+                        {{--<div class="listing-div hovercolor latest-div white group pre-scrollable cheeks" id="cheeks" data-url="{{route("cheeks", 10)}}">--}}
+                            {{--<div id="cheeks-loading" class="loading hidden"></div>--}}
+                            {{--<ul id="contestant-parent">--}}
+                            {{--</ul>--}}
+                        {{--</div>--}}
+
+                    {{--</div>--}}
+                    {{--<!--/  Latest Stories Section (Listing) End-->--}}
+                {{--</div>--}}
+                {{--<div class="col-lg-8">--}}
                     <div class="row">
                         <div class=" col-lg-3 col-md-12 col-xs-12">
                             <a class="navbar-brand" href="{{route("home")}}">
@@ -144,8 +137,8 @@
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
+                {{--</div>--}}
+            {{--</div>--}}
         </div>
 
         <br>

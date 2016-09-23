@@ -25,7 +25,7 @@ class HomeController extends Controller
 
     public function index(){
         $profiles= Profile::orderBy('vote', 'desc')->paginate(4);
-        $topsix = Profile::orderBy('vote', 'desc')->take(6)->get();
+        $topsix = Profile::orderBy('vote', 'desc')->take(8)->get();
         $winner = Profile::whereRaw('vote = (select max(`vote`) from profiles)')->first();
         return view('home',['profiles'=>$profiles,'topsix'=>$topsix,'winner'=>$winner, 'pagination' =>
             ['link' => (string)$profiles->links(),

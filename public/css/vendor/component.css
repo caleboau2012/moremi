@@ -98,7 +98,7 @@ Author : Webyzona.com
 /*Font*/
 body {
     height:100%;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Ubuntu', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
@@ -196,7 +196,7 @@ h1 small {
 h2 {
     font-size: 42px;
     font-weight: bold;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Ubuntu Condensed', sans-serif;
     color: #2F2F2F;
     padding: 12px 22px 12px 22px;
 }
@@ -2262,7 +2262,7 @@ ul.post-tags li {
 .colored-section .text {
     font-size: 30px;
     font-weight: bold;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Ubuntu Mono', sans-serif;
     /*color: #fff;*/
     line-height: 30px;
     padding: 0px 22px 0px 22px;
