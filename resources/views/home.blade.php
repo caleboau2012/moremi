@@ -87,7 +87,7 @@
             <header>
                 <div class="user">
                     <div class="avatar">
-                        <img alt="[[NAME]]" src="[[PHOTO]]">
+                        <img alt="[[NAME]]" src="[[PHOTO]]"  class="r-modal-photo" >
                     </div>
                     <h2>[[NAME]]</h2>
                     <p>[[VOTE]] votes</p>
@@ -96,7 +96,22 @@
             </header>
         </div>
 </script>
+
+
 </div>
+<!--Profile pic modal-->
+<div id="r-modal-photo" class="modal hide fade" tabindex="-1" data-replace="true">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 class="title">Title</h3>
+    </div>
+    <div class="modal-body">
+    </div>
+    <div class="modal-footer">
+        <button type="button" data-dismiss="modal" class="btn">Close</button>
+    </div>
+</div>
+<!------>
 <!--/. Horizontal Banner End-->
 @endsection
 
