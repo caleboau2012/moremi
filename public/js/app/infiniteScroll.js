@@ -11,6 +11,7 @@ InfiniteScroll ={
 
     },
     init: function(){
+        $('#cheeks-inf').html("");
         InfiniteScroll.Get();
         $(document).on('scroll', function() {
             if($(this).scrollTop()>=$('.loading-area').position().top){
@@ -33,8 +34,8 @@ InfiniteScroll ={
 
   },
    HideLoading: function(){
-
    },
+
   Render : function(data){
       var t =data.length;
       for(var i=0;i<t;i++ ){

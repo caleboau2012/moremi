@@ -158,7 +158,7 @@ $(document).ready(function () {
      * -------------------------------------------------------------------------*/
 
     // owl Main carousel script
-
+/**
     var owl = $("#owl-main");
     owl.owlCarousel({
         items: 3,
@@ -172,7 +172,7 @@ $(document).ready(function () {
         loop: true,
         autoplayHoverPause: true
     });
-
+*/
 
     // owl Sync carousel script
 

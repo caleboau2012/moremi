@@ -100,7 +100,7 @@
 
 </div>
 <!--Profile pic modal-->
-<div id="r-modal-photo" class="modal hide fade" tabindex="-1" data-replace="true">
+<div id="r-modal-photo" class="modal hide fade" tabindex="-1">
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
         <h3 class="title">Title</h3>
@@ -124,7 +124,7 @@
     <script type="application/javascript">
         $(document).ready( function() {
             Vote.init();
-        })
+        });
         $(function() {
             $('#contestant-parent').jscroll({
                 autoTrigger: true,

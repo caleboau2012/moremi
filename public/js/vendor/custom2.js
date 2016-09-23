@@ -17,7 +17,7 @@ $(document).ready(function () {
     if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || $(window).width() < 800 ) {
 
         var imgs = document.getElementsByTagName("img");
-      
+
         for (var i = 0; i < imgs.length; i++) {
             //imgs[i].src = imgs[i].src.replace("images/home1/desktop", "images/home1/tablet");
         }  // some code..
@@ -28,7 +28,7 @@ $(document).ready(function () {
 
 
     /* -------------------------------------------------------------------------*
-     *Gallery: Magnific Popup
+     *Gallery: Magnific Popupowl
      * -------------------------------------------------------------------------*/
 
     if ($('.popup-gallery').length > 0) {
@@ -187,11 +187,11 @@ $(document).ready(function () {
 
 
     /* -------------------------------------------------------------------------*
-     * OWL CAROUSEL 
+     * OWL CAROUSEL
      * -------------------------------------------------------------------------*/
 
     // owl Main carousel script
-
+/**
     var owl = $("#owl-main");
     owl.owlCarousel({
         items: 1,
@@ -200,19 +200,19 @@ $(document).ready(function () {
         dots: true,
         margin: 10,
         loop: true,
-  
+
         autoplayTimeout:10000,
-   
+
         smartSpeed: 100,
         animateIn: 'fadeIn',
         animateOut:'fadeOut',
         autoplayHoverPause: true
     });
 
-
+*/
     // owl Sync carousel script
 
-
+/**
     var $sync1 = $(".big-images"),
             $sync2 = $(".thumbs"),
             flag = false,
@@ -232,7 +232,7 @@ $(document).ready(function () {
                     $sync2.trigger('to.owl.carousel', [e.item.index, duration, true]);
                     flag = false;
                 }})
-   
+
 
     $sync2
             .owlCarousel({
@@ -243,7 +243,7 @@ $(document).ready(function () {
                 loop: false,
                 dots: false
             })
-       		
+
 	$('.owl-item').on('click', function () {
 				$sync1.trigger('to.owl.carousel', [$(this).index(), duration, true]);
 			})
@@ -255,7 +255,7 @@ $(document).ready(function () {
 						flag = false;
 					}
 				})
-       
+
 
 
     /* -------------------------------------------------------------------------*
@@ -302,7 +302,7 @@ $(document).ready(function () {
     /* -------------------------------------------------------------------------*
      * STYLE SWITCHER
      * -------------------------------------------------------------------------*/
-    $('#switcher').styleSwitcher({
+  /**  $('#switcher').styleSwitcher({
         useCookie: true
     });
     /* -------------------------------------------------------------------------*
@@ -319,13 +319,13 @@ $(document).ready(function () {
 
 // thumbEffect
 // bannerEffect
-// 
+//
 
     $('#custom-pattern1').on("click", function () {
         $('.bannerEffect').removeClass('svgoverlay2 svgoverlay3 svgoverlay4').addClass('svgoverlay1');
         $('.thumbEffect').removeClass('mask2 mask3 mask4').addClass('mask1'); });
 
-     
+
     $('#custom-pattern2').on("click", function () {
         $('.bannerEffect').removeClass('svgoverlay1 svgoverlay3 svgoverlay4').addClass('svgoverlay2');
         $('.thumbEffect').removeClass('mask1 mask3 mask4').addClass('mask2');
@@ -345,7 +345,7 @@ $(document).ready(function () {
 
 ////////////////////////////////////////////////////////////////////////////////
 
-  
+
 
 
 });

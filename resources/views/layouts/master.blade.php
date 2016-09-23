@@ -244,23 +244,18 @@
     @include('config.App')
 
     <script src="{{asset('js/vendor/jquery-1.9.1.min.js')}}" ></script>
-    <!--Owl Carousel Script-->
-    <script src="{{asset('js/vendor/owl.carousel.min.js')}}"></script>
-    <!--Bootstrap Script-->
     <script src="{{asset('js/vendor/bootstrap.min.js')}}"></script>
-    <!--Popup Javascript-->
-    <script src="{{asset('js/vendor/jquery.magnific-popup.min.js')}}"></script>
+
+    <!--Owl Carousel Script-->
+    <!--Bootstrap Script-->
+    <!--Popup Javascript
     <!--weather Script-->
     <!-- Image Customization Script-->
-    <script src="{{asset('js/vendor/picturefill.min.js')}}"></script>
     <!-- Link Effect Script-->
     <script src="{{asset('js/vendor/modernizr.custom.min.js')}}"></script>
     <!-- Price Slider -->
-    <script src="{{asset('js/vendor/bootstrap-slider.min.js')}}"></script>
     <!--style switcher-->
-    <script src="{{asset('js/vendor/style-switcher.min.js')}}"></script>
     <!--wow animation-->
-    <script src="{{asset('js/vendor/wow.min.js')}}"></script>
     <!--Preview Toolbar-->
     <script src="{{asset('js/vendor/jquery.toolbar.min.js')}}"></script>
     <!--Custom Javascript-->
