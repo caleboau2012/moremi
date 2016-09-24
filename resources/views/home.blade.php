@@ -87,7 +87,7 @@
             <header>
                 <div class="user">
                     <div class="avatar">
-                        <img alt="[[NAME]]" src="[[PHOTO]]"  class="r-modal-photo" >
+                        <img alt="[[NAME]]" src="[[PHOTO]]"  class="r-modal-photo" data-img-1="[[data-img-1]]" data-img-2="[[data-img-2]]" data-img-3="[[data-img-4]]" data-img-5="[[data-img-5]]" data-img-6="[[data-img-6]]">
                     </div>
                     <h2>[[NAME]]</h2>
                     <p>[[VOTE]] votes</p>

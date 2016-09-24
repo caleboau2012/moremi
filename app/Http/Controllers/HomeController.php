@@ -55,6 +55,7 @@ class HomeController extends Controller
             'vote'=>$p->vote,
             'id'=>$p->id,
             'image'=>Photo::find($p->photo_id)->thumb_path,
+            'photos'=>$p->photo
         ];
        }
 
