@@ -9,13 +9,13 @@ var Home = {
         Home.fetchCheeks();
 
         $("#cheek-search").on("keyup", function(e){
-            console.log(this.value);
+            //console.log(this.value);
         }).on("keydown", function(e){
             if(e.keyCode == 13){
                 e.preventDefault();
             }
             if(this.value.length > 2){
-                Home.fetchCheeks(this.value);
+                //Home.fetchCheeks(this.value);
             }
         });
 

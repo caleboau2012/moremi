@@ -160,9 +160,10 @@ img.center {
     border-radius: 100%;
 }
 .profile_img header .user h2 {
-    margin: 15px 0 0;
+    margin: 10px 0 0;
     color: #000;
     font: normal 24px/1 "Ubuntu Condensed", sans-serif;
+    height: 50px;
 }
 .profile_img header .user p {
     color: #b0b0b0;

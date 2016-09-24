@@ -6,7 +6,7 @@
 <div class="container-fluid">
     <div class="container">
         <div class="">
-            <h3 class="text-center">CHEEK OF THE WEEK</h3>
+            <h2 class="text-center">CHEEK OF THE WEEK</h2>
             <div class="row">
                 <img class="text-center img-circle center" src="{{$winner->photo->full_path}}" width="300" height="300"   alt=" {{$winner->first_name." ".$winner->last_name}}"/>
                 <h3 class="text-center">{{$winner->first_name." ".$winner->last_name}}</h3>
@@ -20,8 +20,6 @@
                         @endforeach
                     </div>
                 </div>
-
-
             </div>
         </div>
     </div>
