@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\OldCheek;
 use App\Photo;
 use App\Profile;
 use App\Services\Vote\VoteResetter;
@@ -27,7 +28,7 @@ class HomeController extends Controller
         $profiles= Profile::orderBy('vote', 'desc')->paginate(4);
         $topsix = Profile::orderBy('vote', 'desc')->take(8)->get();
         $winner = Profile::whereRaw('vote = (select max(`vote`) from profiles)')->first();
-        return view('home',['profiles'=>$profiles,'topsix'=>$topsix,'winner'=>$winner, 'pagination' =>
+        return view('home',['profiles'=>$profiles,'topsix'=>$topsix,'winner'=>$winner, 'pastwinners'=>$this->pastWinners(), 'pagination' =>
             ['link' => (string)$profiles->links(),
                 'current_page' => $profiles->currentPage(),
                 'total' => $profiles->total(),
@@ -108,7 +109,6 @@ class HomeController extends Controller
         $new =new VoteResetter();
     }
     public function seed(){
-
         $faker = \Faker\Factory::create();
         for ($i = 0; $i < 10 ;$i++) {
             $profile = new \App\Profile();
@@ -132,8 +132,14 @@ class HomeController extends Controller
             }
             $profile->update(['photo_id'=>$photo->id]);
         }
+    }
+
+    public function pastWinners(){
+        $chicks =OldCheek::orderBy('created_at', 'desc')->take(10)->get();
+        return $chicks;
 
     }
+
 
 
 

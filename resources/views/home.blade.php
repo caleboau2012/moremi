@@ -85,8 +85,9 @@
         <div class="profile_img col-md-3">
             <header>
                 <div class="user">
-                    <div class="avatar">
-                        <img alt="[[NAME]]" src="[[PHOTO]]"  class="r-modal-photo" data-img-1="[[data-img-1]]" data-img-2="[[data-img-2]]" data-img-3="[[data-img-4]]" data-img-5="[[data-img-5]]" data-img-6="[[data-img-6]]">
+                    <div class="avatar" data-name="[[DATA-NAME]]" data-about="[[DATA-ABOUT]]">
+                        <img alt="[[NAME]]" src="[[PHOTO]]"  class="r-modal-photo" data-img-1="[[data-img-1]]" data-img-2="[[data-img-2]]" data-img-3="[[data-img-4]]"
+                             data-img-5="[[data-img-5]]" data-img-6="[[data-img-6]]">
                     </div>
                     <h2>[[NAME]]</h2>
                     <p>[[VOTE]] votes</p>
@@ -112,6 +113,16 @@
 </div>
 <!------>
 <!--/. Horizontal Banner End-->
+@endsection
+
+@section('past_winners')
+    @if(!empty($pastwinners))
+        <h4>Previous Winners</h4>
+        @foreach($pastwinners as $s)
+            <div class="img-div"><a href="#"><img alt="" src="{{$s->won_photo}}" class="img-responsive" /></a></div>
+
+        @endforeach
+    @endif
 @endsection
 
 @section('scripts')
