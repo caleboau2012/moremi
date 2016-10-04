@@ -190,3 +190,13 @@ img.center {
 .profile_img header .user a.follow:hover {
     opacity: 0.7;
 }
+.margin-up-50{
+    margin-top: 50px !important;
+}
+.listing-info {
+    color: #000;
+    font: 24px/1 "Ubuntu Condensed",sans-serif;
+    height: 50px;
+    margin: 10px 0 0;
+
+}
