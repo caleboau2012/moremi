@@ -5,23 +5,38 @@
         <!--- Main Visual Div-->
 <div class="container-fluid">
     <div class="container">
+        <div class="row">
         <div class="">
             <h2 class="text-center">CHEEK OF THE WEEK</h2>
             <div class="row">
+                <div class="col-md-4 col-xs-12 col-sm-12">
+
+                    <div class="dl-horizontal listing-info margin-up-50">
+                        <dt>Gender:</dt><dd> Chick <i class="fa fa-female"></i></dd>
+                        <dt>Vote:</dt><dd>2000 <i class="fa fa-heart"></i></dd>
+                        <dt>About:</dt><dd><p class="small">Easy going, open and very naughty</p> </dd>
+                    </div>
+
+                </div>
+                <div class="col-md-4 col-xs-12 col-sm-12">
                 <img class="text-center img-circle center" src="{{$winner->photo->full_path}}" width="300" height="300"   alt=" {{$winner->first_name." ".$winner->last_name}}"/>
                 <h3 class="text-center">{{$winner->first_name." ".$winner->last_name}}</h3>
-                <div class="col-md-12">
-                    <div class="clearfix" id="owl-man">
-                        <?php $i =1;?>
-                        @foreach($winner->photos as $p)
-                            <div class="col-md-2 col-sm-3" style="margin: 0px auto">
-                                <img class="img-circle" width="150" height="150"  src="{{asset($p->full_path)}}" alt=" {{$winner->first_name." ".$winner->last_name}}">
-                            </div>
-                        @endforeach
-                    </div>
+                </div>
+                <div class="col-md-4 col-xs-12 col-sm-12"></div>
+            </div>
+            <div class="col-md-12">
+                <div class="clearfix" id="owl-man">
+                    <?php $i =1;?>
+                    @foreach($winner->photos as $p)
+                        <div class="col-md-2 col-sm-3" style="margin: 0px auto">
+                            <img class="img-circle" width="150" height="150"  src="{{asset($p->full_path)}}" alt=" {{$winner->first_name." ".$winner->last_name}}">
+                        </div>
+                    @endforeach
                 </div>
             </div>
         </div>
+
+
     </div>
 </div>
 </div>
@@ -70,8 +85,9 @@
         <div class="profile_img col-md-3">
             <header>
                 <div class="user">
-                    <div class="avatar">
-                        <img alt="[[NAME]]" src="[[PHOTO]]"  class="r-modal-photo" data-img-1="[[data-img-1]]" data-img-2="[[data-img-2]]" data-img-3="[[data-img-4]]" data-img-5="[[data-img-5]]" data-img-6="[[data-img-6]]">
+                    <div class="avatar" data-name="[[DATA-NAME]]" data-about="[[DATA-ABOUT]]">
+                        <img alt="[[NAME]]" src="[[PHOTO]]"  class="r-modal-photo" data-img-1="[[data-img-1]]" data-img-2="[[data-img-2]]" data-img-3="[[data-img-4]]"
+                             data-img-5="[[data-img-5]]" data-img-6="[[data-img-6]]">
                     </div>
                     <h2>[[NAME]]</h2>
                     <p>[[VOTE]] votes</p>
@@ -143,6 +159,16 @@
 </div>
 
 <!--/. Horizontal Banner End-->
+@endsection
+
+@section('past_winners')
+    @if(!empty($pastwinners))
+        <h4>Previous Winners</h4>
+        @foreach($pastwinners as $s)
+            <div class="img-div"><a href="#"><img alt="" src="{{$s->won_photo}}" class="img-responsive" /></a></div>
+
+        @endforeach
+    @endif
 @endsection
 
 @section('scripts')

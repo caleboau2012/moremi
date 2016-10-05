@@ -53,7 +53,16 @@ InfiniteScroll ={
             tmp =tmp.replace("[[NAME]]",data[i].name)
                 .replace("[[PHOTO]]",data[i].image)
                 .replace("[[ID]]",data[i].id)
-                .replace("[[VOTE]]",data[i].vote);
+                .replace("[[VOTE]]",data[i].vote)
+                .replace("[[data-img-1]]",data[i].photos[0].full_path)
+                .replace("[[data-img-2]]",data[i].photos[1].full_path)
+                .replace("[[data-img-3]]",data[i].photos[2].full_path)
+                .replace("[[data-img-4]]",data[i].photos[3].full_path)
+                .replace("[[data-img-5]]",data[i].photos[4].full_path)
+                .replace("[[data-img-6]]",data[i].photos[5].full_path)
+                .replace("[[DATA-NAME]]",data[i].name)
+                .replace("[[DATA-ABOUT]]",data[i].about);
+
             $('#cheeks-inf').append(tmp);
         }
     }

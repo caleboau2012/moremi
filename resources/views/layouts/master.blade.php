@@ -182,22 +182,8 @@
 
                     <!--Latest on Instegram-->
                     <section class="col-md-6 col-xs-12 col-sm-6  footerbg1">
-                        <h4>Previous Winners</h4><div class="img-div"><a href="#"><img alt="" src="images/home1/instagram8.jpg" class="img-responsive" /></a></div>
-                        <div class="img-div"><a href="#"><img alt="" src="images/home1/thumb8.jpg" class="img-responsive" /></a></div>
-                        <div class="img-div"><a href="#"><img alt="" src="images/home1/thumb9.jpg" class="img-responsive" /></a></div>
-                        <div class="img-div"><a href="#"><img alt="" src="images/home1/thumb10.jpg" class="img-responsive" /></a></div>
-                        <div class="img-div"><a href="#"><img alt="" src="images/home1/thumb11.jpg" class="img-responsive" /></a></div>
-                        <div class="img-div"><a href="#"><img alt="" src="images/home1/thumb12.jpg" class="img-responsive" /></a></div>
-                        <div class="img-div"><a href="#"><img alt="" src="images/home1/thumb8.jpg" class="img-responsive" /></a></div>
-                        <div class="img-div"><a href="#"><img alt="" src="images/home1/thumb9.jpg" class="img-responsive" /></a></div>
-                        <div class="img-div"><a href="#"><img alt="" src="images/home1/thumb10.jpg" class="img-responsive" /></a></div>
-                        <div class="img-div"><a href="#"><img alt="" src="images/home1/thumb11.jpg" class="img-responsive" /></a></div>
-                        <div class="img-div"><a href="#"><img alt="" src="images/home1/thumb12.jpg" class="img-responsive" /></a></div>
-                        <div class="img-div"><a href="#"><img alt="" src="images/home1/thumb8.jpg" class="img-responsive" /></a></div>
-                        <div class="img-div"><a href="#"><img alt="" src="images/home1/thumb9.jpg" class="img-responsive" /></a></div>
-                        <div class="img-div"><a href="#"><img alt="" src="images/home1/thumb10.jpg" class="img-responsive" /></a></div>
-                        <div class="img-div"><a href="#"><img alt="" src="images/home1/thumb11.jpg" class="img-responsive" /></a></div>
-                        <div class="img-div"><a href="#"><img alt="" src="images/home1/thumb12.jpg" class="img-responsive" /></a></div>
+                        @yield('past_winners')
+
                     </section>
 
                     <!-- Popular on Facebook-->
