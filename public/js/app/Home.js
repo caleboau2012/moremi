@@ -34,6 +34,14 @@ var Home = {
             //    // ajax call get data from server and append to the div
             //}
         });
+
+        $(document).delegate(".user", "click", function(){
+            Home.showCheek($(this));
+        });
+    },
+    showCheek: function(imgs){
+        console.log(imgs);
+        $("#profileModal").modal("show");
     },
     fetchCheeks: function(query){
         $("#cheeks-loading").removeClass("hidden");

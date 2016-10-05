@@ -22,18 +22,6 @@ Vote ={
         $(this).attr('disabled');
         Vote.voteProfile(id,Vote.increaseCount);
         });
-
-        /***Raise modal on click of profile pic ***/
-
-        $('#cheeks-inf').on('click','.r-modal-photo', function(e){
-            e.preventDefault();
-           // var id =$(this).attr('data-id');
-            console.log('one picture clicked');
-            ('#r-modal-photo').modal('show');
-            /***Raise modal on click of profile pic ***/
-
-
-        });
     },
 
     disableBtn: function (object) {

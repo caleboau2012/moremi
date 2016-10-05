@@ -17,16 +17,12 @@ InfiniteScroll ={
             }
         });
         $("#cheek-search").on("keyup", function(e){
-            //console.log(this.value);
-        }).on("keydown", function(e){
-            //console.log(this.value);
+            console.log(this.value);
+            InfiniteScroll.CONSTANT.QUERY = this.value;
+            InfiniteScroll.Get();
+
             if(e.keyCode == 13){
                 e.preventDefault();
-            }
-            if(this.value.length > 2){
-                console.log(this.value);
-                InfiniteScroll.CONSTANT.QUERY = this.value;
-                InfiniteScroll.Get();
             }
         });
     },
