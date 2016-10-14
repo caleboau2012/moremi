@@ -53,6 +53,8 @@ InfiniteScroll ={
             tmp =tmp.replace("[[NAME]]",data[i].name)
                 .replace("[[PHOTO]]",data[i].image)
                 .replace("[[ID]]",data[i].id)
+                .replace("[[ID]]",data[i].id)
+                .replace("[[VOTE]]",data[i].vote)
                 .replace("[[VOTE]]",data[i].vote)
                 .replace("[[data-img-1]]",data[i].photos[0].full_path)
                 .replace("[[data-img-2]]",data[i].photos[1].full_path)

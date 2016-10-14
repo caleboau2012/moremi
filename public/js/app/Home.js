@@ -35,12 +35,61 @@ var Home = {
             //}
         });
 
-        $(document).delegate(".user", "click", function(){
+        $(document).delegate(".avatar", "click", function(){
             Home.showCheek($(this));
         });
     },
-    showCheek: function(imgs){
-        console.log(imgs);
+    showCheek: function(element){
+        var data = {
+            name: element.attr('data-name'),
+            about: element.attr('data-about'),
+            images: [
+                $(element.children()[0]).attr('data-img-1'),
+                $(element.children()[0]).attr('data-img-2'),
+                $(element.children()[0]).attr('data-img-3'),
+                $(element.children()[0]).attr('data-img-4'),
+                $(element.children()[0]).attr('data-img-5'),
+                $(element.children()[0]).attr('data-img-6')
+            ],
+            vote: element.attr('data-vote'),
+            id: element.attr('data-id')
+        };
+
+        $("#profileModalLabel").text(data.name);
+        $("#profileModalVote").text(data.vote);
+        $(".carousel-indicators").empty();
+        $(".carousel-inner").empty();
+
+        var controlHTML, carouselImage, voteHTML;
+        var first = true;
+
+        voteHTML = $("#profile-vote-template").html();
+        voteHTML = voteHTML.replaceAll("[[id]]", data.id);
+        $("#profileVote").html(voteHTML);
+
+        for(var i = 0; i < data.images.length; i++) {
+            if(data.images[i] != ""){
+                controlHTML = $("#carousel-control-template").html();
+                carouselImage = $("#carousel-image-template").html();
+
+                if(first){
+                    controlHTML = controlHTML.replaceAll("[[0]]", "active");
+                    carouselImage = carouselImage.replaceAll("[[0]]", "active");
+                    first = false;
+                }
+
+                controlHTML = controlHTML.replaceAll("[[i]]", i);
+
+                carouselImage = carouselImage.replaceAll("[[i]]", i);
+                carouselImage = carouselImage.replaceAll("[[src]]", data.images[i]);
+                carouselImage = carouselImage.replaceAll("[[about]]", data.about);
+
+                $(".carousel-indicators").append(controlHTML);
+                $(".carousel-inner").append(carouselImage);
+            }
+        }
+
+        $("#carousel-example-generic").carousel();
         $("#profileModal").modal("show");
     },
     fetchCheeks: function(query){

@@ -3,24 +3,24 @@
  */
 Vote ={
     CONSTANT: {
-    url: Routes.Vote
+        url: Routes.Vote
     },
 
     init: function(){
         $('#contestant-parent').on('click','.vote-c', function(e){
-        //$('.vote-c').click( function(e){
+            //$('.vote-c').click( function(e){
             e.preventDefault();
-          var id =$(this).attr('data-id');
+            var id =$(this).attr('data-id');
             $(this).attr('disabled');
             Vote.voteProfile(id,Vote.showResponse);
         });
 
-        $('.vote-c-tw').click( function(e){
-        e.preventDefault();
-        var id =$(this).attr('data-id');
+        $(document).delegate('.vote-c-tw', 'click', function(e){
+            e.preventDefault();
+            var id =$(this).attr('data-id');
 
-        $(this).attr('disabled');
-        Vote.voteProfile(id,Vote.increaseCount);
+            $(this).attr('disabled');
+            Vote.voteProfile(id,Vote.increaseCount);
         });
     },
 
@@ -28,40 +28,40 @@ Vote ={
         object.attr('disabled');
     },
 
-   voteProfile : function (id,callback) {
-       var data ={'profile_id':id};
-       Vote.sendVote(data,callback);
-   },
+    voteProfile : function (id,callback) {
+        var data ={'profile_id':id};
+        Vote.sendVote(data,callback);
+    },
 
-  sendVote: function(data,callback){
-      $.ajax({
-          url: Vote.CONSTANT.url,
-          type: 'POST',
-          dataType: "json",
-          data: data,
-          headers: {},
-          beforeSend: function () {
-          },
-          success: function (result) {
-             callback(result)
-          },
-          complete: function () {
-          },
-          error: function(){
-              swal('Oops..','Error connecting to server','error');
-          }
-      });
-  },
+    sendVote: function(data,callback){
+        $.ajax({
+            url: Vote.CONSTANT.url,
+            type: 'POST',
+            dataType: "json",
+            data: data,
+            headers: {},
+            beforeSend: function () {
+            },
+            success: function (result) {
+                callback(result)
+            },
+            complete: function () {
+            },
+            error: function(){
+                swal('Oops..','Error connecting to server','error');
+            }
+        });
+    },
 
- showResponse: function (data) {
-    if(data.status==false){
-        swal('Oops..',data.msg,'error');
-    }
-     if(data.status==true){
-         swal('Success',data.msg,'success')
-         Home.fetchCheeks(); //re arrange profile bar
-     }
- },
+    showResponse: function (data) {
+        if(data.status==false){
+            swal('Oops..',data.msg,'error');
+        }
+        if(data.status==true){
+            swal('Success',data.msg,'success')
+            Home.fetchCheeks(); //re arrange profile bar
+        }
+    },
     increaseCount: function(data){
         if(data.status==false){
             swal('Oops..',data.msg,'error');

@@ -8,7 +8,10 @@
     <!-- Preloader Css -->
     <link href="{{asset('css/vendor/preloader.min.css')}}" rel="stylesheet" media="screen, print" />
     <!--Bootstrap Css-->
-    <link rel="stylesheet" type="text/css" href="{{asset('css/vendor/bootstrap.min.css')}}" />
+    {{--<link rel="stylesheet" type="text/css" href="{{asset('css/vendor/bootstrap.min.css')}}" />--}}
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <!--Main Custom Css-->
     <link href="{{asset('css/vendor/component.css')}}" rel="stylesheet" />
     <!-- Google Fonts-->

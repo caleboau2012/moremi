@@ -6,39 +6,41 @@
 <div class="container-fluid">
     <div class="container">
         <div class="row">
-        <div class="">
-            <h2 class="text-center">CHEEK OF THE WEEK</h2>
-            <div class="row">
-                <div class="col-md-4 col-xs-12 col-sm-12">
+            <div class="">
+                <h2 class="text-center">CHEEK OF THE WEEK</h2>
+                <div class="row">
+                    <div class="col-md-4 col-xs-12 col-sm-12">
 
-                    <div class="dl-horizontal listing-info margin-up-50">
-                        <dt>Gender:</dt><dd> Chick <i class="fa fa-female"></i></dd>
-                        <dt>Vote:</dt><dd>2000 <i class="fa fa-heart"></i></dd>
-                        <dt>About:</dt><dd><p class="small">Easy going, open and very naughty</p> </dd>
-                    </div>
-
-                </div>
-                <div class="col-md-4 col-xs-12 col-sm-12">
-                <img class="text-center img-circle center" src="{{$winner->photo->full_path}}" width="300" height="300"   alt=" {{$winner->first_name." ".$winner->last_name}}"/>
-                <h3 class="text-center">{{$winner->first_name." ".$winner->last_name}}</h3>
-                </div>
-                <div class="col-md-4 col-xs-12 col-sm-12"></div>
-            </div>
-            <div class="col-md-12">
-                <div class="clearfix" id="owl-man">
-                    <?php $i =1;?>
-                    @foreach($winner->photos as $p)
-                        <div class="col-md-2 col-sm-3" style="margin: 0px auto">
-                            <img class="img-circle" width="150" height="150"  src="{{asset($p->full_path)}}" alt=" {{$winner->first_name." ".$winner->last_name}}">
+                        <div class="dl-horizontal listing-info margin-up-50">
+                            <dt>Gender:</dt><dd> Chick <i class="fa fa-female"></i></dd>
+                            <br>
+                            <dt>Vote:</dt><dd>2000 <i class="fa fa-heart"></i></dd>
+                            <br>
+                            <dt>About:</dt><dd><p class="small">Easy going, open and very naughty</p> </dd>
                         </div>
-                    @endforeach
+
+                    </div>
+                    <div class="col-md-4 col-xs-12 col-sm-12">
+                        <img class="text-center img-circle center" src="{{$winner->photo->full_path}}" width="300" height="300"   alt=" {{$winner->first_name." ".$winner->last_name}}"/>
+                        <h3 class="text-center">{{$winner->first_name." ".$winner->last_name}}</h3>
+                    </div>
+                    <div class="col-md-4 col-xs-12 col-sm-12"></div>
+                </div>
+                <div class="col-md-12">
+                    <div class="clearfix" id="owl-man">
+                        <?php $i =1;?>
+                        @foreach($winner->photos as $p)
+                            <div class="col-md-2 col-sm-3" style="margin: 0px auto">
+                                <img class="img-circle" width="150" height="150"  src="{{asset($p->full_path)}}" alt=" {{$winner->first_name." ".$winner->last_name}}">
+                            </div>
+                        @endforeach
+                    </div>
                 </div>
             </div>
+
+
         </div>
-
-
     </div>
-</div>
 </div>
 <div class="clearfix"></div>
 <br/>
@@ -85,8 +87,9 @@
         <div class="profile_img col-md-3">
             <header>
                 <div class="user">
-                    <div class="avatar" data-name="[[DATA-NAME]]" data-about="[[DATA-ABOUT]]">
-                        <img alt="[[NAME]]" src="[[PHOTO]]"  class="r-modal-photo" data-img-1="[[data-img-1]]" data-img-2="[[data-img-2]]" data-img-3="[[data-img-4]]"
+                    <div class="avatar" data-id="[[ID]]" data-name="[[DATA-NAME]]" data-vote="[[VOTE]]" data-about="[[DATA-ABOUT]]">
+                        <img alt="[[NAME]]" src="[[PHOTO]]"  class="r-modal-photo" data-img-1="[[data-img-1]]" data-img-2="[[data-img-2]]"
+                             data-img-3="[[data-img-3]]" data-img-4="[[data-img-4]]"
                              data-img-5="[[data-img-5]]" data-img-6="[[data-img-6]]">
                     </div>
                     <h2>[[NAME]]</h2>
@@ -104,38 +107,38 @@
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">[[NAME]]</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">
+                        <span class="fa fa-close fa-inverse"></span>
+                    </span>
+                </button>
+                <h4 class="modal-title" id="profileModalLabel">[[NAME]]</h4>
             </div>
             <div class="modal-body">
                 <div class="row">
                     <div class="col-sm-12">
-                        <pre class="text-center">[[VOTE]]</pre>
+                        <pre class="text-center">VOTE[s] <span id="profileModalVote">[[VOTE]]</span></pre>
                     </div>
                     <div class="col-sm-12">
+                        <script id="carousel-control-template" type="text/html">
+                            <li data-target="#carousel-example-generic" data-slide-to="[[i]]" class="[[0]] image-[[i]]"></li>
+                        </script>
+                        <script id="carousel-image-template" type="text/html">
+                            <div class="item image-[[i]] [[0]]">
+                                <img src="[[src]]" alt="[[about]]">
+                            </div>
+                        </script>
+                        <script id="profile-vote-template" type="text/html">
+                            <span href="#" class="vote-c-tw" data-id="[[id]]"><span><i class="fa fa-heart"></i> </span>Vote</span>
+                        </script>
+
                         <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
                             <!-- Indicators -->
                             <ol class="carousel-indicators">
-                                <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-                                <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-                                <li data-target="#carousel-example-generic" data-slide-to="2"></li>
                             </ol>
 
                             <!-- Wrapper for slides -->
                             <div class="carousel-inner" role="listbox">
-                                <div class="item active">
-                                    <img src="..." alt="...">
-                                    <div class="carousel-caption">
-                                        ...
-                                    </div>
-                                </div>
-                                <div class="item">
-                                    <img src="..." alt="...">
-                                    <div class="carousel-caption">
-                                        ...
-                                    </div>
-                                </div>
-                                ...
                             </div>
 
                             <!-- Controls -->
@@ -152,7 +155,8 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary">Chat</button>
+                <span id="profileVote" class="btn btn-danger"></span>
+                <button type="button" class="btn btn-warning">Chat</button>
             </div>
         </div>
     </div>
