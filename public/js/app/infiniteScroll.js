@@ -7,6 +7,8 @@ InfiniteScroll ={
         PER_PAGE:10,
         CURRENT_PAGE:1,
         LAST_PAGE:10,
+        END_OF_DATA:false,
+        LOADING:false,
         QUERY: ''
     },
     init: function(){
@@ -27,15 +29,31 @@ InfiniteScroll ={
         });
     },
     Get: function(){
+       if(InfiniteScroll.CONSTANT.END_OF_DATA){
+            return;
+        }
+        if(InfiniteScroll.CONSTANT.LOADING){
+            return;  ///prevent multiple ajax request
+        }
+        InfiniteScroll.CONSTANT.LOADING=true;
         $.ajax({
             url:InfiniteScroll.CONSTANT.LINK+'/'+InfiniteScroll.CONSTANT.PER_PAGE+'?page='+InfiniteScroll.CONSTANT.CURRENT_PAGE + '&search=' + InfiniteScroll.CONSTANT.QUERY,
             type: 'GET',
             success: function (response) {
-                console.log(response);
-                $("#cheeks-inf").empty();
+                if(InfiniteScroll.CONSTANT.CURRENT_PAGE==1) {
+                    $("#cheeks-inf").empty();
+                }
+                if(response.data.length==0){
+                    InfiniteScroll.CONSTANT.END_OF_DATA=true;
+                }
+                InfiniteScroll.CONSTANT.LOADING=false; ///reset loading back to true;
                 InfiniteScroll.CONSTANT.LAST_PAGE =response.pagination.last_page;
-                InfiniteScroll.CONSTANT.CURRENT_PAGE_PAGE += 1;
+                InfiniteScroll.CONSTANT.CURRENT_PAGE += 1;
                 InfiniteScroll.Render(response.data)
+            },
+            error: function(response){
+                InfiniteScroll.CONSTANT.LOADING=false; ///reset loading back to true;
+
             }
         });
     },
