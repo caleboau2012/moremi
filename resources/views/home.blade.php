@@ -24,7 +24,11 @@
                         <img class="text-center img-circle center" src="{{$winner->photo->full_path}}" width="300" height="300"   alt=" {{$winner->first_name." ".$winner->last_name}}"/>
                         <h3 class="text-center">{{$winner->first_name." ".$winner->last_name}}</h3>
                     </div>
-                    <div class="col-md-4 col-xs-12 col-sm-12"></div>
+                    <div class="col-md-4 col-xs-12 col-sm-12">
+                        <div class="facebook-comments">
+                            <div class="fb-comments" data-href="{{url('/')}}" data-numposts="10" data-width="100%"></div>
+                        </div>
+                    </div>
                 </div>
                 <div class="col-md-12">
                     <div class="clearfix" id="owl-man">

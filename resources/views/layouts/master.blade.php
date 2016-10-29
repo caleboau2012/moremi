@@ -5,6 +5,8 @@
     <link rel="shortcut icon" href="{{asset('images/home1/icon.ico')}}">
     <meta name="viewport" content="width=device-width">
     <meta charset="UTF-8">
+    {{--Facebook--}}
+    <meta property="fb:app_id" content="469144689836682" />
     <!-- Preloader Css -->
     <link href="{{asset('css/vendor/preloader.min.css')}}" rel="stylesheet" media="screen, print" />
     <!--Bootstrap Css-->

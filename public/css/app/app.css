@@ -204,3 +204,7 @@ img.center {
 .carousel-inner img{
     width: 100%;
 }
+.facebook-comments{
+    max-height: 300px;
+    overflow-y: scroll;
+}
