@@ -6,6 +6,7 @@ use App\OldCheek;
 use App\Photo;
 use App\Profile;
 use App\Services\Vote\VoteResetter;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use Illuminate\Support\Facades\DB;
@@ -24,10 +25,18 @@ class HomeController extends Controller
 
 
 
-    public function index(){
+    public function index($date=""){
         $profiles= Profile::orderBy('vote', 'desc')->paginate(4);
         $topsix = Profile::orderBy('vote', 'desc')->take(8)->get();
-        $winner = Profile::whereRaw('vote = (select max(`vote`) from profiles)')->first();
+        if($date!=""){
+            $dt =Carbon::parse($date)->format('Y-m-d');
+            $winner =OldCheek::where('won_date',$dt)->first();
+            if(empty($winner)){
+                $winner =OldCheek::orderBy('created_at', 'desc')->first();
+            }
+
+        }else{$winner =OldCheek::orderBy('created_at', 'desc')->first();}
+        $winner = Profile::find($winner->profile_id);
         return view('home',['profiles'=>$profiles,'topsix'=>$topsix,'winner'=>$winner, 'pastwinners'=>$this->pastWinners(), 'pagination' =>
             ['link' => (string)$profiles->links(),
                 'current_page' => $profiles->currentPage(),
