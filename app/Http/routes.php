@@ -22,4 +22,4 @@ Route::get('test','HomeController@test');
 Route::get('seed','HomeController@seed');
 Route::get('cheeks/{total}', array("as" => "cheeks", "uses" => 'HomeController@getContestants'));
 Route::get('cron_post', array("as" => 'cron_post', 'uses' => 'FacebookController@post'));
-Route::get('facebook_redirect', ["as" => "facebook_redirect", "uses" => 'FacebookController@login']);
+//Route::get('facebook_redirect', ["as" => "facebook_redirect", "uses" => 'FacebookController@login']);

@@ -161,7 +161,6 @@ return [
          *
          */
         Intervention\Image\ImageServiceProvider::class,
-        SammyK\LaravelFacebookSdk\LaravelFacebookSdkServiceProvider::class,
 
 
 
