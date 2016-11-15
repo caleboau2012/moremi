@@ -25,18 +25,11 @@ class HomeController extends Controller
 
 
 
-    public function index($date=""){
+    public function index(){
         $profiles= Profile::orderBy('vote', 'desc')->paginate(4);
         $topsix = Profile::orderBy('vote', 'desc')->take(8)->get();
-        if($date!=""){
-            $dt =Carbon::parse($date)->format('Y-m-d');
-            $winner =OldCheek::where('won_date',$dt)->first();
-            if(empty($winner)){
-                $winner =OldCheek::orderBy('created_at', 'desc')->first();
-            }
-
-        }else{$winner =OldCheek::orderBy('created_at', 'desc')->first();}
-        $winner = Profile::find($winner->profile_id);
+       $w =OldCheek::orderBy('created_at', 'desc')->first();
+        $winner = Profile::find($w->profile_id);
         return view('home',['profiles'=>$profiles,'topsix'=>$topsix,'winner'=>$winner, 'pastwinners'=>$this->pastWinners(), 'pagination' =>
             ['link' => (string)$profiles->links(),
                 'current_page' => $profiles->currentPage(),
