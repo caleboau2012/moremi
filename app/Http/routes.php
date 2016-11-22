@@ -15,6 +15,9 @@
 
 Route::get('/', array("as" => "home", "uses" => 'HomeController@index'));
 Route::get('profile', array("as" => "profile", "uses" => 'HomeController@profile'));
+
+Route::post('photo/fb', 'PhotoController@storefb');
+
 Route::resource('photo', 'PhotoController');
 Route::post('login', array("as" => "login", "uses" => 'LoginController@login'));
 Route::post('vote','VoteController@vote');
