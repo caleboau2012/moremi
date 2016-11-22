@@ -87,6 +87,28 @@ class PhotoController extends Controller
 
     }
 
+
+    public function storefb(Requests\FacebookUploadRequest $request){
+        if(!$this->auth) {
+            return response()->json(['status'=>false,'message'=>'You must be logged in to upload photo']);
+        }
+        $profile_id  =$this->_userId;
+
+        foreach($request->urls as $url){
+            $photo = new Photo();
+            $photo->full_path =$url;
+            $photo->thumb_path =$url;
+            $photo->profile_id =$profile_id;
+            $photo->save();
+        }
+     $p =Photo::where('full_path',$request->profile_pic)->where('profile_id',$profile_id)->first();
+        $profile =Profile::find($profile_id);
+        $profile->about=$request->status;
+        $profile->photo_id =$p->id;
+        $profile->save();
+        return response()->json(['status'=>true,'message'=>'Pictures were saved successfully']);
+    }
+
     /**
      * Display the specified resource.
      *
