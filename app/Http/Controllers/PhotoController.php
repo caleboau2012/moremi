@@ -10,6 +10,7 @@ use App\Services\UserService;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Requests;
+use Illuminate\Support\Facades\Validator;
 
 
 class PhotoController extends Controller
@@ -163,4 +164,20 @@ class PhotoController extends Controller
         }
         return $this->index();
     }
+
+    public  function updateStatus(Request $request){
+            $validator = Validator::make($request->all(), [
+                'status' => 'required|max:255',
+            ]);
+
+            if ($validator->fails()) {
+            return response()->json(['status'=>false,'msg'=>'Invalid status update']);
+            }
+        $profile =Profile::find($this->_userId);
+        $profile->about =$request->status;
+        $profile->update();
+        return response()->json(['status'=>true,'msg'=>'Status updated successfully']);
+
+        }
+
 }
