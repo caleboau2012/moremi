@@ -21,8 +21,8 @@
 
                     </div>
                     <div class="col-md-4 col-xs-12 col-sm-12">
-                        <img class="text-center img-circle center" src="{{$winner->photo->full_path}}" width="300" height="300"   alt=" {{$winner->first_name." ".$winner->last_name}}"/>
-                        <h3 class="text-center">{{$winner->first_name." ".$winner->last_name}}</h3>
+                        <img class="text-center img-circle center" src="{{$winner!=null?$winner->photo->full_path:asset('images/default.png')}}" width="300" height="300"   alt=" {{$winner!=null?$winner->first_name." ".$winner->last_name:'No winner yet'}}"/>
+                        <h3 class="text-center">{{$winner!=null?$winner->first_name." ".$winner->last_name:'No winner yet'}}</h3>
                     </div>
                     <div class="col-md-4 col-xs-12 col-sm-12">
                         <div class="facebook-comments">
@@ -32,12 +32,14 @@
                 </div>
                 <div class="col-md-12">
                     <div class="clearfix" id="owl-man">
+                        @if($winner!=null)
                         <?php $i =1;?>
                         @foreach($winner->photos as $p)
                             <div class="col-md-2 col-sm-3" style="margin: 0px auto">
                                 <img class="img-circle" width="150" height="150"  src="{{asset($p->full_path)}}" alt=" {{$winner->first_name." ".$winner->last_name}}">
                             </div>
                         @endforeach
+                        @endif
                     </div>
                 </div>
             </div>
@@ -70,6 +72,7 @@
     <!---An image-->
     <div id="cheeks-inf">
         <div class="row">
+            @if(!empty($topsix) && !is_null($topsix))
             @foreach($topsix as $t)
                 <div class="profile_img col-md-3">
                     <header>
@@ -84,6 +87,7 @@
                     </header>
                 </div>
             @endforeach
+                @endif
         </div>
     </div>
     <div class="loading-area"></div>

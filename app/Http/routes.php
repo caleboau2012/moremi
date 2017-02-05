@@ -28,3 +28,4 @@ Route::get('cron_post', array("as" => 'cron_post', 'uses' => 'FacebookController
 Route::get('facebook_redirect', ["as" => "facebook_redirect", "uses" => 'FacebookController@login']);
 Route::post('update/status','PhotoController@updateStatus');
 Route::post('upload/photo','PhotoController@storeImgFromString');
+
