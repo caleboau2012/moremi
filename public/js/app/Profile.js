@@ -44,19 +44,16 @@ var Profile = {
             }
         }).undelegate(".profile-pic", "dragover").undelegate(".profile-pic", "dragenter").undelegate(".image-box", "dragstart").undelegate(".profile-pic", "drop")
             .delegate(".image-box", "dragstart", function(e){
-                console.log({
-                    event: e,
-                    url: $(this).find("img").attr("src")
-                });
+                //console.log({
+                //    event: e,
+                //    url: $(this).find("img").attr("src"),
+                //    object: this
+                //});
                 e.originalEvent.dataTransfer.setData("url", $(this).find("img").attr("src"));
             }).delegate(".profile-pic", "drop", function(e){
                 e.preventDefault();
                 var newURL = e.originalEvent.dataTransfer.getData("url");
                 var oldURL = $(this).find("img").attr("src");
-                console.log({
-                    newURL: newURL,
-                    oldURL: oldURL
-                });
                 $(this).find("img").attr("src", newURL).removeClass("hidden");
                 if(oldURL == ""){
                     $(this).find("p").remove();
@@ -67,7 +64,11 @@ var Profile = {
             }).delegate(".profile-pic", "dragenter", function(e){
                 e.preventDefault();
                 e.stopPropagation();
-            })
+            }
+        ).undelegate(".delete-picture", "click").delegate(".delete-picture", "click", function(e){
+                Profile.deletePicture($(this).parent().parent().parent());
+            }
+        );
             //.undelegate(".picture-panel .fa-close").delegate(".picture-panel .fa-close", "click", function(e){
             //    Profile.deletePicture($(this).parent().parent().parent());
             //});
@@ -77,7 +78,6 @@ var Profile = {
         });
 
         $("#pic-upload").change(function(e){
-            console.log(e.target.files);
             var pix = $(".pictures-panel").length;
             if(pix + e.target.files.length > 5){
                 swal("Relax", "We only allow a total of 6 pictures");
@@ -86,12 +86,44 @@ var Profile = {
                 Profile.loadLocalPix(e.target.files);
             }
         });
+
+        $("#finish").click(function(){
+            Profile.finish($(this).attr("data-url"));
+        });
+
+    },
+    finish: function(url){
+        //console.log($(".picture-panel"));
+        var status = $("#status").val();
+        var img;
+        var photos = [];
+        $(".picture-panel").each(function(index, e){
+            img = $(e).find("img")[0];
+            photos.push(img.src);
+        });
+        var pPic = $(".profile-pic").find("img")[0].src;
+
+        if(pPic == location.href){
+            swal("Chill!", "You need a profile picture");
+        }
+
+        var data = {
+            status: status,
+            photos: photos,
+            profile_pic: pPic
+        };
+
+        $.post(url, data, function(result){
+            console.log(result);
+        }, "json");
+
+        console.log(JSON.stringify(data));
     },
     deletePicture: function(picture){
         picture.remove();
     },
     saveToken: function(response){
-        console.log(response);
+        //console.log(response);
 
         localStorage.setItem(TOKEN, JSON.stringify(response));
     },
@@ -103,7 +135,6 @@ var Profile = {
             return true;
     },
     loadLocalPix: function(files){
-        console.log(files);
         var HTML, template, reader;
         for(var i = 0; i < files.length; i++){
             if (files[i].type.indexOf('image') == -1) {
@@ -120,9 +151,10 @@ var Profile = {
             reader.readAsDataURL(files[i]);
         }
     },
-    setProfilePicture: function(data){
-        $(".profile-pic img").attr("src", data.url);
-    },
+    //setProfilePicture: function(data){
+    //    console.log(data);
+    //    $(".profile-pic img").attr("src", data.url);
+    //},
     setPhotos: function(data){
         var url, HTML, template;
         for(var i = 0; i < data.length; i++){

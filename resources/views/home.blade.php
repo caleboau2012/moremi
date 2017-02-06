@@ -21,7 +21,7 @@
 
                     </div>
                     <div class="col-md-4 col-xs-12 col-sm-12">
-                        <img class="text-center img-circle center" src="{{$winner!=null?$winner->photo->full_path:asset('images/default.png')}}" width="300" height="300"   alt=" {{$winner!=null?$winner->first_name." ".$winner->last_name:'No winner yet'}}"/>
+                        <img class="text-center img-circle center" id="winner-photo" src="{{$winner!=null?$winner->photo->full_path:asset('images/default.png')}}" width="300" height="300"   alt=" {{$winner!=null?$winner->first_name." ".$winner->last_name:'No winner yet'}}"/>
                         <h3 class="text-center">{{$winner!=null?$winner->first_name." ".$winner->last_name:'No winner yet'}}</h3>
                     </div>
                     <div class="col-md-4 col-xs-12 col-sm-12">
@@ -36,7 +36,7 @@
                         <?php $i =1;?>
                         @foreach($winner->photos as $p)
                             <div class="col-md-2 col-sm-3" style="margin: 0px auto">
-                                <img class="img-circle" width="150" height="150"  src="{{asset($p->full_path)}}" alt=" {{$winner->first_name." ".$winner->last_name}}">
+                                <img class="img-circle winner-photo pointer" width="150" height="150"  src="{{asset($p->full_path)}}" alt=" {{$winner->first_name." ".$winner->last_name}}">
                             </div>
                         @endforeach
                         @endif
@@ -188,6 +188,7 @@
     <script src="{{asset('js/app/ProfileSidebar.js')}}"></script>
     <script src="{{asset('js/vendor/jquery.jscroll.min.js')}}"></script>
     <script src="{{asset('js/app/infiniteScroll.js')}}"></script>
+    <script src="{{asset('js/app/Home.js')}}"></script>
 
     <script type="application/javascript">
         $(document).ready( function() {

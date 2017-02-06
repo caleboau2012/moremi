@@ -38,6 +38,10 @@ var Home = {
         $(document).delegate(".avatar", "click", function(){
             Home.showCheek($(this));
         });
+
+        $(".winner-photo").click(function(e){
+            $("#winner-photo").attr('src', this.src);
+        });
     },
     showCheek: function(element){
         var data = {
@@ -76,6 +80,10 @@ var Home = {
                     controlHTML = controlHTML.replaceAll("[[0]]", "active");
                     carouselImage = carouselImage.replaceAll("[[0]]", "active");
                     first = false;
+                }
+                else{
+                    controlHTML = controlHTML.replaceAll("[[0]]", "");
+                    carouselImage = carouselImage.replaceAll("[[0]]", "");
                 }
 
                 controlHTML = controlHTML.replaceAll("[[i]]", i);

@@ -27,5 +27,5 @@ Route::get('cheeks/{total}', array("as" => "cheeks", "uses" => 'HomeController@g
 Route::get('cron_post', array("as" => 'cron_post', 'uses' => 'FacebookController@post'));
 Route::get('facebook_redirect', ["as" => "facebook_redirect", "uses" => 'FacebookController@login']);
 Route::post('update/status','PhotoController@updateStatus');
-Route::post('upload/photo','PhotoController@storeImgFromString');
+Route::post('upload/photo', ["as" => "photo_upload", "uses" => 'PhotoController@storeImgFromString']);
 

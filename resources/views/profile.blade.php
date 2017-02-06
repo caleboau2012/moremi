@@ -14,7 +14,7 @@
             </div>
             <div class="col-sm-8">
                 <div class="row">
-                    <textarea name="" id="" class="form-control status-message" rows="5" placeholder="Status Message"></textarea>
+                    <textarea name="" id="status" class="form-control status-message" rows="5" placeholder="Status Message"></textarea>
                 </div>
                 <div class="row" id="pictures-panel">
 
@@ -24,7 +24,7 @@
                         <button class="btn btn-danger btn-block picture-upload"><span class="fa fa-file-image-o"></span> Upload Pictures</button>
                     </div>
                     <div class="col-sm-3">
-                        <button class="btn btn-success btn-block"><span class="fa fa-upload"></span> Finish</button>
+                        <button id="finish" data-url="{{route("photo_upload")}}" class="btn btn-success btn-block"><span class="fa fa-upload"></span> Finish</button>
                     </div>
                 </div>
                 <input type="file" id="pic-upload" class="hidden" multiple="multiple">
@@ -35,7 +35,7 @@
                 <div class="well image-box picture-panel pointer" draggable="true">
                     <div class="image">
                         <img src="[[src]]">
-                        <span class="fa fa-close"></span>
+                        <span class="delete-picture fa fa-close"></span>
                     </div>
                 </div>
             </div>
