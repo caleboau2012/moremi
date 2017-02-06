@@ -88,6 +88,37 @@ class PhotoController extends Controller
 
     }
 
+    public  function storeImgFromString(Requests\PhotoFromStringRequest $request){
+        if(!$this->auth) {
+            return response()->json(['status'=>false,'message'=>'You must be logged in to upload photo']);
+        }
+        $profile_id  =$this->_userId;
+        $upload =new UploadPicture();
+        $data =$upload->ImageFromUrlOrString($request->photo);
+        if(is_array($data) && !empty($data)){
+            foreach($data as $d){
+                $photo = new Photo();
+                $photo->full_path =$d['full_path'];
+                $photo->thumb_path =$d['thumb_path'];
+                $photo->profile_id =$profile_id;
+                $photo->save();
+            }
+        }
+        //go ahead and set as feature photo
+        $profile =Profile::find($this->_userId);
+        if($request->satus!=null) {
+            $profile->about = $request->status;
+            $profile->save();
+        }
+        return response()->json(['status'=>true,
+            'message'=>"Your photo was uploaded successfully",
+            'photo'=>[
+                'id'=>$photo->id,
+                'thumb_path'=>$photo->thumb_path,
+                'full_path'=>$photo->full_path]]);
+
+    }
+
 
     public function storefb(Requests\FacebookUploadRequest $request){
         if(!$this->auth) {
@@ -162,7 +193,7 @@ class PhotoController extends Controller
             $delete = new DeletePhoto($this->_userId, $id);
             $delete->delete();
         }
-        return $this->index();
+
     }
 
     public  function updateStatus(Request $request){

@@ -52,5 +52,32 @@ class UploadPicture
         $img->save($path);
 
     }
+
+    public function ImageFromUrlOrString(array $string)
+    {
+        if(!empty($string)){
+            $path=[];
+            $path_dir =public_path(config('photo.uploads.full_path'));
+            $thumb_dir =$path_dir .DIRECTORY_SEPARATOR. config('photo.uploads.thumb_path');
+
+            if(!File::exists($path_dir)) File::makeDirectory($path_dir, 775);
+
+            if(!File::exists($thumb_dir)) File::makeDirectory($thumb_dir, 775);
+
+            foreach($string as $s){
+
+            $img =Image::make($s);
+                $filename=str_random(40).$img->getClientOriginalName();
+                $full_path =$path_dir.DIRECTORY_SEPARATOR.$filename;
+                $img->save($path);
+                $img->fit(config('photo.standard_width'),config('photo.standard_height'));
+                $thumb_path =$thumb_dir.DIRECTORY_SEPARATOR.$filename;
+                $this->create_thumb($thumb_path);
+                $data[] =['full_path'=>$full_path,'thumb_path'=>$thumb_path];
+            }
+        }
+        return $data;
+    }
+
     }
 
