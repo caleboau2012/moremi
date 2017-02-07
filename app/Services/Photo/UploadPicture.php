@@ -66,12 +66,13 @@ class UploadPicture
 
             foreach($string as $s){
 
-            $img =Image::make($s);
-                $filename=str_random(40).$img->getClientOriginalName();
+            $img =Image::make($s)->encode('jpg');
+                $filename=str_random(40).'.jpg';
                 $full_path =$path_dir.DIRECTORY_SEPARATOR.$filename;
-                $img->save($path);
+                $img->save($full_path);
                 $img->fit(config('photo.standard_width'),config('photo.standard_height'));
                 $thumb_path =$thumb_dir.DIRECTORY_SEPARATOR.$filename;
+                $this->full_path =$full_path;
                 $this->create_thumb($thumb_path);
                 $data[] =['full_path'=>$full_path,'thumb_path'=>$thumb_path];
             }
