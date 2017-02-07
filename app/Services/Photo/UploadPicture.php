@@ -57,7 +57,7 @@ class UploadPicture
     {
         if(!empty($string)){
             $path=[];
-            $path_dir =public_path(config('photo.uploads.full_path'));
+            $path_dir =config('photo.uploads.full_path');
             $thumb_dir =$path_dir .DIRECTORY_SEPARATOR. config('photo.uploads.thumb_path');
 
             if(!File::exists($path_dir)) File::makeDirectory($path_dir, 775);
