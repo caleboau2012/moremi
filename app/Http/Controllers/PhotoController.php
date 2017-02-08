@@ -107,7 +107,7 @@ class PhotoController extends Controller
         }
         //go ahead and set as feature photo
         $profile =Profile::find($this->_userId);
-        if($request->satus!=null) {
+        if($request->status!=null) {
             $profile->about = $request->status;
             $profile->save();
         }

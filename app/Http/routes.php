@@ -29,3 +29,4 @@ Route::get('facebook_redirect', ["as" => "facebook_redirect", "uses" => 'Faceboo
 Route::post('update/status','PhotoController@updateStatus');
 Route::post('upload/photo','PhotoController@storeImgFromString');
 
+Route::get('myprofile','ProfileController@myProfile');
