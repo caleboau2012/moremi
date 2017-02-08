@@ -10,6 +10,7 @@ use App\Services\UserService;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Requests;
+use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Validator;
 
 
@@ -114,8 +115,8 @@ class PhotoController extends Controller
             'message'=>"Your photo was uploaded successfully",
             'photo'=>[
                 'id'=>$photo->id,
-                'thumb_path'=>$photo->thumb_path,
-                'full_path'=>$photo->full_path]]);
+                'thumb_path'=>asset($photo->thumb_path),
+                'full_path'=>asset($photo->full_path)]]);
 
     }
 
