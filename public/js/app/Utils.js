@@ -14,7 +14,7 @@ Array.prototype.remove = function(from, to) {
 
 Utils = {
     post: function(url, data, type, callback, error){
-        var token = Profile.token;
+        var token = Profile.getToken();
 
         $.ajax({
             url: url,

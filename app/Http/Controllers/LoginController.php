@@ -20,6 +20,10 @@ class LoginController extends Controller
         $user = $userService->findOrCreate($request);
         if (!empty($user)) {
             $token = customencrypt($user->id);
+            $data=[
+                'authToken'=>$token
+            ];
+            session($data);
             return response()->json(['status' => true,
                 'message' => 'Authentication successful',
                 'user' => $user, 'authToken' => $token]);

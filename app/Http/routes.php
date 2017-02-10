@@ -30,4 +30,4 @@ Route::post('update/status','PhotoController@updateStatus');
 Route::post('upload/photo', ["as" => "photo_upload", "uses" => 'PhotoController@storeImgFromString']);
 
 Route::get('delete/{id}/photo','PhotoController@destroy');  //delete photo
-Route::get('myprofile','ProfileController@myProfile');
+Route::get('myprofile',["as" => "my_profile", "uses" => 'ProfileController@myProfile']);

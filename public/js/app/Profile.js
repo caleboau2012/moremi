@@ -12,9 +12,9 @@ var Profile = {
             swal('Wait a minute', 'We detect your browser is outdated. Kindly upgrade');
         }
 
-        $(".image-box").each(function(i){
-            $(this).height($(this).width());
-        });
+        //$(".image-box").each(function(i){
+        //    $(this).height($(this).width());
+        //});
 
         $("#login-cheek").addClass("hidden");
         $("#facebook-fetch").removeClass("hidden").on("click", function(e){
@@ -50,10 +50,15 @@ var Profile = {
                 //    object: this
                 //});
                 e.originalEvent.dataTransfer.setData("url", $(this).find("img").attr("src"));
+                //console.log(e.originalEvent.dataTransfer.getData("url"));
             }).delegate(".profile-pic", "drop", function(e){
                 e.preventDefault();
                 var newURL = e.originalEvent.dataTransfer.getData("url");
                 var oldURL = $(this).find("img").attr("src");
+                //console.log({
+                //    new: newURL,
+                //    old: oldURL
+                //});
                 $(this).find("img").attr("src", newURL).removeClass("hidden");
                 if(oldURL == ""){
                     $(this).find("p").remove();
@@ -91,6 +96,18 @@ var Profile = {
             Profile.finish($(this).attr("data-url"));
         });
 
+        //var url = $("#pictures-panel").attr('data-url');
+        //Utils.post(url, null, "GET", Profile.loadFromApi, Profile.loadFromApiError);
+
+    },
+    loadFromApi: function(response){
+        console.log(response);
+        if(response.status){
+            Profile.loadApiPix(response.data);
+        }
+    },
+    loadFromApiError: function(error){
+        console.log(error);
     },
     finish: function(url){
         //console.log($(".picture-panel"));
@@ -109,23 +126,28 @@ var Profile = {
 
         var data = {
             status: status,
-            photos: photos,
+            photo: photos,
             profile_pic: pPic
         };
 
-        $.post(url, data, function(result){
-            console.log(result);
-        }, "json");
+        Utils.post(url,
+            data, "POST", Profile.uploaded,Profile.uploadError
+        );
 
-        console.log(JSON.stringify(data));
+        //console.log(JSON.stringify(data));
+    },
+    uploaded: function(data){
+        console.log(data);
+    },
+    uploadError: function(data){
+        console.log(data)
     },
     deletePicture: function(picture){
         picture.remove();
     },
     saveToken: function(response){
         //console.log(response);
-
-        localStorage.setItem(TOKEN, JSON.stringify(response));
+        localStorage.setItem(TOKEN, response.authToken);
     },
     getToken: function(){
         return localStorage.getItem(TOKEN);
@@ -183,6 +205,16 @@ var Profile = {
         for(var i = 0; i < Profile.facebookPhotos.length; i++){
             template = $("#picture-template").html();
             HTML += template.replace("[[src]]", Profile.facebookPhotos[i]);
+        }
+        $("#pictures-panel").prepend(HTML);
+    },
+    loadApiPix: function(response){
+        var HTML = "", template;
+        $(".profile-pic").find("img")[0].src = response.profile_pic.full_path;
+        $("#status").val(response.status);
+        for(var i = 0; i < response.photos.length; i++){
+            template = $("#picture-template").html();
+            HTML += template.replace("[[src]]", response.photos[i].full_path);
         }
         $("#pictures-panel").prepend(HTML);
     }

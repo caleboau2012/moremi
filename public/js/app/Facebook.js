@@ -25,6 +25,10 @@ var Facebook = {
                     //console.log(response);
                     Facebook.profile = response;
 
+                    console.log({
+                        check: Profile.checkToken()
+                    });
+
                     if(Profile.checkToken()){
                         var url = $("#login").attr("data-url");
 
