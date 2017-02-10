@@ -14,7 +14,7 @@
 
 
 Route::get('/', array("as" => "home", "uses" => 'HomeController@index'));
-Route::get('profile', array("as" => "profile", "uses" => 'HomeController@profile'));
+Route::get('profile', array("as" => "profile", "uses" => 'ProfileController@profile'));
 
 Route::post('photo/fb', 'PhotoController@storefb');
 
@@ -29,3 +29,4 @@ Route::get('facebook_redirect', ["as" => "facebook_redirect", "uses" => 'Faceboo
 Route::post('update/status','PhotoController@updateStatus');
 Route::post('upload/photo', ["as" => "photo_upload", "uses" => 'PhotoController@storeImgFromString']);
 
+Route::get('myprofile','ProfileController@myProfile');

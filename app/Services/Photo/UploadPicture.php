@@ -56,7 +56,7 @@ class UploadPicture
     public function ImageFromUrlOrString(array $string)
     {
         if(!empty($string)){
-            $path=[];
+            $data=[];
             $path_dir =config('photo.uploads.full_path');
             $thumb_dir =$path_dir .DIRECTORY_SEPARATOR. config('photo.uploads.thumb_path');
 
