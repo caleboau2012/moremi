@@ -27,6 +27,8 @@ class ProfileController extends Controller
         $this->_userId =$userId;
     }
 
+
+
     public  function myProfile(){
         if(!$this->auth) {
             return response()->json(['status'=>false,'message'=>'You must be logged in to upload photo']);
@@ -40,5 +42,17 @@ class ProfileController extends Controller
                 ]
 
         ]);
+    }
+
+
+    //profile page
+    public function profile(){
+        if(!$this->auth) {
+           return back();
+        }
+        $profile =Profile::find($this->_userId);
+
+        return view('profile',['profile_pic'=>$profile->photo,
+            'photos'=>$profile->photos]);
     }
 }

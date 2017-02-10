@@ -77,10 +77,6 @@ class HomeController extends Controller
 
     }
 
-    //profile page
-    public function profile(){
-        return view('profile');
-    }
 
     //cheek of the week
     public function winner(){
