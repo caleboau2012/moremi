@@ -105,12 +105,24 @@ class PhotoController extends Controller
                 $photo->save();
             }
         }
-        //go ahead and set as feature photo
+
         $profile =Profile::find($this->_userId);
+        if($request->has('profile_pic')){
+            $upl =new UploadPicture();
+            $d =[$request->profile_pic];
+            $data =$upl->ImageFromUrlOrString($d);
+            $profile_ph = new Photo();
+            $profile_ph->full_path =$data['full_path'];
+            $profile_ph->thumb_path =$data['thumb_path'];
+            $profile_ph->profile_id =$profile_id;
+            $profile_ph->save();
+            $profile->photo_id =$profile_ph->id;
+        }
+        //go ahead and set as feature photo
         if($request->status!=null) {
             $profile->about = $request->status;
-            $profile->save();
         }
+        $profile->save();
         return response()->json(['status'=>true,
             'message'=>"Your photo was uploaded successfully",
             'photo'=>[

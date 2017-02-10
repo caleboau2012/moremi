@@ -37,6 +37,7 @@ class ProfileController extends Controller
         return response()->json([
             'status'=>true,
             'data'=>[
+            'status'=>$profile->about,
             'profile_pic'=>$profile->photo,
             'photos'=>$profile->photos
                 ]
@@ -53,6 +54,6 @@ class ProfileController extends Controller
         $profile =Profile::find($this->_userId);
 
         return view('profile',['profile_pic'=>$profile->photo,
-            'photos'=>$profile->photos]);
+            'photos'=>$profile->photos,'status'=>$profile->about]);
     }
 }

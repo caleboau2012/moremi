@@ -29,4 +29,5 @@ Route::get('facebook_redirect', ["as" => "facebook_redirect", "uses" => 'Faceboo
 Route::post('update/status','PhotoController@updateStatus');
 Route::post('upload/photo', ["as" => "photo_upload", "uses" => 'PhotoController@storeImgFromString']);
 
+Route::get('delete/{id}/photo','PhotoController@destroy');  //delete photo
 Route::get('myprofile','ProfileController@myProfile');
