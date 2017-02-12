@@ -56,11 +56,12 @@ class HomeController extends Controller
         }
        $data=[];
         foreach($profiles as $p){
+
         $data[] =[
             'name'=>$p->first_name." ".$p->last_name,
-            'vote'=>$p->vote,
+            'vote'=>is_null($p->vote)?0:$p->vote,
             'id'=>$p->id,
-            'image'=>Photo::find($p->photo_id)->thumb_path,
+            'image'=> $p->photo_id!=null && $p->photo_id!=0?Photo::find($p->photo_id)->thumb_path:asset('images/default.png'),
             'photos'=>$p->photos,
             'about'=>$p->about,
         ];

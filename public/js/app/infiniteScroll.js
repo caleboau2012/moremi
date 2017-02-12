@@ -64,6 +64,7 @@ InfiniteScroll ={
 
     },
     Render : function(data){
+        console.log(data);
         var t =data.length;
         for(var i=0;i<t;i++ ){
             var tmp =$('#profile_TMP').html();
@@ -74,13 +75,18 @@ InfiniteScroll ={
                 .replace("[[ID]]",data[i].id)
                 .replace("[[VOTE]]",data[i].vote)
                 .replace("[[VOTE]]",data[i].vote)
-                .replace("[[data-img-1]]",data[i].photos[0].full_path)
+            for(var a=0;a<data[i].photos.length;a++){
+                if(data[i].photos[a] === undefined){}else{
+                tmp =tmp.replace("[[data-img-"+a+"]]",data[i].photos[a].full_path)
+                }
+            }
+                /**.replace("[[data-img-1]]",data[i].photos[0].full_path)
                 .replace("[[data-img-2]]",data[i].photos[1].full_path)
                 .replace("[[data-img-3]]",data[i].photos[2].full_path)
                 .replace("[[data-img-4]]",data[i].photos[3].full_path)
                 .replace("[[data-img-5]]",data[i].photos[4].full_path)
-                .replace("[[data-img-6]]",data[i].photos[5].full_path)
-                .replace("[[DATA-NAME]]",data[i].name)
+                .replace("[[data-img-6]]",data[i].photos[5].full_path)**/
+              tmp= tmp.replace("[[DATA-NAME]]",data[i].name)
                 .replace("[[DATA-ABOUT]]",data[i].about);
 
             $('#cheeks-inf').append(tmp);

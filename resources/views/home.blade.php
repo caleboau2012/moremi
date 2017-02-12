@@ -12,9 +12,9 @@
                 <div class="row">
                     <div class="col-md-4 col-xs-12 col-sm-12">
                         <div class="dl-horizontal listing-info margin-up-50">
-                            <dt class="text-danger">Votes:</dt><dd class="text-danger">{{$winner->vote}} <i class="fa fa-heart"></i></dd>
+                            <dt class="text-danger">Votes:</dt><dd class="text-danger">{{isset($winner->vote)?$winner->vote:0}} <i class="fa fa-heart"></i></dd>
                             <br>
-                            <dt>About:</dt><dd><p class="small">{{$winner->about}}</p> </dd>
+                            <dt>About:</dt><dd><p class="small">{{isset($winner->about)?$winner->about:null}}</p> </dd>
                         </div>
                     </div>
                     <div class="col-md-4 col-xs-12 col-sm-12">
@@ -75,7 +75,12 @@
                         <header>
                             <div class="user">
                                 <div class="avatar">
+                                    @if(empty($t->photo))
+                                        <img alt="{{$t->first_name." ".$t->last_name}}" src="{{asset('images/default.png')}}">
+                                    @else
+
                                     <img alt="{{$t->first_name." ".$t->last_name}}" src="{{$t->photo->full_path}}">
+                                        @endif
                                 </div>
                                 <h2>{{$t->first_name." ".$t->last_name}}</h2>
                                 <p>{{$t->vote}} votes</p>
