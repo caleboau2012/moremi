@@ -114,14 +114,18 @@
 
                 <!-- Popular on Facebook-->
                 <section class="col-md-3 col-xs-12 col-sm-6  footerbg2">
-                    <h4>Twitter Timeline</h4>
+                    <h4>Wings Restaurant</h4>
+                    <h5>Dinner on Friday Night</h5>
                     <p>
-                        <a>Gigi Hadid Stuns in Sheer Dress at Fashion Awards.</a>
-                        590 Comment
+                        <a>Wings restaurant</a>
+                        Top Floor, EAN Jet Center,
+                        Murtala Muhammed International Airport, Lagos.
                     </p>
                     <p>
-                        <a>Selma Director Takes on Fashion Film for HBO.</a>
-                        748 Comment
+                        <a>Vibes Lounge</a>
+                        CL2, Ikosi Road
+                        Ikosi, Lagos
+                        Nigeria
                     </p>
                 </section>
 
@@ -132,11 +136,13 @@
         <div class="row  container-fluid bottom-footer footerbg1 row">
             <div class="container ">
                 <div class="col-md-10 col-xs-12">
-                    <a href="#">Copyright 2016. All rights reserved.</a>
+                    <a href="#">Copyright 2017. All rights reserved.</a>
                 </div>
-                <div class="col-md-2 col-xs-12 ">
-                    <a href="#"><i class="fa fa-facebook icon-rotate"></i></a><a href="#"><i class="fa fa-twitter"></i></a>
-                    <a href="#"><i class="fa fa-google-plus"></i></a> <a href="#"><i class="fa fa-instagram"></i></a>
+                <div class="col-md-2 col-xs-12 text-right">
+                    <a href="https://www.facebook.com/moremitesoau/"><i class="fa fa-facebook icon-rotate"></i></a>
+                    {{--<a href="#"><i class="fa fa-twitter"></i></a>--}}
+                    {{--<a href="#"><i class="fa fa-google-plus"></i></a>--}}
+                    {{--<a href="#"><i class="fa fa-instagram"></i></a>--}}
                 </div>
             </div>
         </div>
