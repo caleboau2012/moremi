@@ -41,6 +41,7 @@ class ResetVote extends Command
     public function handle()
     {
        $reset =new VoteResetter();
+
         $reset->reset(); ///reset vote;
         $this->info('Vote successfully reset');
 

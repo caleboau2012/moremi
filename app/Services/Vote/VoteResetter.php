@@ -19,12 +19,12 @@ class VoteResetter
 
     public function __construct(){
         ///back up
-        $this->backupWinner();
     }
 
     /**Reset vote**/
     public  function reset(){
 
+        $this->backupWinner();
         $profiles =Profile::all();
         if(!empty($profiles)) {
             foreach ($profiles as $profile) {
