@@ -93,7 +93,6 @@ var Facebook = {
             "/" + Facebook.profile.id + "/albums",
             function (response) {
                 if (response && !response.error) {
-                    //console.log(response);
                     for(var i = 0; i < response.data.length; i++){
                         if(response.data[i].name.toLowerCase() == "profile pictures"){
                             Facebook.album(response.data[i].id);
@@ -116,7 +115,7 @@ var Facebook = {
         );
     },
     photo: function(photo){
-        var url = 'https://graph.facebook.com/' + photo.id + '/picture?access_token=' + Facebook.authResponse.accessToken;
+        var url = 'https://graph.facebook.com/' + photo.id + '?fields=images&access_token=' + Facebook.authResponse.accessToken;
         return url;
     }
 };

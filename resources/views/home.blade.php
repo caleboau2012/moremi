@@ -3,6 +3,7 @@
 @section('content')
 
         <!--- Main Visual Div-->
+{{--{{dd($winner)}}--}}
 <div class="container-fluid">
     <div class="container">
         <div class="row">
@@ -10,15 +11,11 @@
                 <h2 class="text-center">CHEEK OF THE WEEK</h2>
                 <div class="row">
                     <div class="col-md-4 col-xs-12 col-sm-12">
-
                         <div class="dl-horizontal listing-info margin-up-50">
-                            <dt>Gender:</dt><dd> Chick <i class="fa fa-female"></i></dd>
+                            <dt class="text-danger">Votes:</dt><dd class="text-danger">{{$winner->vote}} <i class="fa fa-heart"></i></dd>
                             <br>
-                            <dt>Vote:</dt><dd>2000 <i class="fa fa-heart"></i></dd>
-                            <br>
-                            <dt>About:</dt><dd><p class="small">Easy going, open and very naughty</p> </dd>
+                            <dt>About:</dt><dd><p class="small">{{$winner->about}}</p> </dd>
                         </div>
-
                     </div>
                     <div class="col-md-4 col-xs-12 col-sm-12">
                         <img class="text-center img-circle center" id="winner-photo" src="{{$winner!=null?$winner->photo->full_path:asset('images/default.png')}}" width="300" height="300"   alt=" {{$winner!=null?$winner->first_name." ".$winner->last_name:'No winner yet'}}"/>
@@ -33,12 +30,12 @@
                 <div class="col-md-12">
                     <div class="clearfix" id="owl-man">
                         @if($winner!=null)
-                        <?php $i =1;?>
-                        @foreach($winner->photos as $p)
-                            <div class="col-md-2 col-sm-3" style="margin: 0px auto">
-                                <img class="img-circle winner-photo pointer" width="150" height="150"  src="{{asset($p->full_path)}}" alt=" {{$winner->first_name." ".$winner->last_name}}">
-                            </div>
-                        @endforeach
+                            <?php $i =1;?>
+                            @foreach($winner->photos as $p)
+                                <div class="col-md-2 col-sm-3" style="margin: 0px auto">
+                                    <img class="img-circle winner-photo pointer" width="150" height="150"  src="{{asset($p->full_path)}}" alt=" {{$winner->first_name." ".$winner->last_name}}">
+                                </div>
+                            @endforeach
                         @endif
                     </div>
                 </div>
@@ -73,21 +70,21 @@
     <div id="cheeks-inf">
         <div class="row">
             @if(!empty($topsix) && !is_null($topsix))
-            @foreach($topsix as $t)
-                <div class="profile_img col-md-3">
-                    <header>
-                        <div class="user">
-                            <div class="avatar">
-                                <img alt="{{$t->first_name." ".$t->last_name}}" src="{{$t->photo->full_path}}">
+                @foreach($topsix as $t)
+                    <div class="profile_img col-md-3">
+                        <header>
+                            <div class="user">
+                                <div class="avatar">
+                                    <img alt="{{$t->first_name." ".$t->last_name}}" src="{{$t->photo->full_path}}">
+                                </div>
+                                <h2>{{$t->first_name." ".$t->last_name}}</h2>
+                                <p>{{$t->vote}} votes</p>
+                                <a href="#"  class="follow vote-c-tw" data-id="{{$t->id}}"><span><i class="fa fa-heart"></i> </span>Vote</a>
                             </div>
-                            <h2>{{$t->first_name." ".$t->last_name}}</h2>
-                            <p>{{$t->vote}} votes</p>
-                            <a href="#"  class="follow vote-c-tw" data-id="{{$t->id}}"><span><i class="fa fa-heart"></i> </span>Vote</a>
-                        </div>
-                    </header>
-                </div>
-            @endforeach
-                @endif
+                        </header>
+                    </div>
+                @endforeach
+            @endif
         </div>
     </div>
     <div class="loading-area"></div>

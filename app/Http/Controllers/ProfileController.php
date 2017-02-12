@@ -63,7 +63,9 @@ class ProfileController extends Controller
         }
         $profile =Profile::find($this->_userId)->first();
 
-        return view('profile',['profile_pic'=>$profile->photo->full_path,
-            'photos'=>$profile->photos->toArray(),'status'=>$profile->about]);
+        return view('profile',[
+            'photos'=>$profile->photos->toArray(),
+            'profile'=>$profile]
+        );
     }
 }

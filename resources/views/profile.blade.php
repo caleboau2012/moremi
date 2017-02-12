@@ -1,26 +1,31 @@
 @extends('layouts.master')
 
 @section('content')
-{{--    {{dd($profile_pic, $photos, $status)}}--}}
+    {{--    {{dd($profile_pic, $photos, $status, $profile)}}--}}
     <br>
     <div class="container">
+        <div class="row">
+            <h2 class="text-center">{{$profile->first_name}} {{$profile->last_name}}</h2>
+            <h3 class="text-center"><span class="text-danger">Votes: {{$profile->vote}} <i class="fa fa-heart"></i></span> </h3>
+            <hr>
+        </div>
         <div class="row profile-tab">
             <div class="col-sm-4">
                 <div class="well profile-pic">
                     <div class="image">
-                        @if(is_null($profile_pic))
+                        @if(is_null($profile->photo->full_path))
                             <p class="text-center text-info image-placeholder">Drag best picture here</p>
                             <img class="hidden" src="">
                         @else
                             <p class="text-center hidden text-info image-placeholder">Drag best picture here</p>
-                            <img src="{{$profile_pic}}">
+                            <img src="{{$profile->photo->full_path}}">
                         @endif
                     </div>
                 </div>
             </div>
             <div class="col-sm-8">
                 <div class="row">
-                    <textarea name="{{$status}}" id="status" class="form-control status-message" rows="5" placeholder="Status Message"></textarea>
+                    <textarea name="{{$profile->about}}" id="status" class="form-control status-message" rows="5" placeholder="Status Message"></textarea>
                 </div>
                 <div class="row" id="pictures-panel" data-url="{{route('my_profile')}}">
                     @foreach($photos as $photo)
@@ -28,7 +33,7 @@
                             <div class="well image-box picture-panel pointer" draggable="true">
                                 <div class="image">
                                     <img src="{{Request::root() . "/" . $photo['full_path']}}">
-                                    <span class="delete-picture fa fa-close"></span>
+                                    <span class="delete-picture fa fa-close" data-url="{{route("delete_pic", $photo['id'])}}"></span>
                                 </div>
                             </div>
                         </div>
@@ -65,6 +70,10 @@
                     <h4 class="modal-title">Select Pictures to import <small>Tap to select</small></h4>
                 </div>
                 <div class="modal-body">
+                    <div class="row">
+                        <div id="pictures-pane">
+                        </div>
+                    </div>
                     <script type="text/html" id="facebook-picture">
                         <div class="col-sm-2">
                             <div class="select-picture image-box">
@@ -75,8 +84,6 @@
                             </div>
                         </div>
                     </script>
-                    <div id="pictures-pane">
-                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-primary" data-dismiss="modal">Done</button>

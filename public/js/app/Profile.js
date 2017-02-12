@@ -71,7 +71,7 @@ var Profile = {
                 e.stopPropagation();
             }
         ).undelegate(".delete-picture", "click").delegate(".delete-picture", "click", function(e){
-                Profile.deletePicture($(this).parent().parent().parent());
+                Profile.deletePicture($(this).parent().parent().parent(), $(this).attr("data-url"));
             }
         );
             //.undelegate(".picture-panel .fa-close").delegate(".picture-panel .fa-close", "click", function(e){
@@ -142,8 +142,16 @@ var Profile = {
     uploadError: function(data){
         console.log(data)
     },
-    deletePicture: function(picture){
+    deletePicture: function(picture, url){
+        //console.log(url);
+        //Utils.post(url, null, "GET", Profile.deleteSuccessful, Profile.deleteFailed);
         picture.remove();
+    },
+    deleteSuccessful: function(response){
+        console.log(response);
+    },
+    deleteFailed: function(error){
+        console.log(error);
     },
     saveToken: function(response){
         //console.log(response);
@@ -180,20 +188,31 @@ var Profile = {
     setPhotos: function(data){
         var url, HTML, template;
         for(var i = 0; i < data.length; i++){
-            template = $("#facebook-picture").html();
-            if(i == 0)
-                HTML = "<div class='row'>";
-            url = Facebook.photo(data[i]);
-            HTML += template.replace("[[src]]", url);
-            if(i == 5)
-                HTML += "</div><br><div class='row'>";
-            if(i == 11){
-                HTML += "</div>";
-                break;
-            }
+            HTML = "";
+            $.get(Facebook.photo(data[i]), function(response){
+                //console.log(response);
+                template = $("#facebook-picture").html();
+                //if(i == 0)
+                //    HTML = "<div class='row'>";
+                url = response.images[0].source;
+                HTML = template.replace("[[src]]", url);
+                //if(i == 5)
+                //    HTML += "</div><br><div class='row'>";
+                //if(i == 11){
+                //    HTML += "</div>";
+                //    break;
+                //}
+                if($("#pictures-pane .select-picture").length < 12){
+                    $("#pictures-pane").append(HTML);
+                }
+                else if(($("#pictures-pane .select-picture").length == 13)){
+                    $("#pictures-pane").append(HTML);
+                    $(".select-picture").each(function(i){
+                        $(this).height($(this).width());
+                    });
+                }
+            });
         }
-
-        $("#pictures-pane").html(HTML);
 
         $("#picturesModal").modal("show").on('hidden.bs.modal', function (e) {
             Profile.loadFacebookPix();
@@ -203,6 +222,7 @@ var Profile = {
     loadFacebookPix: function(){
         var HTML = "", template;
         for(var i = 0; i < Profile.facebookPhotos.length; i++){
+            //console.log(Profile.facebookPhotos[i]);
             template = $("#picture-template").html();
             HTML += template.replace("[[src]]", Profile.facebookPhotos[i]);
         }
