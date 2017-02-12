@@ -12,7 +12,7 @@ var Facebook = {
     },
     login: function(){
         FB.login(function(response) {
-            console.log(response);
+            //console.log(response);
             Facebook.status();
         }, {scope: 'public_profile,email,user_photos'});
     },
@@ -25,11 +25,11 @@ var Facebook = {
                     //console.log(response);
                     Facebook.profile = response;
 
-                    console.log({
-                        check: Profile.checkToken()
-                    });
+                    //console.log({
+                    //    check: Profile.checkToken()
+                    //});
 
-                    if(Profile.checkToken()){
+                    if((Profile.checkToken()) && (response.gender == "female")){
                         var url = $("#login").attr("data-url");
 
                         Utils.post(url,
