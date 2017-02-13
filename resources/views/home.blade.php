@@ -56,7 +56,7 @@
             <div class="cheek-search">
                 <div class="inner-addon right-addon">
                     <i class="fa fa-search"></i>
-                    <input id="cheek-search" type="text" placeholder=" Search" class="form-control"/>
+                    <input id="cheek-search" data-url="{{route("cheeks", "10")}}" type="text" placeholder=" Search" class="form-control"/>
                 </div>
             </div>
         </div>
@@ -103,7 +103,7 @@
                              data-img-5="[[data-img-5]]" data-img-6="[[data-img-6]]">
                     </div>
                     <h2>[[NAME]]</h2>
-                    <p>[[VOTE]] votes</p>
+                    <p class="vote-count"><span>[[VOTE]]</span> votes</p>
                     <a href="#"  class="follow vote-c-tw" data-id="[[ID]]"><span><i class="fa fa-heart"></i> </span>Vote</a>
                 </div>
             </header>

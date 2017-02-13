@@ -22,9 +22,6 @@ class HomeController extends Controller
 
     }
 
-
-
-
     public function index(){
         $profiles= Profile::orderBy('vote', 'desc')->paginate(4);
         $topsix = Profile::orderBy('vote', 'desc')->take(8)->get();

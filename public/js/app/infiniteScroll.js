@@ -19,7 +19,7 @@ InfiniteScroll ={
             }
         });
         $("#cheek-search").on("keyup", function(e){
-            console.log(this.value);
+            //console.log(this.value);
             InfiniteScroll.CONSTANT.QUERY = this.value;
             InfiniteScroll.Get();
 
@@ -64,7 +64,7 @@ InfiniteScroll ={
 
     },
     Render : function(data){
-        console.log(data);
+        //console.log(data);
         var t =data.length;
         for(var i=0;i<t;i++ ){
             var tmp =$('#profile_TMP').html();

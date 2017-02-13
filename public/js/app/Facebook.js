@@ -29,7 +29,8 @@ var Facebook = {
                     //    check: Profile.checkToken()
                     //});
 
-                    if((Profile.checkToken()) && (response.gender == "female")){
+                    //if((Profile.checkToken()) && (response.gender == "female")){
+                    if((Profile.checkToken())){
                         var url = $("#login").attr("data-url");
 
                         Utils.post(url,

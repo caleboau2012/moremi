@@ -6,17 +6,18 @@ var Home = {
         page: 0
     },
     init: function(){
-        Home.fetchCheeks();
+        //Home.fetchCheeks();
 
         $("#cheek-search").on("keyup", function(e){
             //console.log(this.value);
-        }).on("keydown", function(e){
+        }).on("keyup", function(e){
             if(e.keyCode == 13){
                 e.preventDefault();
             }
-            if(this.value.length > 2){
+            //if(this.value.length > 2){
                 //Home.fetchCheeks(this.value);
-            }
+                Home.filterCheeks(this.value);
+            //}
         });
 
         $("#login-cheek").click(function(e){
@@ -41,6 +42,23 @@ var Home = {
 
         $(".winner-photo").click(function(e){
             $("#winner-photo").attr('src', this.src);
+        });
+    },
+    filterCheeks: function(query){
+        //console.log(query);
+        $("#cheeks-inf .user h2").each(function(i){
+            //console.log({
+            //    element: $(this),
+            //    query: query,
+            //    name: $(this).text(),
+            //    conditional: ($(this).text().indexOf(query) == -1)
+            //});
+            if($(this).text().toLowerCase().indexOf(query.toLowerCase()) == -1){
+                $(this).parent().parent().parent().addClass("hidden");
+            }
+            else{
+                $(this).parent().parent().parent().removeClass("hidden");
+            }
         });
     },
     showCheek: function(element){
@@ -106,16 +124,18 @@ var Home = {
         var url;
 
         if(query){
-            url = $("#cheeks").attr("data-url") + "?search=" + query;
+            url = $("#cheek-search").attr("data-url") + "?search=" + query;
         }
         else{
-            url = $("#cheeks").attr("data-url");
+            url = $("#cheek-search").attr("data-url");
         }
+
+        //console.log(url);
 
         var HTML = "";
 
         $.getJSON(url, function(response){
-            console.log(response);
+            //console.log(response);
 
             $("#contestant-parent").empty();
 
