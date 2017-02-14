@@ -111,12 +111,14 @@ class PhotoController extends Controller
             $upl =new UploadPicture();
             $d =[$request->profile_pic];
             $data =$upl->ImageFromUrlOrString($d);
-            $profile_ph = new Photo();
-            $profile_ph->full_path =$data['full_path'];
-            $profile_ph->thumb_path =$data['thumb_path'];
-            $profile_ph->profile_id =$profile_id;
-            $profile_ph->save();
-            $profile->photo_id =$profile_ph->id;
+            if(!is_null($data) && !empty($data)) {
+                $profile_ph = new Photo();
+                $profile_ph->full_path = $data['full_path'];
+                $profile_ph->thumb_path = $data['thumb_path'];
+                $profile_ph->profile_id = $profile_id;
+                $profile_ph->save();
+                $profile->photo_id = $profile_ph->id;
+            }
         }
         //go ahead and set as feature photo
         if($request->status!=null) {
@@ -126,9 +128,9 @@ class PhotoController extends Controller
         return response()->json(['status'=>true,
             'message'=>"Your photo was uploaded successfully",
             'photo'=>[
-                'id'=>$photo->id,
-                'thumb_path'=>asset($photo->thumb_path),
-                'full_path'=>asset($photo->full_path)]]);
+                'id'=>isset($photo->id)?$photo->id:null,
+                'thumb_path'=>isset($photo)?asset($photo->thumb_path):null,
+                'full_path'=>isset($photo)?asset($photo->full_path):null]]);
 
     }
 
@@ -193,6 +195,39 @@ class PhotoController extends Controller
     {
         //
     }
+
+
+    public  function getSpaceUsed($user_id,array $photos){
+        $profile =Profile::find($user_id);
+        $spaceRemain =abs(6-$profile->photos()->count());
+        if(count($photos)<$spaceRemain) {
+            foreach($photos as $photo){
+                //$this->upload($uphoto);
+            }
+            }
+        if(count($photos)>$spaceRemain  ) //& request does not have profile pic
+        {
+            $photoToupload = [];
+            $i = 1;
+            foreach ($photos as $p) {
+                while ($i <= $spaceRemain) {
+                    $photoToupload[] = $p;
+                }
+            }
+            //delete non_profile pic photo
+            $a = 1;
+            foreach ($profile->photos as $p) {
+                while ($a >= count($spaceRemain) && $p->id!=$profile->photo_id ){
+                        ///delete pic
+                }
+                ///upload all
+
+        }
+
+        }
+    }
+
+
 
     /**
      * Remove the specified resource from storage.

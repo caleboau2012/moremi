@@ -64,21 +64,31 @@ class UploadPicture
 
             if(!File::exists($thumb_dir)) File::makeDirectory($thumb_dir, 775);
 
-            foreach($string as $s){
-
-            $img =Image::make($s)->encode('jpg');
-                $filename=str_random(40).'.jpg';
-                $full_path =$path_dir.DIRECTORY_SEPARATOR.$filename;
-                $img->save($full_path);
-                $img->fit(config('photo.standard_width'),config('photo.standard_height'));
-                $thumb_path =$thumb_dir.DIRECTORY_SEPARATOR.$filename;
-                $this->full_path =$full_path;
-                $this->create_thumb($thumb_path);
-                $data[] =['full_path'=>$full_path,'thumb_path'=>$thumb_path];
+            foreach($string as $s) {
+                if (!$this->urlIsLocal($s)) {
+                    $img = Image::make($s)->encode('jpg');
+                    $filename = str_random(40) . '.jpg';
+                    $full_path = $path_dir . DIRECTORY_SEPARATOR . $filename;
+                    $img->save($full_path);
+                    $img->fit(config('photo.standard_width'), config('photo.standard_height'));
+                    $thumb_path = $thumb_dir . DIRECTORY_SEPARATOR . $filename;
+                    $this->full_path = $full_path;
+                    $this->create_thumb($thumb_path);
+                    $data[] = ['full_path' => $full_path, 'thumb_path' => $thumb_path];
+                }
             }
         }
         return $data;
     }
 
+
+    public function urlIsLocal($url){
+        $parsed =parse_url($url);
+        $parse2 =parse_url(url('/'));
+        if($parse2['host']==$parsed['host']){
+            return true;
+        }
+        return false;
+    }
     }
 
