@@ -31,7 +31,7 @@
                     <div class="clearfix" id="owl-man">
                         @if($winner!=null)
                             <?php $i =1;?>
-                            @foreach($winner->photos as $p)
+                            @foreach($winner->photos->take(6) as $p)
                                 <div class="col-md-2 col-sm-3" style="margin: 0px auto">
                                     <img class="img-circle winner-photo pointer" width="150" height="150"  src="{{asset($p->full_path)}}" alt=" {{$winner->first_name." ".$winner->last_name}}">
                                 </div>
