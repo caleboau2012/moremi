@@ -19,6 +19,7 @@ class CreateVotersTable extends Migration
             $table->string('cookie')->nullable();
 
             $table->integer('profile_id');
+            $table->integer('user_id');
 
             $table->timestamps();
         });

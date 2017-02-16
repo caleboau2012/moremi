@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Profile;
 use App\Services\UserService;
+use app\Traits\AuthTrait;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -11,34 +12,14 @@ use App\Http\Controllers\Controller;
 
 class ProfileController extends Controller
 {
+    use AuthTrait;
     protected $_upload;
-    private $_userId;
-    private $auth=false;
-    private $request;
     public function __construct(Request $request) {
         $this->request=$request;
         $this->authenticate();
     }
 
-    public  function authenticate(){
-        if(session('authToken')!=null) {
-            $this->setAuth(session('authToken'));
-        }
-        $access_token = $this->request->header('authToken');
-        if($access_token!=null){
-            $this->setAuth($access_token);
-        }
-    }
 
-    public  function setAuth($token)
-    {
-        $userId = customdecrypt($token);
-        $userInstance = UserService::instance();
-        if ($userInstance->isValid($userId)) {
-            $this->auth = true;
-            $this->_userId = $userId;
-        }
-    }
 
     public  function myProfile(){
         if(!$this->auth) {

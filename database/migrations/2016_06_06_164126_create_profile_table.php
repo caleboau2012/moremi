@@ -16,6 +16,7 @@ class CreateProfileTable extends Migration
             $table->string('facebook_id');
             $table->boolean('show_private_info')->nullable();
             $table->integer('vote');
+            $table->integer('user_id');
             $table->string('photo_id')->nullable();
             $table->text('about');
             $table->timestamps();

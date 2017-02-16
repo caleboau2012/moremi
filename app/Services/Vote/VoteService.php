@@ -43,28 +43,31 @@ class VoteService
 
     }
 
-    public function  HasVoted($profile_id){
+    public function  HasVoted($voter_id){
         $cookie = $this->_request->cookie('vote');
         $date =Carbon::parse(config('settings.days_allow_before_next_vote').' days ago')->toDateTimeString(); //2 days ago
-        $row =Voter::where('cookie',$cookie)->where('created_at','>',$date)->first();
-        if(empty($row)){
-            $row =Voter::where('ip_address',$this->_request->ip())->where('user_agent',$this->_request->user_agent)->where('created_at','>',$date)->first();
-        }
-        if(empty($row)){
+        $rw =Voter::where('voter_id',$voter_id)->where('created_at','>',$date)->first();
+        if(empty($rw)){
             return false;
         }
+       /** $row =Voter::where('cookie',$cookie)->where('created_at','>',$date)->first();
+
+        if(empty($row)){
+            $row =Voter::where('ip_address',$this->_request->ip())->where('user_agent',$this->_request->user_agent)->where('created_at','>',$date)->first();
+        }**/
         return true;
     }
 
 
-    public function storeRequest($profile_id) {
+    public function storeRequest($profile_id,$voter_id) {
         //$cookie = Cookie::queue('vote', str_random(48), 2880);
         //$this->cookie =str_random(48);
         $array=[
             'ip_address'=>$this->_request->ip(),
             'user_agent'=>$this->_request->header('User-Agent'),
             'cookie'=>$this->cookie,
-            'profile_id'=>$profile_id
+            'profile_id'=>$profile_id,
+            'voter_id'=>$voter_id
         ];
         $vote =new Voter($array);
         $vote->save();

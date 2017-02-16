@@ -8,8 +8,7 @@ class Profile extends Model
 {
 
     protected $fillable = ['first_name','last_name','phone','email','vote',
-                            'facebook_id','photo_id','show_private_info','about'];
-
+                            'facebook_id','photo_id','show_private_info','about','user_id','sex'];
 
 
 

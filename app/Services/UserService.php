@@ -43,12 +43,20 @@ use App\User;
          if($authUser) {
              return $authUser;
          }
+         User::create(
+            [
+                'name'=>$facebookUser->first_name." ".$facebookUser->last_name,
+                'email'=>$facebookUser->email,
+                'password'=>bcrypt(str_random(8))
+            ]
+         );
          return Profile::create([
              'first_name'=>$facebookUser->first_name,
              'last_name'=>$facebookUser->last_name,
              'phone'=>$facebookUser->phone,
              'facebook_id'=>$facebookUser->facebook_id,
-             'email'=>$facebookUser->email
+             'email'=>$facebookUser->email,
+             'sex'=>$facebookUser->sex,
          ]);
      }
 

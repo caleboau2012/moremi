@@ -12,6 +12,7 @@ class CreatePhotosTable extends Migration
             $table->string('full_path');
             $table->string('thumb_path');
             $table->integer('profile_id');
+            $table->integer('user_id');
             $table->timestamps();
             //$table->foreign('profile_id')->references('id')->on('profiles');
         });

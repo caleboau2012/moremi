@@ -8,7 +8,7 @@ class Photo extends Model
 {
     //
     protected $fillable =[
-        'thumb_path','full_path','profile_id'
+        'thumb_path','full_path','profile_id','user_id'
     ];
 
 
