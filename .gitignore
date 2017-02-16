@@ -35,3 +35,4 @@ Homestead.yaml
 Homestead.json
 .idea/
 /public/uploads/*
+vendor
