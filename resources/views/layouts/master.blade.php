@@ -1,7 +1,7 @@
 ﻿﻿<!DOCTYPE html>
 <html lang="en" class="no-js">
 <head>
-    <title>Moremi</title>
+    <title>Moree.me</title>
     <link rel="shortcut icon" href="{{asset('images/home1/icon.ico')}}">
     <meta name="viewport" content="width=device-width">
     <meta charset="UTF-8">
