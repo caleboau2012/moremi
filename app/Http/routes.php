@@ -31,3 +31,7 @@ Route::post('upload/photo', ["as" => "photo_upload", "uses" => 'PhotoController@
 
 Route::get('delete/{id}/photo',["as" => "delete_pic", "uses" =>'PhotoController@destroy']);  //delete photo
 Route::get('myprofile',["as" => "my_profile", "uses" => 'ProfileController@myProfile']);
+
+Route::get('privacy/policy', function(){
+    return view('pages.terms');
+});
