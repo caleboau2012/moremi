@@ -85,7 +85,7 @@ class UploadPicture
     public function urlIsLocal($url){
         $parsed =parse_url($url);
         $parse2 =parse_url(url('/'));
-        if($parse2['host']==$parsed['host']){
+        if((isset($parse2['host'])) && (isset($parsed['host'])) && ($parse2['host'] == $parsed['host'])){
             return true;
         }
         return false;

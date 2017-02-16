@@ -113,8 +113,8 @@ class PhotoController extends Controller
             $data =$upl->ImageFromUrlOrString($d);
             if(!is_null($data) && !empty($data)) {
                 $profile_ph = new Photo();
-                $profile_ph->full_path = $data['full_path'];
-                $profile_ph->thumb_path = $data['thumb_path'];
+                $profile_ph->full_path = $data[0]['full_path'];
+                $profile_ph->thumb_path = $data[0]['thumb_path'];
                 $profile_ph->profile_id = $profile_id;
                 $profile_ph->save();
                 $profile->photo_id = $profile_ph->id;

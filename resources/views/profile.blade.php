@@ -25,7 +25,7 @@
             </div>
             <div class="col-sm-8">
                 <div class="row">
-                    <textarea name="{{$profile->about}}" id="status" class="form-control status-message" rows="5" placeholder="Status Message"></textarea>
+                    <textarea id="status" class="form-control status-message" rows="5" placeholder="Status Message">{{$profile->about}}</textarea>
                 </div>
                 <div class="row" id="pictures-panel" data-url="{{route('my_profile')}}">
                     @if(!empty($photos))
@@ -45,10 +45,12 @@
                     <div class="col-sm-3 col-sm-offset-6">
                         <br>
                         <button class="btn btn-danger btn-block picture-upload"><span class="fa fa-file-image-o"></span> Upload Pictures</button>
+                        <br>
                     </div>
                     <div class="col-sm-3">
                         <br>
                         <button id="finish" data-url="{{route("photo_upload")}}" class="btn btn-success btn-block"><span class="fa fa-upload"></span> Finish</button>
+                        <br>
                     </div>
                 </div>
                 <input type="file" id="pic-upload" class="hidden" multiple="multiple">
