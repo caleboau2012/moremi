@@ -66,6 +66,19 @@ var Facebook = {
             $("#login-cheek").removeClass("hidden");
         }
     },
+    convertPhoto: function(url, callback){
+            var xhr = new XMLHttpRequest();
+            xhr.onload = function() {
+                var reader = new FileReader();
+                reader.onloadend = function() {
+                    callback(reader.result);
+                };
+                reader.readAsDataURL(xhr.response);
+            };
+            xhr.open('GET', url);
+            xhr.responseType = 'blob';
+            xhr.send();
+    },
     userPicture: function(){
         FB.api('/v2.7/' + Facebook.profile.id + '/picture?type=large', function(response){
             if (response && !response.error) {

@@ -43,9 +43,11 @@
                 </div>
                 <div class="row">
                     <div class="col-sm-3 col-sm-offset-6">
+                        <br>
                         <button class="btn btn-danger btn-block picture-upload"><span class="fa fa-file-image-o"></span> Upload Pictures</button>
                     </div>
                     <div class="col-sm-3">
+                        <br>
                         <button id="finish" data-url="{{route("photo_upload")}}" class="btn btn-success btn-block"><span class="fa fa-upload"></span> Finish</button>
                     </div>
                 </div>

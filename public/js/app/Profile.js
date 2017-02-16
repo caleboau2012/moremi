@@ -187,30 +187,24 @@ var Profile = {
     //},
     setPhotos: function(data){
         var url, HTML, template;
-        for(var i = 0; i < data.length; i++){
+        for(var i = 0; i < data.length; i++) {
             HTML = "";
-            $.get(Facebook.photo(data[i]), function(response){
-                //console.log(response);
-                template = $("#facebook-picture").html();
-                //if(i == 0)
-                //    HTML = "<div class='row'>";
-                url = response.images[0].source;
-                HTML = template.replace("[[src]]", url);
-                //if(i == 5)
-                //    HTML += "</div><br><div class='row'>";
-                //if(i == 11){
-                //    HTML += "</div>";
-                //    break;
-                //}
-                if($("#pictures-pane .select-picture").length < 12){
-                    $("#pictures-pane").append(HTML);
-                }
-                else if(($("#pictures-pane .select-picture").length == 13)){
-                    $("#pictures-pane").append(HTML);
-                    $(".select-picture").each(function(i){
-                        $(this).height($(this).width());
-                    });
-                }
+            //console.log(Facebook.photo(data[i]));
+            $.get(Facebook.photo(data[i]), function (response) {
+                Facebook.convertPhoto(response.images[0].source, function (response) {
+                    template = $("#facebook-picture").html();
+                    url = response;
+                    HTML = template.replace("[[src]]", url);
+                    if ($("#pictures-pane .select-picture").length < 12) {
+                        $("#pictures-pane").append(HTML);
+                    }
+                    else if (($("#pictures-pane .select-picture").length == 13)) {
+                        $("#pictures-pane").append(HTML);
+                        $(".select-picture").each(function (i) {
+                            $(this).height($(this).width());
+                        });
+                    }
+                });
             });
         }
 
