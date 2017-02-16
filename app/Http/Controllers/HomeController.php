@@ -23,8 +23,8 @@ class HomeController extends Controller
     }
 
     public function index(){
-        $profiles= Profile::orderBy('vote', 'desc')->paginate(4);
-        $topsix = Profile::orderBy('vote', 'desc')->take(8)->get();
+        $profiles= Profile::where('sex','!=','M')->orderBy('vote', 'desc')->paginate(4);
+        $topsix = Profile::where('sex','!=','M')->orderBy('vote', 'desc')->take(8)->get();
        $w =OldCheek::orderBy('created_at', 'desc')->first();
         $winner=null;
         if($w!=null) {
@@ -43,7 +43,7 @@ class HomeController extends Controller
         $total =(int)$total;
         if($this->_request->search!=null){
             $search=$this->_request->search;
-            $profiles= Profile::orderBy('vote', 'desc')
+            $profiles= Profile::where('sex','!=','M')->orderBy('vote', 'desc')
                  ->where("first_name", "LIKE","%$search%")
                 ->orWhere("last_name", "LIKE", "%$search%")
                 ->paginate($total);
