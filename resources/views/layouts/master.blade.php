@@ -79,16 +79,16 @@
             <div class="col-lg-3 col-lg-offset-6 col-md-12 col-xs-12 loginbg loginsearch-div group  ">
                 <div class="row form-small text-center">
                     <button data-url="{{route("login")}}" id="login" class="profile-actions btn btn-primary hidden" type="button" style="background-color: #025DAC">
-                        <span class="fa fa-facebook-official"></span>
+                        <i class="fa fa-facebook-official"></i>
                         <span>Login with Facebook</span>
                     </button>
                     <button id="login-cheek" data-url="{{route("profile")}}" class="profile-actions profile-button btn btn-danger hidden" type="button" style="background-color: #d9534f">
-                        <span class="fa fa-user"></span>
+                        <i class="fa fa-user"></i>
                         <span>Edit your profile</span>
                     </button>
                     <button id="facebook-fetch" class="profile-actions btn btn-primary hidden" type="button" style="background-color: #025DAC">
                         <span>Complete profile with </span>
-                        <span class="fa fa-facebook-official"></span>
+                        <i class="fa fa-facebook-official"></i>
                     </button>
                 </div>
             </div>
@@ -152,7 +152,7 @@
         <div class="row  container-fluid bottom-footer footerbg1 row">
             <div class="container ">
                 <div class="col-md-10 col-xs-12">
-                    <a href="#">Copyright 2017. All rights reserved.</a>
+                    <a href="{{route("policy")}}">Copyright 2017. All rights reserved.</a>
                 </div>
                 <div class="col-md-2 col-xs-12 text-right">
                     <a href="https://www.facebook.com/moremitesoau/"><i class="fa fa-facebook icon-rotate"></i></a>

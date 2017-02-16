@@ -197,7 +197,7 @@ img.center {
 .listing-info {
     color: #000;
     font: 24px/1 "Ubuntu Condensed",sans-serif;
-    height: 50px;
+    /*height: 50px;*/
     margin: 10px 0 0;
 
 }

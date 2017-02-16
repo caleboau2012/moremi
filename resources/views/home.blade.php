@@ -11,10 +11,11 @@
                 <h2 class="text-center">CHEEK OF THE WEEK</h2>
                 <div class="row">
                     <div class="col-md-4 col-xs-12 col-sm-12">
-                        <div class="dl-horizontal listing-info margin-up-50">
-                            <dt class="text-danger">Votes:</dt><dd class="text-danger">{{isset($winner->vote)?$winner->vote:0}} <i class="fa fa-heart"></i></dd>
+                        <div class="dl-horizontal listing-info text-center">
+                            <code class="text-danger"><b>Votes:</b> {{isset($winner->vote)?$winner->vote:0}} <i class="fa fa-heart"></i></code>
                             <br>
-                            <dt>About:</dt><dd><p class="small">{{isset($winner->about)?$winner->about:null}}</p> </dd>
+                            <br>
+                            <code class="text-danger"><b>About:</b> <p class="small">{{isset($winner->about)?$winner->about:null}}</p> </code>
                         </div>
                     </div>
                     <div class="col-md-4 col-xs-12 col-sm-12">
