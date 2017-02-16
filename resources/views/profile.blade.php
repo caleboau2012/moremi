@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('content')
-    {{--    {{dd($profile_pic, $photos, $status, $profile)}}--}}
+        {{--{{dd($profile)}}--}}
     <br>
     <div class="container">
         <div class="row">
@@ -13,7 +13,7 @@
             <div class="col-sm-4">
                 <div class="well profile-pic">
                     <div class="image">
-                        @if(is_null($profile->photo->full_path))
+                        @if(is_null($profile->photo_id) || is_null($profile->photo->full_path))
                             <p class="text-center text-info image-placeholder">Drag best picture here</p>
                             <img class="hidden" src="">
                         @else
@@ -28,7 +28,7 @@
                     <textarea name="{{$profile->about}}" id="status" class="form-control status-message" rows="5" placeholder="Status Message"></textarea>
                 </div>
                 <div class="row" id="pictures-panel" data-url="{{route('my_profile')}}">
-                    @if(!is_null($photos))
+                    @if(!empty($photos))
                         @foreach($photos as $photo)
                             <div class="col-sm-2">
                                 <div class="well image-box picture-panel pointer" draggable="true">

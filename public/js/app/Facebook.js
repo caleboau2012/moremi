@@ -22,14 +22,10 @@ var Facebook = {
                 console.log(response);
                 Facebook.authResponse = response.authResponse;
                 FB.api('/me?fields=id,first_name,last_name,email,gender', function(response) {
-                    //console.log(response);
                     Facebook.profile = response;
 
-                    //console.log({
-                    //    check: Profile.checkToken()
-                    //});
+                    response.gender = (response.gender == "female")?"F":"M";
 
-                    //if((Profile.checkToken()) && (response.gender == "female")){
                     if((Profile.checkToken())){
                         var url = $("#login").attr("data-url");
 
@@ -38,6 +34,7 @@ var Facebook = {
                                 first_name: response.first_name,
                                 last_name: response.last_name,
                                 email: response.email,
+                                sex: response.gender,
                                 facebook_id: response.id
                             }, "POST", Facebook.saveToken,Facebook.loginError
                         );
