@@ -28,16 +28,18 @@
                     <textarea name="{{$profile->about}}" id="status" class="form-control status-message" rows="5" placeholder="Status Message"></textarea>
                 </div>
                 <div class="row" id="pictures-panel" data-url="{{route('my_profile')}}">
-                    @foreach($photos as $photo)
-                        <div class="col-sm-2">
-                            <div class="well image-box picture-panel pointer" draggable="true">
-                                <div class="image">
-                                    <img src="{{Request::root() . "/" . $photo['full_path']}}">
-                                    <span class="delete-picture fa fa-close" data-url="{{route("delete_pic", $photo['id'])}}"></span>
+                    @if(!is_null($photos))
+                        @foreach($photos as $photo)
+                            <div class="col-sm-2">
+                                <div class="well image-box picture-panel pointer" draggable="true">
+                                    <div class="image">
+                                        <img src="{{Request::root() . "/" . $photo['full_path']}}">
+                                        <span class="delete-picture fa fa-close" data-url="{{route("delete_pic", $photo['id'])}}"></span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    @endforeach
+                        @endforeach
+                    @endif
                 </div>
                 <div class="row">
                     <div class="col-sm-3 col-sm-offset-6">
