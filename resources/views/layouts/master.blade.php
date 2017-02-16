@@ -76,7 +76,7 @@
                 </a>
             </div>  <!--/. Logo Div End-->
 
-            <div class="col-lg-3 col-lg-offset-6 col-md-12 col-xs-12 loginbg loginsearch-div group  ">
+            <div class="col-lg-3 col-lg-offset-6 col-md-12 col-xs-12 loginbg loginsearch-div group gender-filter hidden">
                 <div class="row form-small text-center">
                     <button data-url="{{route("login")}}" id="login" class="profile-actions btn btn-primary hidden" type="button" style="background-color: #025DAC">
                         <i class="fa fa-facebook-official"></i>

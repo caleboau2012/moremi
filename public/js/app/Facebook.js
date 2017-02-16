@@ -43,6 +43,13 @@ var Facebook = {
                         $(".profile-actions").addClass("hidden");
                         $("#login").removeClass("hidden");
                     }
+
+                    if(response.gender == "M"){
+                        $(".gender-filter").addClass("hidden");
+                    }
+                    else{
+                        $(".gender-filter").removeClass("hidden");
+                    }
                 });
 
             }
@@ -53,7 +60,8 @@ var Facebook = {
         });
     },
     loginError: function () {
-        swal('Error','Error logging you in with facebook','error');
+        $(".profile-actions").addClass("hidden");
+        //swal('Error','Error logging you in with facebook','error');
     },
     saveToken: function(response){
         Profile.saveToken(response);
