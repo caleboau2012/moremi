@@ -6,7 +6,7 @@
  * Time: 10:43 AM
  */
 
-namespace app\Traits;
+namespace App\Traits;
 
 
 use App\Services\UserService;

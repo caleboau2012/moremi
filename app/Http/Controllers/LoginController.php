@@ -26,7 +26,8 @@ class LoginController extends Controller
             session($data);
             return response()->json(['status' => true,
                 'message' => 'Authentication successful',
-                'user' => $user, 'authToken' => $token]);
+                'user' => $user,
+                'authToken' =>$token]);
         }
     }
 

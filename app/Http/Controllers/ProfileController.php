@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Profile;
 use App\Services\UserService;
-use app\Traits\AuthTrait;
+use App\Traits\AuthTrait;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;

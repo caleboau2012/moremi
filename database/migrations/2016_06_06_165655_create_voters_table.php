@@ -20,6 +20,7 @@ class CreateVotersTable extends Migration
 
             $table->integer('profile_id');
             $table->integer('user_id');
+            $table->integer('voter_id');
 
             $table->timestamps();
         });

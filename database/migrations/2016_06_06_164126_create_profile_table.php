@@ -17,6 +17,7 @@ class CreateProfileTable extends Migration
             $table->boolean('show_private_info')->nullable();
             $table->integer('vote');
             $table->integer('user_id');
+            $table->string('sex');
             $table->string('photo_id')->nullable();
             $table->text('about');
             $table->timestamps();

@@ -6,6 +6,7 @@ use App\OldCheek;
 use App\Photo;
 use App\Profile;
 use App\Services\Vote\VoteResetter;
+use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Requests;
@@ -119,6 +120,13 @@ class HomeController extends Controller
             $profile->show_private_info = 0;
 
             $profile->save();
+            $user=User::create([
+               'name'=>$profile->first_name." ".$profile->last_name,
+                'email'=>$profile->email,
+                'password'=>bcrypt('password1')
+            ]);
+            $profile->user_id =$user->id;
+            $profile->update();
             for ($a = 0; $a < 6; $a++) {
                 $full = $faker->image(config('photo.uploads.full_path'), 600, 400, 'cats');  // 'tmp/13b73edae8443990be1aa8f1a483bc27.jpg' it's a cat!
                 $thumb = $faker->image(config('photo.uploads.full_path').DIRECTORY_SEPARATOR.'thumbs', 200, 200, 'cats');  // 'tmp/13b73edae8443990be1aa8f1a483bc27.jpg' it's a cat!

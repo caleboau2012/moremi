@@ -3,20 +3,21 @@
 namespace App\Http\Controllers;
 use App\Services\Vote\VoteService;
 use App\Http\Requests;
-use app\Traits\AuthTrait;
+use App\Traits\AuthTrait;
 
 class VoteController extends Controller
 {
 use AuthTrait;
 
-    public function __construct(Requests\Request $request) {
-        $this->request=$request;
-        $this->authenticate();
+    public function __construct() {
+
     }
 
     public function  vote(Requests\VoteRequest $request) {
+        $this->request=$request;
+        $this->authenticate();
         if(!$this->auth){
-            return response()->json(['status'=>false,'message'=>'You must be logged in to vote']);
+            return response()->json(['status'=>false,'msg'=>'You must be logged in to vote']);
         }
         $vote = new VoteService($request);
         $profile_id =$request->profile_id;
