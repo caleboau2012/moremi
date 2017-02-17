@@ -76,7 +76,7 @@
                 </a>
             </div>  <!--/. Logo Div End-->
 
-            <div class="col-lg-3 col-lg-offset-6 col-md-12 col-xs-12 loginbg loginsearch-div group gender-filter hidden">
+            <div class="col-lg-3 col-lg-offset-6 col-md-12 col-xs-12 loginbg loginsearch-div group gender-filter">
                 <div class="row form-small text-center">
                     <button data-url="{{route("login")}}" id="login" class="profile-actions btn btn-primary hidden" type="button" style="background-color: #025DAC">
                         <i class="fa fa-facebook-official"></i>
@@ -130,7 +130,7 @@
 
                 <!-- Popular on Facebook-->
                 <section class="col-md-3 col-xs-12 col-sm-6  footerbg2">
-                    <h4>Wings Restaurant</h4>
+                    <h4>The prize</h4>
                     <h5>Dinner on Friday Night</h5>
                     <p>
                         <a>Wings restaurant</a>
