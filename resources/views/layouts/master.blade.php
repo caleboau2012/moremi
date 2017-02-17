@@ -130,7 +130,7 @@
 
                 <!-- Popular on Facebook-->
                 <section class="col-md-3 col-xs-12 col-sm-6  footerbg2">
-                    <h4>Wings Restaurant</h4>
+                    <h4>The prize</h4>
                     <h5>Dinner on Friday Night</h5>
                     <p>
                         <a>Wings restaurant</a>
