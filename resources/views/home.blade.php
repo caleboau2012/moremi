@@ -6,6 +6,42 @@
 {{--{{dd($winner)}}--}}
 <div class="container-fluid">
     <div class="container">
+
+        {{--Start of Trending Conhtainer--}}
+        <h2 class="text-center">TRENDING</h2>
+        <div class="row trending-items">
+            @if(!empty($trending))
+                @foreach($trending as $t)
+                    <div class="trending-item">
+                        <div>
+                            <div class="text-center">
+                                @if(empty($t->photo))
+                                    <img alt="{{$t->first_name." ".$t->last_name}}" src="{{asset('images/default.png')}}">
+                                @else
+
+                                    <img alt="{{$t->first_name." ".$t->last_name}}" src="{{$t->photo->full_path}}">
+                                @endif
+                            </div>
+                            <h4 class="text-center">{{$t->first_name." ".$t->last_name}}</h4>
+                            <p class="text-center">{{$t->vote}} votes</p>
+                        </div>
+                    </div>
+                @endforeach
+            @endif
+            <div class="trending-item">
+                <div>
+                    <div class="text-center">
+                        <img alt="adebayo moses" src="{{asset('images/default.png')}}">
+                    </div>
+                    <h4 class="text-center">Adebayo Moses</h4>
+                    <p class="text-center">90 votes</p>
+                </div>
+            </div>
+
+
+
+        </div>
+        {{--End of Trending Container--}}
         <div class="row">
             <div class="">
                 <h2 class="text-center">CHEEK OF THE WEEK</h2>
