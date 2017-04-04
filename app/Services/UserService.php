@@ -56,7 +56,7 @@ use App\User;
              'phone'=>$facebookUser->phone,
              'facebook_id'=>$facebookUser->facebook_id,
              'email'=>$facebookUser->email,
-             'sex'=>strtoupper($facebookUser->sex),
+             'sex'=>$facebookUser->sex,
          ]);
      }
 

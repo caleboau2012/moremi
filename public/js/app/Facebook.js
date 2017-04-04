@@ -24,8 +24,6 @@ var Facebook = {
                 FB.api('/me?fields=id,first_name,last_name,email,gender', function(response) {
                     Facebook.profile = response;
 
-                    response.gender = (response.gender == "female")?"F":"M";
-
                     if((Profile.checkToken())){
                         var url = $("#login").attr("data-url");
 
@@ -42,13 +40,6 @@ var Facebook = {
                     else{
                         $(".profile-actions").addClass("hidden");
                         $("#login").removeClass("hidden");
-                    }
-
-                    if(response.gender == "M"){
-                        $(".gender-filter").addClass("hidden");
-                    }
-                    else{
-                        $(".gender-filter").removeClass("hidden");
                     }
                 });
 
