@@ -28,20 +28,9 @@
                     </div>
                 @endforeach
             @endif
-            <div class="trending-item">
-                <div>
-                    <div class="text-center">
-                        <img alt="adebayo moses" src="{{asset('images/default.png')}}">
-                    </div>
-                    <h4 class="text-center">Adebayo Moses</h4>
-                    <p class="text-center">90 votes</p>
-                </div>
-            </div>
-
-
-
         </div>
         {{--End of Trending Container--}}
+
         <div class="row">
             <div class="">
                 <h2 class="text-center">CHEEK OF THE WEEK</h2>

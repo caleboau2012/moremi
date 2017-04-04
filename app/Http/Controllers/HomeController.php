@@ -33,11 +33,10 @@ class HomeController extends Controller
         if($w!=null) {
             $winner = Profile::find($w->profile_id);
         }
-        return view('home',['profiles'=>$profiles,'topsix'=>$topsix,'winner'=>$winner, 'pastwinners'=>$this->pastWinners(), 'pagination' =>
+        return view('home',['trending' => $trending, 'profiles'=>$profiles,'topsix'=>$topsix,'winner'=>$winner, 'pastwinners'=>$this->pastWinners(), 'pagination' =>
             ['link' => (string)$profiles->links(),
                 'current_page' => $profiles->currentPage(),
                 'total' => $profiles->total(),
-                'trending' => $trending,
                 'per_page' => $profiles->perPage()
             ]]);
     }
