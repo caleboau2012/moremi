@@ -1,5 +1,9 @@
 @extends('layouts.master')
 
+@section('topStyles')
+    <link href="{{asset('libs/owl/owl.carousel.css')}}" rel="stylesheet">
+@endsection
+
 @section('content')
 
         <!--- Main Visual Div-->
@@ -217,6 +221,7 @@
     <script src="{{asset('js/vendor/jquery.jscroll.min.js')}}"></script>
     <script src="{{asset('js/app/infiniteScroll.js')}}"></script>
     <script src="{{asset('js/app/Home.js')}}"></script>
+    <script src="{{asset("libs/owl/owl.carousel.min.js")}}"></script>
 
     <script type="application/javascript">
         $(document).ready( function() {
@@ -234,6 +239,17 @@
                 }
             });
             InfiniteScroll.init();
+
+            /* Trending Block */
+            $(".trending-items").owlCarousel({
+                autoPlay: 3000, //Set AutoPlay to 3 seconds
+                items : 5,
+                itemsDesktop : [1199,4],
+                itemsDesktopSmall : [979,3],
+                itemsTablet	: [768,2],
+                navigation : false,
+                pagination : false
+            });
         })
 
     </script>

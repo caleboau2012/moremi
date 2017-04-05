@@ -212,9 +212,9 @@ img.center {
 Trending
 */
 .trending-item{
-    width: 250px;
-    height: 100px;
-    display: inline-block;
+    /*width: 250px;*/
+    /*height: 100px;*/
+    /*display: inline-block;*/
 
 }
 
@@ -225,8 +225,8 @@ Trending
     margin: 0 auto 5px;
 }
 .trending-items{
-    height: 150px;
-    white-space:nowrap;
-    overflow-y:hidden;
-    overflow-x:scroll;
+    /*height: 150px;*/
+    /*white-space:nowrap;*/
+    /*overflow-y:hidden;*/
+    /*overflow-x:scroll;*/
 }
