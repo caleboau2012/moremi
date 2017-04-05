@@ -27,11 +27,13 @@ class HomeController extends Controller
         $profiles= Profile::where('sex','!=','M')->orderBy('vote', 'desc')->paginate(4);
         $topsix = Profile::where('sex','!=','M')->orderBy('vote', 'desc')->take(8)->get();
        $w =OldCheek::orderBy('created_at', 'desc')->first();
+
+       $trending = Profile::orderBy('updated_at', 'desc')->take(10)->get();
         $winner=null;
         if($w!=null) {
             $winner = Profile::find($w->profile_id);
         }
-        return view('home',['profiles'=>$profiles,'topsix'=>$topsix,'winner'=>$winner, 'pastwinners'=>$this->pastWinners(), 'pagination' =>
+        return view('home',['trending' => $trending, 'profiles'=>$profiles,'topsix'=>$topsix,'winner'=>$winner, 'pastwinners'=>$this->pastWinners(), 'pagination' =>
             ['link' => (string)$profiles->links(),
                 'current_page' => $profiles->currentPage(),
                 'total' => $profiles->total(),
