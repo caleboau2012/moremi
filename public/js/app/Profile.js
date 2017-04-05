@@ -16,6 +16,22 @@ var Profile = {
         //    $(this).height($(this).width());
         //});
 
+        $("#venue").change(function(e){
+            var selected = $(this).find('option:selected');
+
+            if(this.value == 0)
+                $("#venue-url").addClass('hidden');
+            else{
+                var src = selected.data('image');
+                var url = selected.data('url');
+                var title = selected.data('title');
+
+                $("#venue-image").attr('src', src);
+                $("#venue-url").attr('href', url).removeClass('hidden');
+                $("#venue-title").text(title);
+            }
+        });
+
         $("#login-cheek").addClass("hidden");
         $("#facebook-fetch").removeClass("hidden").on("click", function(e){
             //Facebook.userPicture();
