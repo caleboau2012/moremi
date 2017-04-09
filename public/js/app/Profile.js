@@ -128,6 +128,7 @@ var Profile = {
     finish: function(url){
         //console.log($(".picture-panel"));
         var status = $("#status").val();
+        var venue = $('#venue').val();
         var img;
         var photos = [];
         $(".picture-panel").each(function(index, e){
@@ -143,6 +144,7 @@ var Profile = {
         var data = {
             status: status,
             photo: photos,
+            venue: venue,
             profile_pic: pPic
         };
 

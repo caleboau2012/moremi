@@ -124,13 +124,12 @@ class PhotoController extends Controller
         if($request->status!=null) {
             $profile->about = $request->status;
         }
+        if($request->venue != null)
+            $profile->venue = $request->venue;
         $profile->save();
         return response()->json(['status'=>true,
-            'message'=>"Your photo was uploaded successfully",
-            'photo'=>[
-                'id'=>isset($photo->id)?$photo->id:null,
-                'thumb_path'=>isset($photo)?asset($photo->thumb_path):null,
-                'full_path'=>isset($photo)?asset($photo->full_path):null]]);
+            'message'=>"Your profile was saved successfully",
+            ]);
 
     }
 
