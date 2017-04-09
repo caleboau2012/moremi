@@ -32,7 +32,11 @@
                         <select name="venue" id="venue" class="form-control">
                             <option value="0">Select your preferred date location</option>
                             @foreach($venues as $venue)
-                                <option value="{{$venue['id']}}" data-url="{{$venue['url']}}" data-title="{{$venue['preview']['title']}}" data-image="{{$venue['preview']['images'][0]}}">{{$venue['name']}}</option>
+                                @if($venue['id'] == $profile->venue)
+                                    <option selected value="{{$venue['id']}}" data-url="{{$venue['url']}}" data-title="{{$venue['preview']['title']}}" data-image="{{$venue['preview']['images'][0]}}">{{$venue['name']}}</option>
+                                @else
+                                    <option value="{{$venue['id']}}" data-url="{{$venue['url']}}" data-title="{{$venue['preview']['title']}}" data-image="{{$venue['preview']['images'][0]}}">{{$venue['name']}}</option>
+                                @endif
                             @endforeach
                         </select>
                         <div class="row">

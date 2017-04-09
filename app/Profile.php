@@ -24,7 +24,10 @@ class Profile extends Model
         return $this->hasOne('App\Photo','id','photo_id');
     }
 
-
+    public function venue()
+    {
+        return $this->hasOne('App\Venue','id','venue');
+    }
 
 
 }
