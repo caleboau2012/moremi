@@ -119,6 +119,13 @@ class PhotoController extends Controller
                 $profile_ph->save();
                 $profile->photo_id = $profile_ph->id;
             }
+            else if($upl->urlIsLocal($request->profile_pic)){
+                $elements = explode('/', $request->profile_pic);
+                $element = $elements[sizeof($elements) - 1];
+                $photo = Photo::where('full_path', 'like', '%' . $element . '%')->first();
+//                var_dump($photo);
+                $profile->photo_id = $photo->id;
+            }
         }
         //go ahead and set as feature photo
         if($request->status!=null) {
