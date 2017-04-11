@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Profile;
 use App\Services\UserService;
+use App\Services\VenueService;
 use App\Traits\AuthTrait;
+use App\Venue;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -18,8 +20,6 @@ class ProfileController extends Controller
         $this->request=$request;
         $this->authenticate();
     }
-
-
 
     public  function myProfile(){
         if(!$this->auth) {
@@ -36,17 +36,29 @@ class ProfileController extends Controller
         ]);
     }
 
-
     //profile page
     public function profile(){
         if(!$this->auth) {
             return back();
         }
-        $profile =Profile::find($this->_userId)->first();
+
+        $venues = Venue::all()->toArray();
+
+        $venueService = new VenueService();
+
+        for($i = 0; $i < sizeof($venues); $i++){
+            $venues[$i]['preview'] = $venueService->fetchPreview($venues[$i]['url']);
+        }
+
+        $profile = Profile::find($this->_userId)->first();
 
         return view('profile',[
-            'photos'=>$profile->photos->toArray(),
-            'profile'=>$profile]
+                'photos' => $profile->photos->toArray(),
+                'profile' => $profile,
+                'venues' => $venues
+            ]
         );
     }
+
+
 }

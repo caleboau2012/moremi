@@ -16,6 +16,22 @@ var Profile = {
         //    $(this).height($(this).width());
         //});
 
+        $("#venue").change(function(e){
+            var selected = $(this).find('option:selected');
+
+            if(this.value == 0)
+                $("#venue-url").addClass('hidden');
+            else{
+                var src = selected.data('image');
+                var url = selected.data('url');
+                var title = selected.data('title');
+
+                $("#venue-image").attr('src', src);
+                $("#venue-url").attr('href', url).removeClass('hidden');
+                $("#venue-title").text(title);
+            }
+        });
+
         $("#login-cheek").addClass("hidden");
         $("#facebook-fetch").removeClass("hidden").on("click", function(e){
             //Facebook.userPicture();
@@ -112,6 +128,7 @@ var Profile = {
     finish: function(url){
         //console.log($(".picture-panel"));
         var status = $("#status").val();
+        var venue = $('#venue').val();
         var img;
         var photos = [];
         $(".picture-panel").each(function(index, e){
@@ -127,20 +144,28 @@ var Profile = {
         var data = {
             status: status,
             photo: photos,
+            venue: venue,
             profile_pic: pPic
         };
 
         Utils.post(url,
-            data, "POST", Profile.uploaded,Profile.uploadError
+            data, "POST", Profile.uploaded, Profile.uploadError
         );
 
-        //console.log(JSON.stringify(data));
+        $("#finish").button('loading');
     },
     uploaded: function(data){
         console.log(data);
+        $("#finish").button('reset');
+        if(data.status)
+            swal('Awesome', data.message);
+        else
+            swal('Oh Snap!', data.message);
     },
     uploadError: function(data){
         console.log(data)
+        swal('Oh Snap!', "We don't know what went wrong but we couldn't finish the operation");
+        $("#finish").button('reset');
     },
     deletePicture: function(picture, url){
         //console.log(url);

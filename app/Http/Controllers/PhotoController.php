@@ -119,18 +119,24 @@ class PhotoController extends Controller
                 $profile_ph->save();
                 $profile->photo_id = $profile_ph->id;
             }
+            else if($upl->urlIsLocal($request->profile_pic)){
+                $elements = explode('/', $request->profile_pic);
+                $element = $elements[sizeof($elements) - 1];
+                $photo = Photo::where('full_path', 'like', '%' . $element . '%')->first();
+//                var_dump($photo);
+                $profile->photo_id = $photo->id;
+            }
         }
         //go ahead and set as feature photo
         if($request->status!=null) {
             $profile->about = $request->status;
         }
+        if($request->venue != null)
+            $profile->venue = $request->venue;
         $profile->save();
         return response()->json(['status'=>true,
-            'message'=>"Your photo was uploaded successfully",
-            'photo'=>[
-                'id'=>isset($photo->id)?$photo->id:null,
-                'thumb_path'=>isset($photo)?asset($photo->thumb_path):null,
-                'full_path'=>isset($photo)?asset($photo->full_path):null]]);
+            'message'=>"Your profile was saved successfully",
+            ]);
 
     }
 

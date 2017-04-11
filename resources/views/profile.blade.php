@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('content')
-        {{--{{dd($profile)}}--}}
+    {{--{{dd($venues)}}--}}
     <br>
     <div class="container">
         <div class="row">
@@ -25,7 +25,33 @@
             </div>
             <div class="col-sm-8">
                 <div class="row">
-                    <textarea id="status" class="form-control status-message" rows="5" placeholder="Status Message">{{$profile->about}}</textarea>
+                    <div class="col-sm-6">
+                        <textarea id="status" class="form-control status-message" rows="5" placeholder="Status Message">{{$profile->about}}</textarea>
+                    </div>
+                    <div class="col-sm-6">
+                        <select name="venue" id="venue" class="form-control">
+                            <option value="0">Select your preferred date location</option>
+                            @foreach($venues as $venue)
+                                @if($venue['id'] == $profile->venue)
+                                    <option selected value="{{$venue['id']}}" data-url="{{$venue['url']}}" data-title="{{$venue['preview']['title']}}" data-image="{{$venue['preview']['images'][0]}}">{{$venue['name']}}</option>
+                                @else
+                                    <option value="{{$venue['id']}}" data-url="{{$venue['url']}}" data-title="{{$venue['preview']['title']}}" data-image="{{$venue['preview']['images'][0]}}">{{$venue['name']}}</option>
+                                @endif
+                            @endforeach
+                        </select>
+                        <div class="row">
+                            <a target="_blank" href="" id="venue-url" class="hidden">
+                                <div class="col-xs-6">
+                                    <div class="well-sm">
+                                        <img src="" id="venue-image" style="width: 100%">
+                                    </div>
+                                </div>
+                                <div class="col-xs-6">
+                                    <p id="venue-title"></p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
                 </div>
                 <div class="row" id="pictures-panel" data-url="{{route('my_profile')}}">
                     @if(!empty($photos))
@@ -49,7 +75,7 @@
                     </div>
                     <div class="col-sm-3">
                         <br>
-                        <button id="finish" data-url="{{route("photo_upload")}}" class="btn btn-success btn-block"><span class="fa fa-upload"></span> Finish</button>
+                        <button id="finish" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> Updating your profile" data-url="{{route("photo_upload")}}" class="btn btn-success btn-block"><span class="fa fa-upload"></span> Finish</button>
                         <br>
                     </div>
                 </div>
