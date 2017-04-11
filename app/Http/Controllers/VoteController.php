@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Profile;
+use App\OldCheek;
 use App\Services\Vote\VoteService;
 use App\Http\Requests;
 use App\Traits\AuthTrait;
@@ -62,5 +63,22 @@ use AuthTrait;
         }
     }
 
+    /*
+     * End the Voting process
+     * */
+    public function endVotes(){
 
+        Profile::where('created_at', '!=', null)
+            ->update(['vote' => 0]);
+
+//        return response()->json('Vote reset successfully');
+        return response()->json(Profile::all());
+    }
+
+    private static function saveWinner(Profile $winner){
+        OldCheek::create([
+            'profile_id' => $winner['profile_id'],
+            'won_date'
+        ]);
+    }
 }

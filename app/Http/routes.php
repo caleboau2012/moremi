@@ -39,5 +39,9 @@ Route::post('/pay', [
     'uses' => 'PaymentController@redirectToGateway',
     'as' => 'pay'
 ]);
-
 Route::get('/payment/callback', ["as" => "payment_callback", "uses" => 'PaymentController@handleGatewayCallback']);
+
+/*CRON Activities*/
+Route::group(['prefix' => 'cron'], function(){
+    Route::get('end/votes', array("uses" => 'VoteController@endVotes'));
+});
