@@ -43,6 +43,7 @@
     {{--<link href="{{asset('css/vendor/custom-green.min.css')}}" rel="stylesheet">--}}
     <link href="{{asset('css/vendor/custom-red.min.css')}}" rel="stylesheet" id="style">
     <link href="{{asset('css/app/app.css')}}" rel="stylesheet">
+    @yield('topStyles')
 </head>
 
 <body>
