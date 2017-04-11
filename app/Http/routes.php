@@ -32,3 +32,8 @@ Route::post('upload/photo', ["as" => "photo_upload", "uses" => 'PhotoController@
 
 Route::get('delete/{id}/photo',["as" => "delete_pic", "uses" =>'PhotoController@destroy']);  //delete photo
 Route::get('myprofile',["as" => "my_profile", "uses" => 'ProfileController@myProfile']);
+
+/*CRON Activities*/
+Route::group(['prefix' => 'cron'], function(){
+    Route::get('end/votes', array("uses" => 'VoteController@endVotes'));
+});
