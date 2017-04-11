@@ -149,16 +149,23 @@ var Profile = {
         };
 
         Utils.post(url,
-            data, "POST", Profile.uploaded,Profile.uploadError
+            data, "POST", Profile.uploaded, Profile.uploadError
         );
 
-        //console.log(JSON.stringify(data));
+        $("#finish").button('loading');
     },
     uploaded: function(data){
         console.log(data);
+        $("#finish").button('reset');
+        if(data.status)
+            swal('Awesome', data.message);
+        else
+            swal('Oh Snap!', data.message);
     },
     uploadError: function(data){
         console.log(data)
+        swal('Oh Snap!', "We don't know what went wrong but we couldn't finish the operation");
+        $("#finish").button('reset');
     },
     deletePicture: function(picture, url){
         //console.log(url);

@@ -75,7 +75,7 @@
                     </div>
                     <div class="col-sm-3">
                         <br>
-                        <button id="finish" data-url="{{route("photo_upload")}}" class="btn btn-success btn-block"><span class="fa fa-upload"></span> Finish</button>
+                        <button id="finish" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> Updating your profile" data-url="{{route("photo_upload")}}" class="btn btn-success btn-block"><span class="fa fa-upload"></span> Finish</button>
                         <br>
                     </div>
                 </div>
