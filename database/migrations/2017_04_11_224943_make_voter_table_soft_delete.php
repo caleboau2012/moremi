@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddHighestVoterOldCheek extends Migration
+class MakeVoterTableSoftDelete extends Migration
 {
     /**
      * Run the migrations.
@@ -12,9 +12,10 @@ class AddHighestVoterOldCheek extends Migration
      */
     public function up()
     {
-        Schema::table('old_cheeks', function (Blueprint $table) {
+        //
+        Schema::table('voters', function (Blueprint $table) {
             //
-            $table->integer('voter_id')->after('user_id');
+            $table->timestamp('deleted_at')->nullable();
         });
     }
 
@@ -25,9 +26,10 @@ class AddHighestVoterOldCheek extends Migration
      */
     public function down()
     {
-        Schema::table('old_cheeks', function (Blueprint $table) {
+
+        Schema::table('voters', function (Blueprint $table) {
             //
-            $table->removeColumn('voter_id');
+            $table->dropColumn('deleted_at');
         });
     }
 }
