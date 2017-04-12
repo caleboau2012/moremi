@@ -79,13 +79,13 @@ use AuthTrait;
             ->orderBy('total', 'DESC')
             ->first();
 
-        $winner = Profile::find($votingResult->profile_id);
 
+        if($votingResult){
+            $winner = Profile::find($votingResult->profile_id);
+            $this->resetVote();
+            $this->saveWinner($votingResult, $winner);
 
-        $this->resetVote();
-
-        $this->saveWinner($votingResult, $winner);
-
+        }
 
         return response()->json('Vote reset successfully');
     }
