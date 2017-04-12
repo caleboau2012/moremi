@@ -6,6 +6,9 @@ use App\Profile;
 use App\Services\Vote\VoteService;
 use App\Http\Requests;
 use App\Traits\AuthTrait;
+use App\User;
+use App\Voter;
+use Illuminate\Support\Facades\DB;
 
 class VoteController extends Controller
 {
@@ -38,18 +41,45 @@ use AuthTrait;
      * */
     public function endVotes(){
 
+        $votingResult = DB::table('voters')
+            ->select('user_id', 'profile_id', 'voter_id',  DB::raw('count(*) as total'))
+            ->groupBy('user_id')
+            ->groupBy('voter_id')
+            ->groupBy('profile_id')
+            ->orderBy('total', 'DESC')
+            ->first();
+
+        $winner = Profile::find($votingResult->profile_id);
+
+
+        $this->resetVote();
+
+        $this->saveWinner($votingResult, $winner);
+
+
+        return response()->json('Vote reset successfully');
+    }
+
+    private static function saveWinner($poll, $winner){
+        $now_ = new \DateTime();
+        OldCheek::create([
+            \TableConstant::PROFILE_ID => $poll->profile_id,
+            \TableConstant::USER_ID => $poll->user_id,
+            \OldCheekConstant::WON_DATE =>  $now_,
+             \OldCheekConstant::WON_PHOTO => $winner[\ProfileConstant::PHOTO],
+             \OldCheekConstant::VOTER => $poll->voter_id,
+             \TableConstant::CREATED_AT => $now_
+        ]);
+    }
+
+    private static function resetVote(){
+
         Profile::where('created_at', '!=', null)
             ->update(['vote' => 0]);
 
-//        return response()->json('Vote reset successfully');
-        return response()->json(Profile::all());
-    }
+        DB::table('old_cheeks')->delete();
 
-    private static function saveWinner(Profile $winner){
-        OldCheek::create([
-            'profile_id' => $winner['profile_id'],
-            'won_date'
-        ]);
+
     }
 
 

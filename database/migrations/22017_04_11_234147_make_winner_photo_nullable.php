@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddHighestVoterOldCheek extends Migration
+class MakeWinnerPhotoNullable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,9 @@ class AddHighestVoterOldCheek extends Migration
     {
         Schema::table('old_cheeks', function (Blueprint $table) {
             //
-            $table->integer('voter_id')->after('user_id');
+            $table->string('won_photo')->nullable()->change('won_date');
+            $table->string('facebook_post_id')->nullable()->change('won_date');
+
         });
     }
 
@@ -27,7 +29,6 @@ class AddHighestVoterOldCheek extends Migration
     {
         Schema::table('old_cheeks', function (Blueprint $table) {
             //
-            $table->removeColumn('voter_id');
         });
     }
 }
