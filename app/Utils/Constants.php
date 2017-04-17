@@ -8,6 +8,6 @@
 class MailConstants{
     const TEAM_MAIL = 'mos.adebayo@gmail.com';
     const TEAM_NAME = 'Moree.me Team';
-    const SUPPORT_MAIL = 'support@moree.me';
+    const SUPPORT_MAIL = 'mos.adebayo@gmail.com';
 
 }
