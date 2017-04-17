@@ -167,6 +167,8 @@
     </div>
     {{--</form>--}}
 
+    @include('utils.account');
+
     @section('scripts')
             <!--JQuery Script-->
     @include('config.App')
@@ -181,9 +183,11 @@
     <script src="{{asset('js/app/Routes.js')}}" ></script>
     <!--FacebookScript-->
     <script src="{{asset('js/app/Facebook.js')}}"></script>
+
     <script src="{{asset('js/app/Profile.js')}}" ></script>
 
     <script src="{{asset('js/app/Vote.js')}}"></script>
+    <script src="{{asset('js/app/Account.js')}}"></script>
 @show
 </body>
 

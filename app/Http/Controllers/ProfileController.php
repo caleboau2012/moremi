@@ -60,5 +60,32 @@ class ProfileController extends Controller
         );
     }
 
+    //edit account details
+    public function updateAccountDetails(Requests\UpdateAccountRequest $request){
+        if(!$this->auth) {
+            return response()->json([
+                "status" => false,
+                "msg" => "You must be logged in to updateProfile"
+            ]);
+        }
+        else{
+            $profile = Profile::find($this->_userId)->first();
 
+            $profile->first_name = $request->first_name;
+            $profile->last_name = $request->last_name;
+            $profile->phone = $request->phone;
+            $profile->email = $request->email;
+            $profile->card_no = $request->card_no;
+            $profile->expiry_month = $request->expiry_month;
+            $profile->expiry_year = $request->expiry_year;
+            $profile->cvv = $request->cvv;
+
+            $profile->save();
+
+            return response()->json([
+                'status' => true,
+                'msg' => "Profile saved successfully"
+            ]);
+        }
+    }
 }
