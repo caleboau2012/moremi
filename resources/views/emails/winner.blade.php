@@ -23,10 +23,10 @@
     <p>
         You are the winner of this week contest!.
     </p>
-    <table>
+    <table style="width: 100%;">
         <tbody>
         <tr style="text-align: left; margin-top: 0; padding: 6px; width: 100%;">
-            <td colspan="2" style="color: #fff; background: #D33834; font-family: 'Roboto', 'Helvetica Neue',Helvetica,Arial,sans-serif; padding: 7px;">Poll Details</td>
+            <td colspan="2" style="color: #fff; background: #4584f0; font-family: 'Roboto', 'Helvetica Neue',Helvetica,Arial,sans-serif; padding: 7px;">Poll Details</td>
         </tr>
         <tr style="margin-left: 0;">
             <td width="35%" style="font-family: 'Roboto', 'Helvetica Neue',Helvetica,Arial,sans-serif; text-align: right; color: #000; font-weight: 600; background: #DCDCDC; padding: 5px 10px 5px 7px; text-transform: capitalize;">
@@ -46,7 +46,7 @@
         </tr>
         <tr style="margin-left: 0;">
             <td width="35%" style="font-family: 'Roboto', 'Helvetica Neue',Helvetica,Arial,sans-serif; text-align: right; color: #000; font-weight: 600; background: #DCDCDC; padding: 5px 10px 5px 7px; text-transform: capitalize;">
-                Date Location
+                Location
             </td>
             <td style="text-transform: capitalize; font-family: 'Roboto', 'Helvetica Neue',Helvetica,Arial,sans-serif; background: #E7E7E7; padding-left: 5px;">
                 {{$location}}
@@ -66,11 +66,11 @@
 </div>
 
 <div style="width: 80%; margin : 0 auto;">
-    <p style="color: #eeeeee; text-align: center;">
+    <p style="color: #8e8d89; text-align: center;">
         You're receiving these emails because you signed up on Moree.me.
         Moree.me would never send you emails asking you to enter your account information on any site other than www.moree.me
     </p>
-    <p style="color: #eeeeee; text-align: center;">
+    <p style="color: #8e8d89; text-align: center;">
         Copyright © 2017 Moree.me All rights reserved.
     </p>
 </div>
