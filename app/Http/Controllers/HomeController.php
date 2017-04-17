@@ -30,7 +30,7 @@ class HomeController extends Controller
 
        $trending = Profile::orderBy('updated_at', 'desc')->take(10)->get();
         $winner=null;
-        if($w!=null) {
+        if($w) {
             $winner = Profile::find($w->profile_id);
         }
         return view('home',['trending' => $trending, 'profiles'=>$profiles,'topsix'=>$topsix,'winner'=>$winner, 'pastwinners'=>$this->pastWinners(), 'pagination' =>

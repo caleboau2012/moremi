@@ -9,9 +9,7 @@ class Voter extends Model
 {
     use SoftDeletes;
 
-    protected $hidden = [
-        'deleted_at',
-    ];
+    protected $dates = ['deleted_at'];
 
     protected $fillable = ['ip_address','last_name','phone','email','vote', 'voter_id',
         'user_agent','cookie','profile_id','lat','lon'];
