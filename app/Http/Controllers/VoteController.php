@@ -75,22 +75,24 @@ use AuthTrait;
 
 
         $votingResult = DB::table('voters')
-            ->select('user_id', 'profile_id', 'voter_id',  DB::raw('count(*) as total'))
-            ->groupBy('user_id')
+            ->select('profile_id', 'voter_id',  DB::raw('count(*) as total'))
             ->groupBy('voter_id')
             ->groupBy('profile_id')
             ->orderBy('total', 'DESC')
+            ->where('deleted_at', null)
             ->first();
 
         if($votingResult){
             $winner = Profile::find($votingResult->profile_id);
-            $highestVoter = Profile::where('user_id', $votingResult->user_id)->first();
+            $highestVoter = Profile::find($votingResult->voter_id);
             $this->saveWinner($votingResult, $winner, $highestVoter);
-//            $this->resetVote();
+            $this->resetVote();
+            return response()->json('Vote reset successfully');
+
+        }else{
+            return response()->json('No action performed');
 
         }
-
-        return response()->json('Vote reset successfully');
     }
 
     private static function saveWinner($poll, $winner, $highestVoter){
@@ -101,7 +103,6 @@ use AuthTrait;
 
         OldCheek::create([
             \TableConstant::PROFILE_ID => $poll->profile_id,
-            \TableConstant::USER_ID => $poll->user_id,
             \OldCheekConstant::WON_DATE =>  $now_,
              \OldCheekConstant::WON_PHOTO => $winner[\ProfileConstant::PHOTO],
              \OldCheekConstant::VOTER => $poll->voter_id,
@@ -131,7 +132,7 @@ use AuthTrait;
         Profile::where('created_at', '!=', null)
             ->update(['vote' => 0]);
 
-        DB::table('old_cheeks')->delete();
+        Voter::where('created_at', '!=', null)->delete();
 
     }
 }

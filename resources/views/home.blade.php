@@ -37,44 +37,47 @@
             </div>
             {{--End of Trending Container--}}
 
-            <div class="row">
-                <div class="">
-                    <h2 class="text-center">CHEEK OF THE WEEK</h2>
-                    <div class="row">
-                        <div class="col-md-4 col-xs-12 col-sm-12">
-                            <div class="dl-horizontal listing-info text-center">
-                                <code class="text-danger"><b>Votes:</b> {{isset($winner->vote)?$winner->vote:0}} <i class="fa fa-heart"></i></code>
-                                <br>
-                                <br>
-                                <code class="text-danger"><b>About:</b> <p class="small">{{isset($winner->about)?$winner->about:null}}</p> </code>
+            @if($winner)
+                <div class="row">
+                    <div class="">
+                        <h2 class="text-center">CHEEK OF THE WEEK</h2>
+                        <div class="row">
+                            <div class="col-md-4 col-xs-12 col-sm-12">
+                                <div class="dl-horizontal listing-info text-center">
+                                    <code class="text-danger"><b>Votes:</b> {{isset($winner->vote)?$winner->vote:0}} <i class="fa fa-heart"></i></code>
+                                    <br>
+                                    <br>
+                                    <code class="text-danger"><b>About:</b> <p class="small">{{isset($winner->about)?$winner->about:null}}</p> </code>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-xs-12 col-sm-12">
+                                <img class="text-center img-circle center" id="winner-photo" src="{{$winner->photo?$winner->photo->full_path:asset('images/default.png')}}" width="300" height="300"   alt=" {{$winner!=null?$winner->first_name." ".$winner->last_name:'No winner yet'}}"/>
+                                <h3 class="text-center">{{$winner!=null?$winner->first_name." ".$winner->last_name:'No winner yet'}}</h3>
+                            </div>
+                            <div class="col-md-4 col-xs-12 col-sm-12">
+                                <div class="facebook-comments">
+                                    <div class="fb-comments" data-href="{{url('/')}}" data-numposts="10" data-width="100%"></div>
+                                </div>
                             </div>
                         </div>
-                        <div class="col-md-4 col-xs-12 col-sm-12">
-                            <img class="text-center img-circle center" id="winner-photo" src="{{$winner!=null?$winner->photo->full_path:asset('images/default.png')}}" width="300" height="300"   alt=" {{$winner!=null?$winner->first_name." ".$winner->last_name:'No winner yet'}}"/>
-                            <h3 class="text-center">{{$winner!=null?$winner->first_name." ".$winner->last_name:'No winner yet'}}</h3>
-                        </div>
-                        <div class="col-md-4 col-xs-12 col-sm-12">
-                            <div class="facebook-comments">
-                                <div class="fb-comments" data-href="{{url('/')}}" data-numposts="10" data-width="100%"></div>
+                        <div class="col-md-12">
+                            <div class="clearfix" id="owl-man">
+                                @if($winner!=null)
+                                    <?php $i =1;?>
+                                    @foreach($winner->photos->take(6) as $p)
+                                        <div class="col-md-2 col-sm-3" style="margin: 0px auto">
+                                            <img class="img-circle winner-photo pointer" width="150" height="150"  src="{{asset($p->full_path)}}" alt=" {{$winner->first_name." ".$winner->last_name}}">
+                                        </div>
+                                    @endforeach
+                                @endif
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-12">
-                        <div class="clearfix" id="owl-man">
-                            @if($winner!=null)
-                                <?php $i =1;?>
-                                @foreach($winner->photos->take(6) as $p)
-                                    <div class="col-md-2 col-sm-3" style="margin: 0px auto">
-                                        <img class="img-circle winner-photo pointer" width="150" height="150"  src="{{asset($p->full_path)}}" alt=" {{$winner->first_name." ".$winner->last_name}}">
-                                    </div>
-                                @endforeach
-                            @endif
-                        </div>
-                    </div>
+
+
                 </div>
+            @endif
 
-
-            </div>
         </div>
     </div>
     <div class="clearfix"></div>
