@@ -3,7 +3,8 @@
  */
 Vote ={
     CONSTANT: {
-        url: Routes.Vote
+        url: Routes.Vote,
+        profileID: null
     },
 
     init: function(){
@@ -30,6 +31,7 @@ Vote ={
 
     voteProfile : function (id, callback, element) {
         var data ={'profile_id':id};
+        Vote.CONSTANT.profileID = id;
         Vote.sendVote(data,callback,element);
     },
 
@@ -64,9 +66,28 @@ Vote ={
     //},
     increaseCount: function(data, element){
         if(data.status==false){
-            swal('Oops..',data.msg,'error');
+            if(data.auth){
+                swal({
+                        title: "Ouch...",
+                        text: data.msg,
+                        type: "warning",
+                        showCancelButton: true,
+                        confirmButtonColor: "#DD6B55",
+                        confirmButtonText: "Pay!"
+                    },
+                    function(){
+                        $("#votePayModal").modal('show');
+                    });
+            }
+            else{
+                swal({
+                        title: "Ouch...",
+                        text: data.msg,
+                        type: "error"
+                    });
+            }
         }
-        if(data.status==true){
+        if(data.status){
             swal('Success',data.msg,'success');
             var count = parseInt($(element).parent().find(".vote-count span")[0].innerHTML) + 1;
             //console.log({
