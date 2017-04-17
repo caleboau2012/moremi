@@ -79,11 +79,10 @@ use AuthTrait;
             ->orderBy('total', 'DESC')
             ->first();
 
-
         if($votingResult){
             $winner = Profile::find($votingResult->profile_id);
-            $this->resetVote();
             $this->saveWinner($votingResult, $winner);
+            $this->resetVote();
 
         }
 
@@ -100,6 +99,15 @@ use AuthTrait;
              \OldCheekConstant::VOTER => $poll->voter_id,
              \TableConstant::CREATED_AT => $now_
         ]);
+
+        /*todo notify Winner*/
+
+
+        /*todo notify Highest voter*/
+
+
+        /*todo notify Admin*/
+
     }
 
     private static function resetVote(){
@@ -108,7 +116,6 @@ use AuthTrait;
             ->update(['vote' => 0]);
 
         DB::table('old_cheeks')->delete();
-
 
     }
 }

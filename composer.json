@@ -10,7 +10,8 @@
         "intervention/image": "^2.3",
         "dusterio/link-preview": "~1.2",
         "unicodeveloper/laravel-paystack": "1.0.*",
-        "doctrine/dbal": "^2.5"
+        "doctrine/dbal": "^2.5",
+        "guzzlehttp/guzzle": "^6.2"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
