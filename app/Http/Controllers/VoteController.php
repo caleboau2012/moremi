@@ -9,6 +9,7 @@ use App\Traits\AuthTrait;
 use App\User;
 use App\Voter;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 
 class VoteController extends Controller
 {
@@ -41,6 +42,8 @@ use AuthTrait;
      * */
     public function endVotes(){
 
+
+
         $votingResult = DB::table('voters')
             ->select('user_id', 'profile_id', 'voter_id',  DB::raw('count(*) as total'))
             ->groupBy('user_id')
@@ -51,16 +54,21 @@ use AuthTrait;
 
         if($votingResult){
             $winner = Profile::find($votingResult->profile_id);
-            $this->saveWinner($votingResult, $winner);
-            $this->resetVote();
+            $highestVoter = Profile::where('user_id', $votingResult->user_id)->first();
+            $this->saveWinner($votingResult, $winner, $highestVoter);
+//            $this->resetVote();
 
         }
 
         return response()->json('Vote reset successfully');
     }
 
-    private static function saveWinner($poll, $winner){
+    private static function saveWinner($poll, $winner, $highestVoter){
         $now_ = new \DateTime();
+        $expiryDate = $now_->modify('+1 month');
+        /*todo Get location from the winner's profile*/
+        $location = "Eko Hotel and Suite";
+
         OldCheek::create([
             \TableConstant::PROFILE_ID => $poll->profile_id,
             \TableConstant::USER_ID => $poll->user_id,
@@ -70,14 +78,22 @@ use AuthTrait;
              \TableConstant::CREATED_AT => $now_
         ]);
 
-        /*todo notify Winner*/
+        Mail::send('emails.winner', ['user' => $winner, 'voter' => $highestVoter, 'poll' => $poll, 'expiryDate' => $expiryDate, 'location' => $location], function ($m) use ($winner) {
+            $m->from(\MailConstants::SUPPORT_MAIL, \MailConstants::TEAM_NAME);
+            $name = $winner->first_name .' '. $winner->last_name;
+            $m->to($winner->email, $name)->subject('Congratulation! You are the winner');
+        });
 
+        Mail::send('emails.highestVoter', ['winner' => $winner, 'user' => $highestVoter, 'poll' => $poll, 'expiryDate' => $expiryDate, 'location' => $location], function ($m) use ($highestVoter) {
+            $m->from(\MailConstants::SUPPORT_MAIL, \MailConstants::TEAM_NAME);
+            $name = $highestVoter->first_name .' '. $highestVoter->last_name;
+            $m->to($highestVoter->email, $name)->subject('Congratulation! You just got yourself a date');
+        });
 
-        /*todo notify Highest voter*/
-
-
-        /*todo notify Admin*/
-
+        Mail::send('emails.notifyWinnersToTeam', ['winner' => $winner, 'voter' => $highestVoter, 'poll' => $poll, 'expiryDate' => $expiryDate, 'location' => $location], function ($m) {
+            $m->from(\MailConstants::SUPPORT_MAIL, \MailConstants::TEAM_NAME);
+            $m->to(\MailConstants::TEAM_MAIL, \MailConstants::TEAM_NAME)->subject('We got winners');
+        });
     }
 
     private static function resetVote(){
