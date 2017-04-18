@@ -230,3 +230,9 @@ Trending
     /*overflow-y:hidden;*/
     /*overflow-x:scroll;*/
 }
+
+.validation-frame{
+    width: 100%;
+    margin: 0 auto;
+    min-height: 500px;
+}
