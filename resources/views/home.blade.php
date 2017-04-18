@@ -2,11 +2,11 @@
 
 @section('topStyles')
     <link href="{{asset('libs/owl/owl.carousel.css')}}" rel="stylesheet">
-@endsection
+    @endsection
 
-@section('content')
+    @section('content')
 
-    <!--- Main Visual Div-->
+            <!--- Main Visual Div-->
     {{--{{dd($winner)}}--}}
     <div class="container-fluid">
         <div class="container">
@@ -198,7 +198,91 @@
                 </div>
                 <div class="modal-footer">
                     <span id="profileVote" class="btn btn-danger"></span>
-                    <button type="button" class="btn btn-warning">Chat</button>
+                    {{--<button type="button" class="btn btn-warning">Chat</button>--}}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--VotePay modal-->
+    <div class="modal fade" id="votePayModal" tabindex="-1" role="dialog" aria-labelledby="votePayModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">
+                        <span class="fa fa-close fa-inverse"></span>
+                    </span>
+                    </button>
+                    <h4 class="modal-title" id="profileModalLabel">Pay</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row" style="margin-bottom:40px;">
+                        <div class="col-md-4">
+                            <div class="panel panel-warning">
+                                <div class="panel-body">
+                                    <form method="POST" action="{{ route('pay') }}" accept-charset="UTF-8" class="form-horizontal" role="form">
+                                        <h1 class="h1 text-center">
+                                            ₦ 100
+                                        </h1>
+                                        <h2 class="h2 text-center">
+                                            1 vote
+                                        </h2>
+                                        <input type="hidden" name="sender_name" value="Mbakwe Caleb"> {{-- required --}}
+                                        <input type="hidden" name="email" value="caleboau2012@gmail.com"> {{-- required --}}
+                                        <input type="hidden" name="amount" value="10000"> {{-- required in kobo --}}
+                                        <p>
+                                            <button class="btn btn-danger btn-lg btn-block" type="submit" value="Pay Now!">
+                                                <i class="fa fa-plus-circle fa-lg"></i> Pay Now!
+                                            </button>
+                                        </p>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="panel panel-default">
+                                <div class="panel-body">
+                                    <form method="POST" action="{{ route('pay') }}" accept-charset="UTF-8" class="form-horizontal" role="form">
+                                        <h1 class="h1 text-center">
+                                            ₦ 400
+                                        </h1>
+                                        <h2 class="h2 text-center">
+                                            5 votes
+                                        </h2>
+                                        <input type="hidden" name="sender_name" value="Mbakwe Caleb"> {{-- required --}}
+                                        <input type="hidden" name="email" value="caleboau2012@gmail.com"> {{-- required --}}
+                                        <input type="hidden" name="amount" value="40000"> {{-- required in kobo --}}
+                                        <p>
+                                            <button class="btn btn-warning btn-lg btn-block" type="submit" value="Pay Now!">
+                                                <i class="fa fa-plus-circle fa-lg"></i> Pay Now!
+                                            </button>
+                                        </p>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="panel panel-success">
+                                <div class="panel-body">
+                                    <form method="POST" action="{{ route('pay') }}" accept-charset="UTF-8" class="form-horizontal" role="form">
+                                        <h1 class="h1 text-center">
+                                            ₦ 700
+                                        </h1>
+                                        <h2 class="h2 text-center">
+                                            10 votes
+                                        </h2>
+                                        <input type="hidden" name="sender_name" value="Mbakwe Caleb"> {{-- required --}}
+                                        <input type="hidden" name="email" value="caleboau2012@gmail.com"> {{-- required --}}
+                                        <input type="hidden" name="amount" value="70000"> {{-- required in kobo --}}
+                                        <button class="btn btn-success btn-lg btn-block" type="submit" value="Pay Now!">
+                                            <i class="fa fa-plus-circle fa-lg"></i> Pay Now!
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

@@ -21,8 +21,14 @@ trait AuthTrait
     public  function authenticate(){
         if(session('authToken')!=null) {
             $this->setAuth(session('authToken'));
+            return;
         }
-        $access_token = $this->request->header('authToken');
+
+        if($this->request)
+            $access_token = $this->request->header('authToken');
+        else
+            $access_token = null;
+
         if($access_token!=null){
             $this->setAuth($access_token);
         }
