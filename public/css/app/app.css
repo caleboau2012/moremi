@@ -250,3 +250,18 @@ Trending
     margin: 0 auto;
     min-height: 500px;
 }
+.trending-item .vote-c-tw{
+    text-align: center;
+    display: block;
+    border-radius: 50px;
+    background: #e74c3c;
+    text-decoration: none;
+    width: 180px;
+    height: 50px;
+    margin: 15px auto 0;
+    color: #fff;
+    font: normal 18px/50px "Ubuntu Condensed", sans-serif;
+    -webkit-transition: all ease 0.2s;
+    transition: all ease 0.2s;
+
+}

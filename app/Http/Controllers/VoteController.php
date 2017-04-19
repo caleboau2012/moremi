@@ -1,8 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Profile;
 use App\OldCheek;
+use App\Profile;
 use App\Services\Vote\VoteService;
 use App\Http\Requests;
 use App\Traits\AuthTrait;
