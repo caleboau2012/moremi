@@ -21,12 +21,12 @@
 <div class="body-wrap" style="padding: 20px 10px; font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; width: 80%; background-color: #ffffff; margin: 5px auto 10px">
     <h3 style="text-transform: capitalize;">Dear {{$user->first_name}} {{$user->last_name}}</h3>
     <p>
-        You are the winner of this week contest!.
+        You are the winner of this week's contest!.
     </p>
     <table style="width: 100%;">
         <tbody>
         <tr style="text-align: left; margin-top: 0; padding: 6px; width: 100%;">
-            <td colspan="2" style="color: #fff; background: #4584f0; font-family: 'Roboto', 'Helvetica Neue',Helvetica,Arial,sans-serif; padding: 7px;">Poll Details</td>
+            <td colspan="2" style="color: #fff; background: #f82226; font-family: 'Roboto', 'Helvetica Neue',Helvetica,Arial,sans-serif; padding: 7px;">Poll's Details</td>
         </tr>
         <tr style="margin-left: 0;">
             <td width="35%" style="font-family: 'Roboto', 'Helvetica Neue',Helvetica,Arial,sans-serif; text-align: right; color: #000; font-weight: 600; background: #DCDCDC; padding: 5px 10px 5px 7px; text-transform: capitalize;">

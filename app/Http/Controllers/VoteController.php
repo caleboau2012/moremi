@@ -109,26 +109,22 @@ use AuthTrait;
              \TableConstant::CREATED_AT => $now_
         ]);
 
-        try{
-            Mail::send('emails.winner', ['user' => $winner, 'voter' => $highestVoter, 'poll' => $poll, 'expiryDate' => $expiryDate, 'location' => $location], function ($m) use ($winner) {
-                $m->from(\MailConstants::SUPPORT_MAIL, \MailConstants::TEAM_NAME);
-                $name = $winner->first_name .' '. $winner->last_name;
-                $m->to($winner->email, $name)->subject('Congratulation! You are the winner');
-            });
+        Mail::send('emails.winner', ['user' => $winner, 'voter' => $highestVoter, 'poll' => $poll, 'expiryDate' => $expiryDate, 'location' => $location], function ($m) use ($winner) {
+            $m->from(\MailConstants::SUPPORT_MAIL, \MailConstants::TEAM_NAME);
+            $name = $winner->first_name .' '. $winner->last_name;
+            $m->to($winner->email, $name)->subject('Congratulation! You are the winner');
+        });
 
-            Mail::send('emails.highestVoter', ['winner' => $winner, 'user' => $highestVoter, 'poll' => $poll, 'expiryDate' => $expiryDate, 'location' => $location], function ($m) use ($highestVoter) {
-                $m->from(\MailConstants::SUPPORT_MAIL, \MailConstants::TEAM_NAME);
-                $name = $highestVoter->first_name .' '. $highestVoter->last_name;
-                $m->to($highestVoter->email, $name)->subject('Congratulation! You just got yourself a date');
-            });
+        Mail::send('emails.highestVoter', ['winner' => $winner, 'user' => $highestVoter, 'poll' => $poll, 'expiryDate' => $expiryDate, 'location' => $location], function ($m) use ($highestVoter) {
+            $m->from(\MailConstants::SUPPORT_MAIL, \MailConstants::TEAM_NAME);
+            $name = $highestVoter->first_name .' '. $highestVoter->last_name;
+            $m->to($highestVoter->email, $name)->subject('Congratulation! You just got yourself a date');
+        });
 
-            Mail::send('emails.notifyWinnersToTeam', ['winner' => $winner, 'voter' => $highestVoter, 'poll' => $poll, 'expiryDate' => $expiryDate, 'location' => $location], function ($m) {
-                $m->from(\MailConstants::SUPPORT_MAIL, \MailConstants::TEAM_NAME);
-                $m->to(\MailConstants::TEAM_MAIL, \MailConstants::TEAM_NAME)->subject('We got winners');
-            });
-        }catch (\Exception $ex){
-
-        }
+        Mail::send('emails.notifyWinnersToTeam', ['winner' => $winner, 'voter' => $highestVoter, 'poll' => $poll, 'expiryDate' => $expiryDate, 'location' => $location], function ($m) {
+            $m->from(\MailConstants::SUPPORT_MAIL, \MailConstants::TEAM_NAME);
+            $m->to(\MailConstants::TEAM_MAIL, \MailConstants::TEAM_NAME)->subject('We got winners');
+        });
     }
 
     private static function resetVote(){

@@ -26,7 +26,7 @@
     <table>
         <tbody>
         <tr style="text-align: left; margin-top: 0; padding: 6px; width: 100%;">
-            <td colspan="2" style="color: #fff; background: #4584f0; font-family: 'Roboto', 'Helvetica Neue',Helvetica,Arial,sans-serif; padding: 7px;">Winner Details</td>
+            <td colspan="2" style="color: #fff; background: #f82226; font-family: 'Roboto', 'Helvetica Neue',Helvetica,Arial,sans-serif; padding: 7px;">Winner's Details</td>
         </tr>
         <tr style="margin-left: 0;">
             <td width="35%" style="font-family: 'Roboto', 'Helvetica Neue',Helvetica,Arial,sans-serif; text-align: right; color: #000; font-weight: 600; background: #DCDCDC; padding: 5px 10px 5px 7px; text-transform: capitalize;">
