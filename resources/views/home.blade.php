@@ -27,8 +27,10 @@
                                             <img alt="{{$t->first_name." ".$t->last_name}}" src="{{$t->photo->full_path}}">
                                         @endif
                                     </div>
-                                    <h4 class="text-center">{{$t->first_name." ".$t->last_name}}</h4>
+                                    <h4 class="text-center text-capitalize">{{$t->first_name." ".$t->last_name}}</h4>
                                     <p class="text-center">{{$t->vote}} votes</p>
+                                    <a href="#"  class="follow vote-c-tw" data-id="{{$t->id}}"><span><i class="fa fa-heart"></i> </span>Vote</a>
+
                                 </div>
                             </div>
                         @endforeach
@@ -117,9 +119,11 @@
                                             <img alt="{{$t->first_name." ".$t->last_name}}" src="{{$t->photo->full_path}}">
                                         @endif
                                     </div>
-                                    <h2>{{$t->first_name." ".$t->last_name}}</h2>
+                                    <h2 class="text-capitalize">{{$t->first_name." ".$t->last_name}}</h2>
                                     <p>{{$t->vote}} votes</p>
-                                    <a href="#"  class="follow vote-c-tw" data-id="{{$t->id}}"><span><i class="fa fa-heart"></i> </span>Vote</a>
+                                    <div class="text-center">
+                                        <a href="#"  class="follow vote-c-tw" data-id="{{$t->id}}"><span><i class="fa fa-heart"></i> </span>Vote</a>
+                                    </div>
                                 </div>
                             </header>
                         </div>
