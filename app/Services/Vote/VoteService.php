@@ -31,10 +31,11 @@ class VoteService
         }
     }
 
-    public function  vote($profile_id) {
+    public function  vote($profile_id, $count=0) {
         $profile =Profile::find($profile_id);
         if(!is_null($profile_id)) {
-            $profile->vote =$profile->vote+config('settings.vote_counter');
+
+            $profile->vote =$profile->vote + config('settings.vote_counter') + $count;
             $profile->save();
             $this->count=$profile->vote;
             return true;

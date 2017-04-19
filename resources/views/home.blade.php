@@ -2,11 +2,11 @@
 
 @section('topStyles')
     <link href="{{asset('libs/owl/owl.carousel.css')}}" rel="stylesheet">
-@endsection
+    @endsection
 
-@section('content')
+    @section('content')
 
-    <!--- Main Visual Div-->
+            <!--- Main Visual Div-->
     {{--{{dd($winner)}}--}}
     <div class="container-fluid">
         <div class="container">
@@ -198,11 +198,13 @@
                 </div>
                 <div class="modal-footer">
                     <span id="profileVote" class="btn btn-danger"></span>
-                    <button type="button" class="btn btn-warning">Chat</button>
+                    {{--<button type="button" class="btn btn-warning">Chat</button>--}}
                 </div>
             </div>
         </div>
     </div>
+
+    @include('utils.votePay');
 
     <!--/. Horizontal Banner End-->
 @endsection
@@ -223,6 +225,7 @@
     <script src="{{asset('js/vendor/jquery.jscroll.min.js')}}"></script>
     <script src="{{asset('js/app/infiniteScroll.js')}}"></script>
     <script src="{{asset('js/app/Home.js')}}"></script>
+    <script src="{{asset('js/app/VotePay.js')}}"></script>
     <script src="{{asset("libs/owl/owl.carousel.min.js")}}"></script>
 
     <script type="application/javascript">

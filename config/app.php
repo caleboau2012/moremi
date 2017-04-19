@@ -162,7 +162,7 @@ return [
          */
         Intervention\Image\ImageServiceProvider::class,
         App\Providers\HelperServiceProvider::class,
-
+        Unicodeveloper\Paystack\PaystackServiceProvider::class
 
 
     ],
@@ -215,8 +215,8 @@ return [
         /**
          * Custom alias
          */
-        'Image' => Intervention\Image\Facades\Image::class
-
+        'Image' => Intervention\Image\Facades\Image::class,
+        'Paystack' => Unicodeveloper\Paystack\Facades\Paystack::class,
 
     ],
 

@@ -25,7 +25,7 @@ class ProfileController extends Controller
         if(!$this->auth) {
             return response()->json(['status'=>false,'message'=>'You must be logged in to upload photo']);
         }
-        $profile =Profile::find($this->_userId)->first();
+        $profile =Profile::find($this->_userId);
         return response()->json([
             'status'=>true,
             'data'=>[
@@ -50,7 +50,7 @@ class ProfileController extends Controller
             $venues[$i]['preview'] = $venueService->fetchPreview($venues[$i]['url']);
         }
 
-        $profile = Profile::find($this->_userId)->first();
+        $profile = Profile::find($this->_userId);
 
         return view('profile',[
                 'photos' => $profile->photos->toArray(),
@@ -60,5 +60,28 @@ class ProfileController extends Controller
         );
     }
 
+    //edit account details
+    public function updateAccountDetails(Requests\UpdateAccountRequest $request){
+        if(!$this->auth) {
+            return response()->json([
+                "status" => false,
+                "msg" => "You must be logged in to updateProfile"
+            ]);
+        }
+        else{
+            $profile = Profile::find($this->_userId);
 
+            $profile->first_name = $request->first_name;
+            $profile->last_name = $request->last_name;
+            $profile->phone = $request->phone;
+            $profile->email = $request->email;
+
+            $profile->save();
+
+            return response()->json([
+                'status' => true,
+                'msg' => "Profile saved successfully"
+            ]);
+        }
+    }
 }

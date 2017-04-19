@@ -68,7 +68,12 @@
                     @endif
                 </div>
                 <div class="row">
-                    <div class="col-sm-3 col-sm-offset-6">
+                    <div class="col-sm-3 col-sm-offset-3">
+                        <br>
+                        <button class="btn btn-default btn-block" data-toggle="modal" data-target="#accountModal"><span class="fa fa-user"></span> Account details</button>
+                        <br>
+                    </div>
+                    <div class="col-sm-3">
                         <br>
                         <button class="btn btn-danger btn-block picture-upload"><span class="fa fa-file-image-o"></span> Upload Pictures</button>
                         <br>

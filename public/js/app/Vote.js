@@ -3,18 +3,11 @@
  */
 Vote ={
     CONSTANT: {
-        url: Routes.Vote
+        url: Routes.Vote,
+        profileID: null
     },
 
     init: function(){
-        //$('#contestant-parent').on('click','.vote-c', function(e){
-        //    //$('.vote-c').click( function(e){
-        //    e.preventDefault();
-        //    var id =$(this).attr('data-id');
-        //    $(this).attr('disabled');
-        //    Vote.voteProfile(id,Vote.showResponse,this);
-        //});
-
         $(document).delegate('.vote-c-tw', 'click', function(e){
             e.preventDefault();
             var id =$(this).attr('data-id');
@@ -30,6 +23,7 @@ Vote ={
 
     voteProfile : function (id, callback, element) {
         var data ={'profile_id':id};
+        Vote.CONSTANT.profileID = id;
         Vote.sendVote(data,callback,element);
     },
 
@@ -52,21 +46,42 @@ Vote ={
             }
         });
     },
-
-    //showResponse: function (data, element) {
-    //    if(data.status==false){
-    //        swal('Oops..',data.msg,'error');
-    //    }
-    //    if(data.status==true){
-    //        swal('Success',data.msg,'success');
-    //        //Home.fetchCheeks(); //re arrange profile bar
-    //    }
-    //},
     increaseCount: function(data, element){
         if(data.status==false){
-            swal('Oops..',data.msg,'error');
+            if(!data.auth){
+                swal({
+                    title: "Ouch...",
+                    text: data.msg,
+                    type: "error"
+                });
+            }
+            else if(!data.profile) {
+                swal({
+                        title: "Ouch...",
+                        text: data.msg,
+                        type: "warning",
+                        showCancelButton: true,
+                        confirmButtonColor: "#DD6B55",
+                    },
+                    function(){
+                        $("#accountModal").modal('show');
+                    });
+            }
+            else{
+                swal({
+                        title: "Ouch...",
+                        text: data.msg,
+                        type: "warning",
+                        showCancelButton: true,
+                        confirmButtonColor: "#DD6B55",
+                        confirmButtonText: "Pay!"
+                    },
+                    function(){
+                        $("#votePayModal").modal('show');
+                    });
+            }
         }
-        if(data.status==true){
+        else if(data.status){
             swal('Success',data.msg,'success');
             var count = parseInt($(element).parent().find(".vote-count span")[0].innerHTML) + 1;
             //console.log({

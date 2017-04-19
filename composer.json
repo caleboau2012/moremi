@@ -8,7 +8,8 @@
         "php": ">=5.5.9",
         "laravel/framework": "5.2.*",
         "intervention/image": "^2.3",
-        "dusterio/link-preview": "~1.2"
+        "dusterio/link-preview": "~1.2",
+        "unicodeveloper/laravel-paystack": "1.0.*"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

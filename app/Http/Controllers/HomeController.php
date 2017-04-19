@@ -6,6 +6,7 @@ use App\OldCheek;
 use App\Photo;
 use App\Profile;
 use App\Services\Vote\VoteResetter;
+use App\Traits\AuthTrait;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -14,31 +15,42 @@ use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
+    use AuthTrait;
 
     private $_vote;
     private $_request;
 
     public function __construct(Request $request){
         $this->_request =$request;
-
+        $this->authenticate();
     }
 
     public function index(){
-        $profiles= Profile::where('sex','!=','M')->orderBy('vote', 'desc')->paginate(4);
-        $topsix = Profile::where('sex','!=','M')->orderBy('vote', 'desc')->take(8)->get();
-       $w =OldCheek::orderBy('created_at', 'desc')->first();
+        $profiles= Profile::orderBy('vote', 'desc')->paginate(4);
+        $topsix = Profile::orderBy('vote', 'desc')->take(8)->get();
+        $w =OldCheek::orderBy('created_at', 'desc')->first();
 
-       $trending = Profile::orderBy('updated_at', 'desc')->take(10)->get();
+        $trending = Profile::orderBy('updated_at', 'desc')->take(10)->get();
         $winner=null;
         if($w!=null) {
             $winner = Profile::find($w->profile_id);
         }
-        return view('home',['trending' => $trending, 'profiles'=>$profiles,'topsix'=>$topsix,'winner'=>$winner, 'pastwinners'=>$this->pastWinners(), 'pagination' =>
-            ['link' => (string)$profiles->links(),
-                'current_page' => $profiles->currentPage(),
-                'total' => $profiles->total(),
-                'per_page' => $profiles->perPage()
-            ]]);
+
+        if($this->auth) {
+            $profile = Profile::find($this->_userId);
+        }
+        else
+            $profile = new Profile();
+
+        return view('home',
+            ['trending' => $trending, 'profiles'=>$profiles, 'topsix'=>$topsix, 'winner'=>$winner,
+                'pastwinners'=>$this->pastWinners(), 'profile' => $profile, 'pagination' =>
+                ['link' => (string)$profiles->links(),
+                    'current_page' => $profiles->currentPage(),
+                    'total' => $profiles->total(),
+                    'per_page' => $profiles->perPage()
+                ]
+            ]);
     }
 
 
@@ -47,25 +59,25 @@ class HomeController extends Controller
         if($this->_request->search!=null){
             $search=$this->_request->search;
             $profiles= Profile::where('sex','!=','M')->orderBy('vote', 'desc')
-                 ->where("first_name", "LIKE","%$search%")
+                ->where("first_name", "LIKE","%$search%")
                 ->orWhere("last_name", "LIKE", "%$search%")
                 ->paginate($total);
         }else {
             $profiles = Profile::orderBy('vote', 'desc')
                 ->paginate($total);
         }
-       $data=[];
+        $data=[];
         foreach($profiles as $p){
 
-        $data[] =[
-            'name'=>$p->first_name." ".$p->last_name,
-            'vote'=>is_null($p->vote)?0:$p->vote,
-            'id'=>$p->id,
-            'image'=> $p->photo_id!=null && $p->photo_id!=0?Photo::find($p->photo_id)->thumb_path:asset('images/default.png'),
-            'photos'=>$p->photos,
-            'about'=>$p->about,
-        ];
-       }
+            $data[] =[
+                'name'=>$p->first_name." ".$p->last_name,
+                'vote'=>is_null($p->vote)?0:$p->vote,
+                'id'=>$p->id,
+                'image'=> $p->photo_id!=null && $p->photo_id!=0?Photo::find($p->photo_id)->thumb_path:asset('images/default.png'),
+                'photos'=>$p->photos,
+                'about'=>$p->about,
+            ];
+        }
 
         return response()->json(['status'=>true,'data'=>$data,
             'pagination' =>
@@ -81,8 +93,8 @@ class HomeController extends Controller
 
     //cheek of the week
     public function winner(){
-      $user=DB::table('profiles')->where('vote', DB::raw("(select max(`vote`) from profiles)"))->first();
-       $profile_pic =Photo::find($user->photo_id);
+        $user=DB::table('profiles')->where('vote', DB::raw("(select max(`vote`) from profiles)"))->first();
+        $profile_pic =Photo::find($user->photo_id);
         return response()->json(['status'=>true,
             'user'=>$user,
             'profile'=>[
@@ -93,7 +105,7 @@ class HomeController extends Controller
     }
     //contestants
     public function getAll(){
-     $profile= Profile::orderBy('vote', 'desc')->get();
+        $profile= Profile::orderBy('vote', 'desc')->get();
 
         $data=[];
         $data['status']=true;
@@ -123,7 +135,7 @@ class HomeController extends Controller
 
             $profile->save();
             $user=User::create([
-               'name'=>$profile->first_name." ".$profile->last_name,
+                'name'=>$profile->first_name." ".$profile->last_name,
                 'email'=>$profile->email,
                 'password'=>bcrypt('password1')
             ]);

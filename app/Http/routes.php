@@ -25,10 +25,19 @@ Route::post('vote','VoteController@vote');
 Route::get('test','HomeController@test');
 Route::get('seed','HomeController@seed');
 Route::get('cheeks/{total}', array("as" => "cheeks", "uses" => 'HomeController@getContestants'));
-Route::get('cron_post', array("as" => 'cron_post', 'uses' => 'FacebookController@post'));
-Route::get('facebook_redirect', ["as" => "facebook_redirect", "uses" => 'FacebookController@login']);
 Route::post('update/status','PhotoController@updateStatus');
 Route::post('upload/photo', ["as" => "photo_upload", "uses" => 'PhotoController@storeImgFromString']);
+Route::post('account-update', ["as" => "account-update", 'uses' => 'ProfileController@updateAccountDetails']);
 
 Route::get('delete/{id}/photo',["as" => "delete_pic", "uses" =>'PhotoController@destroy']);  //delete photo
 Route::get('myprofile',["as" => "my_profile", "uses" => 'ProfileController@myProfile']);
+
+/*
+ * Paystack
+ */
+Route::post('/pay', [
+    'uses' => 'PaymentController@redirectToGateway',
+    'as' => 'pay'
+]);
+
+Route::get('/payment/callback', ["as" => "payment_callback", "uses" => 'PaymentController@handleGatewayCallback']);
