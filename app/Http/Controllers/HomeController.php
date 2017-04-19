@@ -37,7 +37,7 @@ class HomeController extends Controller
         }
 
         if($this->auth) {
-            $profile = Profile::find($this->_userId)->first();
+            $profile = Profile::find($this->_userId);
         }
         else
             $profile = new Profile();

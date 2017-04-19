@@ -36,7 +36,7 @@ Route::get('myprofile',["as" => "my_profile", "uses" => 'ProfileController@myPro
  * Paystack
  */
 Route::post('/pay', [
-    'uses' => 'PaymentController@connectToGateway',
+    'uses' => 'PaymentController@redirectToGateway',
     'as' => 'pay'
 ]);
 

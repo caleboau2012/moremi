@@ -25,9 +25,8 @@ use AuthTrait;
             ]);
         }
 
-        $profile = Profile::find($this->_userId)->first();
-        if(($profile->first_name) && ($profile->last_name) && ($profile->phone) && ($profile->email) &&
-            ($profile->card_no) && ($profile->expiry_month) && ($profile->expiry_month) && ($profile->cvv)){
+        $profile = Profile::find($this->_userId);
+        if(($profile->first_name) && ($profile->last_name) && ($profile->phone) && ($profile->email)){
             $vote = new VoteService($request);
             $profile_id =$request->profile_id;
             if($vote->HasVoted($this->_userId)) {
@@ -36,7 +35,7 @@ use AuthTrait;
                     'auth' => true,
                     'free' => false,
                     'profile' => true,
-                    'msg'=>'You only have one free vote in a day. The rest will cost you ₦' . config('constants.price') . ' per vote'
+                    'msg'=>'You only have one free vote in a day. The rest will cost you.'
                 ];
                 return response()->json($msg);
             }

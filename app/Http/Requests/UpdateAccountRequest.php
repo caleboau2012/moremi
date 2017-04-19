@@ -27,11 +27,7 @@ class UpdateAccountRequest extends Request
             'first_name'    => 'required',
             'last_name'     => 'required',
             'phone'         => 'required',
-            'email'         => 'required|email',
-            'card_no'       => 'required|digits:16',
-            'expiry_month'  => 'required|digits_between:1,2',
-            'expiry_year'   => 'required|digits:4',
-            'cvv'           => 'required|digits:3'
+            'email'         => 'required|email'
         ];
     }
 }

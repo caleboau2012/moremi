@@ -11,65 +11,88 @@
                 <h4 class="modal-title" id="votePayModalLabel">Pay</h4>
             </div>
             <div class="modal-body">
-                <div class="row" data-url="{{route('pay')}}" id="pay-slips">
+                <div class="row" id="pay-slips">
                     <div class="col-md-4">
-                        <div class="panel panel-danger">
-                            <div class="panel-body">
-                                <h1 class="h1 text-center">
-                                    ₦ 100
-                                </h1>
-                                <h2 class="h2 text-center">
-                                    1 vote
-                                </h2>
-                                <p>
-                                    <button class="btn btn-danger btn-lg btn-block vote-pay" data-amount="10"
-                                            data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> Processing...">
-                                        <i class="fa fa-credit-card fa-lg"></i> Pay Now!
-                                    </button>
-                                </p>
+                        <form method="POST" action="{{ route('pay') }}" accept-charset="UTF-8" class="form-horizontal vote-pay" role="form">
+                            <div class="panel panel-danger">
+                                <div class="panel-body">
+                                    <h1 class="h1 text-center">
+                                        ₦ {{config('constants.small_bundle') * 1.5}}
+                                    </h1>
+                                    <h2 class="h2 text-center">
+                                        1 vote
+                                    </h2>
+                                    <input type="hidden" name="email" value="{{$profile->email}}"> {{-- required --}}
+                                    <input type="hidden" name="amount" value="{{config('constants.small_bundle') * 100}}"> {{-- required in kobo --}}
+                                    <input type="hidden" name="quantity" value="1">
+                                    <input type="hidden" name="reference" value="{{ Paystack::genTranxRef() }}"> {{-- required --}}
+                                    <input type="hidden" name="key" value="{{ config('paystack.secretKey') }}"> {{-- required --}}
+                                    <input type="hidden" name="_token" value="{{ csrf_token() }}"> {{-- employ this in place of csrf_field only in laravel 5.0 --}}
+                                    <input type="hidden" name="voted_profile_id" value="">
+                                    <p>
+                                        <button class="btn btn-danger btn-lg btn-block" type="submit"
+                                                data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> Processing...">
+                                            <i class="fa fa-credit-card fa-lg"></i> Pay Now!
+                                        </button>
+                                    </p>
+                                </div>
                             </div>
-                        </div>
+                        </form>
                     </div>
                     <div class="col-md-4">
-                        <div class="panel panel-warning">
-                            <div class="panel-body">
-                                <h1 class="h1 text-center">
-                                    ₦ 400
-                                </h1>
-                                <h2 class="h2 text-center">
-                                    5 votes
-                                </h2>
-                                <p>
-                                    <button class="btn btn-warning btn-lg btn-block vote-pay" data-amount="355"
-                                            data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> Processing...">
-                                        <i class="fa fa-credit-card fa-lg"></i> Pay Now!
-                                    </button>
-                                </p>
+                        <form method="POST" action="{{ route('pay') }}" accept-charset="UTF-8" class="form-horizontal vote-pay" role="form">
+                            <div class="panel panel-danger">
+                                <div class="panel-body">
+                                    <h1 class="h1 text-center">
+                                        ₦ {{config('constants.medium_bundle') * 1.5}}
+                                    </h1>
+                                    <h2 class="h2 text-center">
+                                        5 votes
+                                    </h2>
+                                    <input type="hidden" name="email" value="{{$profile->email}}"> {{-- required --}}
+                                    <input type="hidden" name="amount" value="{{config('constants.medium_bundle') * 100}}"> {{-- required in kobo --}}
+                                    <input type="hidden" name="quantity" value="1">
+                                    <input type="hidden" name="reference" value="{{ Paystack::genTranxRef() }}"> {{-- required --}}
+                                    <input type="hidden" name="key" value="{{ config('paystack.secretKey') }}"> {{-- required --}}
+                                    <input type="hidden" name="_token" value="{{ csrf_token() }}"> {{-- employ this in place of csrf_field only in laravel 5.0 --}}
+                                    <input type="hidden" name="voted_profile_id" value="">
+                                    <p>
+                                        <button class="btn btn-warning btn-lg btn-block" type="submit"
+                                                data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> Processing...">
+                                            <i class="fa fa-credit-card fa-lg"></i> Pay Now!
+                                        </button>
+                                    </p>
+                                </div>
                             </div>
-                        </div>
+                        </form>
                     </div>
                     <div class="col-md-4">
-                        <div class="panel panel-success">
-                            <div class="panel-body">
-                                <h1 class="h1 text-center">
-                                    ₦ 700
-                                </h1>
-                                <h2 class="h2 text-center">
-                                    10 votes
-                                </h2>
-                                <p>
-                                    <button class="btn btn-success btn-lg btn-block vote-pay" data-amount="655"
-                                            data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> Processing...">
-                                        <i class="fa fa-credit-card fa-lg"></i> Pay Now!
-                                    </button>
-                                </p>
+                        <form method="POST" action="{{ route('pay') }}" accept-charset="UTF-8" class="form-horizontal vote-pay" role="form">
+                            <div class="panel panel-danger">
+                                <div class="panel-body">
+                                    <h1 class="h1 text-center">
+                                        ₦ {{config('constants.large_bundle') * 1.5}}
+                                    </h1>
+                                    <h2 class="h2 text-center">
+                                        10 votes
+                                    </h2>
+                                    <input type="hidden" name="email" value="{{$profile->email}}"> {{-- required --}}
+                                    <input type="hidden" name="amount" value="{{config('constants.large_bundle') * 100}}"> {{-- required in kobo --}}
+                                    <input type="hidden" name="quantity" value="1">
+                                    <input type="hidden" name="reference" value="{{ Paystack::genTranxRef() }}"> {{-- required --}}
+                                    <input type="hidden" name="key" value="{{ config('paystack.secretKey') }}"> {{-- required --}}
+                                    <input type="hidden" name="_token" value="{{ csrf_token() }}"> {{-- employ this in place of csrf_field only in laravel 5.0 --}}
+                                    <input type="hidden" name="voted_profile_id" value="">
+                                    <p>
+                                        <button class="btn btn-success btn-lg btn-block" type="submit"
+                                                data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> Processing...">
+                                            <i class="fa fa-credit-card fa-lg"></i> Pay Now!
+                                        </button>
+                                    </p>
+                                </div>
                             </div>
-                        </div>
+                        </form>
                     </div>
-                </div>
-                <div class="row hidden" id="validationFrame">
-                    <iframe class="validation-frame">
-                    </iframe>
                 </div>
             </div>
         </div>

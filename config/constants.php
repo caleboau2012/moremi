@@ -17,5 +17,10 @@ return [
 //    Util Constants
     'price' => 100,
     'medium' => "web",
-    'account_no' => '042715493'
+    'account_no' => '042715493',
+
+//    Prices
+    'small_bundle' => 100,
+    'medium_bundle' => 400,
+    'large_bundle' => 700
 ];

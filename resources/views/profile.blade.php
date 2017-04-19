@@ -70,7 +70,7 @@
                 <div class="row">
                     <div class="col-sm-3 col-sm-offset-3">
                         <br>
-                        <button class="btn btn-default btn-block" data-toggle="modal" data-target="#accountModal"><span class="fa fa-credit-card"></span> Account details</button>
+                        <button class="btn btn-default btn-block" data-toggle="modal" data-target="#accountModal"><span class="fa fa-user"></span> Account details</button>
                         <br>
                     </div>
                     <div class="col-sm-3">

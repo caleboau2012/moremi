@@ -9,7 +9,7 @@
         "laravel/framework": "5.2.*",
         "intervention/image": "^2.3",
         "dusterio/link-preview": "~1.2",
-        "hngx/moneywave-php": "^0.8.3"
+        "unicodeveloper/laravel-paystack": "1.0.*"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
