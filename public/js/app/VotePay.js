@@ -9,7 +9,8 @@ var VotePay = {
             $(this).button("loading");
 
             Utils.post(url, {
-                amount: amount
+                amount: amount,
+                voted_profile_id: Vote.CONSTANT.profileID
             }, 'POST', VotePay.success, VotePay.error);
         });
     },
@@ -33,19 +34,7 @@ var VotePay = {
                 $('#pay-slips').addClass('hidden');
                 $('#validationFrame').removeClass('hidden').find('iframe').attr('src', data.html);
             }
-            //else{
-            //    swal({
-            //            title: "Ouch...",
-            //            text: data.msg,
-            //            type: "warning",
-            //            showCancelButton: true,
-            //            confirmButtonColor: "#DD6B55",
-            //            confirmButtonText: "Pay!"
-            //        },
-            //        function(){
-            //            $("#votePayModal").modal('show');
-            //        });
-            //}
+
         }
         else if(data.status){
             swal('Success',data.msg,'success');
@@ -53,6 +42,7 @@ var VotePay = {
     },
     error: function(data){
         console.log(data);
+        $('.vote-pay').button('reset');
         swal('Ouch...',data.msg,'error');
     }
 };

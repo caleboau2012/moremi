@@ -40,4 +40,4 @@ Route::post('/pay', [
     'as' => 'pay'
 ]);
 
-Route::get('/payment/callback', 'PaymentController@handleGatewayCallback');
+Route::get('/payment/callback', ["as" => "payment_callback", "uses" => 'PaymentController@handleGatewayCallback']);

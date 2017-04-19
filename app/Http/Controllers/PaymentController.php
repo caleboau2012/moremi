@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Payment;
 use App\Profile;
+use App\Services\Vote\VoteService;
 use App\Traits\AuthTrait;
 use Illuminate\Http\Request;
 
@@ -56,15 +58,26 @@ class PaymentController extends Controller
                 "expiry_year" => $profile->expiry_year,
                 "expiry_month" => $profile->expiry_month,
                 "email" => $profile->email,
+                "redirecturl" => route("payment_callback")
 //                "ref" => Str::random(60)
             ));
+
+//            Store attempted payment.
+            $payment = new Payment();
+            $payment->amount = $request->amount;
+            $payment->accountNumber = config('constants.account_no');
+            $payment->profile_id = $profile->id;
+            $payment->voted_profile_id = $request->voted_profile_id;
+            $payment->medium = config('constants.medium');
+
+            $payment->save();
+
+            session(["payment_id", $payment->id]);
 
             $tran->dispatch();
 
             if($tran->successful()) {
-                //yay!
                 $response = $tran->getResponse();
-//                die(var_dump($response));
                 if($response['data']['pendingValidation']){
                     return response()->json([
                         "status" => false,
@@ -75,6 +88,8 @@ class PaymentController extends Controller
                     ]);
                 }
                 else{
+                    $this->handleGatewayCallback();
+
                     return response()->json([
                         "status" => true,
                         "profile" => true,
@@ -92,8 +107,7 @@ class PaymentController extends Controller
                 ]);
             }
 
-            dd($tran->getResponse());
-//        return Paystack::getAuthorizationUrl()->redirectNow();
+            return ($tran->getResponse());
         }
 
         else{
@@ -106,16 +120,43 @@ class PaymentController extends Controller
     }
 
     /**
-     * Obtain Paystack payment information
-     * @return void
+     * Obtain payment information
+     *
      */
     public function handleGatewayCallback()
     {
-//        $paymentDetails = Paystack::getPaymentData();
+        $payment = Payment::find(session("payment_id"))->firstOrFail();
 
-//        dd($paymentDetails);
-        // Now you have the payment details,
-        // you can store the authorization_code in your db to allow for recurrent subscriptions
-        // you can then redirect or do whatever you want
+        $payment->status = 1;
+        $payment->save();
+
+        $vote = new VoteService($this->request);
+
+        switch($payment->amount){
+            case 10:
+                $count = 0;
+                break;
+            case 355:
+                $count = 4;
+                break;
+            case 655:
+                $count = 9;
+                break;
+            default:
+                $count = 0;
+        }
+
+        $vote->vote($payment->voted_profile_id, $count);
+        $vote->storeRequest($payment->voted_profile_id,$this->_userId);
+        $msg =[
+            'status'=>true,
+            'auth' => true,
+            'free' => false,
+            'profile' => true,
+            'msg'=>'Photo voted successfully',
+            'count'=>$vote->count
+        ];
+
+        return view('pages.terms');
     }
 }

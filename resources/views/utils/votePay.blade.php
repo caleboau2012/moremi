@@ -22,7 +22,7 @@
                                     1 vote
                                 </h2>
                                 <p>
-                                    <button class="btn btn-danger btn-lg btn-block vote-pay" data-amount="55"
+                                    <button class="btn btn-danger btn-lg btn-block vote-pay" data-amount="10"
                                             data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> Processing...">
                                         <i class="fa fa-credit-card fa-lg"></i> Pay Now!
                                     </button>
