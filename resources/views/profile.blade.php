@@ -103,27 +103,42 @@
         <div class="row">
             <hr>
             <h2 class="text-center">Past Matches</h2>
-            <div class="col-md-4">
-                <div class="panel panel-danger">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">Moses Adebayo</h3>
-                    </div>
-                    <div class="panel-body">
-                        <div class="row">
-                            <div class="col-xs-12" >
-                                <div id="messages-between-1-2"></div>
-                            </div>
-                            <div class="col-xs-8" >
-                                <p class="hidden" id="id_user_to">2</p>
-                                <textarea class="form-control msg"></textarea>
-                            </div>
-                            <div class="col-xs-4">
-                                <input type="button" value="Send" class="btn btn-block send-msg">
+            @foreach($connections as $c)
+                <div class="col-md-4">
+                    <div class="panel panel-danger">
+                        <div class="panel-heading">
+                            <a class="btn btn-block" role="button" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                                <h3 class="panel-title">
+                                    <img src="{{$c[\ConnectionConstant::PHOTO]->thumb_path}}" class="img-thumb">
+                                    {{$c[\ConnectionConstant::NAME]}}
+                                </h3>
+                            </a>
+                        </div>
+                        <div class="panel-body collapse" id="collapseExample">
+                            <div class="row">
+                                <div class="col-xs-12" >
+                                    <div id="messages-between-{{$c[\TableConstant::PROFILE_ID]}}-{{$c[\ConnectionConstant::RECIPIENT_ID]}}" class="pre-scrollable">
+                                        @foreach($c[\ConnectionConstant::MESSAGES] as $m)
+                                            <div>
+                                                <strong>{{$m->user}}:</strong>
+                                                <p class="chat-message">{{$m->message}}</p>
+                                                <small class="text-right chat-time">{{$m->time}}</small>
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                </div>
+                                <div class="col-xs-8" >
+                                    <p class="hidden" id="id_user_to">{{$c[\ConnectionConstant::RECIPIENT_ID]}}</p>
+                                    <textarea class="form-control msg"></textarea>
+                                </div>
+                                <div class="col-xs-4">
+                                    <input type="button" value="Send" class="btn btn-block send-msg">
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            @endforeach
         </div>
     </div>
 

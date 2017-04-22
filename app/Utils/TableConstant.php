@@ -34,3 +34,10 @@ class OldCheekConstant{
     const VOTER = 'voter_id';
 
 }
+
+class ConnectionConstant{
+    const RECIPIENT_ID = 'recipient_id';
+    const NAME = 'name';
+    const PHOTO = 'photo';
+    const MESSAGES = 'messages';
+}

@@ -30,4 +30,12 @@ class Profile extends Model
     }
 
 
+    public function oldCheeks(){
+        return $this->hasMany('App\OldCheek', 'profile_id', 'id');
+    }
+
+    public function pastWins(){
+        return $this->hasMany('App\OldCheek', 'voter_id', 'id');
+    }
+
 }

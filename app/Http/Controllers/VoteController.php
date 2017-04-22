@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Connection;
 use App\OldCheek;
 use App\Profile;
 use App\Services\Vote\VoteService;
@@ -108,6 +109,21 @@ use AuthTrait;
              \OldCheekConstant::VOTER => $poll->voter_id,
              \TableConstant::CREATED_AT => $now_
         ]);
+
+        $connection = Connection::where(
+            \TableConstant::PROFILE_ID, $poll->profile_id)
+            ->where(\ConnectionConstant::RECIPIENT_ID, $poll->voter_id)->first();
+
+        $connection2 = Connection::where(
+            \TableConstant::PROFILE_ID, $poll->voter_id)
+            ->where(\ConnectionConstant::RECIPIENT_ID, $poll->profile_id)->first();
+
+        if(!$connection && !$connection2 && ($poll->voter_id != $poll->profile_id)){
+            Connection::create([
+                \TableConstant::PROFILE_ID => $poll->profile_id,
+                \ConnectionConstant::RECIPIENT_ID => $poll->voter_id,
+            ]);
+        }
 
         Mail::send('emails.winner', ['user' => $winner, 'voter' => $highestVoter, 'poll' => $poll, 'expiryDate' => $expiryDate, 'location' => $location], function ($m) use ($winner) {
             $m->from(\MailConstants::SUPPORT_MAIL, \MailConstants::TEAM_NAME);

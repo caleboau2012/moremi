@@ -2,12 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Connection;
+use App\OldCheek;
 use App\Profile;
 use App\Services\UserService;
 use App\Services\VenueService;
 use App\Traits\AuthTrait;
 use App\Venue;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use LRedis;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -52,10 +56,43 @@ class ProfileController extends Controller
 
         $profile = Profile::find($this->_userId);
 
+        $connections = Connection::where(\TableConstant::PROFILE_ID, $this->_userId)->
+        orWhere(\ConnectionConstant::RECIPIENT_ID, $this->_userId)->get()->toArray();
+
+        $redis = LRedis::connection();
+        $messages = $redis->lrange('message', 0, -1);
+        $messages = array_reverse($messages);
+
+        for($i = 0; $i < sizeof($messages); $i++){
+            $messages[$i] = json_decode($messages[$i]);
+        }
+
+        for($i = 0; $i < sizeof($connections); $i++){
+            if($connections[$i][\TableConstant::PROFILE_ID] != $this->_userId){
+                $temp = $connections[$i][\TableConstant::PROFILE_ID];
+                $connections[$i][\TableConstant::PROFILE_ID] = $this->_userId;
+                $connections[$i][\ConnectionConstant::RECIPIENT_ID] = $temp;
+            }
+
+            $user = Profile::find($connections[$i][\ConnectionConstant::RECIPIENT_ID]);
+            $connections[$i][\ConnectionConstant::NAME] = $user->first_name . " " . $user->last_name;
+            $connections[$i][\ConnectionConstant::PHOTO] = $user->photo()->first();
+
+            foreach($messages as $m){
+                if((($m->id_user_from == $connections[$i][\TableConstant::PROFILE_ID])
+                    && ($m->id_user_to == $connections[$i][\ConnectionConstant::RECIPIENT_ID]))
+                || (($m->id_user_from == $connections[$i][\ConnectionConstant::RECIPIENT_ID])
+                        && ($m->id_user_to == $connections[$i][\TableConstant::PROFILE_ID]))){
+                    $connections[$i][\ConnectionConstant::MESSAGES][] = $m;
+                }
+            }
+        }
+
         return view('profile',[
                 'photos' => $profile->photos->toArray(),
                 'profile' => $profile,
-                'venues' => $venues
+                'venues' => $venues,
+                'connections' => $connections
             ]
         );
     }

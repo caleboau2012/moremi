@@ -14,8 +14,16 @@ socket.on('message', function (data) {
         to: to
     });
 
-    $(from).append( "<strong>"+data.user+":</strong><p>"+data.message+"</p>" );
-    $(to).append( "<strong>"+data.user+":</strong><p>"+data.message+"</p>" );
+    $(from).append( "<div>" +
+            "<strong>" + data.user + ":</strong>" +
+            "<p class='chat-message'>" + data.message + "</p>" +
+            "<small class='text-right chat-time'>" + data.time + "</small>" +
+        "</div>" );
+    $(to).append( "<div>" +
+        "<strong>" + data.user + ":</strong>" +
+        "<p class='chat-message'>" + data.message + "</p>" +
+        "<small class='text-right chat-time'>" + data.time + "</small>" +
+        "</div>" );
 });
 
 $(".send-msg").click(function(e){
@@ -49,4 +57,4 @@ $(".send-msg").click(function(e){
     }else{
         swal("Ehem", "Please Add Message.");
     }
-})
+});

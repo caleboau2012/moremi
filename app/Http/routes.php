@@ -50,4 +50,4 @@ Route::group(['prefix' => 'cron'], function(){
 /*
  * Chat routes
  */
-Route::post('sendmessage', ['as' => 'chat-url', 'uses' => 'chatController@sendMessage']);
+Route::post('sendmessage', ['as' => 'chat-url', 'uses' => 'ChatController@sendMessage']);
