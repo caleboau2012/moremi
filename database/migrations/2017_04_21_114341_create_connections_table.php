@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateVenuesTable extends Migration
+class CreateConnectionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,14 +12,12 @@ class CreateVenuesTable extends Migration
      */
     public function up()
     {
-        //
-        Schema::create('venues', function (Blueprint $table) {
+        Schema::create('connections', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
-            $table->string('title')->nullable();
-            $table->string('url');
-            $table->string('thumb')->nullable();
+            $table->integer('profile_id');
+            $table->integer('recipient_id');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -30,7 +28,6 @@ class CreateVenuesTable extends Migration
      */
     public function down()
     {
-        //
-        Schema::drop('venues');
+        Schema::drop('connections');
     }
 }

@@ -5,8 +5,11 @@
     <br>
     <div class="container">
         <div class="row">
-            <h2 class="text-center">{{$profile->first_name}} {{$profile->last_name}}</h2>
+            <p class="hidden" id="_token">{{ csrf_token() }}"</p>
+            <h2 class="text-center" id="user">{{$profile->first_name}} {{$profile->last_name}}</h2>
             <h3 class="text-center"><span class="text-danger">Votes: {{$profile->vote}} <i class="fa fa-heart"></i></span> </h3>
+            <p class="hidden" id="id_user_from">{{$profile->id}}</p>
+            <p class="hidden" id="chat-url">{{route('chat-url')}}</p>
             <hr>
         </div>
         <div class="row profile-tab">
@@ -32,10 +35,12 @@
                         <select name="venue" id="venue" class="form-control">
                             <option value="0">Select your preferred date location</option>
                             @foreach($venues as $venue)
-                                @if($venue['id'] == $profile->venue)
-                                    <option selected value="{{$venue['id']}}" data-url="{{$venue['url']}}" data-title="{{$venue['preview']['title']}}" data-image="{{$venue['preview']['images'][0]}}">{{$venue['name']}}</option>
+                                @if($venue->id == $profile->venue)
+                                    <option selected value="{{$venue->id}}" data-url="{{$venue->url}}"
+                                            data-title="{{$venue->title}}" data-image="{{$venue->thumb}}">{{$venue->name}}</option>
                                 @else
-                                    <option value="{{$venue['id']}}" data-url="{{$venue['url']}}" data-title="{{$venue['preview']['title']}}" data-image="{{$venue['preview']['images'][0]}}">{{$venue['name']}}</option>
+                                    <option value="{{$venue->id}}" data-url="{{$venue->url}}"
+                                            data-title="{{$venue->title}}" data-image="{{$venue->thumb}}">{{$venue->name}}</option>
                                 @endif
                             @endforeach
                         </select>
@@ -97,6 +102,47 @@
                 </div>
             </div>
         </script>
+        <div class="row">
+            <hr>
+            <h2 class="text-center">Your Connections</h2>
+            @foreach($connections as $c)
+                <div class="col-md-4">
+                    <div class="panel panel-danger">
+                        <div class="panel-heading">
+                            <a class="btn btn-block" role="button" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                                <h3 class="panel-title">
+                                    <img src="{{$c[\ConnectionConstant::PHOTO]->thumb_path}}" class="img-thumb">
+                                    {{$c[\ConnectionConstant::NAME]}}
+                                </h3>
+                            </a>
+                        </div>
+                        <div class="panel-body collapse" id="collapseExample">
+                            <div class="row">
+                                <div class="col-xs-12" >
+                                    <div id="messages-between-{{$c[\TableConstant::PROFILE_ID]}}-{{$c[\ConnectionConstant::RECIPIENT_ID]}}"
+                                         class="pre-scrollable chat-messages">
+                                        @foreach($c[\ConnectionConstant::MESSAGES] as $m)
+                                            <div>
+                                                <strong>{{$m->user}}:</strong>
+                                                <p class="chat-message">{{$m->message}}</p>
+                                                <small class="text-right chat-time">{{$m->time}}</small>
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                </div>
+                                <div class="col-xs-8" >
+                                    <p class="hidden" id="id_user_to">{{$c[\ConnectionConstant::RECIPIENT_ID]}}</p>
+                                    <textarea class="form-control msg"></textarea>
+                                </div>
+                                <div class="col-xs-4">
+                                    <input type="button" value="Send" class="btn btn-block send-msg">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+        </div>
     </div>
 
     <div id="picturesModal" class="modal fade" tabindex="-1" role="dialog">
@@ -129,4 +175,10 @@
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
+@endsection
+
+@section('scripts')
+    @parent
+    <script src="https://cdn.socket.io/socket.io-1.3.4.js"></script>
+    <script src="{{asset('js/app/Chat.js')}}"></script>
 @endsection

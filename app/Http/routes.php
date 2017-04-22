@@ -44,4 +44,11 @@ Route::get('/payment/callback', ["as" => "payment_callback", "uses" => 'PaymentC
 /*CRON Activities*/
 Route::group(['prefix' => 'cron'], function(){
     Route::get('end/votes', array("uses" => 'VoteController@endVotes'));
+    Route::get('fetch/venue-previews', array("uses" => 'VenueController@fetchPreviews'));
 });
+
+
+/*
+ * Chat routes
+ */
+Route::post('sendmessage', ['as' => 'chat-url', 'uses' => 'ChatController@sendMessage']);

@@ -265,3 +265,17 @@ Trending
     transition: all ease 0.2s;
 
 }
+
+.img-thumb{
+    max-width: 50px;
+    border-radius: 10%;
+}
+
+.chat-message{
+    margin: 0;
+}
+
+.chat-time{
+    display: block;
+    margin-bottom: 10px;
+}
