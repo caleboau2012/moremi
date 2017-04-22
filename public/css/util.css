@@ -1,0 +1,46 @@
+
+/**
+ * Created by PhpStorm.
+ * User: moscoworld
+ * Date: 4/22/17
+ * Time: 10:19 AM
+ */
+
+.text-white{
+    color: #fff;
+}
+.text-primary{
+    color: #ed1c24;
+}
+a:hover, a:focus {
+    color: inherit !important;
+    text-decoration: none !important;
+}
+.bg-grey{
+    background: #dddddd;
+}
+.no-margin{
+    margin: 0 !important;
+}
+.btn-fill{
+    width: 100%;
+}
+
+/*Restyle Bootstrap to Brand color*/
+.btn-primary{
+    background: #ed1c24;
+}
+.btn-primary:hover, .btn-primary:focus,
+.btn-primary:active:hover, .btn-primary:active, .btn-primary:active:hover, .btn-primary.active:hover,
+.open>.dropdown-toggle.btn-primary:hover, .btn-primary:active:focus,
+.btn-primary.active:focus, .open>.dropdown-toggle.btn-primary:focus,
+.btn-primary:active.focus, .btn-primary.active.focus,
+.open>.dropdown-toggle.btn-primary.focus{
+    background-color: #d51c24;
+    outline: 0 !important;
+}
+
+
+.text-grey{
+    color: #dddddd;
+}

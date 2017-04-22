@@ -1,0 +1,44 @@
+/**
+ * Created by PhpStorm.
+ * User: moscoworld
+ * Date: 4/22/17
+ * Time: 10:19 AM
+ */
+body{
+    font-family: 'Poppins', sans-serif;
+}
+#home_banner{
+    background: url("../images/cheeks/1.jpg") no-repeat;
+    background-size: 100%;
+    background-attachment: fixed;
+    background-position: 30% 12%;
+}
+#home_banner .overlay{
+    padding: 200px 0;
+    height: 100%;
+    background-color: rgba(0,0,0,0.41);
+}
+#home_banner .sub_caption{
+    font-size: 25px;
+}
+#home_banner .bg-text{
+    font-size: 70px;
+}
+
+#home_banner #login_container{
+    background: rgba(0,0,0,0.4);
+    padding: 20px 15px;
+}
+
+a, a:hover{
+    color: #FFFFFF;
+    text-decoration: none !important;
+}
+
+/*
+Trending
+*/
+.trending-item{
+    background: #FFFFFF;
+    border: solid thin #dddddd;
+}

@@ -52,3 +52,11 @@ Route::group(['prefix' => 'cron'], function(){
  * Chat routes
  */
 Route::post('sendmessage', ['as' => 'chat-url', 'uses' => 'ChatController@sendMessage']);
+/*
+ *
+ * UI REVAMP
+ * PROOF OF CONCEPT
+ */
+Route::group(['prefix' => 'ui'], function(){
+   Route::get('home', array('uses'=>'UIRevampController@home'));
+});
