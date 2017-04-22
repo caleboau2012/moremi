@@ -117,7 +117,8 @@
                         <div class="panel-body collapse" id="collapseExample">
                             <div class="row">
                                 <div class="col-xs-12" >
-                                    <div id="messages-between-{{$c[\TableConstant::PROFILE_ID]}}-{{$c[\ConnectionConstant::RECIPIENT_ID]}}" class="pre-scrollable">
+                                    <div id="messages-between-{{$c[\TableConstant::PROFILE_ID]}}-{{$c[\ConnectionConstant::RECIPIENT_ID]}}"
+                                         class="pre-scrollable chat-messages">
                                         @foreach($c[\ConnectionConstant::MESSAGES] as $m)
                                             <div>
                                                 <strong>{{$m->user}}:</strong>
