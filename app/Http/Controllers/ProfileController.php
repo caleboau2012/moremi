@@ -3,14 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Connection;
-use App\OldCheek;
 use App\Profile;
 use App\Services\UserService;
-use App\Services\VenueService;
 use App\Traits\AuthTrait;
 use App\Venue;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use LRedis;
 
 use App\Http\Requests;
@@ -46,13 +43,7 @@ class ProfileController extends Controller
             return back();
         }
 
-        $venues = Venue::all()->toArray();
-
-        $venueService = new VenueService();
-
-        for($i = 0; $i < sizeof($venues); $i++){
-            $venues[$i]['preview'] = $venueService->fetchPreview($venues[$i]['url']);
-        }
+        $venues = Venue::all();
 
         $profile = Profile::find($this->_userId);
 

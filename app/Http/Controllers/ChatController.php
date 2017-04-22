@@ -8,7 +8,7 @@ use Carbon\Carbon;
 use Request;
 use LRedis;
 
-class chatController extends Controller {
+class ChatController extends Controller {
     public function __construct()
     {
         $this->middleware('guest');
@@ -22,14 +22,6 @@ class chatController extends Controller {
             'id_user_to' => Request::input('id_user_to'),
             'time' => Carbon::now()->toDateTimeString()
         ];
-
-//        $chat = new Chat();
-//        $chat->message = Request::input('message');
-//        $chat->user = Request::input('user');
-//        $chat->id_user_from = Request::input('id_user_from');
-//        $chat->id_user_to = Request::input('id_user_to');
-//
-//        $chat->save();
 
         $redis->lpush('message', json_encode($data));
         $redis->publish('message', json_encode($data));
