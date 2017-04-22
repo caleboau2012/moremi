@@ -33,6 +33,38 @@
 
                                 </div>
                             </div>
+                            <div class="trending-item">
+                                <div>
+                                    <div class="text-center">
+                                        @if(empty($t->photo))
+                                            <img alt="{{$t->first_name." ".$t->last_name}}" src="{{asset('images/default.png')}}">
+                                        @else
+
+                                            <img alt="{{$t->first_name." ".$t->last_name}}" src="{{$t->photo->full_path}}">
+                                        @endif
+                                    </div>
+                                    <h4 class="text-center text-capitalize">{{$t->first_name." ".$t->last_name}}</h4>
+                                    <p class="text-center">{{$t->vote}} votes</p>
+                                    <a href="#"  class="follow vote-c-tw" data-id="{{$t->id}}"><span><i class="fa fa-heart"></i> </span>Vote</a>
+
+                                </div>
+                            </div>
+                            <div class="trending-item">
+                                <div>
+                                    <div class="text-center">
+                                        @if(empty($t->photo))
+                                            <img alt="{{$t->first_name." ".$t->last_name}}" src="{{asset('images/default.png')}}">
+                                        @else
+
+                                            <img alt="{{$t->first_name." ".$t->last_name}}" src="{{$t->photo->full_path}}">
+                                        @endif
+                                    </div>
+                                    <h4 class="text-center text-capitalize">{{$t->first_name." ".$t->last_name}}</h4>
+                                    <p class="text-center">{{$t->vote}} votes</p>
+                                    <a href="#"  class="follow vote-c-tw" data-id="{{$t->id}}"><span><i class="fa fa-heart"></i> </span>Vote</a>
+
+                                </div>
+                            </div>
                         @endforeach
                     </div>
                 @endif

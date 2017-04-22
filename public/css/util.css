@@ -17,10 +17,19 @@ a:hover, a:focus {
     text-decoration: none !important;
 }
 .bg-grey{
-    background: #dddddd;
+    background: #f9f9f9;
+}
+.btn:hover{
+    color: #ffffff !important;
 }
 .no-margin{
     margin: 0 !important;
+}
+.no-margin-bottom{
+    margin-bottom: 0 !important;
+}
+.no-margin-top{
+    margin-top: 0 !important;
 }
 .btn-fill{
     width: 100%;
@@ -44,3 +53,19 @@ a:hover, a:focus {
 .text-grey{
     color: #dddddd;
 }
+.text-twitter{
+    color: #1da1f2;
+}
+.text-facebook{
+    color: #3b5998;
+}
+.text-instagram{
+    color: #c33186;
+}
+.margin-top-sm{
+    margin-top: 15px;
+}
+.margin-top-md{
+    margin-top: 45px;
+}
+

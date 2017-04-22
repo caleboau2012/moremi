@@ -34,7 +34,7 @@
  @show
 
  @section('bottomScripts')
-    <script src="{{asset('js/vendor/jquery-1.9.1.min.js')}}" ></script>
+    <script src="{{asset('libs/jquery/jquery.min.js')}}" ></script>
     <script src="{{asset('js/vendor/bootstrap.min.js')}}"></script>
     <script src="{{asset('js/vendor/sweetalert.min.js')}}" ></script>
 @show
