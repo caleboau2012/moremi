@@ -10,7 +10,7 @@
     color: #fff;
 }
 .text-primary{
-    color: #ed1c24;
+    color: #FF4B1F;
 }
 a:hover, a:focus {
     color: inherit !important;
@@ -69,3 +69,10 @@ a:hover, a:focus {
     margin-top: 45px;
 }
 
+.btn-default:hover, .btn-default:active:hover {
+    background-color: #FFFFFF;
+    color: #ed1c24 !important;
+}
+.btn:focus{
+    outline: none !important;
+}
