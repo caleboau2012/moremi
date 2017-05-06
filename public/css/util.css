@@ -76,3 +76,6 @@ a:hover, a:focus {
 .btn:focus{
     outline: none !important;
 }
+.padding-sm{
+    padding: 10px;
+}
