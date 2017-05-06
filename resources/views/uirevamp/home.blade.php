@@ -65,11 +65,13 @@
     </div>
 
     {{--PICK OF THE MOMENT--}}
-    <div id="moment_pick_container" class="center-block">
+    <div id="moment_pick_container" >
+        <div class="row">
+            <h3 id="header" class="text-center text-white">Pick of the Moment</h3>
+        </div>
+
+        <div class="center-block moment_pick_container_width">
         <div class="container">
-            <div class="row">
-                <h3 id="header" class="text-center text-white">Pick of the Moment</h3>
-            </div>
             <div class="row moment_pick_container_content" style="position:relative;">
                 <div class="moment_pics_container pull-left">
                     <ul class="roundabout roundabout-holder" style="padding: 0; position: relative;">
@@ -115,7 +117,7 @@
 
             </div>
     </div>
-
+    </div>
     </div>
 
     <div class="container-fluid bg-grey" id="trending_container" >
