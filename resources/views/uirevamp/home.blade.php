@@ -3,7 +3,7 @@
     <link href="{{asset('libs/owl/owl.carousel.css')}}" rel="stylesheet">
 @endsection
 @section('header')
-    @include('include.header_home')
+    @include('include.header')
 @show
 
 @section('content')

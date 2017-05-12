@@ -268,37 +268,57 @@ Profile Card
     border-bottom: none;
 }
 
-/* Media Queries */
-@media(max-width:767px){
-    .non-xs, .non-sm{
-        display: none;
-    }
-    .xs-only{
-        display: block;
-    }
+/*APP HEADER*/
+#app-header{
+    height: 300px;
+    background: url("../images/header_app.png") no-repeat;
+    background-size: 100%;
+    background-attachment: fixed;
 }
-@media(min-width:768px){
-    .non-sm, .non-md{
-        display: none;
-    }
-    .md-only{
-        display: block;
-    }
+#app-header{
+    position: relative;
 }
-@media(min-width:992px){
-    /*.non-md{*/
-        /*display: none;*/
-    /*}*/
-    .md-only{
-        display: block;
-    }
+#app-header #logo{
+    width: 300px;
 }
-@media(min-width:1200px){
-    .non-lg{
-        display: none;
-    }
+#app-header #profile-container{
+    /*position: relative;*/
+    bottom: 0;
+    width: 100%;
+}
+#app-header #profile-dp{
+    background: #ffffff;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin: 0 auto;
+    position: absolute;
+    left: 48%;
+    bottom: -25px;
+    box-shadow: 1px 2px 1px #ddd;
+    overflow: hidden;
+}
+#app-header #profile-info{
+    position: absolute;
+    left: 55%;
+    bottom: 0;
+    padding-bottom: 15px;
+    padding-left: 5px;
+}
+#app-header .dp-edit-btn{
+    position: absolute;
+    right: 14px;
+    bottom: 10px;
+    width: 25px;
+    height: 25px;
+    background: #FF4B1F;
+    border-radius: 50%;
+    padding: 4px 7px;
+    font-weight: bold;
+    display: none;
+    transition: all 0.5s ease;
+}
 
-    .lg-only{
-        display: block;
-    }
+#profile-dp:hover .dp-edit-btn{
+    display: block;
 }

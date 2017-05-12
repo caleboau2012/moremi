@@ -25,7 +25,7 @@
 <body id="app-body">
 
 @section('header')
-    @include('include.header')
+    @include('include.header_app')
 @show
 
 @yield('content')

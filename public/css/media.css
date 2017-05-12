@@ -1,0 +1,34 @@
+/* Media Queries */
+@media(max-width:767px){
+    .non-xs, .non-sm{
+        display: none;
+    }
+    .xs-only{
+        display: block;
+    }
+}
+@media(min-width:768px){
+    .non-sm, .non-md{
+        display: none;
+    }
+    .md-only{
+        display: block;
+    }
+}
+@media(min-width:992px){
+    /*.non-md{*/
+    /*display: none;*/
+    /*}*/
+    .md-only{
+        display: block;
+    }
+}
+@media(min-width:1200px){
+    .non-lg{
+        display: none;
+    }
+
+    .lg-only{
+        display: block;
+    }
+}
