@@ -11,3 +11,7 @@ class MailConstants{
     const SUPPORT_MAIL = 'mos.adebayo@gmail.com';
 
 }
+
+class AppConstants{
+    const AUTH = 'authToken';
+}

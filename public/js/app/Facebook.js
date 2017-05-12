@@ -8,7 +8,7 @@ var Facebook = {
     profile: {},
     authResponse: {},
     init: function(){
-        $("#login").click(Facebook.login);
+        $("#login, .login").click(Facebook.login);
     },
     login: function(){
         FB.login(function(response) {
@@ -25,7 +25,7 @@ var Facebook = {
                     Facebook.profile = response;
 
                     if((Profile.checkToken())){
-                        var url = $("#login").attr("data-url");
+                        var url = $("#login, .login").attr("data-url");
 
                         Utils.post(url,
                             {
@@ -38,6 +38,7 @@ var Facebook = {
                         );
                     }
                     else{
+                        console.log("The Login failed");
                         $(".profile-actions").addClass("hidden");
                         $("#login").removeClass("hidden");
                     }

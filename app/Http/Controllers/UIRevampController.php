@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Profile;
+
 class UIRevampController extends Controller
 {
 
@@ -10,7 +12,21 @@ class UIRevampController extends Controller
     }
 
     public function home(){
-        return view('uirevamp.home');
+        $loggedIn = false;
+        $profile = null;
+
+        $token = session(\AppConstants::AUTH);
+        if(isset($token) == true) {
+            $loggedIn = true;
+            $profile = Profile::where('user_id', customdecrypt($token))->first();
+        }
+
+//        dd($profile);
+
+        return view('uirevamp.home', [
+            'loggedIn' => $loggedIn,
+            'profile' => $profile
+        ]);
     }
     /*user homepage*/
     public function user(){

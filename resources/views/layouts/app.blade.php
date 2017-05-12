@@ -25,19 +25,28 @@
 <body id="app-body">
 
 @section('header')
-    @include('include.header_app')
 @show
 
 @yield('content')
 
- @section('footer')
-    @include('include.footer_min')
- @show
+@section('footer')
+	@include('include.footer')
+@show
 
- @section('bottomScripts')
-    <script src="{{asset('libs/jquery/jquery.min.js')}}" ></script>
-    <script src="{{asset('js/vendor/bootstrap.min.js')}}"></script>
-    <script src="{{asset('js/vendor/sweetalert.min.js')}}" ></script>
+@section('bottomScripts')
+	{{-- Libs --}}
+	<script src="{{asset('libs/jquery/jquery.min.js')}}" ></script>
+	<script src="{{asset('libs/bootstrap/bootstrap.min.js')}}"></script>
+	<script src="{{asset('libs/sweetalert/sweetalert.min.js')}}" ></script>
+
+	<!--Custom Javascript-->
+	<script src="{{asset('js/app/Utils.js')}}" ></script>
+	<script src="{{asset('js/app/Constants.js')}}" ></script>
+
+	<!--FacebookScript-->
+	<script src="{{asset('js/app/Facebook.js')}}"></script>
+
+	<script src="{{asset('js/app/Profile.js')}}" ></script>
 @show
 </body>
 

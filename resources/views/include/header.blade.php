@@ -14,7 +14,13 @@
       <ul class="nav navbar-nav navbar-right">
         <li><a href="#"><span class="text-white">About</span></a></li>
         <li><a href="#"><span class="text-white">Trending</span></a></li>
-        <li><a href="#"><span class="text-white">Join</span></a></li>
+        @if(!$loggedIn)
+          <li><a href="#" data-url="{{route("login")}}" class="login"><span class="text-white">Join</span></a></li>
+        @else
+          <li><a href="#" class="profile-btn">
+              <img src="{{asset($profile->photo()->first()->thumb_path)}}" class="profile-thumb">
+              <span class="text-white">{{$profile->first_name}} {{$profile->last_name}}</span></a></li>
+        @endif
       </ul>
     </div>
   </div>

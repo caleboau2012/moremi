@@ -6,6 +6,28 @@
     @include('include.header')
 @show
 
+@section('header')
+    @parent
+    <script>
+        window.fbAsyncInit = function() {
+            FB.init({
+                appId      : '469144689836682',
+                xfbml      : true,
+                version    : 'v2.7'
+            });
+            FB.Event.subscribe('xfbml.render', Facebook.status);
+        };
+
+        (function(d, s, id){
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) {return;}
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
+@endsection
+
 @section('content')
     <div id="home_banner" class="non-xs">
         <div class="overlay">
@@ -24,7 +46,11 @@
                                 </p>
                             </div>
                             <div class="row text-center">
-                                <button class="btn btn-default get_started">Get Started</button>
+                                @if(!$loggedIn)
+                                    <button class="btn btn-default get_startedlogin"  data-url="{{route("login")}}">Get Started</button>
+                                @else
+                                    <a href="#" class="btn btn-default get_started profile" >Find A Date</a>
+                                @endif
                             </div>
                         </div>
 
@@ -59,12 +85,14 @@
                     </ul>
 
                     <div class="text-center">
-                        <button class="btn get_started">Get Started</button>
+                        @if(!$loggedIn)
+                            <button class="btn get_started login"  data-url="{{route("login")}}">Get Started</button>
+                        @else
+                            <a href="" class="btn get_started profile"  data-url="{{route("login")}}">Connect Now</a>
+                        @endif
                     </div>
                 </div>
-
             </div>
-
         </div>
     </div>
 
