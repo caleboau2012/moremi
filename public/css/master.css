@@ -268,6 +268,7 @@ Profile Card
     border-bottom: none;
 }
 
+/* Media Queries */
 @media(max-width:767px){
     .non-xs, .non-sm{
         display: none;
