@@ -109,8 +109,6 @@
                         <!--About Section-->
                         <section class="col-xs-12 footerbg1 font-white">
                             <h4>About Moremi</h4>
-
-
                             <p>
                                 Moremi is a web application that brings out the best in women.
                                 It is easy to use. Just vote your most beautiful lady.
@@ -118,7 +116,6 @@
                             <p>
                                 There is only one caveat. You can only vote once a day. The day starts 0:00 GMT
                             </p>
-
                         </section>
                     </div>
                 </div>
