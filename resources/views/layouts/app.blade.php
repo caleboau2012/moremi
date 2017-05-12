@@ -31,7 +31,7 @@
 @yield('content')
 
  @section('footer')
-    @include('include.footer')
+    @include('include.footer_min')
  @show
 
  @section('bottomScripts')

@@ -2,6 +2,9 @@
 @section('stylesheets')
     <link href="{{asset('libs/owl/owl.carousel.css')}}" rel="stylesheet">
 @endsection
+@section('header')
+    @include('include.header_home')
+@show
 
 @section('content')
     <div id="home_banner" class="non-xs">
@@ -390,6 +393,10 @@
 
         </div>
     </div>
+@endsection
+
+@section('footer')
+    @include('include.footer')
 @endsection
 
 @section('bottomScripts')
