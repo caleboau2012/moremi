@@ -9,6 +9,7 @@
 @extends('layouts.app')
 @section('stylesheets')
     <link href="{{asset('libs/owl/owl.carousel.css')}}" rel="stylesheet">
+    <link href="{{asset('libs/bootstrap-slider/bslider.css')}}" rel="stylesheet">
 @endsection
 
 @section('content')
@@ -204,6 +205,9 @@
             <button class="btn btn-default">Females</button>
             <button class="btn btn-default">Males</button>
             <button class="btn btn-default">Spot</button>
+
+            <b> 16</b> <input id="ex2" type="text" class="span2" value="" data-slider-min="16" data-slider-max="100" data-slider-step="5" data-slider-value="[25,35]"/> <b> 100</b>
+
         </div>
 
     </div>
@@ -214,6 +218,7 @@
 @section('bottomScripts')
     @parent
     <script src="{{asset("libs/owl/owl.carousel.min.js")}}"></script>
+    <script src="{{asset("libs/bootstrap-slider/bslider.js")}}"></script>
     <script>
         $(function() {
 
@@ -227,6 +232,9 @@
                 navigation : false,
                 pagination : false
             });
+
+//            /*Range slider*/
+            $("#ex2").slider({});
         })
 
     </script>
