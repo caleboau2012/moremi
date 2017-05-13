@@ -538,6 +538,10 @@
                     </div>
                 </div>
             </div>
+
+            <div class="text-center">
+                <button class="btn btn-primary">Load more...</button>
+            </div>
         </div>
 
     </div>

@@ -342,3 +342,7 @@ Profile Card
     -webkit-box-shadow: inset 0 -2px 0 #ff4000;
     box-shadow: inset 0 -2px 0 #ff4000;
 }
+
+.pick-items{
+    margin-bottom: 20px;
+}
