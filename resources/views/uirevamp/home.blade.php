@@ -107,29 +107,26 @@
                 <div class="row moment_pick_container_content" style="position:relative;">
                     <div class="moment_pics_container pull-left">
                         <ul class="roundabout roundabout-holder" style="padding: 0; position: relative;">
-                            <li class="roundabout-slide"><img class="img-thumbnail img-responsive" src="{{ asset('images/cheeks/0.jpg') }}" alt="Cheek of the moment"></li>
-                            <li class="roundabout-slide"><img class="img-thumbnail img-responsive" src="{{ asset('images/cheeks/6.jpg') }}" alt="Cheek of the moment"></li>
-                            <li class="roundabout-slide"><img class="img-thumbnail img-responsive" src="{{ asset('images/cheeks/1.jpg') }}" alt="Cheek of the moment"></li>
-                            <li class="roundabout-slide"><img class="img-thumbnail img-responsive" src="{{ asset('images/cheeks/2.jpg') }}" alt="Cheek of the moment"></li>
-                            <li class="roundabout-slide"><img class="img-thumbnail img-responsive" src="{{ asset('images/cheeks/3.jpg') }}" alt="Cheek of the moment"></li>
-                            <li class="roundabout-slide"><img class="img-thumbnail img-responsive" src="{{ asset('images/cheeks/7.jpg') }}" alt="Cheek of the moment"></li>
+                            @foreach($winner->profile()->first()->photos()->get() as $photo))
+                            <li class="roundabout-slide"><img class="img-thumbnail img-responsive" src="{{ asset($photo->full_path) }}" alt="Cheek of the moment"></li>
+                            @endforeach
                         </ul>
                     </div>
                     <div class="moment_profile_container">
                         <div class="content name_content">
-                            <h4 class="no-margin-bottom name">Chioma Nwakezuologoomigwojere</h4>
+                            <h4 class="no-margin-bottom name">{{$winner->profile()->first()->first_name}} {{$winner->profile()->first()->last_name}}</h4>
                             <span class="content-end"></span>
 
                         </div>
                         <p class="content no-margin-bottom">
-                            <span class="icon icon-location text-primary">&nbsp;</span>Lagos, Nigeria
+                            <span class="icon icon-location text-primary">&nbsp;</span>{{$winner->profile()->first()->venue()->first()->name}}
                         </p>
                         <p class="content no-margin-top">
-                            <span class="icon icon-heart3 text-primary">&nbsp;</span>5,000
+                            <span class="icon icon-heart3 text-primary">&nbsp;</span>{{$winner->votes}}
                         </p>
                         <p class="content">
                             <strong>Status:</strong> <br>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores quibusdam sequi voluptate.
+                            {{$winner->profile()->first()->status}}
                         </p>
                         <h5 class="content">
                             <a href="#"><span class="icon icon-instagram text-primary"></span></a>

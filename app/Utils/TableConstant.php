@@ -32,7 +32,7 @@ class OldCheekConstant{
     const WON_PHOTO = 'won_photo';
     const FACEBOOK_POST = 'facebook_post_id';
     const VOTER = 'voter_id';
-
+    const VOTES = 'votes';
 }
 
 class ConnectionConstant{

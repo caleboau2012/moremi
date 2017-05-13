@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\OldCheek;
 use App\Profile;
 
 class UIRevampController extends Controller
@@ -21,11 +22,17 @@ class UIRevampController extends Controller
             $profile = Profile::where('user_id', customdecrypt($token))->first();
         }
 
-//        dd($profile);
+        $profiles= Profile::orderBy('vote', 'desc')->paginate(4);
+        $topsix = Profile::orderBy('vote', 'desc')->take(8)->get();
+        $winner =OldCheek::orderBy('created_at', 'desc')->first();
+
+        $trending = Profile::orderBy('updated_at', 'desc')->take(10)->get();
 
         return view('uirevamp.home', [
             'loggedIn' => $loggedIn,
-            'profile' => $profile
+            'profile' => $profile,
+            'winner' => $winner,
+            'trending' => $trending
         ]);
     }
     /*user homepage*/

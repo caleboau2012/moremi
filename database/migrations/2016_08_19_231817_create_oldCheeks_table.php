@@ -19,6 +19,7 @@ class CreateOldCheeksTable extends Migration
             $table->integer('won_photo');
             $table->string('facebook_post_id')->nullable();
             $table->integer('user_id');
+            $table->integer('votes');
             $table->timestamps();
         });
     }

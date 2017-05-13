@@ -102,13 +102,15 @@ use AuthTrait;
         /*todo Get location from the winner's profile*/
         $location = "Eko Hotel and Suite";
 
-        OldCheek::create([
-            \TableConstant::PROFILE_ID => $poll->profile_id,
-            \OldCheekConstant::WON_DATE =>  $now_,
-             \OldCheekConstant::WON_PHOTO => $winner[\ProfileConstant::PHOTO],
-             \OldCheekConstant::VOTER => $poll->voter_id,
-             \TableConstant::CREATED_AT => $now_
-        ]);
+        $oldCheek = new OldCheek();
+        $oldCheek->profile_id = $poll->profile_id;
+        $oldCheek->won_date = $now_;
+        $oldCheek->won_photo = $winner->photo_id;
+        $oldCheek->voter_id = $poll->voter_id;
+        $oldCheek->votes = $winner->vote;
+        $oldCheek->created_at = $now_;
+
+        $oldCheek->save();
 
         $connection = Connection::where(
             \TableConstant::PROFILE_ID, $poll->profile_id)
