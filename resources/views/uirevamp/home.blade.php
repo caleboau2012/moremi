@@ -99,81 +99,37 @@
     </div>
 
     {{--PICK OF THE MOMENT--}}
-    <div id="moment_pick_container" >
-        <div class="container">
-            <div class="row">
-                <h3 id="header" class="text-center text-white">Pick of the Moment</h3>
-            </div>
-
-            <div class="center-block moment_pick_container_width non-md lg-only">
-                <div class="row moment_pick_container_content" style="position:relative;">
-                    <div class="moment_pics_container pull-left">
-                        <ul class="roundabout roundabout-holder" style="padding: 0; position: relative;">
-                            @foreach($winner->profile()->first()->photos()->get() as $photo))
-                            <li class="roundabout-slide"><img class="img-thumbnail img-responsive" src="{{ asset($photo->full_path) }}" alt="Cheek of the moment"></li>
-                            @endforeach
-                        </ul>
-                    </div>
-                    <div class="moment_profile_container">
-                        <div class="content name_content">
-                            <h4 class="no-margin-bottom name">{{$winner->profile()->first()->first_name}} {{$winner->profile()->first()->last_name}}</h4>
-                            <span class="content-end"></span>
-
-                        </div>
-                        <p class="content no-margin-bottom">
-                            <span class="icon icon-location text-primary">&nbsp;</span>{{$winner->profile()->first()->venue()->first()->name}}
-                        </p>
-                        <p class="content no-margin-top">
-                            <span class="icon icon-heart3 text-primary">&nbsp;</span>{{$winner->votes}}
-                        </p>
-                        <p class="content">
-                            <strong>Status:</strong> <br>
-                            {{$winner->profile()->first()->status}}
-                        </p>
-                        <h5 class="content">
-                            <a href="#"><span class="icon icon-instagram text-primary"></span></a>
-                            <a href="#"><span class="icon icon-facebook-official text-primary"></span></a>
-                            <a href="#"><span class="icon icon-twitter text-primary"></span></a>
-                        </h5>
-                    </div>
-
-                    <div class="moment_pick_voter_container">
-                        <img src="{{asset($winner->picker()->first()->photo()->first()->thumb_path)}}" alt="" width="65" class="img-circle">
-                        <div class="description">
-                            <h5 class="no-margin">Picker</h5>
-                            <p class="no-margin text-white">{{$winner->picker()->first()->first_name}} {{$winner->picker()->first()->last_name}}</p>
-                            <p class="no-margin text-white">{{$winner->picker()->first()->venue()->first()->name}}</p>
-                        </div>
-                    </div>
-
+    @if($winner != null)
+        <div id="moment_pick_container" >
+            <div class="container">
+                <div class="row">
+                    <h3 id="header" class="text-center text-white">Pick of the Moment</h3>
                 </div>
-            </div>
-            <div class="row non-lg">
-                <div class="col-md-6 col-md-offset-3">
-                    <ul class="roundabout roundabout-holder" style="padding: 0; position: relative;">
-                        <li class="roundabout-slide"><img class="img-thumbnail img-responsive" src="{{ asset('images/cheeks/0.jpg') }}" alt="Cheek of the moment"></li>
-                        <li class="roundabout-slide"><img class="img-thumbnail img-responsive" src="{{ asset('images/cheeks/6.jpg') }}" alt="Cheek of the moment"></li>
-                        <li class="roundabout-slide"><img class="img-thumbnail img-responsive" src="{{ asset('images/cheeks/1.jpg') }}" alt="Cheek of the moment"></li>
-                        <li class="roundabout-slide"><img class="img-thumbnail img-responsive" src="{{ asset('images/cheeks/2.jpg') }}" alt="Cheek of the moment"></li>
-                        <li class="roundabout-slide"><img class="img-thumbnail img-responsive" src="{{ asset('images/cheeks/3.jpg') }}" alt="Cheek of the moment"></li>
-                        <li class="roundabout-slide"><img class="img-thumbnail img-responsive" src="{{ asset('images/cheeks/7.jpg') }}" alt="Cheek of the moment"></li>
-                    </ul>
-                </div>
-                <div class="col-md-6">
-                    <div class="panel panel-warning">
-                        <div class="panel-body">
+
+                <div class="center-block moment_pick_container_width non-md lg-only">
+                    <div class="row moment_pick_container_content" style="position:relative;">
+                        <div class="moment_pics_container pull-left">
+                            <ul class="roundabout roundabout-holder" style="padding: 0; position: relative;">
+                                @foreach($winner->profile()->first()->photos()->get() as $photo))
+                                <li class="roundabout-slide"><img class="img-thumbnail img-responsive" src="{{ asset($photo->full_path) }}" alt="Cheek of the moment"></li>
+                                @endforeach
+                            </ul>
+                        </div>
+                        <div class="moment_profile_container">
                             <div class="content name_content">
-                                <h4 class="no-margin-bottom name">Chioma Nwakezuologoomigwojere</h4>
+                                <h4 class="no-margin-bottom name">{{$winner->profile()->first()->first_name}} {{$winner->profile()->first()->last_name}}</h4>
+                                <span class="content-end"></span>
+
                             </div>
                             <p class="content no-margin-bottom">
-                                <span class="icon icon-location text-primary">&nbsp;</span>Lagos, Nigeria
+                                <span class="icon icon-location text-primary">&nbsp;</span>{{$winner->profile()->first()->venue()->first()->name}}
                             </p>
                             <p class="content no-margin-top">
-                                <span class="icon icon-heart3 text-primary">&nbsp;</span>5,000
+                                <span class="icon icon-heart3 text-primary">&nbsp;</span>{{$winner->votes}}
                             </p>
                             <p class="content">
                                 <strong>Status:</strong> <br>
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores quibusdam sequi voluptate.
+                                {{$winner->profile()->first()->status}}
                             </p>
                             <h5 class="content">
                                 <a href="#"><span class="icon icon-instagram text-primary"></span></a>
@@ -181,21 +137,68 @@
                                 <a href="#"><span class="icon icon-twitter text-primary"></span></a>
                             </h5>
                         </div>
+
+                        <div class="moment_pick_voter_container">
+                            <img src="{{asset($winner->picker()->first()->photo()->first()->thumb_path)}}" alt="" width="65" class="img-circle">
+                            <div class="description">
+                                <h5 class="no-margin">Picker</h5>
+                                <p class="no-margin text-white">{{$winner->picker()->first()->first_name}} {{$winner->picker()->first()->last_name}}</p>
+                                <p class="no-margin text-white">{{$winner->picker()->first()->venue()->first()->name}}</p>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
-                <div class="col-md-6">
-                    <div>
-                        <img src="{{asset('images/users/moses.jpg')}}" alt="" width="65" class="img-circle">
-                        <div class="description">
-                            <h5 class="no-margin">Highest Picker</h5>
-                            <p class="no-margin text-white">Adamu Musa</p>
-                            <p class="no-margin text-white">Lagos, Nigeria</p>
+                <div class="row non-lg">
+                    <div class="col-md-6 col-md-offset-3">
+                        <ul class="roundabout roundabout-holder" style="padding: 0; position: relative;">
+                            <li class="roundabout-slide"><img class="img-thumbnail img-responsive" src="{{ asset('images/cheeks/0.jpg') }}" alt="Cheek of the moment"></li>
+                            <li class="roundabout-slide"><img class="img-thumbnail img-responsive" src="{{ asset('images/cheeks/6.jpg') }}" alt="Cheek of the moment"></li>
+                            <li class="roundabout-slide"><img class="img-thumbnail img-responsive" src="{{ asset('images/cheeks/1.jpg') }}" alt="Cheek of the moment"></li>
+                            <li class="roundabout-slide"><img class="img-thumbnail img-responsive" src="{{ asset('images/cheeks/2.jpg') }}" alt="Cheek of the moment"></li>
+                            <li class="roundabout-slide"><img class="img-thumbnail img-responsive" src="{{ asset('images/cheeks/3.jpg') }}" alt="Cheek of the moment"></li>
+                            <li class="roundabout-slide"><img class="img-thumbnail img-responsive" src="{{ asset('images/cheeks/7.jpg') }}" alt="Cheek of the moment"></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="panel panel-warning">
+                            <div class="panel-body">
+                                <div class="content name_content">
+                                    <h4 class="no-margin-bottom name">Chioma Nwakezuologoomigwojere</h4>
+                                </div>
+                                <p class="content no-margin-bottom">
+                                    <span class="icon icon-location text-primary">&nbsp;</span>Lagos, Nigeria
+                                </p>
+                                <p class="content no-margin-top">
+                                    <span class="icon icon-heart3 text-primary">&nbsp;</span>5,000
+                                </p>
+                                <p class="content">
+                                    <strong>Status:</strong> <br>
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores quibusdam sequi voluptate.
+                                </p>
+                                <h5 class="content">
+                                    <a href="#"><span class="icon icon-instagram text-primary"></span></a>
+                                    <a href="#"><span class="icon icon-facebook-official text-primary"></span></a>
+                                    <a href="#"><span class="icon icon-twitter text-primary"></span></a>
+                                </h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div>
+                            <img src="{{asset('images/users/moses.jpg')}}" alt="" width="65" class="img-circle">
+                            <div class="description">
+                                <h5 class="no-margin">Highest Picker</h5>
+                                <p class="no-margin text-white">Adamu Musa</p>
+                                <p class="no-margin text-white">Lagos, Nigeria</p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+        @endif
+
 
     <div class="container-fluid bg-grey" id="trending_container" >
         <div class="container">
