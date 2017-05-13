@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\OldCheek;
 use App\Profile;
+use App\Venue;
 
 class UIRevampController extends Controller
 {
@@ -22,17 +23,25 @@ class UIRevampController extends Controller
             $profile = Profile::where('user_id', customdecrypt($token))->first();
         }
 
-        $profiles= Profile::orderBy('vote', 'desc')->paginate(4);
-        $topsix = Profile::orderBy('vote', 'desc')->take(8)->get();
+        $males= Profile::where(\ProfileConstant::SEX, \ProfileConstant::MALE)->count();
+        $females = Profile::where(\ProfileConstant::SEX, \ProfileConstant::FEMALE)->count();
+        $dates = OldCheek::all()->count();
+
         $winner =OldCheek::orderBy('created_at', 'desc')->first();
 
         $trending = Profile::orderBy('updated_at', 'desc')->take(10)->get();
+
+        $partners = Venue::all();
 
         return view('uirevamp.home', [
             'loggedIn' => $loggedIn,
             'profile' => $profile,
             'winner' => $winner,
-            'trending' => $trending
+            'trending' => $trending,
+            'males' => $males,
+            'females' => $females,
+            'dates' => $dates,
+            'partners' => $partners
         ]);
     }
     /*user homepage*/

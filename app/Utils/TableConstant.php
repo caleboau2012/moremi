@@ -25,6 +25,9 @@ class ProfileConstant{
     const SEX = 'sex';
     const PHOTO = 'photo_id';
     const ABOUT = 'about';
+
+    const MALE = 'male';
+    const FEMALE = 'female';
 }
 
 class OldCheekConstant{

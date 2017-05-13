@@ -92,6 +92,8 @@
                         @endif
                     </div>
                 </div>
+
+                <div class="clearfix"></div>
             </div>
         </div>
     </div>
@@ -206,21 +208,22 @@
                 </div>
             </div>
             <div class="row trending-items">
+                @foreach($trending as $person)
                 <div class="trending-item">
                     <div class="profile-card">
                         <div class="profile-card-heading">
-                            <img class="img-responsive img-circle" src="{{asset('images/cheeks/0.jpg')}}" alt="Moses">
+                            <img class="img-responsive img-circle" src="{{asset($person->photo()->first()->full_path)}}" alt="Moses">
                         </div>
                         <div class="profile-card-content">
                             <div class="profile-card-name">
-                                <h4 class="text-center">Adebayo Sannnimulwirrr</h4>
+                                <h4 class="text-center">{{$person->first_name}} {{$person->last_name}}</h4>
                                 <span class="content-end"></span>
                             </div>
                             <p class="text-center">
-                                <span class="icon icon-location">&nbsp;</span>Lagos, Nigeria
+                                <span class="icon icon-location">&nbsp;</span>{{$person->venue()->first()->name}}
                             </p>
                             <p class="text-center">
-                                <span class="icon icon-heart3">&nbsp;</span>5,000
+                                <span class="icon icon-heart3">&nbsp;</span>{{$person->vote}}
                             </p>
                             <div class="text-center">
                                 <button class="btn get_started btn-sm vote-btn btn-fill">Vote</button>
@@ -229,150 +232,7 @@
 
                     </div>
                 </div>
-                <div class="trending-item">
-                    <div class="profile-card">
-                        <div class="profile-card-heading">
-                            <img class="img-responsive img-circle" src="{{asset('images/cheeks/1.jpg')}}" alt="Moses">
-                        </div>
-                        <div class="profile-card-content">
-                            <div class="profile-card-name">
-                                <h4 class="text-center">Adebayo Moses</h4>
-                                <span class="content-end"></span>
-                            </div>
-
-                            <p class="text-center">
-                                <span class="icon icon-location">&nbsp;</span>Lagos, Nigeria
-                            </p>
-                            <p class="text-center">
-                                <span class="icon icon-heart3">&nbsp;</span>1,000
-                            </p>
-                            <div class="text-center">
-                                <button class="btn get_started btn-sm vote-btn btn-fill">Vote</button>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-                <div class="trending-item">
-                    <div class="profile-card">
-                        <div class="profile-card-heading">
-                            <img class="img-responsive img-circle" src="{{asset('images/cheeks/5.jpg')}}" alt="Moses">
-                        </div>
-                        <div class="profile-card-content">
-                            <div class="profile-card-name">
-                                <h4 class="text-center">Mbakwe Chukwulegezookwe</h4>
-                                <span class="content-end"></span>
-                            </div>
-                            <p class="text-center">
-                                <span class="icon icon-location">&nbsp;</span>Lagos, Nigeria
-                            </p>
-                            <p class="text-center">
-                                <span class="icon icon-heart3">&nbsp;</span>80
-                            </p>
-                            <div class="text-center">
-                                <button class="btn get_started btn-sm vote-btn btn-fill">Vote</button>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-                <div class="trending-item">
-                    <div class="profile-card">
-                        <div class="profile-card-heading">
-                            <img class="img-responsive img-circle" src="{{asset('images/users/moses.jpg')}}" alt="Moses">
-                        </div>
-                        <div class="profile-card-content">
-                            <div class="profile-card-name">
-                                <h4 class="text-center">Adebayo Sannnimulwirrr</h4>
-                                <span class="content-end"></span>
-                            </div>
-
-                            <p class="text-center">
-                                <span class="icon icon-location">&nbsp;</span>Lagos, Nigeria
-                            </p>
-                            <p class="text-center">
-                                <span class="icon icon-heart3">&nbsp;</span>300
-                            </p>
-                            <div class="text-center">
-                                <button class="btn get_started btn-sm vote-btn btn-fill">Vote</button>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-                <div class="trending-item">
-                    <div class="profile-card">
-                        <div class="profile-card-heading">
-                            <img class="img-responsive img-circle" src="{{asset('images/cheeks/6.jpg')}}" alt="Moses">
-                        </div>
-                        <div class="profile-card-content">
-                            <div class="profile-card-name">
-                                <h4 class="text-center">Mbakwe Chukwulegezookwe</h4>
-                                <span class="content-end"></span>
-                            </div>
-
-                            <p class="text-center">
-                                <span class="icon icon-location">&nbsp;</span>Lagos, Nigeria
-                            </p>
-                            <p class="text-center">
-                                <span class="icon icon-heart3">&nbsp;</span>1,000
-                            </p>
-                            <div class="text-center">
-                                <button class="btn get_started btn-sm vote-btn btn-fill">Vote</button>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-                <div class="trending-item">
-                    <div class="profile-card">
-                        <div class="profile-card-heading">
-                            <img class="img-responsive img-circle" src="{{asset('images/cheeks/7.jpg')}}" alt="Moses">
-                        </div>
-                        <div class="profile-card-content">
-                            <div class="profile-card-name">
-                                <h4 class="text-center">Adebayo Caleb</h4>
-                                <span class="content-end"></span>
-                            </div>
-
-                            <p class="text-center">
-                                <span class="icon icon-location">&nbsp;</span>Lagos, Nigeria
-                            </p>
-                            <p class="text-center">
-                                <span class="icon icon-heart3">&nbsp;</span>48,000
-                            </p>
-                            <div class="text-center">
-                                <button class="btn get_started btn-sm vote-btn btn-fill">Vote</button>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-                <div class="trending-item">
-                    <div class="profile-card">
-                        <div class="profile-card-heading">
-                            <img class="img-responsive img-circle" src="{{asset('images/cheeks/0.jpg')}}" alt="Moses">
-                        </div>
-                        <div class="profile-card-content">
-                            <div class="profile-card-name">
-                                <h4 class="text-center">Adebayo Caleb</h4>
-                                <span class="content-end"></span>
-                            </div>
-
-                            <p class="text-center">
-                                <span class="icon icon-location">&nbsp;</span>Lagos, Nigeria
-                            </p>
-                            <p class="text-center">
-                                <span class="icon icon-heart3">&nbsp;</span>39,010
-                            </p>
-                            <div class="text-center">
-                                <button class="btn get_started btn-sm vote-btn btn-fill">Vote</button>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-
+                @endforeach
             </div>
         </div>
     </div>
@@ -383,7 +243,7 @@
                 <div class="col-md-4">
                     <div class="text-center">
                         <span class="text-white icon icon-profile-female"></span>
-                        <h3 class="no-margin text-center text-white">2000+</h3>
+                        <h3 class="no-margin text-center text-white">{{$females}}+</h3>
                         <div class="divider"></div>
                         <h5 class="no-margin text-white text-center">Registered Ladies</h5>
                     </div>
@@ -391,7 +251,7 @@
                 <div class="col-md-4">
                     <div class="text-center">
                         <span class="text-white icon icon-profile-male"></span>
-                        <h3 class="no-margin text-center text-white">2000+</h3>
+                        <h3 class="no-margin text-center text-white">{{$males}}+</h3>
                         <div class="divider"></div>
                         <h5 class="no-margin text-white text-center">Registered Men</h5>
                     </div>
@@ -399,7 +259,7 @@
                 <div class="col-md-4">
                     <div class="text-center">
                         <span class="text-white icon icon-tags"></span>
-                        <h3 class="no-margin text-center text-white">2000+</h3>
+                        <h3 class="no-margin text-center text-white">{{$dates}}+</h3>
                         <div class="divider"></div>
                         <h5 class="no-margin text-white text-center">Sponsored Dates</h5>
                     </div>
@@ -414,8 +274,21 @@
     {{--PARTNERS--}}
     <div class="container" id="partners_section">
         <h3 class="text-center">Partners</h3>
-        <div class="row">
-
+        <div class="row trending-items">
+            @foreach($partners as $venue)
+                <div class="trending-item">
+                    <div class="col-sm-3">
+                        <div class="panel panel-warning">
+                            <div class="panel-body">
+                                <a href="{{$person->venue()->first()->url}}">
+                                    <img class="img-responsive img-circle" src="{{asset($venue->thumb)}}" alt="{{$venue->name}}">
+                                    <div class="clearfix"></div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
         </div>
     </div>
 @endsection

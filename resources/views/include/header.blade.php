@@ -12,8 +12,9 @@
 
     <div class="collapse navbar-collapse navbar-ex1-collapse" role="navigation">
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#"><span class="text-white">About</span></a></li>
-        <li><a href="#"><span class="text-white">Trending</span></a></li>
+        <li><a href="#about_content"><span class="text-white">About</span></a></li>
+        <li><a href="#moment_pick_container"><span class="text-white">Pick of the Week</span></a></li>
+        <li><a href="#trending_container"><span class="text-white">Trending</span></a></li>
         @if(!$loggedIn)
           <li><a href="#" data-url="{{route("login")}}" class="login"><span class="text-white">Join</span></a></li>
         @else
