@@ -32,5 +32,9 @@ class UIRevampController extends Controller
     public function user(){
         return view('uirevamp.user');
     }
+    /*user profile*/
+    public function profile(){
+        return view('uirevamp.profile');
+    }
 
 }
