@@ -7,6 +7,9 @@
 body{
     font-family: 'Poppins', sans-serif;
 }
+#app-body{
+    background: #fdfdfd;
+}
 #landing_page_nav_bar{
     margin-bottom: 0;
     background: transparent;
@@ -241,6 +244,25 @@ Profile Card
     white-space: nowrap;
     margin-bottom: 10px;
 }
+.profile-court{
+    padding: 20px 10px 65px;
+    margin-bottom: 20px;
+}
+.profile-court .profile-dp{
+    max-height: 30px;
+}
+.profile-court textarea{
+    resize: vertical;
+    height: 120px;
+}
+.profile-form{
+    margin-top: 40px;
+}
+.profile-small-card{
+    background: #e1e1e1;
+    height: 65px;
+    margin-bottom: 20px;
+}
 .content-end{
     background-image: -webkit-gradient(linear,left top,right top,color-stop(0%,rgba(255,255,255,0)),color-stop(100%,rgba(255,255,255,1)));
     background-image: -webkit-linear-gradient(left,rgba(255,255,255,0),rgba(255,255,255,1));
@@ -345,4 +367,26 @@ Profile Card
 
 .pick-items{
     margin-bottom: 20px;
+}
+
+.connections-container{
+    background: #ffe3d2;
+    padding: 10px 20px;
+    height: 730px;
+    position: relative;
+}
+.connection-item{
+    margin-bottom: 15px;
+}
+#chat-container{
+    position: absolute;
+    bottom: 0;
+    background: #ffffff;
+    height: 300px;
+    width: 90%;
+}
+#chat-container-header{
+    background-image: linear-gradient(-146deg, #FF4B1F 0%, #F06B3B 83%);
+ color: #ffffff;
+    padding: 20px;
 }
