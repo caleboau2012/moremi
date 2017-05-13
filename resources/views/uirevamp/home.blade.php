@@ -136,11 +136,11 @@
                     </div>
 
                     <div class="moment_pick_voter_container">
-                        <img src="{{asset('images/users/moses.jpg')}}" alt="" width="65" class="img-circle">
+                        <img src="{{asset($winner->picker()->first()->photo()->first()->thumb_path)}}" alt="" width="65" class="img-circle">
                         <div class="description">
-                            <h5 class="no-margin">Highest Picker</h5>
-                            <p class="no-margin text-white">Adamu Musa</p>
-                            <p class="no-margin text-white">Lagos, Nigeria</p>
+                            <h5 class="no-margin">Picker</h5>
+                            <p class="no-margin text-white">{{$winner->picker()->first()->first_name}} {{$winner->picker()->first()->last_name}}</p>
+                            <p class="no-margin text-white">{{$winner->picker()->first()->venue()->first()->name}}</p>
                         </div>
                     </div>
 

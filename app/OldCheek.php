@@ -14,4 +14,8 @@ class OldCheek extends Model
     public  function profile(){
         return $this->hasOne('App\Profile','id','profile_id');
     }
+
+    public function picker(){
+        return $this->hasOne('App\Profile','id','voter_id');
+    }
 }
