@@ -141,7 +141,7 @@ a, a:hover{
 
 /*Trending*/
 #trending_container{
-    padding: 75px 0;
+    padding: 75px 0 20px;
 }
 .trending-items{
     padding: 20px 0 50px;
@@ -321,4 +321,24 @@ Profile Card
 
 #profile-dp:hover .dp-edit-btn{
     display: block;
+}
+
+/*Filter*/
+#filter-container{
+    margin-bottom: 20px;
+}
+#filter-container .btn{
+    border-radius: 20px;
+    padding: 7px 22px;
+    margin-right: 8px;
+}
+#filter-container .btn.active{
+    color: #FF4B1F;
+}
+#filter-container #input-filter-search{
+    height: 33px;
+}
+#filter-container #input-filter-search:focus{
+    -webkit-box-shadow: inset 0 -2px 0 #ff4000;
+    box-shadow: inset 0 -2px 0 #ff4000;
 }

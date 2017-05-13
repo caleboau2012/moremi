@@ -14,7 +14,7 @@
 
 @section('content')
     {{--trending--}}
-    <div class="hidden container-fluid bg-grey" id="trending_container" >
+    <div class="container-fluid bg-grey" id="trending_container" >
         <div class="container">
             <div class="row">
                 <div class="col-md-6 col-md-offset-3">
@@ -198,16 +198,346 @@
 
     {{--PICK SECTION--}}
     <div class="container-fluid bg-grey">
-        <h3 class="text-center text-primary">PICK</h3>
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <div class="btn-group btn-group-justified">
+                    <a href="#" class="btn active  trending_menu">Pick</a>
+                </div>
+            </div>
+        </div>
 
         {{--Filter Panel--}}
+        <div class="container" id="filter-container">
+            <div class="col-md-8">
+                <h5 class="text-muted">Filter</h5>
+
+                <button id="femaleFilter" class="btn btn-default filter-btn-option" data-filter-id="femaleFilter">Females</button>
+                <button id="maleFilter" class="btn btn-default active filter-btn-option" data-filter-id="maleFilter">Males</button>
+                <button id="spotFilter" class="btn btn-default filter-btn-option" data-filter-id="spotFilter">Spot</button>
+
+                &nbsp;&nbsp;
+                <strong>Age: </strong>&nbsp;&nbsp;
+                <b> 16</b>
+                <input id="age_range" type="text" class="span2" value="" data-slider-min="16" data-slider-max="100" data-slider-step="5" data-slider-value="[25,35]"/> <b> 100</b>
+
+            </div>
+
+            <div class="col-md-4">
+                <h5 class="text-right text-muted hidden-sm hidden-xs">Search</h5>
+                <div class="input-group input-group-lg">
+                    <span class="input-group-addon" id="sizing-addon1">
+                        <span class="icon icon-search text-muted"></span>
+                    </span>
+                    <input type="text" id="input-filter-search" class="form-control" placeholder="Search..." aria-describedby="sizing-addon1">
+                </div>
+            </div>
+
+        </div>
+
+        {{--PICKS AREA--}}
         <div class="container">
-            <button class="btn btn-default">Females</button>
-            <button class="btn btn-default">Males</button>
-            <button class="btn btn-default">Spot</button>
+            <div class="pick-items">
+                <div class="col-md-3">
+                    <div class="pick-item">
+                        <div class="profile-card">
+                            <div class="profile-card-heading">
+                                <img class="img-responsive img-circle" src="{{asset('images/cheeks/0.jpg')}}" alt="Moses">
+                            </div>
+                            <div class="profile-card-content">
+                                <div class="profile-card-name">
+                                    <h4 class="text-center">Adebayo Sannnimulwirrr</h4>
+                                    <span class="content-end"></span>
+                                </div>
+                                <p class="text-center">
+                                    <span class="icon icon-location">&nbsp;</span>Lagos, Nigeria
+                                </p>
+                                <p class="text-center">
+                                    <span class="icon icon-heart3">&nbsp;</span>5,000
+                                </p>
+                                <div class="text-center">
+                                    <button class="btn get_started btn-sm vote-btn btn-fill">Vote</button>
+                                </div>
+                            </div>
 
-            <b> 16</b> <input id="ex2" type="text" class="span2" value="" data-slider-min="16" data-slider-max="100" data-slider-step="5" data-slider-value="[25,35]"/> <b> 100</b>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="pick-item">
+                        <div class="profile-card">
+                            <div class="profile-card-heading">
+                                <img class="img-responsive img-circle" src="{{asset('images/cheeks/0.jpg')}}" alt="Moses">
+                            </div>
+                            <div class="profile-card-content">
+                                <div class="profile-card-name">
+                                    <h4 class="text-center">Adebayo Sannnimulwirrr</h4>
+                                    <span class="content-end"></span>
+                                </div>
+                                <p class="text-center">
+                                    <span class="icon icon-location">&nbsp;</span>Lagos, Nigeria
+                                </p>
+                                <p class="text-center">
+                                    <span class="icon icon-heart3">&nbsp;</span>5,000
+                                </p>
+                                <div class="text-center">
+                                    <button class="btn get_started btn-sm vote-btn btn-fill">Vote</button>
+                                </div>
+                            </div>
 
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="pick-item">
+                        <div class="profile-card">
+                            <div class="profile-card-heading">
+                                <img class="img-responsive img-circle" src="{{asset('images/cheeks/0.jpg')}}" alt="Moses">
+                            </div>
+                            <div class="profile-card-content">
+                                <div class="profile-card-name">
+                                    <h4 class="text-center">Adebayo Sannnimulwirrr</h4>
+                                    <span class="content-end"></span>
+                                </div>
+                                <p class="text-center">
+                                    <span class="icon icon-location">&nbsp;</span>Lagos, Nigeria
+                                </p>
+                                <p class="text-center">
+                                    <span class="icon icon-heart3">&nbsp;</span>5,000
+                                </p>
+                                <div class="text-center">
+                                    <button class="btn get_started btn-sm vote-btn btn-fill">Vote</button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="pick-item">
+                        <div class="profile-card">
+                            <div class="profile-card-heading">
+                                <img class="img-responsive img-circle" src="{{asset('images/cheeks/0.jpg')}}" alt="Moses">
+                            </div>
+                            <div class="profile-card-content">
+                                <div class="profile-card-name">
+                                    <h4 class="text-center">Adebayo Sannnimulwirrr</h4>
+                                    <span class="content-end"></span>
+                                </div>
+                                <p class="text-center">
+                                    <span class="icon icon-location">&nbsp;</span>Lagos, Nigeria
+                                </p>
+                                <p class="text-center">
+                                    <span class="icon icon-heart3">&nbsp;</span>5,000
+                                </p>
+                                <div class="text-center">
+                                    <button class="btn get_started btn-sm vote-btn btn-fill">Vote</button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="pick-item">
+                        <div class="profile-card">
+                            <div class="profile-card-heading">
+                                <img class="img-responsive img-circle" src="{{asset('images/cheeks/0.jpg')}}" alt="Moses">
+                            </div>
+                            <div class="profile-card-content">
+                                <div class="profile-card-name">
+                                    <h4 class="text-center">Adebayo Sannnimulwirrr</h4>
+                                    <span class="content-end"></span>
+                                </div>
+                                <p class="text-center">
+                                    <span class="icon icon-location">&nbsp;</span>Lagos, Nigeria
+                                </p>
+                                <p class="text-center">
+                                    <span class="icon icon-heart3">&nbsp;</span>5,000
+                                </p>
+                                <div class="text-center">
+                                    <button class="btn get_started btn-sm vote-btn btn-fill">Vote</button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="pick-item">
+                        <div class="profile-card">
+                            <div class="profile-card-heading">
+                                <img class="img-responsive img-circle" src="{{asset('images/cheeks/0.jpg')}}" alt="Moses">
+                            </div>
+                            <div class="profile-card-content">
+                                <div class="profile-card-name">
+                                    <h4 class="text-center">Adebayo Sannnimulwirrr</h4>
+                                    <span class="content-end"></span>
+                                </div>
+                                <p class="text-center">
+                                    <span class="icon icon-location">&nbsp;</span>Lagos, Nigeria
+                                </p>
+                                <p class="text-center">
+                                    <span class="icon icon-heart3">&nbsp;</span>5,000
+                                </p>
+                                <div class="text-center">
+                                    <button class="btn get_started btn-sm vote-btn btn-fill">Vote</button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="pick-item">
+                        <div class="profile-card">
+                            <div class="profile-card-heading">
+                                <img class="img-responsive img-circle" src="{{asset('images/cheeks/0.jpg')}}" alt="Moses">
+                            </div>
+                            <div class="profile-card-content">
+                                <div class="profile-card-name">
+                                    <h4 class="text-center">Adebayo Sannnimulwirrr</h4>
+                                    <span class="content-end"></span>
+                                </div>
+                                <p class="text-center">
+                                    <span class="icon icon-location">&nbsp;</span>Lagos, Nigeria
+                                </p>
+                                <p class="text-center">
+                                    <span class="icon icon-heart3">&nbsp;</span>5,000
+                                </p>
+                                <div class="text-center">
+                                    <button class="btn get_started btn-sm vote-btn btn-fill">Vote</button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="pick-item">
+                        <div class="profile-card">
+                            <div class="profile-card-heading">
+                                <img class="img-responsive img-circle" src="{{asset('images/cheeks/0.jpg')}}" alt="Moses">
+                            </div>
+                            <div class="profile-card-content">
+                                <div class="profile-card-name">
+                                    <h4 class="text-center">Adebayo Sannnimulwirrr</h4>
+                                    <span class="content-end"></span>
+                                </div>
+                                <p class="text-center">
+                                    <span class="icon icon-location">&nbsp;</span>Lagos, Nigeria
+                                </p>
+                                <p class="text-center">
+                                    <span class="icon icon-heart3">&nbsp;</span>5,000
+                                </p>
+                                <div class="text-center">
+                                    <button class="btn get_started btn-sm vote-btn btn-fill">Vote</button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="pick-item">
+                        <div class="profile-card">
+                            <div class="profile-card-heading">
+                                <img class="img-responsive img-circle" src="{{asset('images/cheeks/0.jpg')}}" alt="Moses">
+                            </div>
+                            <div class="profile-card-content">
+                                <div class="profile-card-name">
+                                    <h4 class="text-center">Adebayo Sannnimulwirrr</h4>
+                                    <span class="content-end"></span>
+                                </div>
+                                <p class="text-center">
+                                    <span class="icon icon-location">&nbsp;</span>Lagos, Nigeria
+                                </p>
+                                <p class="text-center">
+                                    <span class="icon icon-heart3">&nbsp;</span>5,000
+                                </p>
+                                <div class="text-center">
+                                    <button class="btn get_started btn-sm vote-btn btn-fill">Vote</button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="pick-item">
+                        <div class="profile-card">
+                            <div class="profile-card-heading">
+                                <img class="img-responsive img-circle" src="{{asset('images/cheeks/0.jpg')}}" alt="Moses">
+                            </div>
+                            <div class="profile-card-content">
+                                <div class="profile-card-name">
+                                    <h4 class="text-center">Adebayo Sannnimulwirrr</h4>
+                                    <span class="content-end"></span>
+                                </div>
+                                <p class="text-center">
+                                    <span class="icon icon-location">&nbsp;</span>Lagos, Nigeria
+                                </p>
+                                <p class="text-center">
+                                    <span class="icon icon-heart3">&nbsp;</span>5,000
+                                </p>
+                                <div class="text-center">
+                                    <button class="btn get_started btn-sm vote-btn btn-fill">Vote</button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="pick-item">
+                        <div class="profile-card">
+                            <div class="profile-card-heading">
+                                <img class="img-responsive img-circle" src="{{asset('images/cheeks/0.jpg')}}" alt="Moses">
+                            </div>
+                            <div class="profile-card-content">
+                                <div class="profile-card-name">
+                                    <h4 class="text-center">Adebayo Sannnimulwirrr</h4>
+                                    <span class="content-end"></span>
+                                </div>
+                                <p class="text-center">
+                                    <span class="icon icon-location">&nbsp;</span>Lagos, Nigeria
+                                </p>
+                                <p class="text-center">
+                                    <span class="icon icon-heart3">&nbsp;</span>5,000
+                                </p>
+                                <div class="text-center">
+                                    <button class="btn get_started btn-sm vote-btn btn-fill">Vote</button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="pick-item">
+                        <div class="profile-card">
+                            <div class="profile-card-heading">
+                                <img class="img-responsive img-circle" src="{{asset('images/cheeks/0.jpg')}}" alt="Moses">
+                            </div>
+                            <div class="profile-card-content">
+                                <div class="profile-card-name">
+                                    <h4 class="text-center">Adebayo Sannnimulwirrr</h4>
+                                    <span class="content-end"></span>
+                                </div>
+                                <p class="text-center">
+                                    <span class="icon icon-location">&nbsp;</span>Lagos, Nigeria
+                                </p>
+                                <p class="text-center">
+                                    <span class="icon icon-heart3">&nbsp;</span>5,000
+                                </p>
+                                <div class="text-center">
+                                    <button class="btn get_started btn-sm vote-btn btn-fill">Vote</button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
     </div>
@@ -234,7 +564,14 @@
             });
 
 //            /*Range slider*/
-            $("#ex2").slider({});
+            $("#age_range").slider({});
+
+            /*Change active Filter Button*/
+            $(".filter-btn-option").click(function () {
+                var filter_id = $(this).attr('data-filter-id');
+                $('.filter-btn-option').removeClass('active');
+                $("#" + filter_id).addClass('active');
+            })
         })
 
     </script>

@@ -1,5 +1,16 @@
 /* Media Queries */
 @media(max-width:767px){
+    #app-header{
+        height: auto;
+    }
+    #app-header #logo{
+        width: 150px;
+    }
+    #app-header #profile-dp-xs{
+        width: 75px;
+        height: 75px;
+        border-radius: 50%;
+    }
     .non-xs, .non-sm{
         display: none;
     }
@@ -7,7 +18,18 @@
         display: block;
     }
 }
-@media(min-width:768px){
+@media(min-width:768px) and (max-width: 991px){
+    #app-header{
+        height: auto;
+    }
+    #app-header #logo{
+        width: 150px;
+    }
+    #app-header #profile-dp-xs{
+        width: 75px;
+        height: 75px;
+        border-radius: 50%;
+    }
     .non-sm, .non-md{
         display: none;
     }
@@ -15,7 +37,7 @@
         display: block;
     }
 }
-@media(min-width:992px){
+@media(min-width:992px) and (max-width: 1199px){
     /*.non-md{*/
     /*display: none;*/
     /*}*/
