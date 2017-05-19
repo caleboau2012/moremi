@@ -27,6 +27,8 @@ var Facebook = {
                     if((Profile.checkToken())){
                         var url = $("#login, .login").attr("data-url");
 
+                        console.log(url);
+
                         Utils.post(url,
                             {
                                 first_name: response.first_name,

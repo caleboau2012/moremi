@@ -59,6 +59,6 @@ Route::post('sendmessage', ['as' => 'chat-url', 'uses' => 'ChatController@sendMe
  */
 Route::group(['prefix' => 'ui'], function(){
    Route::get('home', array('uses'=>'UIRevampController@home'));
-   Route::get('user', array('uses'=>'UIRevampController@user'));
+   Route::get('user', array('uses'=>'UIRevampController@user', 'as' => 'app'));
    Route::get('user/profile', array('uses'=>'UIRevampController@profile'));
 });

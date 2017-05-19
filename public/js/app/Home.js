@@ -8,7 +8,7 @@ var Home = {
     init: function(){
         //Home.fetchCheeks();
 
-        $("#cheek-search").on("keyup", function(e){
+        $("#cheek-search, #input-filter-search").on("keyup", function(e){
             //console.log(this.value);
         }).on("keyup", function(e){
             if(e.keyCode == 13){
@@ -46,7 +46,7 @@ var Home = {
     },
     filterCheeks: function(query){
         //console.log(query);
-        $("#cheeks-inf .user h2").each(function(i){
+        $("#cheeks-inf .user h2, #cheeks-inf .profile-card-name h4").each(function(i){
             //console.log({
             //    element: $(this),
             //    query: query,
@@ -54,10 +54,12 @@ var Home = {
             //    conditional: ($(this).text().indexOf(query) == -1)
             //});
             if($(this).text().toLowerCase().indexOf(query.toLowerCase()) == -1){
-                $(this).parent().parent().parent().addClass("hidden");
+                //$(this).parent().parent().parent().addClass("hidden");
+                $(this).parent().parent().parent().parent().parent().addClass("hidden");
             }
             else{
-                $(this).parent().parent().parent().removeClass("hidden");
+                $(this).parent().parent().parent().parent().parent().removeClass("hidden");
+                //$(this).parent().parent().parent().removeClass("hidden");
             }
         });
     },
@@ -161,4 +163,5 @@ var Home = {
 
 $(document).ready(function(){
     Home.init();
+    InfiniteScroll.init();
 });

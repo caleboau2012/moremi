@@ -4,7 +4,7 @@
 InfiniteScroll ={
     CONSTANT:{
         LINK:BASE_URL+CHEEKS_URL,
-        PER_PAGE:10,
+        PER_PAGE:5,
         CURRENT_PAGE:1,
         LAST_PAGE:10,
         END_OF_DATA:false,
@@ -18,8 +18,8 @@ InfiniteScroll ={
                 InfiniteScroll.Get();
             }
         });
-        $("#cheek-search").on("keyup", function(e){
-            //console.log(this.value);
+        $("#cheek-search, #input-filter-search").on("keyup", function(e){
+            console.log(this.value);
             InfiniteScroll.CONSTANT.QUERY = this.value;
             InfiniteScroll.Get();
 
@@ -40,6 +40,7 @@ InfiniteScroll ={
             url:InfiniteScroll.CONSTANT.LINK+'/'+InfiniteScroll.CONSTANT.PER_PAGE+'?page='+InfiniteScroll.CONSTANT.CURRENT_PAGE + '&search=' + InfiniteScroll.CONSTANT.QUERY,
             type: 'GET',
             success: function (response) {
+                //console.log(response);
                 if(InfiniteScroll.CONSTANT.CURRENT_PAGE==1) {
                     $("#cheeks-inf").empty();
                 }
@@ -52,6 +53,7 @@ InfiniteScroll ={
                 InfiniteScroll.Render(response.data)
             },
             error: function(response){
+                //console.log(response);
                 InfiniteScroll.CONSTANT.LOADING=false; ///reset loading back to true;
 
             }
@@ -73,6 +75,7 @@ InfiniteScroll ={
                 .replace("[[PHOTO]]",data[i].image)
                 .replace("[[ID]]",data[i].id)
                 .replace("[[ID]]",data[i].id)
+                .replace("[[VENUE]]", data[i].venue)
                 .replace("[[VOTE]]",data[i].vote)
                 .replace("[[VOTE]]",data[i].vote)
             for(var a=0;a<data[i].photos.length;a++){

@@ -2,12 +2,9 @@
 @section('stylesheets')
     <link href="{{asset('libs/owl/owl.carousel.css')}}" rel="stylesheet">
 @endsection
-@section('header')
-    @include('include.header')
-@show
 
 @section('header')
-    @parent
+    @include('include.header')
     <script>
         window.fbAsyncInit = function() {
             FB.init({
@@ -47,9 +44,9 @@
                             </div>
                             <div class="row text-center">
                                 @if(!$loggedIn)
-                                    <button class="btn btn-default get_startedlogin"  data-url="{{route("login")}}">Get Started</button>
+                                    <button class="btn btn-default get_started login"  data-url="{{route("login")}}">Get Started</button>
                                 @else
-                                    <a href="#" class="btn btn-default get_started profile" >Find A Date</a>
+                                    <a href="{{route('app')}}" class="btn btn-default get_started profile" >Find A Date</a>
                                 @endif
                             </div>
                         </div>
@@ -88,7 +85,7 @@
                         @if(!$loggedIn)
                             <button class="btn get_started login"  data-url="{{route("login")}}">Get Started</button>
                         @else
-                            <a href="" class="btn get_started profile"  data-url="{{route("login")}}">Connect Now</a>
+                            <a href="{{route('app')}}" class="btn get_started profile"  data-url="{{route("login")}}">Connect Now</a>
                         @endif
                     </div>
                 </div>

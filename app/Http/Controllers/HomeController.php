@@ -73,6 +73,7 @@ class HomeController extends Controller
                 'name'=>$p->first_name." ".$p->last_name,
                 'vote'=>is_null($p->vote)?0:$p->vote,
                 'id'=>$p->id,
+                'venue'=>$p->venue()->first()->name,
                 'image'=> $p->photo_id!=null && $p->photo_id!=0?Photo::find($p->photo_id)->thumb_path:asset('images/default.png'),
                 'photos'=>$p->photos,
                 'about'=>$p->about,

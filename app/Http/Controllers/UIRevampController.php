@@ -46,7 +46,23 @@ class UIRevampController extends Controller
     }
     /*user homepage*/
     public function user(){
-        return view('uirevamp.user');
+        $loggedIn = false;
+        $profile = null;
+
+        $token = session(\AppConstants::AUTH);
+        if(isset($token) == true) {
+            $loggedIn = true;
+            $profile = Profile::where('user_id', customdecrypt($token))->first();
+        }
+        else{
+            return redirect(route('home'));
+        }
+
+        $trending = Profile::orderBy('updated_at', 'desc')->take(10)->get();
+
+        $all = Profile::paginate(10);
+
+        return view('uirevamp.user', compact('profile', 'trending', 'all'));
     }
     /*user profile*/
     public function profile(){

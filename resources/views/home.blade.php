@@ -282,7 +282,6 @@
                     $('ul.pagination:visible:first').hide();
                 }
             });
-            InfiniteScroll.init();
 
             /* Trending Block */
             $(".trending-items").owlCarousel({

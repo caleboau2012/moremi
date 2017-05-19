@@ -22,7 +22,6 @@
               @if($profile != null)
                 <img src="{{asset($profile->photo()->first()->thumb_path)}}" class="profile-thumb">
                 <span class="text-white">{{$profile->first_name}} {{$profile->last_name}}</span></a></li>
-              @else
               @endif
         @endif
       </ul>
