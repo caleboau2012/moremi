@@ -26,16 +26,22 @@
                             <div class="profile-card-content">
                                 <div class="profile-card-name">
                                     <h4 class="text-center">{{$t->first_name}} {{$t->last_name}}</h4>
-                                    <span class="content-end"></span>
                                 </div>
+                                <p class="about">{{$t->about}} &nbsp;</p>
                                 <p class="text-center">
-                                    <span class="icon icon-location">&nbsp;</span>{{$t->venue()->first()->name}}
+                                    <span class="icon icon-earth">&nbsp;</span>{{$t->venue()->first()->name}}
                                 </p>
                                 <p class="text-center">
                                     <span class="icon icon-heart3">&nbsp;</span>{{$t->vote}}
                                 </p>
                                 <div class="text-center">
-                                    <button class="btn get_started btn-sm vote-btn btn-fill">Vote</button>
+                                    <button class="btn get_started btn-sm vote-btn btn-fill">PICK
+                                    @if($t->sex ==  "male")
+                                        <span class="icon icon-profile-male"></span>
+                                    @else
+                                        <span class="icon icon-profile-female"></span>
+                                    @endif
+                                    </button>
                                 </div>
                             </div>
 
@@ -58,7 +64,7 @@
 
         {{--Filter Panel--}}
         <div class="container" id="filter-container">
-            <div class="col-md-8">
+            <div class="col-md-4">
                 <h5 class="text-muted">Filter</h5>
 
                 <button id="femaleFilter" class="btn btn-default filter-btn-option" data-filter-id="femaleFilter">Females</button>
@@ -66,13 +72,13 @@
                 <button id="spotFilter" class="btn btn-default filter-btn-option" data-filter-id="spotFilter">My Spot</button>
 
                 &nbsp;&nbsp;
-                <strong>Age: </strong>&nbsp;&nbsp;
-                <b> 16</b>
-                <input id="age_range" type="text" class="span2" value="" data-slider-min="16" data-slider-max="100" data-slider-step="5" data-slider-value="[25,35]"/> <b> 100</b>
+                {{--<strong>Age: </strong>&nbsp;&nbsp;--}}
+                {{--<b> 16</b>--}}
+                {{--<input id="age_range" type="text" class="span2" value="" data-slider-min="16" data-slider-max="100" data-slider-step="5" data-slider-value="[25,35]"/> <b> 100</b>--}}
 
             </div>
 
-            <div class="col-md-4">
+            <div class="col-md-8">
                 <h5 class="text-right text-muted hidden-sm hidden-xs">Search</h5>
                 <div class="input-group input-group-lg">
                     <span class="input-group-addon" id="sizing-addon1">
@@ -92,22 +98,21 @@
                     <div class="pick-item">
                         <div class="profile-card">
                             <div class="profile-card-heading">
-
                                 <img class="img-responsive img-circle" src="{{\Illuminate\Support\Facades\URL::to('/')}}/[[PHOTO]]" alt="Moses">
                             </div>
-                            <div class="profile-card-content">
-                                <div class="profile-card-name">
+                            <div class="profile-card-content text-center">
+                                <div class="profile-card-name" data-sex="[[SEX]]" data-venue="[[VENUEID]]">
                                     <h4 class="text-center">[[NAME]]</h4>
                                 </div>
-                                <p class="text-center about">[[DATA-ABOUT]]</p>
-                                <p class="text-center">
-                                    <span class="icon icon-location">&nbsp;</span>[[VENUE]]
+                                <p class="about">[[DATA-ABOUT]] &nbsp;</p>
+                                <p>
+                                    <span class="icon icon-earth">&nbsp;</span>[[VENUE]]
                                 </p>
-                                <p class="text-center">
+                                <p>
                                     <span class="icon icon-heart3">&nbsp;</span>[[VOTE]]
                                 </p>
-                                <div class="text-center">
-                                    <button class="btn get_started btn-sm vote-btn btn-fill">Vote</button>
+                                <div>
+                                    <button class="btn get_started btn-sm vote-btn btn-fill">Pick <span class="icon [[SEXICON]]"></span> </button>
                                 </div>
                             </div>
                         </div>
@@ -141,30 +146,4 @@
     <script src="{{asset("libs/bootstrap-slider/bslider.js")}}"></script>
     <script src="{{asset('js/app/infiniteScroll.js')}}"></script>
     <script src="{{asset('js/app/Home.js')}}"></script>
-    <script>
-        $(function() {
-
-            /* Trending Block */
-            $(".trending-items").owlCarousel({
-                autoPlay: 3000, //Set AutoPlay to 3 seconds
-                items : 4,
-                itemsDesktop : [1199,4],
-                itemsDesktopSmall : [979,3],
-                itemsTablet	: [768,2],
-                navigation : false,
-                pagination : false
-            });
-
-//            /*Range slider*/
-            $("#age_range").slider({});
-
-            /*Change active Filter Button*/
-            $(".filter-btn-option").click(function () {
-                var filter_id = $(this).attr('data-filter-id');
-                $('.filter-btn-option').removeClass('active');
-                $("#" + filter_id).addClass('active');
-            })
-        })
-
-    </script>
 @endsection

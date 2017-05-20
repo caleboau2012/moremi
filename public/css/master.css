@@ -144,7 +144,7 @@ a, a:hover{
 
 /*Trending*/
 #trending_container{
-    padding: 75px 0 20px;
+    padding: 50px 0 20px;
 }
 .trending-items{
     padding: 20px 0 50px;
@@ -180,19 +180,19 @@ Profile Card
 .profile-card{
     background: #FFFFFF;
     border: solid thin #dddddd;
-    height: 430px;
+    height: 350px;
     box-shadow: 1px 1px 1px #e6e6e6;
     margin: 15px 0;
 }
 .profile-card-heading{
-    height: 150px;
+    height: 100px;
     background-image: linear-gradient(45deg, #FF4B1F 0%, #F65D2F 45%, #F06B3B 100%);
 }
 .profile-card-heading img{
     display: block;
     text-align: center;
     position: relative;
-    top: 96px;
+    top: 50px;
     height: 100px;
     width: 100px;
     margin: 0 auto;
@@ -203,6 +203,9 @@ Profile Card
 }
 .profile-card-content .about{
     text-overflow: ellipsis;
+}
+.profile-card p{
+    margin: 0 0 1px;
 }
 .profile-card .vote-btn{
     padding: 10px 30px;
@@ -318,17 +321,23 @@ Profile Card
     border-radius: 50%;
     margin: 0 auto;
     position: absolute;
-    left: 48%;
+    left: 47%;
     bottom: -25px;
     box-shadow: 1px 2px 1px #ddd;
     overflow: hidden;
 }
-#app-header #profile-info{
+#app-header .profile-info{
     position: absolute;
-    left: 55%;
     bottom: 0;
     padding-bottom: 15px;
     padding-left: 5px;
+}
+#app-header #profile-info-left{
+    text-align: right;
+    left: 35%;
+}
+#app-header #profile-info-right{
+    left: 54%;
 }
 #app-header .dp-edit-btn{
     position: absolute;

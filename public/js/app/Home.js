@@ -3,10 +3,14 @@
  */
 var Home = {
     CONSTANTS: {
-        page: 0
+        page: 0,
+        maleFilter: false,
+        femaleFilter: false,
+        spotFilter: false,
+        spot: ''
     },
     init: function(){
-        //Home.fetchCheeks();
+        Home.CONSTANTS.spot = $('#spot').text();
 
         $("#cheek-search, #input-filter-search").on("keyup", function(e){
             //console.log(this.value);
@@ -15,25 +19,13 @@ var Home = {
                 e.preventDefault();
             }
             //if(this.value.length > 2){
-                //Home.fetchCheeks(this.value);
-                Home.filterCheeks(this.value);
+            //Home.fetchCheeks(this.value);
+            Home.filterCheeks(this.value);
             //}
         });
 
         $("#login-cheek").click(function(e){
             location.href = $(this).attr("data-url");
-        });
-
-        var cheeks = $("#contestant-parent");
-
-        cheeks.scroll(function() {
-            console.log({
-                element: cheeks,
-                top: cheeks.scrollTop()
-            });
-            //if(cheeks.scrollTop() == cheeks.height() - $(window).height()) {
-            //    // ajax call get data from server and append to the div
-            //}
         });
 
         $(document).delegate(".avatar", "click", function(){
@@ -43,6 +35,35 @@ var Home = {
         $(".winner-photo").click(function(e){
             $("#winner-photo").attr('src', this.src);
         });
+
+        /* Trending Block */
+        $(".trending-items").owlCarousel({
+            autoPlay: 3000, //Set AutoPlay to 3 seconds
+            items : 4,
+            itemsDesktop : [1199,4],
+            itemsDesktopSmall : [979,3],
+            itemsTablet	: [768,2],
+            navigation : false,
+            pagination : false
+        });
+
+//            /*Range slider*/
+        $("#age_range").slider({});
+
+        /*Change active Filter Button*/
+        $(".filter-btn-option").click(function () {
+            var filter_id = $(this).attr('data-filter-id');
+            $('.filter-btn-option').removeClass('active');
+            $("#" + filter_id).addClass('active');
+
+            Home.CONSTANTS.femaleFilter = false;
+            Home.CONSTANTS.maleFilter = false;
+            Home.CONSTANTS.spotFilter = false;
+
+            Home.CONSTANTS[filter_id] = true;
+
+            InfiniteScroll.Get();
+        })
     },
     filterCheeks: function(query){
         //console.log(query);
@@ -53,6 +74,8 @@ var Home = {
             //    name: $(this).text(),
             //    conditional: ($(this).text().indexOf(query) == -1)
             //});
+            //if(typeof query == "undefined")
+            //query = "";
             if($(this).text().toLowerCase().indexOf(query.toLowerCase()) == -1){
                 //$(this).parent().parent().parent().addClass("hidden");
                 $(this).parent().parent().parent().parent().parent().addClass("hidden");
@@ -61,6 +84,31 @@ var Home = {
                 $(this).parent().parent().parent().parent().parent().removeClass("hidden");
                 //$(this).parent().parent().parent().removeClass("hidden");
             }
+
+            //Filters
+            if(Home.CONSTANTS.maleFilter || Home.CONSTANTS.femaleFilter || Home.CONSTANTS.spotFilter){
+                if(($(this).parent().attr('data-sex') != 'male') && (Home.CONSTANTS.maleFilter)){
+                    $(this).parent().parent().parent().parent().parent().addClass("hidden");
+                }
+
+                if(($(this).parent().attr('data-sex') != 'female') && (Home.CONSTANTS.femaleFilter)){
+                    $(this).parent().parent().parent().parent().parent().addClass("hidden");
+                }
+
+                if(($(this).parent().attr('data-venue') != Home.CONSTANTS.spot) && (Home.CONSTANTS.spotFilter)){
+                    $(this).parent().parent().parent().parent().parent().addClass("hidden");
+                }
+            }
+            //else{
+            //    $(this).parent().parent().parent().parent().parent().removeClass("hidden");
+            //}
+
+            //console.log({
+            //    spot: ($(this).parent().attr('data-venue')),
+            //    userSpot: Home.CONSTANTS.spot,
+            //    spotFilter: Home.CONSTANTS.spotFilter,
+            //    cond: ($(this).parent().attr('data-venue') == Home.CONSTANTS.spot),
+            //});
         });
     },
     showCheek: function(element){
@@ -119,45 +167,6 @@ var Home = {
 
         $("#carousel-example-generic").carousel();
         $("#profileModal").modal("show");
-    },
-    fetchCheeks: function(query){
-        $("#cheeks-loading").removeClass("hidden");
-
-        var url;
-
-        if(query){
-            url = $("#cheek-search").attr("data-url") + "?search=" + query;
-        }
-        else{
-            url = $("#cheek-search").attr("data-url");
-        }
-
-        //console.log(url);
-
-        var HTML = "";
-
-        $.getJSON(url, function(response){
-            //console.log(response);
-
-            $("#contestant-parent").empty();
-
-            if(response.status){
-                for(var i = response.data.length - 1; i >= 0; i--){
-                    HTML = $("#cheeks-template").html();
-                    HTML = HTML.replaceAll("[[img-url]]", response.data[i].image);
-                    HTML = HTML.replaceAll("[[name]]", response.data[i].name);
-                    HTML = HTML.replaceAll("[[votes]]", response.data[i].vote);
-                    HTML = HTML.replaceAll("[[id]]", response.data[i].id);
-                    $("#contestant-parent").prepend(HTML);
-                }
-            }
-            else{
-                HTML = $("#cheeks-none").html();
-                $("#contestant-parent").prepend(HTML);
-            }
-
-            $("#cheeks-loading").addClass("hidden");
-        });
     }
 };
 
