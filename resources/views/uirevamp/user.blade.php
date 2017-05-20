@@ -23,19 +23,19 @@
                             <div class="profile-card-heading">
                                 <img class="img-responsive img-circle" src="{{asset($t->photo()->first()->full_path)}}" alt="Moses">
                             </div>
-                            <div class="profile-card-content">
+                            <div class="profile-card-content text-center">
                                 <div class="profile-card-name">
                                     <h4 class="text-center">{{$t->first_name}} {{$t->last_name}}</h4>
                                 </div>
                                 <p class="about">{{$t->about}} &nbsp;</p>
-                                <p class="text-center">
+                                <p>
                                     <span class="icon icon-earth">&nbsp;</span>{{$t->venue()->first()->name}}
                                 </p>
-                                <p class="text-center">
-                                    <span class="icon icon-heart3">&nbsp;</span>{{$t->vote}}
+                                <p>
+                                    <span class="icon icon-heart3">&nbsp;</span> <span class="vote-count">{{$t->vote}}</span>
                                 </p>
-                                <div class="text-center">
-                                    <button class="btn get_started btn-sm vote-btn btn-fill">PICK
+                                <div>
+                                    <button class="btn get_started btn-sm vote-btn btn-fill" data-id="{{$t->id}}">PICK
                                     @if($t->sex ==  "male")
                                         <span class="icon icon-profile-male"></span>
                                     @else
@@ -109,10 +109,12 @@
                                     <span class="icon icon-earth">&nbsp;</span>[[VENUE]]
                                 </p>
                                 <p>
-                                    <span class="icon icon-heart3">&nbsp;</span>[[VOTE]]
+                                    <span class="icon icon-heart3">&nbsp;</span><span class="vote-count">[[VOTE]]</span>
                                 </p>
                                 <div>
-                                    <button class="btn get_started btn-sm vote-btn btn-fill">Pick <span class="icon [[SEXICON]]"></span> </button>
+                                    <button class="btn get_started btn-sm vote-btn btn-fill" data-id="[[ID]]">
+                                        Pick <span class="icon [[SEXICON]]"></span>
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -137,7 +139,7 @@
 
     </div>
 
-
+    @include('utils.votePay');
 @endsection
 
 @section('bottomScripts')
@@ -146,4 +148,6 @@
     <script src="{{asset("libs/bootstrap-slider/bslider.js")}}"></script>
     <script src="{{asset('js/app/infiniteScroll.js')}}"></script>
     <script src="{{asset('js/app/Home.js')}}"></script>
+    <script src="{{asset('js/app/Vote.js')}}"></script>
+    <script src="{{asset('js/app/VotePay.js')}}"></script>
 @endsection

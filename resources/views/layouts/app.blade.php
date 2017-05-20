@@ -42,6 +42,7 @@
 	<!--Custom Javascript-->
 	<script src="{{asset('js/app/Utils.js')}}" ></script>
 	<script src="{{asset('js/app/Constants.js')}}" ></script>
+	<script src="{{asset('js/app/Routes.js')}}" ></script>
 
 	<!--FacebookScript-->
 	<script src="{{asset('js/app/Facebook.js')}}"></script>

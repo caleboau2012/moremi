@@ -8,7 +8,8 @@ Vote ={
     },
 
     init: function(){
-        $(document).delegate('.vote-c-tw', 'click', function(e){
+        console.log("Clicked");
+        $(document).delegate('.vote-btn', 'click', function(e){
             e.preventDefault();
             var id =$(this).attr('data-id');
 
@@ -83,14 +84,16 @@ Vote ={
         }
         else if(data.status){
             swal('Success',data.msg,'success');
-            var count = parseInt($(element).parent().find(".vote-count span")[0].innerHTML) + 1;
-            //console.log({
-            //    element: element,
-            //    count: count
-            //});
+            var count = parseInt($(element).parent().parent().find(".vote-count")[0].innerHTML) + 1;
+            console.log({
+                element: element,
+                count: count
+            });
 
-            $(element).parent().find(".vote-count span")[0].innerHTML = count;
+            $(element).parent().parent().find(".vote-count")[0].innerHTML = count;
             //Home.fetchCheeks(); //re arrange profile bar
         }
     }
 };
+
+$(document).ready(Vote.init);
