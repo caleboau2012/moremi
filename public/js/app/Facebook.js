@@ -27,17 +27,16 @@ var Facebook = {
                     if((Profile.checkToken())){
                         var url = $("#login, .login").attr("data-url");
 
-                        console.log(url);
-
-                        Utils.post(url,
-                            {
-                                first_name: response.first_name,
-                                last_name: response.last_name,
-                                email: response.email,
-                                sex: response.gender,
-                                facebook_id: response.id
-                            }, "POST", Facebook.saveToken,Facebook.loginError
-                        );
+                        if(typeof url != "undefined")
+                            Utils.post(url,
+                                {
+                                    first_name: response.first_name,
+                                    last_name: response.last_name,
+                                    email: response.email,
+                                    sex: response.gender,
+                                    facebook_id: response.id
+                                }, "POST", Facebook.saveToken,Facebook.loginError
+                            );
                     }
                     else{
                         console.log("The Login failed");

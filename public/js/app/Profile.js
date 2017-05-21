@@ -40,17 +40,17 @@ var Profile = {
         });
         $(document).undelegate(".select-picture", "click").delegate(".select-picture", "click", function(e){
             var pix = $(".pictures-panel");
-            if(($(this).find("span").hasClass("fa-square-o")) && ((Profile.facebookPhotos.length + pix.length) < 6)) {
-                $(this).find("span").toggleClass("fa-square-o").toggleClass("fa-check-square-o");
+            if(($(this).find("span").hasClass("icon-square-o")) && ((Profile.facebookPhotos.length + pix.length) < 6)) {
+                $(this).find("span").toggleClass("icon-square-o").toggleClass("icon-check-square-o");
                 Profile.facebookPhotos.push($(this).find("img").attr("src"));
                 //console.log("Pushed" + $(this).find("img").attr("src"));
             }
-            else if(($(this).find("span").hasClass("fa-square-o")) && (Profile.facebookPhotos.length >= 6)){
+            else if(($(this).find("span").hasClass("icon-square-o")) && (Profile.facebookPhotos.length >= 6)){
                 swal('Relax','We only allow a total of 6 pictures');
                 //console.log("Prevented" + $(this).find("img").attr("src"));
             }
-            else if($(this).find("span").hasClass("fa-check-square-o")){
-                $(this).find("span").toggleClass("fa-square-o").toggleClass("fa-check-square-o");
+            else if($(this).find("span").hasClass("icon-check-square-o")){
+                $(this).find("span").toggleClass("icon-square-o").toggleClass("icon-check-square-o");
                 for(var i = 0; i < Profile.facebookPhotos.length; i++){
                     if(Profile.facebookPhotos[i] == $(this).find("img").attr("src")){
                         //console.log("Removed" + Profile.facebookPhotos[i]);
@@ -241,7 +241,7 @@ var Profile = {
     loadFacebookPix: function(){
         var HTML = "", template;
         for(var i = 0; i < Profile.facebookPhotos.length; i++){
-            //console.log(Profile.facebookPhotos[i]);
+            console.log(Profile.facebookPhotos[i]);
             template = $("#picture-template").html();
             HTML += template.replace("[[src]]", Profile.facebookPhotos[i]);
         }

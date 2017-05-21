@@ -144,6 +144,7 @@
     </div>
 
     @include('utils.votePay');
+    @include('utils.account');
 @endsection
 
 @section('bottomScripts')

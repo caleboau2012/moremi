@@ -259,14 +259,14 @@ Profile Card
 }
 .profile-court textarea{
     resize: vertical;
-    height: 120px;
+    height: 100px;
 }
 .profile-form{
     margin-top: 40px;
 }
 .profile-small-card{
     background: #e1e1e1;
-    height: 65px;
+    /*height: 65px;*/
     margin-bottom: 20px;
 }
 .content-end{
@@ -401,4 +401,16 @@ Profile Card
     background-image: linear-gradient(-146deg, #FF4B1F 0%, #F06B3B 83%);
  color: #ffffff;
     padding: 20px;
+}
+
+.image-box img, .profile-pic img, .picture-pane img{
+    display: block;
+    width: 100%;
+}
+
+.image-box .icon{
+    position: absolute;
+    top: 0px;
+    right: 16px;
+    color: black;
 }

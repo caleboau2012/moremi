@@ -100,6 +100,7 @@
                         <span class="delete-picture fa fa-close"></span>
                     </div>
                 </div>
+                <br>
             </div>
         </script>
         <div class="row">
