@@ -71,11 +71,11 @@ var Profile = {
                 e.preventDefault();
                 var newURL = e.originalEvent.dataTransfer.getData("url");
                 var oldURL = $(this).find("img").attr("src");
-                //console.log({
-                //    new: newURL,
-                //    old: oldURL
-                //});
-                $(this).find("img").attr("src", newURL).removeClass("hidden");
+                console.log({
+                    new: newURL,
+                    old: oldURL
+                });
+                $(this).find("img").attr("src", newURL).removeClass("hidden").css('display', 'block');
                 if(oldURL == ""){
                     $(this).find("p").remove();
                 }
@@ -241,7 +241,7 @@ var Profile = {
     loadFacebookPix: function(){
         var HTML = "", template;
         for(var i = 0; i < Profile.facebookPhotos.length; i++){
-            console.log(Profile.facebookPhotos[i]);
+            //console.log(Profile.facebookPhotos[i]);
             template = $("#picture-template").html();
             HTML += template.replace("[[src]]", Profile.facebookPhotos[i]);
         }

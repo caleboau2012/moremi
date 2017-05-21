@@ -414,3 +414,7 @@ Profile Card
     right: 16px;
     color: black;
 }
+
+.pointer{
+    cursor: pointer;
+}

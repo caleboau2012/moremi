@@ -73,7 +73,7 @@
                                 @if(!empty($photos))
                                     @foreach($photos as $photo)
                                         <div class="col-md-4">
-                                            <div class="profile-small-card image-box picture-panel pointer" draggable="true">
+                                            <div class="image-box picture-panel pointer" draggable="true">
                                                 <div class="image">
                                                     <img src="{{Request::root() . "/" . $photo['full_path']}}">
                                                     <span class="delete-picture icon icon-close" data-url="{{route("delete_pic", $photo['id'])}}"></span>
@@ -176,7 +176,7 @@
 
                     <script id="picture-template" type="text/html">
                         <div class="col-md-4">
-                            <div class="profile-small-card image-box picture-panel pointer" draggable="true">
+                            <div class="image-box picture-panel pointer" draggable="true">
                                 <div class="image">
                                     <img src="[[src]]">
                                     <span class="delete-picture icon icon-close"></span>
@@ -298,4 +298,5 @@
 
 @section('bottomScripts')
     @parent
+    <script src="{{asset('js/app/Account.js')}}"></script>
 @endsection

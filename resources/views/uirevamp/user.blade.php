@@ -155,4 +155,5 @@
     <script src="{{asset('js/app/Home.js')}}"></script>
     <script src="{{asset('js/app/Vote.js')}}"></script>
     <script src="{{asset('js/app/VotePay.js')}}"></script>
+    <script src="{{asset('js/app/Account.js')}}"></script>
 @endsection
