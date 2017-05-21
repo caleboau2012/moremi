@@ -10,6 +10,10 @@
 @section('stylesheets')
 @endsection
 
+@section('header')
+    @include('include.header_app')
+@endsection
+
 @section('content')
     <div style="height: 50px;">
 

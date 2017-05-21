@@ -16,7 +16,7 @@
         <li><a href="#moment_pick_container"><span class="text-white">Pick of the Week</span></a></li>
         <li><a href="#trending_container"><span class="text-white">Trending</span></a></li>
         @if(!$loggedIn)
-          <li><a href="#" data-url="{{route("login")}}" class="login"><span class="text-white">Join</span></a></li>
+          <li><a href="#" id="app-url" data-url="{{route("login")}}" data-url-app="{{route('app')}}" class="login"><span class="text-white">Join</span></a></li>
         @else
           <li><a href="#" class="profile-btn">
               @if($profile != null)

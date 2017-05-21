@@ -8,21 +8,18 @@ use App\Venue;
 
 class UIRevampController extends Controller
 {
-
     public function __construct() {
-
-    }
-
-    public function home(){
-        $loggedIn = false;
-        $profile = null;
+        $this->loggedIn = false;
+        $this->profile = null;
 
         $token = session(\AppConstants::AUTH);
         if(isset($token) == true) {
-            $loggedIn = true;
-            $profile = Profile::where('user_id', customdecrypt($token))->first();
+            $this->loggedIn = true;
+            $this->profile = Profile::where('user_id', customdecrypt($token))->first();
         }
+    }
 
+    public function home(){
         $males= Profile::where(\ProfileConstant::SEX, \ProfileConstant::MALE)->count();
         $females = Profile::where(\ProfileConstant::SEX, \ProfileConstant::FEMALE)->count();
         $dates = OldCheek::all()->count();
@@ -34,8 +31,8 @@ class UIRevampController extends Controller
         $partners = Venue::all();
 
         return view('uirevamp.home', [
-            'loggedIn' => $loggedIn,
-            'profile' => $profile,
+            'loggedIn' => $this->loggedIn,
+            'profile' => $this->profile,
             'winner' => $winner,
             'trending' => $trending,
             'males' => $males,
@@ -46,27 +43,24 @@ class UIRevampController extends Controller
     }
     /*user homepage*/
     public function user(){
-        $loggedIn = false;
-        $profile = null;
-
-        $token = session(\AppConstants::AUTH);
-        if(isset($token) == true) {
-            $loggedIn = true;
-            $profile = Profile::where('user_id', customdecrypt($token))->first();
-        }
-        else{
-            return redirect(route('home'));
-        }
+        if(!$this->loggedIn){
+            return redirect(route("index"));
+        };
 
         $trending = Profile::orderBy('updated_at', 'desc')->take(10)->get();
 
         $all = Profile::paginate(10);
 
-        return view('uirevamp.user', compact('profile', 'trending', 'all'));
+        return view('uirevamp.user', ['profile' => $this->profile, 'trending' => $trending, 'all' => $all]);
     }
+
     /*user profile*/
     public function profile(){
-        return view('uirevamp.profile');
+        if(!$this->loggedIn){
+            return redirect(route("index"));
+        };
+
+        return view('uirevamp.profile', ['profile' => $this->profile]);
     }
 
 }

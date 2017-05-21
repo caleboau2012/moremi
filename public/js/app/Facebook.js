@@ -60,6 +60,8 @@ var Facebook = {
     saveToken: function(response){
         Profile.saveToken(response);
 
+        window.location = $('#app-url').attr('data-url-app');
+
         $(".profile-actions").addClass("hidden");
         if(location.pathname == "/profile"){
             $("#facebook-fetch").removeClass("hidden");

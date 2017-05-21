@@ -29,9 +29,9 @@
 
 @yield('content')
 
-@section('footer')
-	@include('include.footer')
-@show
+ @section('footer')
+    @include('include.footer')
+ @show
 
 @section('bottomScripts')
 	{{-- Libs --}}

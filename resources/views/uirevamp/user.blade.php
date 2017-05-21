@@ -4,6 +4,10 @@
     <link href="{{asset('libs/bootstrap-slider/bslider.css')}}" rel="stylesheet">
 @endsection
 
+@section('header')
+    @include('include.header_app')
+@endsection
+
 @section('content')
     {{--trending--}}
     <div class="container-fluid bg-grey" id="trending_container" >
