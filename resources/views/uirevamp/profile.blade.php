@@ -33,7 +33,7 @@
 @endsection
 
 @section('content')
-    <div style="height: 50px;">
+    <div style="height: 65px;">
         <div class="row hidden">
             <p class="hidden" id="_token">{{ csrf_token() }}"</p>
             <h2 class="text-center hidden" id="user">{{$profile->first_name}} {{$profile->last_name}}</h2>
@@ -53,8 +53,16 @@
                             <div class="profile-pic">
                                 <div class="image">
                                     @if(is_null($profile->photo_id) || is_null($profile->photo->full_path))
-                                        <p class="text-center text-info img-placeholder">Drag best picture here</p>
-                                        <img class="hidden" src="">
+                                        <div id="upload_image_placeholder">
+                                            <div id="caption">
+                                                <h1 class="text-center">
+                                                    <span class="icon icon-upload2"></span>
+                                                </h1>
+                                                <p class="text-center text-muted image-placeholder">Drag best picture here</p>
+                                            </div>
+                                            <img class="hidden" src="">
+                                        </div>
+
                                     @else
                                         <p class="text-center hidden text-info image-placeholder">Drag best picture here</p>
                                         <img class="img-responsive img-thumbnail" id="profile-dp" src="{{asset($profile->photo->full_path)}}">
@@ -190,7 +198,7 @@
                 </div>
             </div>
 
-            <div class="col-md-4 col-md-offset-2">
+            <div class="col-md-4 col-md-offset-1">
                 <div class="connections-container">
                     <h4 class="text-primary text-center margin-bottom-md">Your Connections</h4>
 
