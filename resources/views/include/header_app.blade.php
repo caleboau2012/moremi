@@ -11,7 +11,7 @@
         </p>
       </div>
       <div id="profile-dp" class="hidden-sm hidden-xs">
-        <a href="#" class="dp-edit-btn"><span class="icon icon-pencil2 text-white"></span></a>
+        <a href="{{route("profile")}}" class="dp-edit-btn"><span class="icon icon-pencil2 text-white"></span></a>
         @if($profile->photo()->first())
           <img src="{{asset($profile->photo()->first()->full_path)}}" alt="Profile DP" class="img-responsive img-circle">
         @else

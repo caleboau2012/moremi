@@ -7,7 +7,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a href="index.html" class="navbar-brand">
+      <a class="navbar-brand">
           <img src="{{asset('images/logo.png')}}" id="home_logo">
       </a>
     </div>
@@ -21,7 +21,7 @@
           <li><a href="#" id="app-url" data-url="{{route("login")}}" data-url-app="{{route('app')}}" class="login"><span class="text-white">Join</span></a></li>
         @else
           <li>
-            <a href="#" class="profile-btn">
+            <a href="{{route("app")}}" class="profile-btn">
               @if($profile != null)
                   @if($profile->photo()->first())
                         <img src="{{asset($profile->photo()->first()->thumb_path)}}" class="profile-thumb">

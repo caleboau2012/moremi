@@ -90,35 +90,6 @@
 
                     {{--profile--}}
                     <div class="profile-form">
-                        {{--<div class="row">--}}
-                        {{--<div class="col-md-6">--}}
-                        {{--<div class="form-group">--}}
-                        {{--<label for="">First Name</label>--}}
-                        {{--<input type="text" class="form-control" name="" id="">--}}
-                        {{--</div>--}}
-                        {{--</div>--}}
-                        {{--<div class="col-md-6">--}}
-                        {{--<div class="form-group">--}}
-                        {{--<label for="">Last Name</label>--}}
-                        {{--<input type="text" class="form-control" name="" id="">--}}
-                        {{--</div>--}}
-                        {{--</div>--}}
-                        {{--</div>--}}
-                        {{--<div class="row">--}}
-                        {{--<div class="col-md-6">--}}
-                        {{--<div class="form-group">--}}
-                        {{--<label for="">Phone Number</label>--}}
-                        {{--<input type="text" class="form-control" name="" id="">--}}
-                        {{--</div>--}}
-                        {{--</div>--}}
-                        {{--<div class="col-md-6">--}}
-                        {{--<div class="form-group">--}}
-                        {{--<label for="">Email Address</label>--}}
-                        {{--<input type="email" class="form-control">--}}
-                        {{--</div>--}}
-                        {{--</div>--}}
-                        {{--</div>--}}
-
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="form-group">
@@ -221,82 +192,77 @@
 
             <div class="col-md-4 col-md-offset-2">
                 <div class="connections-container">
-                    <h4 class="text-primary margin-bottom-md">Your Connections</h4>
+                    <h4 class="text-primary text-center margin-bottom-md">Your Connections</h4>
 
                     <div class="row">
-                        <div class="col-md-3">
-                            <div class="connection-item">
-                                <img src="{{asset('images/users/moses.jpg')}}" alt="" class="img-circle img-responsive">
+                        @foreach($connections as $c)
+                            <div class="col-md-3">
+                                <div class="connection-item" data-id="messages-between-{{$c[\TableConstant::PROFILE_ID]}}-{{$c[\ConnectionConstant::RECIPIENT_ID]}}">
+                                    <img src="{{asset($c[\ConnectionConstant::PHOTO]->thumb_path)}}" alt="{{$c[\ConnectionConstant::NAME]}}" class="img-circle img-responsive">
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="connection-item">
-                                <img src="{{asset('images/users/moses.jpg')}}" alt="" class="img-circle img-responsive">
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="connection-item">
-                                <img src="{{asset('images/users/moses.jpg')}}" alt="" class="img-circle img-responsive">
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="connection-item">
-                                <img src="{{asset('images/users/moses.jpg')}}" alt="" class="img-circle img-responsive">
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="connection-item">
-                                <img src="{{asset('images/users/moses.jpg')}}" alt="" class="img-circle img-responsive">
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="connection-item">
-                                <img src="{{asset('images/users/moses.jpg')}}" alt="" class="img-circle img-responsive">
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="connection-item">
-                                <img src="{{asset('images/users/moses.jpg')}}" alt="" class="img-circle img-responsive">
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="connection-item">
-                                <img src="{{asset('images/users/moses.jpg')}}" alt="" class="img-circle img-responsive">
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="connection-item">
-                                <img src="{{asset('images/users/moses.jpg')}}" alt="" class="img-circle img-responsive">
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="connection-item">
-                                <img src="{{asset('images/users/moses.jpg')}}" alt="" class="img-circle img-responsive">
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
 
                     {{--CHAT BOX--}}
                     <div id="chat-container">
-                        <div id="chat-container-header" class="text-center">
-                            <h5 class="no-margin text-white">
-                                <span class="icon icon-lightning"></span>Chat Box
-                            </h5>
+                        <div class="chat-box">
+                            <div class="chat-container-header text-center">
+                                <h5 class="no-margin text-white">
+                                    <span class="icon icon-lightning"></span>Chat Box
+                                </h5>
+                            </div>
                         </div>
+
+                        @foreach($connections as $c)
+                            <div class="hidden chat-box" id="messages-between-{{$c[\TableConstant::PROFILE_ID]}}-{{$c[\ConnectionConstant::RECIPIENT_ID]}}">
+                                <div class="chat-container-header text-center">
+                                    <h3 class="panel-title">
+                                        <img src="{{asset($c[\ConnectionConstant::PHOTO]->thumb_path)}}" class="img-thumb img-circle img-small">
+                                        {{$c[\ConnectionConstant::NAME]}}
+                                    </h3>
+                                </div>
+                                <div class="chat-container-body">
+                                    <div class="row">
+                                        <div class="col-xs-12" >
+                                            <div class="chat-messages">
+                                                @if(isset($c[\ConnectionConstant::MESSAGES]))
+                                                    @foreach($c[\ConnectionConstant::MESSAGES] as $m)
+                                                        <div>
+                                                            <strong>{{$m->user}}:</strong>
+                                                            <p class="chat-message">{{$m->message}}</p>
+                                                            <small class="text-right chat-time">{{$m->time}}</small>
+                                                        </div>
+                                                    @endforeach
+                                                {{--@else--}}
+                                                    {{--&nbsp;--}}
+                                                @endif
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-8" >
+                                            <p class="hidden" id="id_user_to">{{$c[\ConnectionConstant::RECIPIENT_ID]}}</p>
+                                            <textarea class="form-control msg"></textarea>
+                                        </div>
+                                        <div class="col-xs-4">
+                                            <input type="button" value="Send" class="btn btn-block btn-success send-msg">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
                     </div>
-
                 </div>
-
-
             </div>
         </div>
     </div>
-@endsection
 
-@include('utils.votePay');
-@include('utils.account');
+    @include('utils.votePay')
+    @include('utils.account')
+@endsection
 
 @section('bottomScripts')
     @parent
     <script src="{{asset('js/app/Account.js')}}"></script>
+    <script src="https://cdn.socket.io/socket.io-1.3.4.js"></script>
+    <script src="{{asset('js/app/Chat.js')}}"></script>
 @endsection

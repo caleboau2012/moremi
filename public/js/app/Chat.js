@@ -21,10 +21,20 @@ var Chat = {
             }
         });
 
-        $('.chat-messages').each(function(){
-            Chat.CONSTANTS.messages = this;
-            Chat.scrollToBottom();
+        $('.connection-item').click(function(){
+            Chat.open($(this).attr('data-id'));
         });
+
+        //$('.chat-messages').each(function(){
+        //    Chat.CONSTANTS.messages = this;
+        //    Chat.scrollToBottom();
+        //});
+    },
+    open: function(id){
+        console.log(id);
+
+        $(".chat-box").addClass("hidden");
+        $("#" + id).removeClass("hidden");
     },
     send: function(element){
         var token = $("#_token").text();
@@ -33,7 +43,7 @@ var Chat = {
 
         var id_user_to = $(element).parent().parent().find('#id_user_to').text();
         var msg = $(element).parent().parent().find('.msg').val();
-        Chat.CONSTANTS.messages = $(element).parent().parent().find('.chat-messages')[0];
+        //Chat.CONSTANTS.messages = $(element).parent().parent().find('.chat-messages')[0];
 
         var chatURL = $('#chat-url').text();
 
@@ -52,7 +62,7 @@ var Chat = {
                 success:function(data){
                     //console.log(data);
                     $(".msg").val('');
-                    Chat.scrollToBottom();
+                    //Chat.scrollToBottom();
                 }
             });
         }else{
@@ -65,34 +75,41 @@ var Chat = {
         socket.on('message', function (data) {
             data = jQuery.parseJSON(data);
             //console.log(data);
-            var from = "#messages-between-" + data.id_user_to + '-' + data.id_user_from;
-            var to = "#messages-between-" + data.id_user_from + '-' + data.id_user_to;
+            var from = "#messages-between-" + data.id_user_to + '-' + data.id_user_from + " .chat-messages";
+            var to = "#messages-between-" + data.id_user_from + '-' + data.id_user_to + " .chat-messages";
 
-            console.log($(from)[0], $(to)[0]);
+            console.log(from, to, $(from)[0], $(to)[0]);
 
             if(typeof $(from)[0] != 'undefined') {
-                Chat.CONSTANTS.messages = $(from).find('.chat-messages')[0];
+                $(from).append( "<div>" +
+                    "<strong>" + data.user + ":</strong>" +
+                    "<p class='chat-message'>" + data.message + "</p>" +
+                    "<small class='text-right chat-time'>" + data.time + "</small>" +
+                    "</div>" );
+
+                Chat.CONSTANTS.messages = $(from)[0];
                 Chat.scrollToBottom();
             }
             else if (typeof $(to)[0] != 'undefined'){
-                Chat.CONSTANTS.messages = $(to).find('.chat-messages')[0];
+                $(to).append( "<div>" +
+                    "<strong>" + data.user + ":</strong>" +
+                    "<p class='chat-message'>" + data.message + "</p>" +
+                    "<small class='text-right chat-time'>" + data.time + "</small>" +
+                    "</div>" );
+
+                Chat.CONSTANTS.messages = $(to)[0];
                 Chat.scrollToBottom();
             }
-
-            $(from).append( "<div>" +
-                "<strong>" + data.user + ":</strong>" +
-                "<p class='chat-message'>" + data.message + "</p>" +
-                "<small class='text-right chat-time'>" + data.time + "</small>" +
-                "</div>" );
-            $(to).append( "<div>" +
-                "<strong>" + data.user + ":</strong>" +
-                "<p class='chat-message'>" + data.message + "</p>" +
-                "<small class='text-right chat-time'>" + data.time + "</small>" +
-                "</div>" );
         });
     },
     scrollToBottom: function(){
         var element = Chat.CONSTANTS.messages;
+        console.log({
+            element: element,
+            scrollTop: element.scrollTop,
+            scrollHeight: element.scrollHeight,
+            clientHeight: element.clientHeight
+        });
         element.scrollTop = element.scrollHeight - element.clientHeight;
     }
 };

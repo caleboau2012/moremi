@@ -398,13 +398,13 @@ Profile Card
     position: absolute;
     bottom: 0;
     background: #ffffff;
-    height: 300px;
+    height: 500px;
     width: 90%;
 }
-#chat-container-header{
+.chat-container-header{
     background-image: linear-gradient(-146deg, #FF4B1F 0%, #F06B3B 83%);
- color: #ffffff;
-    padding: 20px;
+    color: #ffffff;
+    padding: 10px;
 }
 .profile-thumb {
     width: 25px;
@@ -425,4 +425,25 @@ Profile Card
 
 .pointer{
     cursor: pointer;
+}
+
+.chat-box .chat-container-header img{
+    width: 20%;
+}
+
+.chat-box .chat-container-body{
+    padding: 10px;
+}
+
+.chat-box .msg{
+    resize: none;
+}
+
+.chat-box .chat-messages{
+    height: 340px;
+    overflow-y: scroll;
+}
+
+.chat-box .chat-messages small{
+    display: block;
 }
