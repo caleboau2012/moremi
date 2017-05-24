@@ -26,7 +26,7 @@
             <span>{{$profile->venue()->first()->name}}</span>
             <span id='spot' class="hidden">{{$profile->venue}}</span>
           @else
-            <span>No venue</span>
+            <span>No venue selected</span>
             @endif
         </p>
       </div>
