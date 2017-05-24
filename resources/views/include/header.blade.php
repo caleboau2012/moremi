@@ -8,7 +8,7 @@
         <span class="icon-bar"></span>
       </button>
       <a href="index.html" class="navbar-brand">
-          <img src="{{asset('images/logo.png')}}" id="logo">
+          <img src="{{asset('images/logo.png')}}" id="home_logo">
       </a>
     </div>
 

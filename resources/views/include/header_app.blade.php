@@ -15,7 +15,7 @@
         @if($profile->photo()->first())
           <img src="{{asset($profile->photo()->first()->full_path)}}" alt="Profile DP" class="img-responsive img-circle">
         @else
-          <img src="{{asset('images/apple-icon.png')}}" class="profile-thumb">
+          <img src="{{asset('images/apple-icon.png')}}" class="img-circle img-responsive">
         @endif
       </div>
       <div id="profile-info-right" class="profile-info hidden-sm hidden-xs">

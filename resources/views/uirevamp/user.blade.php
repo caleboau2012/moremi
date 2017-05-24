@@ -25,15 +25,28 @@
                     <div class="trending-item">
                         <div class="profile-card">
                             <div class="profile-card-heading">
-                                <img class="img-responsive img-circle" src="{{asset($t->photo()->first()->full_path)}}" alt="Moses">
+                                @if($t->photo()->first())
+                                    <img class="img-responsive img-circle" src="{{asset($t->photo()->first()->full_path)}}" alt="{{$t->first_name .' '. $t->last_name}}">
+                                @else
+                                    <img class="img-responsive img-circle"  src="{{asset('images/apple-icon.png')}}">
+                                @endif
+
                             </div>
                             <div class="profile-card-content text-center">
                                 <div class="profile-card-name">
                                     <h4 class="text-center">{{$t->first_name}} {{$t->last_name}}</h4>
                                 </div>
-                                <p class="about">{{$t->about}} &nbsp;</p>
+                                @if($t->about)
+                                    <p class="about text-center text-muted">{{$t->about}} &nbsp;</p>
+                                @else
+                                    <p class="about">No info!</p>
+                                @endif
                                 <p>
-                                    <span class="icon icon-earth">&nbsp;</span>{{$t->venue()->first()->name}}
+                                    @if($t->venue()->first())
+                                        <span class="icon icon-earth">&nbsp;</span>{{$t->venue()->first()->name}}
+                                        @else
+                                        <span class="icon icon-location">&nbsp;</span>No venue yet!
+                                    @endif
                                 </p>
                                 <p>
                                     <span class="icon icon-heart3">&nbsp;</span> <span class="vote-count">{{$t->vote}}</span>
