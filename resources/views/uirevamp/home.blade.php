@@ -203,43 +203,54 @@
                 <div class="col-md-6 col-md-offset-3">
                     <div class="btn-group btn-group-justified">
                         <a href="#" class="btn active  trending_menu">Trending</a>
-                        <a href="#" class="btn  trending_menu">Vote Your Pick</a>
+                        <a href="{{route("app")}}" class="btn  trending_menu">Vote Your Pick</a>
                     </div>
                 </div>
             </div>
             <div class="row trending-items">
-                @foreach($trending as $person)
-                <div class="trending-item">
-                    <div class="profile-card">
-                        <div class="profile-card-heading">
-                            @if($person->photo()->first())
-                                <img class="img-responsive img-circle" src="{{asset($person->photo()->first()->full_path)}}" alt="{{ $person->first_name .' '. $person->last_name }}">
-                            @else
-                                <img class="img-responsive img-circle"  src="{{asset('images/apple-icon.png')}}">
-                            @endif
-                        </div>
-                        <div class="profile-card-content">
-                            <div class="profile-card-name">
-                                <h4 class="text-center">{{$person->first_name}} {{$person->last_name}}</h4>
-                                <span class="content-end"></span>
-                            </div>
-                            <p class="text-center">
-                                @if($person->venue)
-                                <span class="icon icon-location">&nbsp;</span>{{$person->venue()->first()->name}}
-                                    @else
-                                    <span class="icon icon-location">&nbsp;</span>No venue yet!
+                @foreach($trending as $t)
+                    <div class="trending-item">
+                        <div class="profile-card">
+                            <div class="profile-card-heading">
+                                @if($t->photo()->first())
+                                    <img class="img-responsive img-circle" src="{{asset($t->photo()->first()->full_path)}}" alt="{{$t->first_name .' '. $t->last_name}}">
+                                @else
+                                    <img class="img-responsive img-circle"  src="{{asset('images/apple-icon.png')}}">
                                 @endif
-                            </p>
-                            <p class="text-center">
-                                <span class="icon icon-heart3">&nbsp;</span>{{$person->vote}}
-                            </p>
-                            <div class="text-center">
-                                <button class="btn get_started btn-sm vote-btn btn-fill">Vote</button>
-                            </div>
-                        </div>
 
+                            </div>
+                            <div class="profile-card-content text-center">
+                                <div class="profile-card-name">
+                                    <h4 class="text-center">{{$t->first_name}} {{$t->last_name}}</h4>
+                                </div>
+                                @if($t->about)
+                                    <p class="about text-center text-muted">{{$t->about}} &nbsp;</p>
+                                @else
+                                    <p class="about">No info!</p>
+                                @endif
+                                <p>
+                                    @if($t->venue()->first())
+                                        <span class="icon icon-earth">&nbsp;</span>{{$t->venue()->first()->name}}
+                                    @else
+                                        <span class="icon icon-location">&nbsp;</span>No venue yet!
+                                    @endif
+                                </p>
+                                <p>
+                                    <span class="icon icon-heart3">&nbsp;</span> <span class="vote-count">{{$t->vote}}</span>
+                                </p>
+                                <div>
+                                    <button class="btn get_started btn-sm vote-btn btn-fill" data-id="{{$t->id}}">PICK
+                                        @if($t->sex ==  "male")
+                                            <span class="icon icon-profile-male"></span>
+                                        @else
+                                            <span class="icon icon-profile-female"></span>
+                                        @endif
+                                    </button>
+                                </div>
+                            </div>
+
+                        </div>
                     </div>
-                </div>
                 @endforeach
             </div>
         </div>
@@ -288,7 +299,7 @@
                     <div class="col-sm-3">
                         <div class="panel panel-warning">
                             <div class="panel-body">
-                                <a href="{{$person->venue()->first()->url}}">
+                                <a href="{{$venue->url}}">
                                     <img class="img-responsive img-circle" src="{{asset($venue->thumb)}}" alt="{{$venue->name}}">
                                     <div class="clearfix"></div>
                                 </a>
@@ -299,6 +310,9 @@
             @endforeach
         </div>
     </div>
+
+    @include('utils.votePay');
+    @include('utils.account');
 @endsection
 
 @section('footer')
@@ -312,6 +326,9 @@
     <script src="{{ asset('libs/jquery/jquery-event-drop.js') }}"></script>
     <script src="{{ asset('libs/jquery/jquery-easing.js') }}"></script>
     <script src="{{asset("libs/owl/owl.carousel.min.js")}}"></script>
+    <script src="{{asset('js/app/Vote.js')}}"></script>
+    <script src="{{asset('js/app/VotePay.js')}}"></script>
+    <script src="{{asset('js/app/Account.js')}}"></script>
 
     <script src="{{ asset('js/Home.js') }}"></script>
     <script>
