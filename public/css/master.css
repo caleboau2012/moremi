@@ -411,16 +411,16 @@ Profile Card
 }
 #profile_cover_info_container{
     text-align: center;
-    -webkit-box-align:center;
-    -webkit-box-pack:center;
-    display:-webkit-box;
+    /*-webkit-box-align: center;*/
+    /*-webkit-box-pack: center;*/
+    /*display: -webkit-box;*/
     position: absolute;
     bottom: -25px;
-    width: 90%;
+    width: 100%;
+    margin: 0 auto;
 }
 .profile_info_item{
     display: inline-block;
-    margin-right: 3px;
 }
 #profile-cover_dp{
     width: 100px; height: 100px; border-radius: 50%;

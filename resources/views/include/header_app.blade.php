@@ -2,7 +2,7 @@
  <div class="container-fluid">
    <img id="logo" src="{{asset('images/logo.png')}}" alt="">
  </div>
-    <div class="container">
+    <div>
         <div id="profile_cover_info_container">
             <div class="profile_info_item">
                 <p class="profile_info_item text-center text-white no-margin">Pick of the Week</p>
@@ -11,7 +11,7 @@
                 </h4>
 
             </div>
-            <div class="profile_info_item" id="profile_dp_container">
+            <div class="profile_info_item text-center" id="profile_dp_container">
                 @if($profile->photo()->first())
                     <img id="profile-cover_dp"  src="{{asset($profile->photo()->first()->full_path)}}" alt="Profile DP">
                 @else
