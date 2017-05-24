@@ -35,6 +35,8 @@ class UIRevampController extends Controller
 
         $partners = Venue::all();
 
+//        die(var_dump($trending));
+
         return view('uirevamp.home', [
             'loggedIn' => $this->loggedIn,
             'profile' => $this->profile,

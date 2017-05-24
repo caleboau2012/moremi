@@ -7,7 +7,9 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a href="index.html" class="navbar-brand"><strong class="text-white">Moree.me</strong></a>
+      <a href="index.html" class="navbar-brand">
+          <img src="{{asset('images/logo.png')}}" id="logo">
+      </a>
     </div>
 
     <div class="collapse navbar-collapse navbar-ex1-collapse" role="navigation">
@@ -18,11 +20,20 @@
         @if(!$loggedIn)
           <li><a href="#" id="app-url" data-url="{{route("login")}}" data-url-app="{{route('app')}}" class="login"><span class="text-white">Join</span></a></li>
         @else
-          <li><a href="#" class="profile-btn">
+          <li>
+            <a href="#" class="profile-btn">
               @if($profile != null)
-                <img src="{{asset($profile->photo()->first()->thumb_path)}}" class="profile-thumb">
-                <span class="text-white">{{$profile->first_name}} {{$profile->last_name}}</span></a></li>
+                  @if($profile->photo()->first())
+                        <img src="{{asset($profile->photo()->first()->thumb_path)}}" class="profile-thumb">
+                   @else
+                        <img src="{{asset('images/apple-icon.png')}}" class="profile-thumb">
+                    @endif
+                   <span class="text-white">{{$profile->first_name}} {{$profile->last_name}}</span>
+              @else
+                <img src="{{asset('images/apple-icon.png')}}" class="profile-thumb">
               @endif
+            </a>
+          </li>
         @endif
       </ul>
     </div>

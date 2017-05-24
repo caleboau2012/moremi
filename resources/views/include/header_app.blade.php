@@ -11,15 +11,23 @@
         </p>
       </div>
       <div id="profile-dp" class="hidden-sm hidden-xs">
-        <span class="dp-edit-btn"><span class="icon icon-pencil2 text-white"></span></span>
-        <img src="{{asset($profile->photo()->first()->full_path)}}" alt="Profile DP" class="img-responsive img-circle">
+        <a href="#" class="dp-edit-btn"><span class="icon icon-pencil2 text-white"></span></a>
+        @if($profile->photo()->first())
+          <img src="{{asset($profile->photo()->first()->full_path)}}" alt="Profile DP" class="img-responsive img-circle">
+        @else
+          <img src="{{asset('images/apple-icon.png')}}" class="profile-thumb">
+        @endif
       </div>
       <div id="profile-info-right" class="profile-info hidden-sm hidden-xs">
         <h4 class="no-margin text-white">{{$profile->vote}} picks</h4>
         <p class="no-margin text-white">
           <span class="icon icon-earth"></span>
-          <span>{{$profile->venue()->first()->name}}</span>
-          <span id='spot' class="hidden">{{$profile->venue}}</span>
+          @if($profile->venue()->first())
+            <span>{{$profile->venue()->first()->name}}</span>
+            <span id='spot' class="hidden">{{$profile->venue}}</span>
+          @else
+            <span>No venue</span>
+            @endif
         </p>
       </div>
     </div>
@@ -33,8 +41,11 @@
   <div class="container">
     <div class="text-center">
       <div id="profile-dp-xs" class="center-block">
-        <img src="{{asset(asset($profile->photo()->first()->full_path))}}" alt="Profile DP" class="img-responsive img-circle">
-
+        @if($profile->photo()->first())
+          <img src="{{asset($profile->photo()->first()->full_path)}}" alt="Profile DP" class="img-responsive img-circle">
+        @else
+          <img src="{{asset('images/apple-icon.png')}}" class="profile-thumb">
+        @endif
       </div>
     </div>
     <h4 class="text-center no-margin-bottom">{{$profile->first_name}} {{$profile->last_name}}</h4>

@@ -306,6 +306,10 @@ Profile Card
 #app-header{
     position: relative;
 }
+#logo{
+    width: 200px;
+    margin-top: -15px;
+}
 #app-header #logo{
     width: 300px;
 }
@@ -402,7 +406,11 @@ Profile Card
  color: #ffffff;
     padding: 20px;
 }
-
+.profile-thumb {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+}
 .image-box img, .profile-pic img, .picture-pane img{
     display: block;
     width: 100%;

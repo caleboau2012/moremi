@@ -212,7 +212,11 @@
                 <div class="trending-item">
                     <div class="profile-card">
                         <div class="profile-card-heading">
-                            <img class="img-responsive img-circle" src="{{asset($person->photo()->first()->full_path)}}" alt="Moses">
+                            @if($person->photo()->first())
+                                <img class="img-responsive img-circle" src="{{asset($person->photo()->first()->full_path)}}" alt="{{ $person->first_name .' '. $person->last_name }}">
+                            @else
+                                <img class="img-responsive img-circle"  src="{{asset('images/apple-icon.png')}}">
+                            @endif
                         </div>
                         <div class="profile-card-content">
                             <div class="profile-card-name">
@@ -220,7 +224,11 @@
                                 <span class="content-end"></span>
                             </div>
                             <p class="text-center">
+                                @if($person->venue)
                                 <span class="icon icon-location">&nbsp;</span>{{$person->venue()->first()->name}}
+                                    @else
+                                    <span class="icon icon-location">&nbsp;</span>No venue yet!
+                                @endif
                             </p>
                             <p class="text-center">
                                 <span class="icon icon-heart3">&nbsp;</span>{{$person->vote}}
