@@ -46,7 +46,7 @@
 
     <div class="container">
         <div class="row">
-            <div class="col-md-8 bg-white">
+            <div class="col-md-6 bg-white">
                 <div class=" profile-court">
                     <div class="row">
                         <div class="col-md-6">
@@ -219,7 +219,7 @@
                 </div>
             </div>
 
-            <div class="col-md-4">
+            <div class="col-md-4 col-md-offset-2">
                 <div class="connections-container">
                     <h4 class="text-primary margin-bottom-md">Your Connections</h4>
 
