@@ -40,6 +40,8 @@
                             <div class="row">
                                 <p class="text-center text-white col-md-6 col-md-offset-3">
                                     Moore.me will help you meet people and set you up on a date. All expenses paid by us.
+                                    <br>
+                                    Simply pick someone and pick a spot.
                                 </p>
                             </div>
                             <div class="row text-center">
@@ -284,7 +286,7 @@
                 <div class="col-md-4">
                     <div class="text-center">
                         <span class="text-white icon icon-tags"></span>
-                        <h3 class="no-margin text-center text-white">{{$dates}}+</h3>
+                        <h3 class="no-margin text-center text-white">{{$dates->count()}}+</h3>
                         <div class="divider"></div>
                         <h5 class="no-margin text-white text-center">Sponsored Dates</h5>
                     </div>
@@ -298,7 +300,7 @@
 
     {{--PARTNERS--}}
     <div class="container" id="partners_section">
-        <h3 class="text-center">Partners</h3>
+        <h3 class="text-center">Spots</h3>
         <div class="row trending-items">
             @foreach($partners as $venue)
                 <div class="trending-item">

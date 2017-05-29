@@ -89,6 +89,9 @@ class PaymentController extends Controller
             'count'=>$vote->count
         ];
 
-        return redirect()->route('home');
+//        dd(url()->previous());
+//
+//        return redirect()->back();
+        return redirect()->route('app');
     }
 }

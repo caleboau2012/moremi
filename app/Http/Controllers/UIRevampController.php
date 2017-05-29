@@ -27,7 +27,7 @@ class UIRevampController extends Controller
     public function home(){
         $males= Profile::where(\ProfileConstant::SEX, \ProfileConstant::MALE)->count();
         $females = Profile::where(\ProfileConstant::SEX, \ProfileConstant::FEMALE)->count();
-        $dates = OldCheek::all()->count();
+        $dates = OldCheek::all();
 
         $winner =OldCheek::orderBy('created_at', 'desc')->first();
 

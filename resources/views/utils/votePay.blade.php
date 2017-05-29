@@ -8,7 +8,7 @@
                         <span class="fa fa-close fa-inverse"></span>
                     </span>
                 </button>
-                <h4 class="modal-title" id="votePayModalLabel">Pay</h4>
+                <h4 class="modal-title" id="votePayModalLabel">This won't take a while</h4>
             </div>
             <div class="modal-body">
                 @if(isset($profile))
@@ -17,12 +17,12 @@
                             <form method="POST" action="{{ route('pay') }}" accept-charset="UTF-8" class="form-horizontal vote-pay" role="form">
                                 <div class="panel panel-danger">
                                     <div class="panel-body">
-                                        <h1 class="h1 text-center">
-                                            ₦ {{config('constants.small_bundle') * 1.5}}
-                                        </h1>
-                                        <h2 class="h2 text-center">
-                                            1 vote
+                                        <h2 class="text-center">
+                                            ₦ {{config('constants.small_bundle') * config('constants.scale')}}
                                         </h2>
+                                        <h3 class="text-center">
+                                            1 vote
+                                        </h3>
                                         <input type="hidden" name="email" value="{{$profile->email}}"> {{-- required --}}
                                         <input type="hidden" name="amount" value="{{config('constants.small_bundle') * 100}}"> {{-- required in kobo --}}
                                         <input type="hidden" name="quantity" value="1">
@@ -44,12 +44,12 @@
                             <form method="POST" action="{{ route('pay') }}" accept-charset="UTF-8" class="form-horizontal vote-pay" role="form">
                                 <div class="panel panel-danger">
                                     <div class="panel-body">
-                                        <h1 class="h1 text-center">
-                                            ₦ {{config('constants.medium_bundle') * 1.5}}
-                                        </h1>
-                                        <h2 class="h2 text-center">
-                                            5 votes
+                                        <h2 class="text-center">
+                                            ₦ {{config('constants.medium_bundle') * config('constants.scale')}}
                                         </h2>
+                                        <h3 class="text-center">
+                                            5 votes
+                                        </h3>
                                         <input type="hidden" name="email" value="{{$profile->email}}"> {{-- required --}}
                                         <input type="hidden" name="amount" value="{{config('constants.medium_bundle') * 100}}"> {{-- required in kobo --}}
                                         <input type="hidden" name="quantity" value="1">
@@ -71,12 +71,12 @@
                             <form method="POST" action="{{ route('pay') }}" accept-charset="UTF-8" class="form-horizontal vote-pay" role="form">
                                 <div class="panel panel-danger">
                                     <div class="panel-body">
-                                        <h1 class="h1 text-center">
-                                            ₦ {{config('constants.large_bundle') * 1.5}}
-                                        </h1>
-                                        <h2 class="h2 text-center">
-                                            10 votes
+                                        <h2 class="text-center">
+                                            ₦ {{config('constants.large_bundle') * config('constants.scale')}}
                                         </h2>
+                                        <h3 class="text-center">
+                                            10 votes
+                                        </h3>
                                         <input type="hidden" name="email" value="{{$profile->email}}"> {{-- required --}}
                                         <input type="hidden" name="amount" value="{{config('constants.large_bundle') * 100}}"> {{-- required in kobo --}}
                                         <input type="hidden" name="quantity" value="1">

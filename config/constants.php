@@ -22,5 +22,7 @@ return [
 //    Prices
     'small_bundle' => 100,
     'medium_bundle' => 400,
-    'large_bundle' => 700
+    'large_bundle' => 700,
+
+    'scale' => 1
 ];
