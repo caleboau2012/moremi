@@ -75,15 +75,17 @@ use AuthTrait;
     public function endVotes(){
         $votingResult = DB::table('voters')
             ->select('profile_id', 'voter_id',  DB::raw('SUM(frequency) as total'))
-            ->groupBy('voter_id')
             ->groupBy('profile_id')
+            ->groupBy('voter_id')
             ->orderBy('total', 'DESC')
             ->where('deleted_at', null)
             ->get();
 
         if($votingResult){
             foreach($votingResult as $vResult){
-                $this->createConnection($vResult);
+                $pick = Profile::find($vResult->profile_id);
+                $picker = Profile::find($vResult->voter_id);
+                $this->createConnection($vResult, $pick, $picker);
             }
 
             $winner = Profile::find($votingResult[0]->profile_id);
@@ -99,7 +101,7 @@ use AuthTrait;
         }
     }
 
-    private static function createConnection($poll){
+    private static function createConnection($poll, $pick, $picker){
         $connection = Connection::where(
             \TableConstant::PROFILE_ID, $poll->profile_id)
             ->where(\ConnectionConstant::RECIPIENT_ID, $poll->voter_id)->first();
@@ -113,6 +115,24 @@ use AuthTrait;
                 \TableConstant::PROFILE_ID => $poll->profile_id,
                 \ConnectionConstant::RECIPIENT_ID => $poll->voter_id,
             ]);
+            $picker_spot = Venue::find($picker->venue);
+            $picker_location = ($picker_spot ? $picker_spot->name : "Undisclosed");
+            $pick_spot = Venue::find($pick->venue);
+            $pick_location = ($picker_spot ? $pick_spot->name : "Undisclosed");
+            /*Send to highest picker*/
+            Mail::send('emails.connectionAlert', ['connection' => $pick, 'poll' => $poll, 'location' => $pick_location, 'user' => $picker],
+                function ($m) use ($picker) {
+                $m->from(\MailConstants::SUPPORT_MAIL, \MailConstants::TEAM_NAME);
+                $name = $picker->first_name .' '. $picker->last_name;
+                $m->to($picker->email, $name)->subject('You just got yourself a new connection on Moore.me');
+            });
+            /*Send to  Pick*/
+            Mail::send('emails.connectionAlert', ['connection' => $picker, 'poll' => $poll, 'location' => $picker_location, 'user' => $pick],
+                function ($m) use ($pick) {
+                    $m->from(\MailConstants::SUPPORT_MAIL, \MailConstants::TEAM_NAME);
+                    $name = $pick->first_name .' '. $pick->last_name;
+                    $m->to($pick->email, $name)->subject('You just got yourself a new connection on Moore.me');
+                });
         }
     }
 
