@@ -15,8 +15,9 @@ var Profile = {
         //$(".image-box").each(function(i){
         //    $(this).height($(this).width());
         //});
-        $(".edit_profile_btn").click(function () {
-               $('#accountModal').modal();
+        $(".edit_profile_btn").click(function (e) {
+            e.preventDefault();
+            $('#accountModal').modal();
         });
 
         $("#venue").change(function(e){
@@ -93,9 +94,9 @@ var Profile = {
                 Profile.deletePicture($(this).parent().parent().parent(), $(this).attr("data-url"));
             }
         );
-            //.undelegate(".picture-panel .fa-close").delegate(".picture-panel .fa-close", "click", function(e){
-            //    Profile.deletePicture($(this).parent().parent().parent());
-            //});
+        //.undelegate(".picture-panel .fa-close").delegate(".picture-panel .fa-close", "click", function(e){
+        //    Profile.deletePicture($(this).parent().parent().parent());
+        //});
 
         $(".picture-upload").click(function(e){
             $("#pic-upload").click();
