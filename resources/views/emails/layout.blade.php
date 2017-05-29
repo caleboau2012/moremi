@@ -1,39 +1,53 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <style type="text/css">
-        img {
-            max-width: 100%;
-        }
-        body {
-            -webkit-font-smoothing: antialiased; -webkit-text-size-adjust: none; width: 100% !important; height: 100%; line-height: 1.6em;
-        }
-        body {
-            background-color: #f6f6f6;
-        }
-    </style>
-</head>
 
-<body  style="background: #f3f3f3; padding: 10px;">
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head><META http-equiv="Content-Type" content="text/html; charset=utf-8"></head>
+<body>
+<div style="margin:0;padding:0">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+        <tr>
+            <td style="padding:10px 0 30px 0">
+                <table align="center" border="0" cellpadding="0" cellspacing="0" width="600" style="border:1px solid #cccccc;border-collapse:collapse">
+                    <tr>
+                        <td align="center" bgcolor="#fe574a" style="padding:0px 0px 0px 0px;color:#153643;font-size:28px;font-weight:bold;font-family:Arial,sans-serif">
+                            <img src="http://res.cloudinary.com/crown-interactive/image/upload/v1495784513/connection-ed_cxhssz.jpg" alt="Moree.me" width="" height="" style="display:block">
+                        </td>
+                    </tr>
+                   @yield('content')
 
-<div class="body-wrap" style="padding: 20px 10px; font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; width: 80%; background-color: #ffffff; margin: 5px auto 10px">
-   @section('content')
+                    <tr>
+                        <td bgcolor="#ee4c50" style="padding:30px 30px 30px 30px">
+                            <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                <tr>
+                                    <td style="color:#ffffff;font-family:Arial,sans-serif;font-size:14px" width="75%">
+                                        © <a href="http://moree.me" target="_blank">moree.me</a> 2017<br>
 
-       @show
-
-</div>
-
-<div style="width: 80%; margin : 0 auto;">
-    <p style="color: #eeeeee; text-align: center;">
-        You're receiving these emails because you signed up on Moree.me.
-        Moree.me would never send you emails asking you to enter your account information on any site other than www.moree.me
-    </p>
-    <p style="color: #eeeeee; text-align: center;">
-        Copyright © 2016 Moree.me All rights reserved.
-
-    </p>
+                                    </td>
+                                    <td align="right" width="25%">
+                                        <table border="0" cellpadding="0" cellspacing="0">
+                                            <tr>
+                                                <td style="font-family:Arial,sans-serif;font-size:12px;font-weight:bold">
+                                                    <a href="http://www.twitter.com/moree.me" style="color:#ffffff" target="_blank">
+                                                        <img src="http://res.cloudinary.com/crown-interactive/image/upload/v1495784505/tw_ggehqs.gif" alt="Twitter" width="38" height="38" style="display:block" border="0">
+                                                    </a>
+                                                </td>
+                                                <td style="font-size:0;line-height:0" width="20"> </td>
+                                                <td style="font-family:Arial,sans-serif;font-size:12px;font-weight:bold">
+                                                    <a href="http://www.twitter.com/moree.me" style="color:#ffffff" target="_blank">
+                                                        <img src="http://res.cloudinary.com/crown-interactive/image/upload/v1495784505/fb_pbqcbv.gif" alt="Facebook" width="38" height="38" style="display:block" border="0">
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
 </div>
 </body>
 </html>

@@ -206,7 +206,11 @@
                         @foreach($connections as $c)
                             <div class="col-md-3">
                                 <div class="connection-item" data-id="messages-between-{{$c[\TableConstant::PROFILE_ID]}}-{{$c[\ConnectionConstant::RECIPIENT_ID]}}">
-                                    <img src="{{asset($c[\ConnectionConstant::PHOTO]->thumb_path)}}" alt="{{$c[\ConnectionConstant::NAME]}}" class="img-circle img-responsive">
+                                    @if($c[\ConnectionConstant::PHOTO])
+                                         <img src="{{asset($c[\ConnectionConstant::PHOTO]->thumb_path)}}" alt="{{$c[\ConnectionConstant::NAME]}}" class="img-circle img-responsive">
+                                    @else
+                                        <img src="{{asset('images/apple-icon.png')}}" alt="{{$c[\ConnectionConstant::NAME]}}" class="img-circle img-responsive">
+                                    @endif
                                 </div>
                             </div>
                         @endforeach
@@ -226,7 +230,11 @@
                             <div class="hidden chat-box" id="messages-between-{{$c[\TableConstant::PROFILE_ID]}}-{{$c[\ConnectionConstant::RECIPIENT_ID]}}">
                                 <div class="chat-container-header text-center">
                                     <h3 class="panel-title">
-                                        <img src="{{asset($c[\ConnectionConstant::PHOTO]->thumb_path)}}" class="img-thumb img-circle img-small">
+                                        @if($c[\ConnectionConstant::PHOTO])
+                                            <img src="{{asset($c[\ConnectionConstant::PHOTO]->thumb_path)}}" class="img-thumb img-circle img-small">
+                                        @else
+                                            <img src="{{asset('images/apple-icon.png')}}" alt="{{$c[\ConnectionConstant::NAME]}}" class="img-thumb img-circle img-small">
+                                        @endif
                                         {{$c[\ConnectionConstant::NAME]}}
                                     </h3>
                                 </div>
