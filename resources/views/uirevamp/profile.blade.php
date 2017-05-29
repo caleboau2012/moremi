@@ -207,9 +207,9 @@
                             <div class="col-md-3">
                                 <div class="connection-item" data-id="messages-between-{{$c[\TableConstant::PROFILE_ID]}}-{{$c[\ConnectionConstant::RECIPIENT_ID]}}">
                                     @if($c[\ConnectionConstant::PHOTO])
-                                         <img src="{{asset($c[\ConnectionConstant::PHOTO]->thumb_path)}}" alt="{{$c[\ConnectionConstant::NAME]}}" class="img-circle img-responsive">
+                                         <img data-toggle="tooltip" data-placement="top" data-original-title="{{ucfirst($c[\ConnectionConstant::NAME])}}"  src="{{asset($c[\ConnectionConstant::PHOTO]->thumb_path)}}" alt="{{$c[\ConnectionConstant::NAME]}}" class="img-circle img-responsive">
                                     @else
-                                        <img src="{{asset('images/apple-icon.png')}}" alt="{{$c[\ConnectionConstant::NAME]}}" class="img-circle img-responsive">
+                                        <img data-toggle="tooltip" data-placement="top" data-original-title="{{ucfirst($c[\ConnectionConstant::NAME])}}" src="{{asset('images/apple-icon.png')}}" alt="{{$c[\ConnectionConstant::NAME]}}" class="img-circle img-responsive">
                                     @endif
                                 </div>
                             </div>
@@ -281,4 +281,9 @@
     <script src="{{asset('js/app/Account.js')}}"></script>
     <script src="https://cdn.socket.io/socket.io-1.3.4.js"></script>
     <script src="{{asset('js/app/Chat.js')}}"></script>
+    <script>
+        $(document).ready(function(){
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+    </script>
 @endsection
