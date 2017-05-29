@@ -72,18 +72,18 @@ a, a:hover{
 }
 .moment_pick_container_content{
     margin: 0 auto;
-    width: 1000px;
+    width: 500px;
 }
 
 .moment_pics_container{
-    width: 250px;
+    width: 200px;
     z-index: 5
 }
 .moment_profile_container{
     margin-left: 52px;
     background: #fff;
     margin-top: 33px;
-    padding: 7px 50px 3px 66px;
+    padding: 7px 50px 3px 250px;
     border-radius: 0 70px 70px 0;
     width: 500px;
 }
