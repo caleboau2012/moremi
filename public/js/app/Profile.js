@@ -15,6 +15,9 @@ var Profile = {
         //$(".image-box").each(function(i){
         //    $(this).height($(this).width());
         //});
+        $(".edit_profile_btn").click(function () {
+               $('#accountModal').modal();
+        });
 
         $("#venue").change(function(e){
             var selected = $(this).find('option:selected');
@@ -77,7 +80,7 @@ var Profile = {
                 });
                 $(this).find("img").attr("src", newURL).removeClass("hidden").css('display', 'block');
                 if(oldURL == ""){
-                    $(this).find("p").remove();
+                    $(this).find(".image-placeholder").remove();
                 }
             }).delegate(".profile-pic", "dragover", function(e){
                 e.preventDefault();

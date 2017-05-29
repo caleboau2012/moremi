@@ -8,6 +8,7 @@ use App\Services\Vote\VoteService;
 use App\Http\Requests;
 use App\Traits\AuthTrait;
 use App\User;
+use App\Venue;
 use App\Voter;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
@@ -86,7 +87,8 @@ use AuthTrait;
         if($votingResult){
             $winner = Profile::find($votingResult->profile_id);
             $highestVoter = Profile::find($votingResult->voter_id);
-            $this->saveWinner($votingResult, $winner, $highestVoter);
+            $spot = Venue::find($winner->venue);
+            $this->saveWinner($votingResult, $winner, $highestVoter, $spot);
             $this->resetVote();
             return response()->json('Vote reset successfully');
 
@@ -96,11 +98,11 @@ use AuthTrait;
         }
     }
 
-    private static function saveWinner($poll, $winner, $highestVoter){
+    private static function saveWinner($poll, $winner, $highestVoter, $spot){
         $now_ = new \DateTime();
         $expiryDate = $now_->modify('+1 month');
-        /*todo Get location from the winner's profile*/
-        $location = "Eko Hotel and Suite";
+
+        $location = ($spot ? $spot->name : "Undisclosed");
 
         $oldCheek = new OldCheek();
         $oldCheek->profile_id = $poll->profile_id;

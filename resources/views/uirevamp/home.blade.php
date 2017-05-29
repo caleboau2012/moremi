@@ -144,7 +144,11 @@
                         </div>
 
                         <div class="moment_pick_voter_container">
-                            <img src="{{asset($winner->picker()->first()->photo()->first()->thumb_path)}}" alt="" width="65" class="img-circle">
+                            @if($winner->picker()->first()->photo()->first())
+                                <img src="{{asset($winner->picker()->first()->photo()->first()->thumb_path)}}" alt="" width="65" class="img-circle">
+                            @else
+                                <img class="img-circle"  src="{{asset('images/apple-icon.png')}}" alt="" width="65">
+                            @endif
                             <div class="description">
                                 <h5 class="no-margin">Picker</h5>
                                 <p class="no-margin text-white">{{$winner->picker()->first()->first_name}} {{$winner->picker()->first()->last_name}}</p>

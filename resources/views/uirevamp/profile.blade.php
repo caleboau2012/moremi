@@ -33,7 +33,7 @@
 @endsection
 
 @section('content')
-    <div style="height: 50px;">
+    <div style="height: 65px;">
         <div class="row hidden">
             <p class="hidden" id="_token">{{ csrf_token() }}"</p>
             <h2 class="text-center hidden" id="user">{{$profile->first_name}} {{$profile->last_name}}</h2>
@@ -53,21 +53,33 @@
                             <div class="profile-pic">
                                 <div class="image">
                                     @if(is_null($profile->photo_id) || is_null($profile->photo->full_path))
-                                        <p class="text-center text-info img-placeholder">Drag best picture here</p>
-                                        <img class="hidden" src="">
+                                        <div id="upload_image_placeholder">
+                                            <div id="caption"  class="image-placeholder">
+                                                <h1 class="text-center">
+                                                    <span class="icon icon-upload2"></span>
+                                                </h1>
+                                                <p class="text-center text-muted">Drag best picture here</p>
+                                            </div>
+                                            <img class="hidden" src="">
+                                        </div>
+
                                     @else
                                         <p class="text-center hidden text-info image-placeholder">Drag best picture here</p>
                                         <img class="img-responsive img-thumbnail" id="profile-dp" src="{{asset($profile->photo->full_path)}}">
                                     @endif
                                 </div>
+                                <div class="row_">
+                                    <br>
+                                    <a href="#" title="Upload image" class="btn btn-primary picture-upload">
+                                        <strong class="icon icon-upload"></strong>
+                                    </a>
+                                    <a href="#" title="Import image from Facebook" class="btn btn-primary" id="facebook-fetch">
+                                        <span class="icon icon-download2"></span>  <span class="icon icon-facebook-official"></span>
+                                    </a>
+                                </div>
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <div class="form-group">
-                                <div>
-                                    <textarea placeholder="My status message" class="form-control margin-top-sm" id="status">{{$profile->about}}</textarea>
-                                </div>
-                            </div>
                             {{--Previous DP--}}
                             <div class="row" id="pictures-panel" data-url="{{route('my_profile')}}">
                                 @if(!empty($photos))
@@ -82,6 +94,8 @@
                                             <br>
                                         </div>
                                     @endforeach
+                                    @else
+                                    <p class="text-center text-muted">No image yet!</p>
                                 @endif
                             </div>
                         </div>
@@ -91,9 +105,19 @@
                     {{--profile--}}
                     <div class="profile-form">
                         <div class="row">
-                            <div class="col-sm-6">
+                            <div class="col-sm-12">
                                 <div class="form-group">
-                                    <label for="venue"></label>
+                                    <div>
+                                        <label for="status" class="control-label"><strong>Status</strong></label>
+                                        <textarea placeholder="My status message" class="form-control margin-top-sm" id="status">{{$profile->about}}</textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label for="venue"><strong>Preferred Spot</strong></label>
                                     <select name="venue" id="venue" class="form-control">
                                         <option value="0">Select your preferred date location</option>
                                         @foreach($venues as $venue)
@@ -108,37 +132,12 @@
                                     </select>
                                 </div>
                             </div>
-
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <label for=""></label>
-                                    <button class="btn btn-default btn-block" data-toggle="modal" data-target="#accountModal">
-                                        <span class="fa fa-user"></span> Update Account Details
-                                    </button>
-                                </div>
-                            </div>
                         </div>
 
                         <div class="row">
                             <div class="col-sm-6">
                                 <br>
-                                <button class="btn bg-primary btn-block" id="facebook-fetch">
-                                    Import <span class="icon icon-file-image-o"></span> From <span class="icon icon-facebook-official"></span>
-                                </button>
-                                <br>
-                            </div>
-                            <div class="col-sm-6">
-                                <br>
-                                <button class="btn btn-danger btn-block picture-upload">
-                                    Upload <span class="icon icon-file-image-o"></span>
-                                </button>
-                                <br>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <br>
-                                <button id="finish" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> Updating your profile" data-url="{{route("photo_upload")}}" class="btn btn-success btn-block"><span class="fa fa-upload"></span> Finish</button>
+                                <button id="finish" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> Updating your profile" data-url="{{route("photo_upload")}}" class="btn btn-success btn-block"><span class="fa fa-upload"></span> Save Changes</button>
                                 <br>
                             </div>
                         </div>
@@ -188,9 +187,10 @@
                     </div><!-- /.modal -->
 
                 </div>
+
             </div>
 
-            <div class="col-md-4 col-md-offset-2">
+            <div class="col-md-4 col-md-offset-1">
                 <div class="connections-container">
                     <h4 class="text-primary text-center margin-bottom-md">Your Connections</h4>
 
@@ -198,7 +198,11 @@
                         @foreach($connections as $c)
                             <div class="col-md-3">
                                 <div class="connection-item" data-id="messages-between-{{$c[\TableConstant::PROFILE_ID]}}-{{$c[\ConnectionConstant::RECIPIENT_ID]}}">
-                                    <img src="{{asset($c[\ConnectionConstant::PHOTO]->thumb_path)}}" alt="{{$c[\ConnectionConstant::NAME]}}" class="img-circle img-responsive">
+                                    @if($c[\ConnectionConstant::PHOTO])
+                                         <img data-toggle="tooltip" data-placement="top" data-original-title="{{ucfirst($c[\ConnectionConstant::NAME])}}"  src="{{asset($c[\ConnectionConstant::PHOTO]->thumb_path)}}" alt="{{$c[\ConnectionConstant::NAME]}}" class="img-circle img-responsive">
+                                    @else
+                                        <img data-toggle="tooltip" data-placement="top" data-original-title="{{ucfirst($c[\ConnectionConstant::NAME])}}" src="{{asset('images/apple-icon.png')}}" alt="{{$c[\ConnectionConstant::NAME]}}" class="img-circle img-responsive">
+                                    @endif
                                 </div>
                             </div>
                         @endforeach
@@ -218,7 +222,11 @@
                             <div class="hidden chat-box" id="messages-between-{{$c[\TableConstant::PROFILE_ID]}}-{{$c[\ConnectionConstant::RECIPIENT_ID]}}">
                                 <div class="chat-container-header text-center">
                                     <h3 class="panel-title">
-                                        <img src="{{asset($c[\ConnectionConstant::PHOTO]->thumb_path)}}" class="img-thumb img-circle img-small">
+                                        @if($c[\ConnectionConstant::PHOTO])
+                                            <img src="{{asset($c[\ConnectionConstant::PHOTO]->thumb_path)}}" class="img-thumb img-circle img-small">
+                                        @else
+                                            <img src="{{asset('images/apple-icon.png')}}" alt="{{$c[\ConnectionConstant::NAME]}}" class="img-thumb img-circle img-small">
+                                        @endif
                                         {{$c[\ConnectionConstant::NAME]}}
                                     </h3>
                                 </div>
@@ -257,7 +265,6 @@
     </div>
 
     @include('utils.votePay')
-    @include('utils.account')
 @endsection
 
 @section('bottomScripts')
@@ -265,4 +272,9 @@
     <script src="{{asset('js/app/Account.js')}}"></script>
     <script src="https://cdn.socket.io/socket.io-1.3.4.js"></script>
     <script src="{{asset('js/app/Chat.js')}}"></script>
+    <script>
+        $(document).ready(function(){
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+    </script>
 @endsection
