@@ -81,6 +81,7 @@ use AuthTrait;
             ->where('deleted_at', null)
             ->get();
 
+
         $stack = [];
 
         if($votingResult){
@@ -94,12 +95,13 @@ use AuthTrait;
 
                 if($unique){
                     $stack[] = $vResult;
+                    $pick = Profile::find($vResult->profile_id);
+                    $picker = Profile::find($vResult->voter_id);
+                    $this->createConnection($vResult, $pick, $picker);
                 }
                 else{
                     continue;
                 }
-
-                $this->createConnection($vResult);
             }
 
             $winner = Profile::find($votingResult[0]->profile_id);
