@@ -77,7 +77,7 @@ var Profile = {
                 });
                 $(this).find("img").attr("src", newURL).removeClass("hidden").css('display', 'block');
                 if(oldURL == ""){
-                    $(this).find("p").remove();
+                    $(this).find(".image-placeholder").remove();
                 }
             }).delegate(".profile-pic", "dragover", function(e){
                 e.preventDefault();

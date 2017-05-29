@@ -54,11 +54,11 @@
                                 <div class="image">
                                     @if(is_null($profile->photo_id) || is_null($profile->photo->full_path))
                                         <div id="upload_image_placeholder">
-                                            <div id="caption">
+                                            <div id="caption"  class="image-placeholder">
                                                 <h1 class="text-center">
                                                     <span class="icon icon-upload2"></span>
                                                 </h1>
-                                                <p class="text-center text-muted image-placeholder">Drag best picture here</p>
+                                                <p class="text-center text-muted">Drag best picture here</p>
                                             </div>
                                             <img class="hidden" src="">
                                         </div>
