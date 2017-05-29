@@ -34,12 +34,12 @@
                         <div class="col-md-10 col-md-offset-1" data-scrollreveal="enter left after 0.15s over 1s">
                             <h1 class="text-white text-center text-uppercase">
                                 <strong>
-                                    It all begins with a Date
+                                    It all begins with a date
                                 </strong>
                             </h1>
                             <div class="row">
                                 <p class="text-center text-white col-md-6 col-md-offset-3">
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque eligendi impedit laudantium pariatur provident velit.
+                                    Moore.me will help you meet people and set you up on a date. All expenses paid by us.
                                 </p>
                             </div>
                             <div class="row text-center">
@@ -63,11 +63,11 @@
             <div class="col-md-6">
                 <img src="{{asset('images/about_banner.jpg')}}" alt="" class="img-responsive">
             </div>
-            <div class="col-md-4 col-md-offset-1">
+            <div class="col-md-6">
                 <div id="about_caption_content">
                     <h4 class="text-primary text-center">Get Connected on Moree.me</h4>
                     <p>
-                        Moore.me is a best application that brings out the best in people. It's easy to use
+                        Meeting people has never been this easy. Pick someone from Monday through to Saturday and meet on Sunday. Here's how:
                     </p>
                     <ul>
                         <li>
@@ -77,7 +77,13 @@
                             Create a profile
                         </li>
                         <li>
-                            Start voting or accumulate vote to get to your office
+                            Pick someone
+                        </li>
+                        <li>
+                            Keep picking the same person in a week. We connect the highest pickers and the person they pick
+                        </li>
+                        <li>
+                            Everything resets at the end of the week so you can pick someone new and go on a date every week
                         </li>
                     </ul>
 
@@ -194,7 +200,7 @@
                 </div>
             </div>
         </div>
-        @endif
+    @endif
 
 
     <div class="container-fluid bg-grey" id="trending_container" >
@@ -296,14 +302,13 @@
         <div class="row trending-items">
             @foreach($partners as $venue)
                 <div class="trending-item">
-                    <div class="col-sm-3">
-                        <div class="panel panel-warning">
-                            <div class="panel-body">
-                                <a href="{{$venue->url}}">
-                                    <img class="img-responsive img-circle" src="{{asset($venue->thumb)}}" alt="{{$venue->name}}">
-                                    <div class="clearfix"></div>
-                                </a>
-                            </div>
+                    <div class="panel panel-warning">
+                        <div class="panel-body text-center">
+                            <a href="{{$venue->url}}" target="_blank">
+                                <img class="img-responsive img-circle" src="{{asset($venue->thumb)}}" alt="{{$venue->name}}">
+                                <div class="clearfix"></div>
+                                <h4 class="text-primary">{{$venue->name}}</h4>
+                            </a>
                         </div>
                     </div>
                 </div>

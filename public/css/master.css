@@ -153,6 +153,10 @@ a, a:hover{
     margin: 0 10px;
     /*width: 300px;*/
 }
+.trending-item img{
+    max-width: 100%;
+    margin: 0 auto;
+}
 .btn.trending_menu{
     padding: 15px;
     border-radius: 30px;
