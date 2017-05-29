@@ -107,7 +107,7 @@
     <div class="text-center">
       <div id="profile-dp-xs" class="center-block">
         @if($profile->photo()->first())
-          <img src="{{asset($profile->photo()->first()->full_path)}}" alt="Profile DP" class="img-responsive img-circle">
+          <img src="{{asset($profile->photo()->first()->full_path)}}" alt="Profile DP" class="img-responsive img-circle" style="width: 100px; margin: 0 auto; height: 100px; border-radius: 50%;">
         @else
               <img class="profile_info_item" src="{{asset('images/apple-icon.png')}}" alt="" style="width: 100px; height: 100px; border-radius: 50%;">
         @endif
