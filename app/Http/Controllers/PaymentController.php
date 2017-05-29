@@ -79,7 +79,7 @@ class PaymentController extends Controller
         }
 
         $vote->vote($payment->voted_profile_id, $count);
-        $vote->storeRequest($payment->voted_profile_id,$this->_userId);
+        $vote->storeRequest($payment->voted_profile_id,$this->_userId,(config('settings.vote_counter') +$count));
         $msg =[
             'status'=>true,
             'auth' => true,

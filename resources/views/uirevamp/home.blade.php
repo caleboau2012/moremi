@@ -127,7 +127,11 @@
 
                             </div>
                             <p class="content no-margin-bottom">
-                                <span class="icon icon-location text-primary">&nbsp;</span>{{$winner->profile()->first()->venue()->first()->name}}
+                                @if($winner->profile()->first()->venue()->first() != null)
+                                    <span class="icon icon-location text-primary">&nbsp;</span>{{$winner->profile()->first()->venue()->first()->name}}
+                                @else
+                                    <span class="icon icon-location text-primary">&nbsp;</span>Venue Undisclosed
+                                @endif
                             </p>
                             <p class="content no-margin-top">
                                 <span class="icon icon-heart3 text-primary">&nbsp;</span>{{$winner->votes}}
@@ -152,7 +156,11 @@
                             <div class="description">
                                 <h5 class="no-margin">Picker</h5>
                                 <p class="no-margin text-white">{{$winner->picker()->first()->first_name}} {{$winner->picker()->first()->last_name}}</p>
-                                <p class="no-margin text-white">{{$winner->picker()->first()->venue()->first()->name}}</p>
+                                @if($winner->picker()->first()->venue()->first() != null)
+                                    <p class="no-margin text-white">{{$winner->picker()->first()->venue()->first()->name}}</p>
+                                @else
+                                    <p class="no-margin text-white">Venue Undisclosed</p>
+                                @endif
                             </div>
                         </div>
 

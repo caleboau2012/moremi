@@ -69,15 +69,19 @@ class HomeController extends Controller
         }
         $data=[];
         foreach($profiles as $p){
+            if($p->venue == 0)
+                $venue = "";
+            else
+                $venue = $p->venue()->first()->name;
 
             $data[] =[
                 'name'=>$p->first_name." ".$p->last_name,
                 'vote'=>is_null($p->vote)?0:$p->vote,
                 'id'=>$p->id,
-                'venue'=>$p->venue()->first()->name,
+                'venue'=>$venue,
                 'venue_id'=>$p->venue,
                 'sex'=>$p->sex,
-                'image'=> $p->photo_id!=null && $p->photo_id!=0?Photo::find($p->photo_id)->thumb_path:asset('images/default.png'),
+                'image'=> $p->photo_id!=null && $p->photo_id!=0?Photo::find($p->photo_id)->thumb_path:'images/default.png',
                 'photos'=>$p->photos,
                 'about'=>$p->about,
             ];
@@ -132,6 +136,7 @@ class HomeController extends Controller
             $profile = new \App\Profile();
             $profile->first_name = $faker->firstName;
             $profile->last_name = $faker->lastName;
+            $profile->sex = "female";
             $profile->email = $faker->email;
             $profile->phone = $faker->phoneNumber;
             $profile->facebook_id = $faker->randomNumber(8);

@@ -73,28 +73,46 @@ use AuthTrait;
      * End the Voting process
      * */
     public function endVotes(){
-
-
-
         $votingResult = DB::table('voters')
-            ->select('profile_id', 'voter_id',  DB::raw('count(*) as total'))
+            ->select('profile_id', 'voter_id',  DB::raw('SUM(frequency) as total'))
             ->groupBy('voter_id')
             ->groupBy('profile_id')
             ->orderBy('total', 'DESC')
             ->where('deleted_at', null)
-            ->first();
+            ->get();
 
         if($votingResult){
-            $winner = Profile::find($votingResult->profile_id);
-            $highestVoter = Profile::find($votingResult->voter_id);
+            foreach($votingResult as $vResult){
+                $this->createConnection($vResult);
+            }
+
+            $winner = Profile::find($votingResult[0]->profile_id);
+            $highestVoter = Profile::find($votingResult[0]->voter_id);
             $spot = Venue::find($winner->venue);
-            $this->saveWinner($votingResult, $winner, $highestVoter, $spot);
+            $this->saveWinner($votingResult[0], $winner, $highestVoter, $spot);
             $this->resetVote();
             return response()->json('Vote reset successfully');
 
         }else{
             return response()->json('No action performed');
 
+        }
+    }
+
+    private static function createConnection($poll){
+        $connection = Connection::where(
+            \TableConstant::PROFILE_ID, $poll->profile_id)
+            ->where(\ConnectionConstant::RECIPIENT_ID, $poll->voter_id)->first();
+
+        $connection2 = Connection::where(
+            \TableConstant::PROFILE_ID, $poll->voter_id)
+            ->where(\ConnectionConstant::RECIPIENT_ID, $poll->profile_id)->first();
+
+        if(!$connection && !$connection2 && ($poll->voter_id != $poll->profile_id)){
+            Connection::create([
+                \TableConstant::PROFILE_ID => $poll->profile_id,
+                \ConnectionConstant::RECIPIENT_ID => $poll->voter_id,
+            ]);
         }
     }
 
@@ -113,21 +131,6 @@ use AuthTrait;
         $oldCheek->created_at = $now_;
 
         $oldCheek->save();
-
-        $connection = Connection::where(
-            \TableConstant::PROFILE_ID, $poll->profile_id)
-            ->where(\ConnectionConstant::RECIPIENT_ID, $poll->voter_id)->first();
-
-        $connection2 = Connection::where(
-            \TableConstant::PROFILE_ID, $poll->voter_id)
-            ->where(\ConnectionConstant::RECIPIENT_ID, $poll->profile_id)->first();
-
-        if(!$connection && !$connection2 && ($poll->voter_id != $poll->profile_id)){
-            Connection::create([
-                \TableConstant::PROFILE_ID => $poll->profile_id,
-                \ConnectionConstant::RECIPIENT_ID => $poll->voter_id,
-            ]);
-        }
 
         Mail::send('emails.winner', ['user' => $winner, 'voter' => $highestVoter, 'poll' => $poll, 'expiryDate' => $expiryDate, 'location' => $location], function ($m) use ($winner) {
             $m->from(\MailConstants::SUPPORT_MAIL, \MailConstants::TEAM_NAME);
