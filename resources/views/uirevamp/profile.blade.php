@@ -68,14 +68,40 @@
                                         <img class="img-responsive img-thumbnail" id="profile-dp" src="{{asset($profile->photo->full_path)}}">
                                     @endif
                                 </div>
+                                <div class="row_">
+                                    <br>
+                                    <a href="#" title="Upload image" class="btn btn-primary picture-upload">
+                                        <strong class="icon icon-upload"></strong>
+                                    </a>
+                                    <a href="#" title="Import image from Facebook" class="btn btn-primary" id="facebook-fetch">
+                                        <span class="icon icon-download2"></span>  <span class="icon icon-facebook-official"></span>
+                                    </a>
+                                    {{--<button class="btn bg-primary btn-block" id="facebook-fetch">--}}
+                                    {{--Import <span class="icon icon-file-image-o"></span> From <span class="icon icon-facebook-official"></span>--}}
+                                    {{--</button>--}}
+
+                                    {{--<button class="btn bg-primary btn-" id="facebook-fetch">--}}
+                                         {{--<span class="icon icon-download2"></span>  <span class="icon icon-facebook-official"></span>--}}
+                                    {{--</button>--}}
+
+                                    {{--<div class="col-sm-6">--}}
+                                        {{--<br>--}}
+                                        {{--<button class="btn bg-primary btn-block" id="facebook-fetch">--}}
+                                            {{--Import <span class="icon icon-file-image-o"></span> From <span class="icon icon-facebook-official"></span>--}}
+                                        {{--</button>--}}
+                                        {{--<br>--}}
+                                    {{--</div>--}}
+                                    {{--<div class="col-sm-6">--}}
+                                        {{--<br>--}}
+                                        {{--<button class="btn btn-danger btn-block picture-upload">--}}
+                                            {{--Upload <span class="icon icon-file-image-o"></span>--}}
+                                        {{--</button>--}}
+                                        {{--<br>--}}
+                                    {{--</div>--}}
+                                </div>
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <div class="form-group">
-                                <div>
-                                    <textarea placeholder="My status message" class="form-control margin-top-sm" id="status">{{$profile->about}}</textarea>
-                                </div>
-                            </div>
                             {{--Previous DP--}}
                             <div class="row" id="pictures-panel" data-url="{{route('my_profile')}}">
                                 @if(!empty($photos))
@@ -90,6 +116,8 @@
                                             <br>
                                         </div>
                                     @endforeach
+                                    @else
+                                    <p class="text-center text-muted">No image yet!</p>
                                 @endif
                             </div>
                         </div>
@@ -99,9 +127,19 @@
                     {{--profile--}}
                     <div class="profile-form">
                         <div class="row">
-                            <div class="col-sm-6">
+                            <div class="col-sm-12">
                                 <div class="form-group">
-                                    <label for="venue"></label>
+                                    <div>
+                                        <label for="status" class="control-label"><strong>Status</strong></label>
+                                        <textarea placeholder="My status message" class="form-control margin-top-sm" id="status">{{$profile->about}}</textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label for="venue"><strong>Preferred Spot</strong></label>
                                     <select name="venue" id="venue" class="form-control">
                                         <option value="0">Select your preferred date location</option>
                                         @foreach($venues as $venue)
@@ -116,33 +154,8 @@
                                     </select>
                                 </div>
                             </div>
-
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <label for=""></label>
-                                    <button class="btn btn-default btn-block" data-toggle="modal" data-target="#accountModal">
-                                        <span class="fa fa-user"></span> Update Account Details
-                                    </button>
-                                </div>
-                            </div>
                         </div>
 
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <br>
-                                <button class="btn bg-primary btn-block" id="facebook-fetch">
-                                    Import <span class="icon icon-file-image-o"></span> From <span class="icon icon-facebook-official"></span>
-                                </button>
-                                <br>
-                            </div>
-                            <div class="col-sm-6">
-                                <br>
-                                <button class="btn btn-danger btn-block picture-upload">
-                                    Upload <span class="icon icon-file-image-o"></span>
-                                </button>
-                                <br>
-                            </div>
-                        </div>
                         <div class="row">
                             <div class="col-sm-6">
                                 <br>
@@ -196,6 +209,7 @@
                     </div><!-- /.modal -->
 
                 </div>
+
             </div>
 
             <div class="col-md-4 col-md-offset-1">
@@ -273,7 +287,6 @@
     </div>
 
     @include('utils.votePay')
-    @include('utils.account')
 @endsection
 
 @section('bottomScripts')

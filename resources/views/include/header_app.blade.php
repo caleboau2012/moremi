@@ -8,14 +8,14 @@
                 <div class="profile_info_item_left">
                     <p class="text-right text-white no-margin">Pick of the Week</p>
                     <h4 class="no-margin text-white text-right">
-                        <strong class="icon icon-heart3 text-white"></strong> 20
+                        <strong class="icon icon-heart3 text-white"></strong> {{$profile->vote}}
                     </h4>
                 </div>
 
             </div>
             <div class="col-md-4">
                 <div class="profile_info_item_center" id="profile_dp_container">
-                    <a href="{{route("profile")}}" class="dp-edit-btn"><span class="icon icon-pencil2 text-white"></span></a>
+                    <btn href="{{route("profile")}}" class="dp-edit-btn edit_profile_btn"><span class="icon icon-pencil2 text-white"></span></btn>
                     @if($profile->photo()->first())
                         <img src="{{asset($profile->photo()->first()->full_path)}}" alt="Profile DP" id="profile-cover_dp">
                     @else
@@ -122,3 +122,5 @@
     </div>
   </div>
 </div>
+
+@include('utils.account')

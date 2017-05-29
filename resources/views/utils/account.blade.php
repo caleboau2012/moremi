@@ -8,15 +8,13 @@
                         <span class="fa fa-close fa-inverse"></span>
                     </span>
                 </button>
-                <h4 class="modal-title" id="accountModalLabel">Account Details <span class="small">(All fields are required to make payments)</span></h4>
+                <h4 class="modal-title" id="accountModalLabel">Personal Details
+                </h4>
             </div>
             @if(isset($profile))
                 <form data-url="{{route("account-update")}}" name="account" accept-charset="UTF-8" class="form-horizontal" role="form">
                     <div class="modal-body">
                         <div class="row">
-                            <div class="col-md-12 col-sm-12 col-xs-12">
-                                <h5 class="text-muted"> Personal Details</h5>
-                            </div>
                             <div class="col-xs-12">
                                 <span class="help-block text-muted small-font">  First Name</span>
                                 <input type="text" class="form-control" placeholder="First Name" name="first_name"

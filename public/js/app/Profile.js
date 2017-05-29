@@ -15,6 +15,9 @@ var Profile = {
         //$(".image-box").each(function(i){
         //    $(this).height($(this).width());
         //});
+        $(".edit_profile_btn").click(function () {
+               $('#accountModal').modal();
+        });
 
         $("#venue").change(function(e){
             var selected = $(this).find('option:selected');
