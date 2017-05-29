@@ -48,6 +48,14 @@
 	<script src="{{asset('js/app/Facebook.js')}}"></script>
 
 	<script src="{{asset('js/app/Profile.js')}}" ></script>
+	<script src="{{ asset('js/app/moment.js') }}"></script>
+	<script>
+        $('.format_time').each(function (e) {
+            var val = $(this).text();
+            var date = moment(new Date(val));
+            $(this).text(date.fromNow());
+        });
+	</script>
 @show
 </body>
 
