@@ -81,8 +81,24 @@ use AuthTrait;
             ->where('deleted_at', null)
             ->get();
 
+        $stack = [];
+
         if($votingResult){
             foreach($votingResult as $vResult){
+                $unique = true;
+
+                foreach($stack as $s) {
+                    if ($s->profile_id == $vResult->profile_id)
+                        $unique = false;
+                }
+
+                if($unique){
+                    $stack[] = $vResult;
+                }
+                else{
+                    continue;
+                }
+
                 $this->createConnection($vResult);
             }
 

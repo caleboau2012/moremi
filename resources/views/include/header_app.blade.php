@@ -1,6 +1,8 @@
 <div id="app-header" class="hidden-xs hidden-sm">
     <div class="container-fluid">
-        <img id="logo" src="{{asset('images/logo.png')}}" alt="">
+        <a href="{{route('index')}}">
+            <img id="logo" src="{{asset('images/logo.png')}}" alt="">
+        </a>
     </div>
     <div class="container">
         <div class="row">
