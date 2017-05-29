@@ -76,28 +76,6 @@
                                     <a href="#" title="Import image from Facebook" class="btn btn-primary" id="facebook-fetch">
                                         <span class="icon icon-download2"></span>  <span class="icon icon-facebook-official"></span>
                                     </a>
-                                    {{--<button class="btn bg-primary btn-block" id="facebook-fetch">--}}
-                                    {{--Import <span class="icon icon-file-image-o"></span> From <span class="icon icon-facebook-official"></span>--}}
-                                    {{--</button>--}}
-
-                                    {{--<button class="btn bg-primary btn-" id="facebook-fetch">--}}
-                                         {{--<span class="icon icon-download2"></span>  <span class="icon icon-facebook-official"></span>--}}
-                                    {{--</button>--}}
-
-                                    {{--<div class="col-sm-6">--}}
-                                        {{--<br>--}}
-                                        {{--<button class="btn bg-primary btn-block" id="facebook-fetch">--}}
-                                            {{--Import <span class="icon icon-file-image-o"></span> From <span class="icon icon-facebook-official"></span>--}}
-                                        {{--</button>--}}
-                                        {{--<br>--}}
-                                    {{--</div>--}}
-                                    {{--<div class="col-sm-6">--}}
-                                        {{--<br>--}}
-                                        {{--<button class="btn btn-danger btn-block picture-upload">--}}
-                                            {{--Upload <span class="icon icon-file-image-o"></span>--}}
-                                        {{--</button>--}}
-                                        {{--<br>--}}
-                                    {{--</div>--}}
                                 </div>
                             </div>
                         </div>
@@ -159,7 +137,7 @@
                         <div class="row">
                             <div class="col-sm-6">
                                 <br>
-                                <button id="finish" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> Updating your profile" data-url="{{route("photo_upload")}}" class="btn btn-success btn-block"><span class="fa fa-upload"></span> Finish</button>
+                                <button id="finish" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> Updating your profile" data-url="{{route("photo_upload")}}" class="btn btn-success btn-block"><span class="fa fa-upload"></span> Save Changes</button>
                                 <br>
                             </div>
                         </div>
