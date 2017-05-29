@@ -196,12 +196,12 @@
 
                     <div class="row">
                         @foreach($connections as $c)
-                            <div class="col-md-3">
+                            <div class="col-xs-3">
                                 <div class="connection-item" data-id="messages-between-{{$c[\TableConstant::PROFILE_ID]}}-{{$c[\ConnectionConstant::RECIPIENT_ID]}}">
                                     @if($c[\ConnectionConstant::PHOTO])
-                                         <img data-toggle="tooltip" data-placement="top" data-original-title="{{ucfirst($c[\ConnectionConstant::NAME])}}"  src="{{asset($c[\ConnectionConstant::PHOTO]->thumb_path)}}" alt="{{$c[\ConnectionConstant::NAME]}}" class="img-circle img-responsive">
+                                         <img data-toggle="tooltip" data-placement="top" data-original-title="{{ucwords($c[\ConnectionConstant::NAME])}}"  src="{{asset($c[\ConnectionConstant::PHOTO]->thumb_path)}}" alt="{{$c[\ConnectionConstant::NAME]}}" class="img-circle img-responsive">
                                     @else
-                                        <img data-toggle="tooltip" data-placement="top" data-original-title="{{ucfirst($c[\ConnectionConstant::NAME])}}" src="{{asset('images/apple-icon.png')}}" alt="{{$c[\ConnectionConstant::NAME]}}" class="img-circle img-responsive">
+                                        <img data-toggle="tooltip" data-placement="top" data-original-title="{{ucwords($c[\ConnectionConstant::NAME])}}" src="{{asset('images/apple-icon.png')}}" alt="{{$c[\ConnectionConstant::NAME]}}" class="img-circle img-responsive">
                                     @endif
                                 </div>
                             </div>
@@ -221,7 +221,7 @@
                         @foreach($connections as $c)
                             <div class="hidden chat-box" id="messages-between-{{$c[\TableConstant::PROFILE_ID]}}-{{$c[\ConnectionConstant::RECIPIENT_ID]}}">
                                 <div class="chat-container-header text-center">
-                                    <h3 class="panel-title">
+                                    <h3 class="panel-title text-capitalize">
                                         @if($c[\ConnectionConstant::PHOTO])
                                             <img src="{{asset($c[\ConnectionConstant::PHOTO]->thumb_path)}}" class="img-thumb img-circle img-small">
                                         @else
@@ -239,7 +239,7 @@
                                                         <div>
                                                             <strong>{{$m->user}}:</strong>
                                                             <p class="chat-message">{{$m->message}}</p>
-                                                            <small class="text-right chat-time">{{$m->time}}</small>
+                                                            <small class="text-right chat-time format_time">{{$m->time}}</small>
                                                         </div>
                                                     @endforeach
                                                 {{--@else--}}
