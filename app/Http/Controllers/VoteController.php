@@ -75,17 +75,31 @@ use AuthTrait;
     public function endVotes(){
         $votingResult = DB::table('voters')
             ->select('profile_id', 'voter_id',  DB::raw('SUM(frequency) as total'))
-            ->groupBy('profile_id')
             ->groupBy('voter_id')
+            ->groupBy('profile_id')
             ->orderBy('total', 'DESC')
             ->where('deleted_at', null)
             ->get();
 
+        $stack = [];
+
         if($votingResult){
             foreach($votingResult as $vResult){
-                $pick = Profile::find($vResult->profile_id);
-                $picker = Profile::find($vResult->voter_id);
-                $this->createConnection($vResult, $pick, $picker);
+                $unique = true;
+
+                foreach($stack as $s) {
+                    if ($s->profile_id == $vResult->profile_id)
+                        $unique = false;
+                }
+
+                if($unique){
+                    $stack[] = $vResult;
+                }
+                else{
+                    continue;
+                }
+
+                $this->createConnection($vResult);
             }
 
             $winner = Profile::find($votingResult[0]->profile_id);
