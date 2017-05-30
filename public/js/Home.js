@@ -10,6 +10,9 @@ $(function () {
     function init_Roundabout() {
     $('.roundabout').roundabout({
     tilt: 0.4,
+    autoplay: true,
+    autoplayDuration: 5000,
+    autoplayPauseOnHover: true,
     minScale:0.5,
     minOpacity: 1,
     duration: 400,
