@@ -35,6 +35,7 @@
                             <div class="profile-card-content text-center">
                                 <div class="profile-card-name">
                                     <h4 class="text-center">{{$t->first_name}} {{$t->last_name}}</h4>
+                                    <div class="content-end"></div>
                                 </div>
                                 @if($t->about)
                                     <p class="about text-center text-muted">{{$t->about}} &nbsp;</p>
@@ -120,6 +121,7 @@
                             <div class="profile-card-content text-center">
                                 <div class="profile-card-name" data-sex="[[SEX]]" data-venue="[[VENUEID]]">
                                     <h4 class="text-center">[[NAME]]</h4>
+                                    <div class="content-end"></div>
                                 </div>
                                 <p class="about">[[DATA-ABOUT]] &nbsp;</p>
                                 <p>

@@ -285,6 +285,7 @@
                             <div class="profile-card-content text-center">
                                 <div class="profile-card-name">
                                     <h4 class="text-center">{{$t->first_name}} {{$t->last_name}}</h4>
+                                    <div class="content-end"></div>
                                 </div>
                                 @if($t->about)
                                     <p class="about text-center text-muted">{{$t->about}} &nbsp;</p>
