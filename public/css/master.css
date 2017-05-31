@@ -248,7 +248,7 @@ Profile Card
     border: solid 2px #FFFFFF;
 }
 .profile-card-name{
-    max-height: 36px;
+    max-height: 40px;
     min-height: 18px;
     overflow: hidden;
     text-decoration: none;

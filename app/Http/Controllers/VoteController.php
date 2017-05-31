@@ -156,7 +156,11 @@ use AuthTrait;
         $now_ = new \DateTime();
         $expiryDate = $now_->modify('+1 month');
 
+        $ticket_number = uniqid('TK');
+
         $location = ($spot ? $spot->name : "Undisclosed");
+
+
 
         $oldCheek = new OldCheek();
         $oldCheek->profile_id = $poll->profile_id;
@@ -165,25 +169,35 @@ use AuthTrait;
         $oldCheek->voter_id = $poll->voter_id;
         $oldCheek->votes = $winner->vote;
         $oldCheek->created_at = $now_;
+        $oldCheek->ticket = $ticket_number;
 
         $oldCheek->save();
 
-        Mail::send('emails.winner', ['user' => $winner, 'voter' => $highestVoter, 'poll' => $poll, 'expiryDate' => $expiryDate, 'location' => $location], function ($m) use ($winner) {
+        Mail::send('emails.winner', ['user' => $winner, 'voter' => $highestVoter, 'poll' => $poll, 'expiryDate' => $expiryDate, 'location' => $location, 'ticket' => $ticket_number], function ($m) use ($winner) {
             $m->from(\MailConstants::SUPPORT_MAIL, \MailConstants::TEAM_NAME);
             $name = $winner->first_name .' '. $winner->last_name;
             $m->to($winner->email, $name)->subject('Congratulation! You are the winner');
         });
 
-        Mail::send('emails.highestVoter', ['winner' => $winner, 'user' => $highestVoter, 'poll' => $poll, 'expiryDate' => $expiryDate, 'location' => $location], function ($m) use ($highestVoter) {
+        Mail::send('emails.highestVoter', ['winner' => $winner, 'user' => $highestVoter, 'poll' => $poll, 'expiryDate' => $expiryDate, 'location' => $location, 'ticket' => $ticket_number], function ($m) use ($highestVoter) {
             $m->from(\MailConstants::SUPPORT_MAIL, \MailConstants::TEAM_NAME);
             $name = $highestVoter->first_name .' '. $highestVoter->last_name;
             $m->to($highestVoter->email, $name)->subject('Congratulation! You just got yourself a date');
         });
 
-        Mail::send('emails.notifyWinnersToTeam', ['winner' => $winner, 'voter' => $highestVoter, 'poll' => $poll, 'expiryDate' => $expiryDate, 'location' => $location], function ($m) {
+        Mail::send('emails.notifyWinnersToTeam', ['winner' => $winner, 'voter' => $highestVoter, 'poll' => $poll, 'expiryDate' => $expiryDate, 'location' => $location, 'ticket' => $ticket_number], function ($m) {
             $m->from(\MailConstants::SUPPORT_MAIL, \MailConstants::TEAM_NAME);
             $m->to(\MailConstants::TEAM_MAIL, \MailConstants::TEAM_NAME)->subject('We got winners');
         });
+
+        if($spot){
+            /*notify spot*/
+            Mail::send('emails.notifyWinnersToSpot', ['winner' => $winner, 'voter' => $highestVoter, 'poll' => $poll, 'expiryDate' => $expiryDate, 'location' => $location, 'ticket' => $ticket_number], function ($m)  use($spot){
+                $m->from(\MailConstants::SUPPORT_MAIL, \MailConstants::TEAM_NAME);
+                $m->to($spot->email, $spot->name)->subject('We got winners on Moore.me');
+            });
+        }
+
     }
 
     private static function resetVote(){

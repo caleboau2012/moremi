@@ -35,7 +35,7 @@
                                         </tr>
                                         <tr>
                                             <td style="padding:25px 0 13px 0;color:#153643;font-family:Arial,sans-serif;font-size:16px;line-height:20px;border-bottom:solid 1px #ededed">
-                                                TicketId :
+                                                Ticket Id :
                                             </td>
                                         </tr>
 
@@ -47,7 +47,7 @@
 
                                         <tr>
                                             <td style="padding:25px 0 13px 0;color:#153643;font-family:Arial,sans-serif;font-size:16px;line-height:20px">
-                                                Validiy :
+                                                Validity :
                                             </td>
                                         </tr>
                                     </table>
@@ -62,7 +62,7 @@
                                         </tr>
                                         <tr>
                                             <td style="padding:25px 0 13px 0;color:#153643;font-family:Arial,sans-serif;font-size:16px;line-height:20px;border-bottom:solid 1px #ededed">
-                                                <b>#TCKT290811993</b>
+                                                <b>{{$ticket}}</b>
                                             </td>
                                         </tr>
 
