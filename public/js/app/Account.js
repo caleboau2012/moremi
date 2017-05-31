@@ -20,7 +20,7 @@ var Account = {
     success: function(data){
         console.log(data);
         if(data.status){
-            document.account.reset();
+            //document.account.reset();
             swal({
                     title: "Sweet",
                     text: data.msg,
