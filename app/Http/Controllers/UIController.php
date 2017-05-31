@@ -9,7 +9,7 @@ use App\Venue;
 use Illuminate\Support\Facades\Auth;
 use LRedis;
 
-class UIRevampController extends Controller
+class UIController extends Controller
 {
     public function __construct() {
         $this->loggedIn = false;
@@ -44,7 +44,7 @@ class UIRevampController extends Controller
 
 //        die(var_dump($trending));
 
-        return view('uirevamp.home', [
+        return view('home', [
             'loggedIn' => $this->loggedIn,
             'profile' => $this->profile,
             'winner' => $winner,
@@ -56,7 +56,7 @@ class UIRevampController extends Controller
         ]);
     }
     /*user homepage*/
-    public function user(){
+    public function app(){
         if(!$this->loggedIn){
             return redirect(route("index"));
         };
@@ -65,7 +65,7 @@ class UIRevampController extends Controller
 
         $all = Profile::paginate(10);
 
-        return view('uirevamp.user', ['profile' => $this->profile, 'trending' => $trending, 'all' => $all]);
+        return view('app', ['profile' => $this->profile, 'trending' => $trending, 'all' => $all]);
     }
 
     /*user profile*/
@@ -110,13 +110,22 @@ class UIRevampController extends Controller
             }
         }
 
-        return view('uirevamp.profile',[
+        return view('profile',[
                 'photos' => $profile->photos()->get()->toArray(),
                 'profile' => $profile,
                 'venues' => $venues,
                 'connections' => $connections
             ]
         );
+    }
+
+    public function pastWinners(){
+        $chicks =OldCheek::orderBy('created_at', 'desc')->take(10)->get();
+        return $chicks;
+    }
+
+    public function policy(){
+        return view('terms');
     }
 
 }

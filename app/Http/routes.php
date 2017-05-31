@@ -13,17 +13,22 @@
 
 
 
-Route::get('/', array("as" => "home", "uses" => 'HomeController@index'));
-Route::get('profile', array("as" => "profile", "uses" => 'ProfileController@profile'));
-Route::get('privacy/policy', array("as" => "policy", "uses" => "HomeController@policy"));
+// UI routes
+Route::get('/', array('uses'=>'UIController@home', 'as' => 'index'));
+Route::get('app', array('uses'=>'UIController@app', 'as' => 'app'));
+Route::get('app/profile', array('uses'=>'UIController@profile', "as"=>"profile"));
+Route::get('privacy/policy', array("as" => "policy", "uses" => "UIController@policy"));
+
 
 Route::post('photo/fb', 'PhotoController@storefb');
 
 Route::resource('photo', 'PhotoController');
 Route::post('login', array("as" => "login", "uses" => 'LoginController@login'));
 Route::post('vote','VoteController@vote');
-Route::get('test','HomeController@test');
-Route::get('seed','HomeController@seed');
+//Route::get('test','HomeController@test');
+//Route::get('seed','HomeController@seed');
+
+
 Route::get('cheeks/{total}', array("as" => "cheeks", "uses" => 'HomeController@getContestants'));
 Route::post('update/status','PhotoController@updateStatus');
 Route::post('upload/photo', ["as" => "photo_upload", "uses" => 'PhotoController@storeImgFromString']);
@@ -52,13 +57,9 @@ Route::group(['prefix' => 'cron'], function(){
  * Chat routes
  */
 Route::post('sendmessage', ['as' => 'chat-url', 'uses' => 'ChatController@sendMessage']);
-/*
- *
- * UI REVAMP
- * PROOF OF CONCEPT
- */
-Route::group(['prefix' => 'ui'], function(){
-   Route::get('home', array('uses'=>'UIRevampController@home', 'as' => 'index'));
-   Route::get('user', array('uses'=>'UIRevampController@user', 'as' => 'app'));
-   Route::get('user/profile', array('uses'=>'UIRevampController@profile', "as"=>"profile"));
-});
+
+//Route::group(['prefix' => 'ui'], function(){
+//   Route::get('home', array('uses'=>'UIRevampController@home', 'as' => 'index'));
+//   Route::get('user', array('uses'=>'UIRevampController@user', 'as' => 'app'));
+//   Route::get('user/profile', array('uses'=>'UIRevampController@profile', "as"=>"profile"));
+//});
