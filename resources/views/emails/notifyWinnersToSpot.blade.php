@@ -5,7 +5,7 @@
             <table border="0" cellpadding="0" cellspacing="0" width="100%">
                 <tr>
                     <td style="padding:20px 0 30px 0;color:#153643;font-family:Arial,sans-serif;font-size:16px;line-height:25px">
-                        We got a date!!! on <a href="{{route('home')}}" target="_blank">Moree.me</a>,
+                        We got a date!!! on <a href="{{route('index')}}" target="_blank">Moree.me</a>,
                         <br> by a total of<strong>  {{ $poll->total }} picks.</strong><br> <br> <span style="color:#f59c43"> Find below, the ticket to the spot</span>
                     </td>
                 </tr>

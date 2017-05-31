@@ -6,6 +6,7 @@ use App\OldCheek;
 use App\Profile;
 use App\Services\Vote\VoteService;
 use App\Http\Requests;
+use App\Ticket;
 use App\Traits\AuthTrait;
 use App\User;
 use App\Venue;
@@ -156,12 +157,25 @@ use AuthTrait;
         $now_ = new \DateTime();
         $expiryDate = $now_->modify('+1 month');
 
-        $ticket_number = uniqid('TK');
         $reference_number = uniqid('TK');
 
         $location = ($spot ? $spot->name : "Undisclosed");
 
+        if($spot){
+            $ticket = Ticket::where(\TableConstant::STATUS, \AppConstants::ACTIVE)->where(\TicketConstant::VENUE_ID, $spot->id)->first();
 
+            if($ticket){
+                $ticket['status'] = \AppConstants::USED;
+                $ticket[\TableConstant::UPDATED_AT] = new \DateTime();
+                $ticket->save();
+                $ticket_number = $ticket->code;
+
+            }else{
+                $ticket_number = 'Undisclosed';
+            }
+        }else{
+            $ticket_number = 'Undisclosed';
+        }
 
         $oldCheek = new OldCheek();
         $oldCheek->profile_id = $poll->profile_id;

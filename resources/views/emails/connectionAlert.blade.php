@@ -10,7 +10,7 @@
                 </tr>
                 <tr>
                     <td style="padding:20px 0 30px 0;color:#153643;font-family:Arial,sans-serif;font-size:16px;line-height:25px">
-                        Congratulations!!! You are have a new connection on <a href="{{route('home')}}" target="_blank">Moree.me</a>,
+                        Congratulations!!! You are have a new connection on <a href="{{route('index')}}" target="_blank">Moree.me</a>,
                         <br> by a total of<strong>  {{ $poll->total }} picks.</strong><br> <br> <span style="color:#f59c43">
                             Find below, the details of your new connection
                         </span>

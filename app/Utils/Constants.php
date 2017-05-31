@@ -14,4 +14,6 @@ class MailConstants{
 
 class AppConstants{
     const AUTH = 'authToken';
+    const ACTIVE = '00';
+    const USED = '01';
 }
