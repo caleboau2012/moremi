@@ -224,17 +224,21 @@
                         <div class="panel panel-warning">
                             <div class="panel-body">
                                 <div class="content name_content">
-                                    <h4 class="no-margin-bottom name">Chioma Nwakezuologoomigwojere</h4>
+                                    <h4 class="no-margin-bottom name">{{$winner->profile()->first()->first_name}} {{$winner->profile()->first()->last_name}}</h4>
+                                    <span class="content-end"></span>
                                 </div>
                                 <p class="content no-margin-bottom">
-                                    <span class="icon icon-location text-primary">&nbsp;</span>Lagos, Nigeria
+                                    @if($winner->profile()->first()->venue()->first() != null)
+                                        <span class="icon icon-location text-primary">&nbsp;</span>{{$winner->profile()->first()->venue()->first()->name}}
+                                    @else
+                                        <span class="icon icon-location text-primary">&nbsp;</span>Venue Undisclosed
+                                    @endif
                                 </p>
                                 <p class="content no-margin-top">
-                                    <span class="icon icon-heart3 text-primary">&nbsp;</span>5,000
-                                </p>
+                                    <span class="icon icon-heart3 text-primary">&nbsp;</span>{{$winner->votes}}                                </p>
                                 <p class="content">
                                     <strong>Status:</strong> <br>
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores quibusdam sequi voluptate.
+                                    {{$winner->profile()->first()->status}}
                                 </p>
                                 <h5 class="content">
                                     <a href="#"><span class="icon icon-instagram text-primary"></span></a>
@@ -246,11 +250,14 @@
                     </div>
                     <div class="col-md-6">
                         <div>
-                            <img src="{{asset('images/users/moses.jpg')}}" alt="" width="65" class="img-circle">
+                            @if($winner->picker()->first()->photo()->first())
+                                <img src="{{asset($winner->picker()->first()->photo()->first()->thumb_path)}}" alt="" width="65" class="img-circle">
+                            @else
+                                <img class="img-circle"  src="{{asset('images/apple-icon.png')}}" alt="" width="65">
+                            @endif
                             <div class="description">
                                 <h5 class="no-margin">Highest Picker</h5>
-                                <p class="no-margin text-white">Adamu Musa</p>
-                                <p class="no-margin text-white">Lagos, Nigeria</p>
+                                <p class="no-margin text-white">{{$winner->picker()->first()->first_name}} {{$winner->picker()->first()->last_name}}</p>
                             </div>
                         </div>
                     </div>
