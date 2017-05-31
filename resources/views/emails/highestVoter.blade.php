@@ -30,6 +30,11 @@
                                     <table border="0" cellpadding="0" cellspacing="0" width="100%">
                                         <tr>
                                             <td style="padding:25px 0 13px 0;color:#153643;font-family:Arial,sans-serif;font-size:16px;line-height:20px;border-bottom:solid 1px #ededed">
+                                                Reference :
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding:25px 0 13px 0;color:#153643;font-family:Arial,sans-serif;font-size:16px;line-height:20px;border-bottom:solid 1px #ededed">
                                                 Spot :
                                             </td>
                                         </tr>
@@ -55,6 +60,11 @@
 
                                 <td width="260" valign="top" style="border-bottom:solid 1px #ededed">
                                     <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                        <tr>
+                                            <td style="text-transform: capitalize; padding:25px 0 13px 0;color:#153643;font-family:Arial,sans-serif;font-size:16px;line-height:20px;border-bottom:solid 1px #ededed">
+                                                <b>{{$reference}}</b>
+                                            </td>
+                                        </tr>
                                         <tr>
                                             <td style="text-transform: capitalize; padding:25px 0 13px 0;color:#153643;font-family:Arial,sans-serif;font-size:16px;line-height:20px;border-bottom:solid 1px #ededed">
                                                 <b>{{$location}}</b>
