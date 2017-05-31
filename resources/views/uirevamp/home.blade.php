@@ -61,9 +61,47 @@
 
     {{--About Moore.me--}}
     <div id="about_content">
-        <div class="row">
+        <div class="col-md-6 no-padding">
+            <img src="{{asset('images/about_banner.jpg')}}" alt="" class="img-responsive">
+
+        </div>
+        <div class="col-md-6">
+            <div id="about_caption_content">
+                <h4 class="text-primary text-center">Get Connected on Moree.me</h4>
+                <p>
+                    Meeting people has never been this easy. Pick someone from Monday through to Saturday and meet on Sunday. Here's how:
+                </p>
+                <ul>
+                    <li>
+                        Login with your facebook account
+                    </li>
+                    <li>
+                        Create a profile
+                    </li>
+                    <li>
+                        Pick someone
+                    </li>
+                    <li>
+                        Keep picking the same person in a week. We connect the highest pickers and the person they pick
+                    </li>
+                    <li>
+                        Everything resets at the end of the week so you can pick someone new and go on a date every week
+                    </li>
+                </ul>
+
+                <div class="text-center">
+                    @if(!$loggedIn)
+                        <button class="btn get_started login"  data-url="{{route("login")}}">Get Started</button>
+                    @else
+                        <a href="{{route('app')}}" class="btn get_started profile"  data-url="{{route("login")}}">Connect Now</a>
+                    @endif
+                </div>
+            </div>
+
+        </div>
+        <div class="clearfix"></div>
+        {{--<div class="row">
             <div class="col-md-6">
-                <img src="{{asset('images/about_banner.jpg')}}" alt="" class="img-responsive">
             </div>
             <div class="col-md-6">
                 <div id="about_caption_content">
@@ -100,7 +138,7 @@
 
                 <div class="clearfix"></div>
             </div>
-        </div>
+        </div>--}}
     </div>
 
     {{--PICK OF THE MOMENT--}}
@@ -111,7 +149,7 @@
                     <h3 id="header" class="text-center text-white">Pick of the Moment</h3>
                 </div>
 
-                <div class="center-block moment_pick_container_width non-md lg-only">
+                <div class="center-block moment_pick_container_width visible-md visible-lg">
                     <div class="row moment_pick_container_content" style="position:relative;">
                         <div class="moment_pics_container pull-left">
                             <ul class="roundabout roundabout-holder" style="padding: 0; position: relative;">
@@ -174,15 +212,12 @@
 
                     </div>
                 </div>
-                <div class="row non-lg">
+                <div class="row  hidden-md hidden-lg">
                     <div class="col-md-6 col-md-offset-3">
                         <ul class="roundabout roundabout-holder" style="padding: 0; position: relative;">
-                            <li class="roundabout-slide"><img class="img-thumbnail img-responsive" src="{{ asset('images/cheeks/0.jpg') }}" alt="Cheek of the moment"></li>
-                            <li class="roundabout-slide"><img class="img-thumbnail img-responsive" src="{{ asset('images/cheeks/6.jpg') }}" alt="Cheek of the moment"></li>
-                            <li class="roundabout-slide"><img class="img-thumbnail img-responsive" src="{{ asset('images/cheeks/1.jpg') }}" alt="Cheek of the moment"></li>
-                            <li class="roundabout-slide"><img class="img-thumbnail img-responsive" src="{{ asset('images/cheeks/2.jpg') }}" alt="Cheek of the moment"></li>
-                            <li class="roundabout-slide"><img class="img-thumbnail img-responsive" src="{{ asset('images/cheeks/3.jpg') }}" alt="Cheek of the moment"></li>
-                            <li class="roundabout-slide"><img class="img-thumbnail img-responsive" src="{{ asset('images/cheeks/7.jpg') }}" alt="Cheek of the moment"></li>
+                            @foreach($winner->profile()->first()->photos()->get() as $photo)
+                                <li class="roundabout-slide"><img class="img-thumbnail img-responsive" src="{{ asset($photo->full_path) }}" alt="Cheek of the moment"></li>
+                            @endforeach
                         </ul>
                     </div>
                     <div class="col-md-6">
