@@ -34,6 +34,9 @@ a:hover, a:focus {
 .no-margin-top{
     margin-top: 0 !important;
 }
+.no-padding{
+    padding: 0;
+}
 .btn-fill{
     width: 100%;
 }
