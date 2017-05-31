@@ -6,6 +6,7 @@ use App\Connection;
 use App\OldCheek;
 use App\Profile;
 use App\Venue;
+use Illuminate\Support\Facades\Auth;
 use LRedis;
 
 class UIRevampController extends Controller
@@ -21,6 +22,12 @@ class UIRevampController extends Controller
             $this->loggedIn = true;
             $this->_userId = customdecrypt($token);
             $this->profile = Profile::where('user_id', $this->_userId)->first();
+        }
+
+        if($this->loggedIn && ($this->profile == null)) {
+            Auth::logout();
+            $this->loggedIn = false;
+            return redirect(route("index"));
         }
     }
 

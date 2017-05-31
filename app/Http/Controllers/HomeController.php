@@ -132,24 +132,31 @@ class HomeController extends Controller
     }
     public function seed(){
         $faker = \Faker\Factory::create();
-        for ($i = 0; $i < 10 ;$i++) {
-            $profile = new \App\Profile();
-            $profile->first_name = $faker->firstName;
-            $profile->last_name = $faker->lastName;
-            $profile->sex = "female";
-            $profile->email = $faker->email;
-            $profile->phone = $faker->phoneNumber;
-            $profile->facebook_id = $faker->randomNumber(8);
-            $profile->show_private_info = 0;
+        for ($i = 1; $i < 11 ;$i++) {
+            $firstName = $faker->firstName;
+            $lastName = $faker->lastName;
+            $sex = "female";
+            $email = $faker->email;
+            $phone = $faker->phoneNumber;
+            $facebook_id = $faker->randomNumber(8);
 
-            $profile->save();
-            $user=User::create([
-                'name'=>$profile->first_name." ".$profile->last_name,
-                'email'=>$profile->email,
-                'password'=>bcrypt('password1')
-            ]);
+            $user = new User();
+            $user->name = $firstName . " " . $lastName;
+            $user->email = $email;
+            $user->password = bcrypt('password1');
+            $user->save();
+
+            $profile = new \App\Profile();
+            $profile->first_name = $firstName;
+            $profile->last_name = $lastName;
+            $profile->sex = $sex;
+            $profile->email = $email;
+            $profile->phone = $phone;
+            $profile->facebook_id = $facebook_id;
+            $profile->show_private_info = 0;
             $profile->user_id =$user->id;
-            $profile->update();
+            $profile->save();
+
             for ($a = 0; $a < 6; $a++) {
                 $full = $faker->image(config('photo.uploads.full_path'), 600, 400, 'cats');  // 'tmp/13b73edae8443990be1aa8f1a483bc27.jpg' it's a cat!
                 $thumb = $faker->image(config('photo.uploads.full_path').DIRECTORY_SEPARATOR.'thumbs', 200, 200, 'cats');  // 'tmp/13b73edae8443990be1aa8f1a483bc27.jpg' it's a cat!
