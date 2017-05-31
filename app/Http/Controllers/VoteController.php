@@ -187,6 +187,15 @@ use AuthTrait;
             $m->from(\MailConstants::SUPPORT_MAIL, \MailConstants::TEAM_NAME);
             $m->to(\MailConstants::TEAM_MAIL, \MailConstants::TEAM_NAME)->subject('We got winners');
         });
+
+        if($spot){
+            /*notify spot*/
+            Mail::send('emails.notifyWinnersToSpot', ['winner' => $winner, 'voter' => $highestVoter, 'poll' => $poll, 'expiryDate' => $expiryDate, 'location' => $location, 'ticket' => $ticket_number], function ($m, $spot) {
+                $m->from(\MailConstants::SUPPORT_MAIL, \MailConstants::TEAM_NAME);
+                $m->to($spot->email, $spot->name)->subject('We got winners on Moore.me');
+            });
+        }
+
     }
 
     private static function resetVote(){
