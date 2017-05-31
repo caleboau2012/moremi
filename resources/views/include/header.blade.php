@@ -26,11 +26,11 @@
                   @if($profile->photo()->first())
                         <img src="{{asset($profile->photo()->first()->thumb_path)}}" class="profile-thumb">
                    @else
-                        <img src="{{asset('images/apple-icon.png')}}" class="profile-thumb">
+                        <img src="{{asset('images/default.png')}}" class="profile-thumb">
                     @endif
                    <span class="text-white">{{$profile->first_name}} {{$profile->last_name}}</span>
               @else
-                <img src="{{asset('images/apple-icon.png')}}" class="profile-thumb">
+                <img src="{{asset('images/default.png')}}" class="profile-thumb">
               @endif
             </a>
           </li>

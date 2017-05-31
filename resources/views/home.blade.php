@@ -155,7 +155,7 @@
                             @if($winner->picker()->first()->photo()->first())
                                 <img src="{{asset($winner->picker()->first()->photo()->first()->thumb_path)}}" alt="" width="65" class="img-circle">
                             @else
-                                <img class="img-circle"  src="{{asset('images/apple-icon.png')}}" alt="" width="65">
+                                <img class="img-circle"  src="{{asset('images/default.png')}}" alt="" width="65">
                             @endif
                             <div class="description">
                                 <h5 class="no-margin">Picker</h5>
@@ -206,7 +206,7 @@
                             @if($winner->picker()->first()->photo()->first())
                                 <img src="{{asset($winner->picker()->first()->photo()->first()->thumb_path)}}" alt="" width="65" class="img-circle">
                             @else
-                                <img class="img-circle"  src="{{asset('images/apple-icon.png')}}" alt="" width="65">
+                                <img class="img-circle"  src="{{asset('images/default.png')}}" alt="" width="65">
                             @endif
                             <div class="description">
                                 <h5 class="no-margin">Highest Picker</h5>
@@ -238,7 +238,7 @@
                                 @if($t->photo()->first())
                                     <img class="img-responsive img-circle" src="{{asset($t->photo()->first()->full_path)}}" alt="{{$t->first_name .' '. $t->last_name}}">
                                 @else
-                                    <img class="img-responsive img-circle"  src="{{asset('images/apple-icon.png')}}">
+                                    <img class="img-responsive img-circle"  src="{{asset('images/default.png')}}">
                                 @endif
 
                             </div>

@@ -6,9 +6,10 @@
 	<meta name="description" content="Cheeks">
 	<meta name="author" content="Moree.me">
 	<meta name="keywords" content="Moree.me">
-	<link rel="icon" type="image/x-icon" href="{{ asset("favicon.ico") }}">
+	<meta property="fb:app_id" content="469144689836682" />
+	<link rel="icon" type="image/x-icon" href="{{ asset("images/favicon.ico") }}">
 	<title>Moree.me</title>
-	<link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+	<link rel="icon" type="image/x-icon" href="{{ asset('images/favicon.ico') }}" />
 	{{--<link href="https://fonts.googleapis.com/css?family=Raleway|Kalam" rel="stylesheet">--}}
 	<link href="https://fonts.googleapis.com/css?family=Droid+Sans|Muli|Noto+Sans|PT+Sans|PT+Sans+Narrow|Poppins|Titillium+Web" rel="stylesheet">
 	<link href="{{ asset('libs/bootstrap/bootstrap.min.css') }}" rel="stylesheet" >

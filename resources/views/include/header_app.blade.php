@@ -24,7 +24,7 @@
                         @if($profile->photo()->first())
                             <img src="{{asset($profile->photo()->first()->full_path)}}" alt="Profile DP" id="profile-cover_dp">
                         @else
-                            <img src="{{asset('images/apple-icon.png')}}" id="profile-cover_dp">
+                            <img src="{{asset('images/default.png')}}" id="profile-cover_dp">
                         @endif
                     </a>
                 </div>
@@ -56,7 +56,7 @@
                 @if($profile->photo()->first())
                     <img id="profile-cover_dp"  src="{{asset($profile->photo()->first()->full_path)}}" alt="Profile DP">
                 @else
-                    <img src="{{asset('images/apple-icon.png')}}" id="profile-cover_dp">
+                    <img src="{{asset('images/default.png')}}" id="profile-cover_dp">
                 @endif
                 <a href="#" class="dp-edit-btn"><span class="icon icon-pencil2 text-white"></span></a>
             </div>
@@ -86,7 +86,7 @@
                     @if($profile->photo()->first())
                         <img src="{{asset($profile->photo()->first()->full_path)}}" alt="Profile DP" class="img-responsive img-circle">
                     @else
-                        <img src="{{asset('images/apple-icon.png')}}" class="img-circle img-responsive">
+                        <img src="{{asset('images/default.png')}}" class="img-circle img-responsive">
                     @endif
                 </div>
                 <div id="profile-info-right" class="profile-info hidden-sm hidden-xs">
@@ -115,7 +115,7 @@
                 @if($profile->photo()->first())
                     <img src="{{asset($profile->photo()->first()->full_path)}}" alt="Profile DP" class="img-responsive img-circle" style="width: 100px; margin: 0 auto; height: 100px; border-radius: 50%;">
                 @else
-                    <img class="profile_info_item" src="{{asset('images/apple-icon.png')}}" alt="" style="width: 100px; height: 100px; border-radius: 50%;">
+                    <img class="profile_info_item" src="{{asset('images/default.png')}}" alt="" style="width: 100px; height: 100px; border-radius: 50%;">
                 @endif
             </div>
         </div>
