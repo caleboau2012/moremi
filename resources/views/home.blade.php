@@ -100,45 +100,7 @@
 
         </div>
         <div class="clearfix"></div>
-        {{--<div class="row">
-            <div class="col-md-6">
-            </div>
-            <div class="col-md-6">
-                <div id="about_caption_content">
-                    <h4 class="text-primary text-center">Get Connected on Moree.me</h4>
-                    <p>
-                        Meeting people has never been this easy. Pick someone from Monday through to Saturday and meet on Sunday. Here's how:
-                    </p>
-                    <ul>
-                        <li>
-                            Login with your facebook account
-                        </li>
-                        <li>
-                            Create a profile
-                        </li>
-                        <li>
-                            Pick someone
-                        </li>
-                        <li>
-                            Keep picking the same person in a week. We connect the highest pickers and the person they pick
-                        </li>
-                        <li>
-                            Everything resets at the end of the week so you can pick someone new and go on a date every week
-                        </li>
-                    </ul>
 
-                    <div class="text-center">
-                        @if(!$loggedIn)
-                            <button class="btn get_started login"  data-url="{{route("login")}}">Get Started</button>
-                        @else
-                            <a href="{{route('app')}}" class="btn get_started profile"  data-url="{{route("login")}}">Connect Now</a>
-                        @endif
-                    </div>
-                </div>
-
-                <div class="clearfix"></div>
-            </div>
-        </div>--}}
     </div>
 
     {{--PICK OF THE MOMENT--}}
@@ -154,18 +116,9 @@
                         <div class="moment_pics_container pull-left">
                             <ul class="roundabout roundabout-holder" style="padding: 0; position: relative;">
                                 @foreach($winner->profile()->first()->photos()->get() as $photo)
-                                <li class="roundabout-slide"><img class="img-thumbnail img-responsive" src="{{ asset($photo->full_path) }}" alt="Cheek of the moment"></li>
+                                    <li class="roundabout-slide"><img class="img-thumbnail img-responsive" src="{{ asset($photo->full_path) }}" alt="Cheek of the moment"></li>
                                 @endforeach
                             </ul>
-
-                            {{--<ul class="roundabout roundabout-holder" style="padding: 0; position: relative;">
-                                <li class="roundabout-slide"><img class="img-thumbnail img-responsive" src="{{ asset('images/cheeks/0.jpg') }}" alt="Cheek of the moment"></li>
-                                <li class="roundabout-slide"><img class="img-thumbnail img-responsive" src="{{ asset('images/cheeks/6.jpg') }}" alt="Cheek of the moment"></li>
-                                <li class="roundabout-slide"><img class="img-thumbnail img-responsive" src="{{ asset('images/cheeks/1.jpg') }}" alt="Cheek of the moment"></li>
-                                <li class="roundabout-slide"><img class="img-thumbnail img-responsive" src="{{ asset('images/cheeks/2.jpg') }}" alt="Cheek of the moment"></li>
-                                <li class="roundabout-slide"><img class="img-thumbnail img-responsive" src="{{ asset('images/cheeks/3.jpg') }}" alt="Cheek of the moment"></li>
-                                <li class="roundabout-slide"><img class="img-thumbnail img-responsive" src="{{ asset('images/cheeks/7.jpg') }}" alt="Cheek of the moment"></li>
-                            </ul>--}}
                         </div>
                         <div class="moment_profile_container">
                             <div>
@@ -193,7 +146,7 @@
                                     <a href="#"><span class="icon icon-facebook-official text-primary"></span></a>
                                     <a href="#"><span class="icon icon-twitter text-primary"></span></a>
                                 </h5>
-                                
+
                             </div>
 
                         </div>
@@ -224,17 +177,21 @@
                         <div class="panel panel-warning">
                             <div class="panel-body">
                                 <div class="content name_content">
-                                    <h4 class="no-margin-bottom name">Chioma Nwakezuologoomigwojere</h4>
+                                    <h4 class="no-margin-bottom name">{{$winner->profile()->first()->first_name}} {{$winner->profile()->first()->last_name}}</h4>
+                                    <span class="content-end"></span>
                                 </div>
                                 <p class="content no-margin-bottom">
-                                    <span class="icon icon-location text-primary">&nbsp;</span>Lagos, Nigeria
+                                    @if($winner->profile()->first()->venue()->first() != null)
+                                        <span class="icon icon-location text-primary">&nbsp;</span>{{$winner->profile()->first()->venue()->first()->name}}
+                                    @else
+                                        <span class="icon icon-location text-primary">&nbsp;</span>Venue Undisclosed
+                                    @endif
                                 </p>
                                 <p class="content no-margin-top">
-                                    <span class="icon icon-heart3 text-primary">&nbsp;</span>5,000
-                                </p>
+                                    <span class="icon icon-heart3 text-primary">&nbsp;</span>{{$winner->votes}}                                </p>
                                 <p class="content">
                                     <strong>Status:</strong> <br>
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores quibusdam sequi voluptate.
+                                    {{$winner->profile()->first()->status}}
                                 </p>
                                 <h5 class="content">
                                     <a href="#"><span class="icon icon-instagram text-primary"></span></a>
@@ -246,11 +203,14 @@
                     </div>
                     <div class="col-md-6">
                         <div>
-                            <img src="{{asset('images/users/moses.jpg')}}" alt="" width="65" class="img-circle">
+                            @if($winner->picker()->first()->photo()->first())
+                                <img src="{{asset($winner->picker()->first()->photo()->first()->thumb_path)}}" alt="" width="65" class="img-circle">
+                            @else
+                                <img class="img-circle"  src="{{asset('images/apple-icon.png')}}" alt="" width="65">
+                            @endif
                             <div class="description">
                                 <h5 class="no-margin">Highest Picker</h5>
-                                <p class="no-margin text-white">Adamu Musa</p>
-                                <p class="no-margin text-white">Lagos, Nigeria</p>
+                                <p class="no-margin text-white">{{$winner->picker()->first()->first_name}} {{$winner->picker()->first()->last_name}}</p>
                             </div>
                         </div>
                     </div>
@@ -285,6 +245,7 @@
                             <div class="profile-card-content text-center">
                                 <div class="profile-card-name">
                                     <h4 class="text-center">{{$t->first_name}} {{$t->last_name}}</h4>
+                                    <div class="content-end"></div>
                                 </div>
                                 @if($t->about)
                                     <p class="about text-center text-muted">{{$t->about}} &nbsp;</p>
