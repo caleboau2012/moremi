@@ -44,3 +44,8 @@ class ConnectionConstant{
     const PHOTO = 'photo';
     const MESSAGES = 'messages';
 }
+
+class TicketConstant{
+    const CODE = 'code';
+    const VENUE_ID = 'venue_id';
+}

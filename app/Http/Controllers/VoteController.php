@@ -6,6 +6,7 @@ use App\OldCheek;
 use App\Profile;
 use App\Services\Vote\VoteService;
 use App\Http\Requests;
+use App\Ticket;
 use App\Traits\AuthTrait;
 use App\User;
 use App\Venue;
@@ -156,11 +157,25 @@ use AuthTrait;
         $now_ = new \DateTime();
         $expiryDate = $now_->modify('+1 month');
 
-        $ticket_number = uniqid('TK');
+        $reference_number = uniqid('TK');
 
         $location = ($spot ? $spot->name : "Undisclosed");
 
+        if($spot){
+            $ticket = Ticket::where(\TableConstant::STATUS, \AppConstants::ACTIVE)->where(\TicketConstant::VENUE_ID, $spot->id)->first();
 
+            if($ticket){
+                $ticket['status'] = \AppConstants::USED;
+                $ticket[\TableConstant::UPDATED_AT] = new \DateTime();
+                $ticket->save();
+                $ticket_number = $ticket->code;
+
+            }else{
+                $ticket_number = 'Undisclosed';
+            }
+        }else{
+            $ticket_number = 'Undisclosed';
+        }
 
         $oldCheek = new OldCheek();
         $oldCheek->profile_id = $poll->profile_id;
@@ -170,29 +185,30 @@ use AuthTrait;
         $oldCheek->votes = $winner->vote;
         $oldCheek->created_at = $now_;
         $oldCheek->ticket = $ticket_number;
+        $oldCheek->reference = $reference_number;
 
         $oldCheek->save();
 
-        Mail::send('emails.winner', ['user' => $winner, 'voter' => $highestVoter, 'poll' => $poll, 'expiryDate' => $expiryDate, 'location' => $location, 'ticket' => $ticket_number], function ($m) use ($winner) {
+        Mail::send('emails.winner', ['user' => $winner, 'voter' => $highestVoter, 'poll' => $poll, 'expiryDate' => $expiryDate, 'location' => $location, 'ticket' => $ticket_number, 'reference' => $reference_number], function ($m) use ($winner) {
             $m->from(\MailConstants::SUPPORT_MAIL, \MailConstants::TEAM_NAME);
             $name = $winner->first_name .' '. $winner->last_name;
             $m->to($winner->email, $name)->subject('Congratulation! You are the winner');
         });
 
-        Mail::send('emails.highestVoter', ['winner' => $winner, 'user' => $highestVoter, 'poll' => $poll, 'expiryDate' => $expiryDate, 'location' => $location, 'ticket' => $ticket_number], function ($m) use ($highestVoter) {
+        Mail::send('emails.highestVoter', ['winner' => $winner, 'user' => $highestVoter, 'poll' => $poll, 'expiryDate' => $expiryDate, 'location' => $location, 'ticket' => $ticket_number, 'reference' => $reference_number], function ($m) use ($highestVoter) {
             $m->from(\MailConstants::SUPPORT_MAIL, \MailConstants::TEAM_NAME);
             $name = $highestVoter->first_name .' '. $highestVoter->last_name;
             $m->to($highestVoter->email, $name)->subject('Congratulation! You just got yourself a date');
         });
 
-        Mail::send('emails.notifyWinnersToTeam', ['winner' => $winner, 'voter' => $highestVoter, 'poll' => $poll, 'expiryDate' => $expiryDate, 'location' => $location, 'ticket' => $ticket_number], function ($m) {
+        Mail::send('emails.notifyWinnersToTeam', ['winner' => $winner, 'voter' => $highestVoter, 'poll' => $poll, 'expiryDate' => $expiryDate, 'location' => $location, 'ticket' => $ticket_number, 'reference' => $reference_number], function ($m) {
             $m->from(\MailConstants::SUPPORT_MAIL, \MailConstants::TEAM_NAME);
             $m->to(\MailConstants::TEAM_MAIL, \MailConstants::TEAM_NAME)->subject('We got winners');
         });
 
         if($spot){
             /*notify spot*/
-            Mail::send('emails.notifyWinnersToSpot', ['winner' => $winner, 'voter' => $highestVoter, 'poll' => $poll, 'expiryDate' => $expiryDate, 'location' => $location, 'ticket' => $ticket_number], function ($m)  use($spot){
+            Mail::send('emails.notifyWinnersToSpot', ['winner' => $winner, 'voter' => $highestVoter, 'poll' => $poll, 'expiryDate' => $expiryDate, 'location' => $location, 'ticket' => $ticket_number,  'reference' => $reference_number], function ($m)  use($spot){
                 $m->from(\MailConstants::SUPPORT_MAIL, \MailConstants::TEAM_NAME);
                 $m->to($spot->email, $spot->name)->subject('We got winners on Moore.me');
             });
