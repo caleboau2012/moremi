@@ -160,6 +160,8 @@ use AuthTrait;
 
         $location = ($spot ? $spot->name : "Undisclosed");
 
+
+
         $oldCheek = new OldCheek();
         $oldCheek->profile_id = $poll->profile_id;
         $oldCheek->won_date = $now_;
@@ -190,7 +192,7 @@ use AuthTrait;
 
         if($spot){
             /*notify spot*/
-            Mail::send('emails.notifyWinnersToSpot', ['winner' => $winner, 'voter' => $highestVoter, 'poll' => $poll, 'expiryDate' => $expiryDate, 'location' => $location, 'ticket' => $ticket_number], function ($m, $spot) {
+            Mail::send('emails.notifyWinnersToSpot', ['winner' => $winner, 'voter' => $highestVoter, 'poll' => $poll, 'expiryDate' => $expiryDate, 'location' => $location, 'ticket' => $ticket_number], function ($m)  use($spot){
                 $m->from(\MailConstants::SUPPORT_MAIL, \MailConstants::TEAM_NAME);
                 $m->to($spot->email, $spot->name)->subject('We got winners on Moore.me');
             });
