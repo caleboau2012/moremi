@@ -226,7 +226,11 @@
                 <div class="col-md-6 col-md-offset-3">
                     <div class="btn-group btn-group-justified">
                         <a href="#" class="btn active  trending_menu">Trending</a>
-                        <a href="{{route("app")}}" class="btn  trending_menu">Vote Your Pick</a>
+                        @if($loggedIn)
+                            <a href="{{route("app")}}" class="btn trending_menu">Make Your Pick</a>
+                        @else
+                            <a href="#" data-url="{{route("app")}}" class="btn trending_menu login">Make Your Pick</a>
+                        @endif
                     </div>
                 </div>
             </div>
