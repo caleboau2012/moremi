@@ -13,7 +13,7 @@
 	{{--<link href="https://fonts.googleapis.com/css?family=Raleway|Kalam" rel="stylesheet">--}}
 	<link href="https://fonts.googleapis.com/css?family=Droid+Sans|Muli|Noto+Sans|PT+Sans|PT+Sans+Narrow|Poppins|Titillium+Web" rel="stylesheet">
 	<link href="{{ asset('libs/bootstrap/bootstrap.min.css') }}" rel="stylesheet" >
-	<link href="{{ asset('icons/style.css') }}" rel="stylesheet" >
+	<link href="{{ asset('icomoon/style.css') }}" rel="stylesheet" >
 
 	<link href="{{ asset('css/master.css') }}" rel="stylesheet" >
 	<link href="{{ asset('css/util.css') }}" rel="stylesheet" >
