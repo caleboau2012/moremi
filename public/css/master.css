@@ -206,9 +206,10 @@ Profile Card
     padding: 0 20px;
 }
 .profile-card-content .about{
-    /*text-overflow: ellipsis;*/
+    text-overflow: ellipsis;
     height: 30px;
-    overflow: scroll;
+    overflow: hidden;
+    white-space: nowrap;
 }
 .profile-card p{
     margin: 0 0 1px;

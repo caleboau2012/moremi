@@ -101,3 +101,7 @@ select:focus, select.form-control:focus {
 #facebook-fetch{
     background: #4267b2 !important;
 }
+
+.filter-btn-option{
+    margin-bottom: 10px;
+}

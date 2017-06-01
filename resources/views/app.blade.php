@@ -84,10 +84,17 @@
         <div class="container" id="filter-container">
             <div class="col-md-4">
                 <h5 class="text-muted">Filter</h5>
-
-                <button id="femaleFilter" class="btn btn-default filter-btn-option" data-filter-id="femaleFilter">Females</button>
-                <button id="maleFilter" class="btn btn-default filter-btn-option" data-filter-id="maleFilter">Males</button>
-                <button id="spotFilter" class="btn btn-default filter-btn-option" data-filter-id="spotFilter">My Spot</button>
+                <div class="row">
+                    <div class="col-xs-6 col-sm-4">
+                        <button id="femaleFilter" class="btn btn-block btn-default filter-btn-option" data-filter-id="femaleFilter">Females</button>
+                    </div>
+                    <div class="col-xs-6 col-sm-4">
+                        <button id="maleFilter" class="btn btn-block btn-default filter-btn-option" data-filter-id="maleFilter">Males</button>
+                    </div>
+                    <div class="col-xs-12 col-sm-4">
+                        <button id="spotFilter" class="btn btn-block btn-default filter-btn-option" data-filter-id="spotFilter">My Spot</button>
+                    </div>
+                </div>
 
                 &nbsp;&nbsp;
                 {{--<strong>Age: </strong>&nbsp;&nbsp;--}}
@@ -158,8 +165,8 @@
 
     </div>
 
-    @include('utils.votePay');
-    @include('utils.account');
+    @include('utils.votePay')
+    @include('utils.account')
 @endsection
 
 @section('bottomScripts')
