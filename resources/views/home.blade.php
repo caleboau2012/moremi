@@ -254,7 +254,7 @@
                                 @endif
                                 <p>
                                     @if($t->venue()->first())
-                                        <span class="icon icon-earth">&nbsp;</span>{{$t->venue()->first()->name}}
+                                        <span class="icon icon-location">&nbsp;</span>{{$t->venue()->first()->name}}
                                     @else
                                         <span class="icon icon-location">&nbsp;</span>No venue yet!
                                     @endif

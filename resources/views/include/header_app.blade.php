@@ -92,7 +92,7 @@
                 <div id="profile-info-right" class="profile-info hidden-sm hidden-xs">
                     <h4 class="no-margin text-white">{{$profile->vote}} picks</h4>
                     <p class="no-margin text-white">
-                        <span class="icon icon-earth"></span>
+                        <span class="icon icon-location"></span>
                         @if($profile->venue()->first())
                             <span>{{$profile->venue()->first()->name}}</span>
                             <span id='spot' class="hidden">{{$profile->venue}}</span>
