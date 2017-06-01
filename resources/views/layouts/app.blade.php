@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="description" content="Cheeks">
+	<meta name="description" content="It all starts with a date">
 	<meta name="author" content="Moree.me">
 	<meta name="keywords" content="Moree.me">
 	<meta property="fb:app_id" content="469144689836682" />
