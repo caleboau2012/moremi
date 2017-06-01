@@ -102,12 +102,15 @@
                     </p>
                 </div>
             </div>
-        </a></div>
+        </a>
+    </div>
 </div>
 
 <div class="hidden visible-xs visible-sm" id="app-header">
     <div class="container-fluid">
-        <img id="logo" src="{{asset('images/logo.png')}}" alt="">
+        <a href="{{route('index')}}">
+            <img id="logo" src="{{asset('images/logo.png')}}" alt="">
+        </a>
     </div>
     <div class="container">
         <div class="text-center">
@@ -124,7 +127,8 @@
             <strong>Status: </strong> {{$profile->about}}
         </p>
         <div class="text-center">
-            <a href=""><span class="icon icon-pencil2">&nbsp;</span>Edit Profile</a>
+            <a href="{{route("profile")}}"><span class="icon icon-pencil">&nbsp;</span>Edit Profile</a> &nbsp;
+            <a href="#" class="edit_profile_btn"><span class="icon icon-pencil2">&nbsp;</span>Account Details</a>
         </div>
     </div>
 </div>

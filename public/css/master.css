@@ -147,7 +147,7 @@ a, a:hover{
     padding: 50px 0 20px;
 }
 .trending-items{
-    padding: 20px 0 50px;
+    padding: 20px 0 10px;
 }
 .trending-item{
     margin: 0 10px;
@@ -317,7 +317,7 @@ Profile Card
     margin-top: -15px;
 }
 #app-header #logo{
-    width: 300px;
+    width: 250px;
 }
 #app-header #profile-container{
     /*position: relative;*/
