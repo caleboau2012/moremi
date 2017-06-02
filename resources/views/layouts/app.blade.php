@@ -11,7 +11,8 @@
 	<title>Moree.me</title>
 	<link rel="icon" type="image/x-icon" href="{{ asset('images/favicon.ico') }}" />
 	{{--<link href="https://fonts.googleapis.com/css?family=Raleway|Kalam" rel="stylesheet">--}}
-	<link href="https://fonts.googleapis.com/css?family=Droid+Sans|Muli|Noto+Sans|PT+Sans|PT+Sans+Narrow|Poppins|Titillium+Web" rel="stylesheet">
+	{{--<link href="https://fonts.googleapis.com/css?family=Droid+Sans|Muli|Noto+Sans|PT+Sans|PT+Sans+Narrow|Poppins|Titillium+Web" rel="stylesheet">--}}
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,800italic,800,700italic,700,600italic,400italic,600,300italic,300|Oswald:400,300,700' rel='stylesheet' type='text/css'>
 	<link href="{{ asset('libs/bootstrap/bootstrap.min.css') }}" rel="stylesheet" >
 	<link href="{{ asset('icomoon/style.css') }}" rel="stylesheet" >
 
@@ -39,6 +40,18 @@
 	<script src="{{asset('libs/jquery/jquery.min.js')}}" ></script>
 	<script src="{{asset('libs/bootstrap/bootstrap.min.js')}}"></script>
 	<script src="{{asset('libs/sweetalert/sweetalert.min.js')}}" ></script>
+	<script src="{{ asset('libs/jquery/jquery-easing.js') }}"></script>
+
+	<script src="{{asset('libs/jquery/jquery.stellar.min.js')}}"></script>
+	<script src="{{asset('libs/jquery/jquery.stellar.min.js')}}"></script>
+	<script src="{{asset('libs/jquery/jquery.appear.js')}}"></script>
+	<script src="{{asset('libs/jquery/jquery.nicescroll.min.js')}}"></script>
+	<script src="{{asset('libs/jquery/jquery.countTo.js')}}"></script>
+	<script src="{{asset('libs/jquery/jquery.shuffle.modernizr.js')}}"></script>
+	<script src="{{asset('libs/jquery/jquery.shuffle.js')}}"></script>
+	<script src="{{asset('libs/jquery/jquery.ajaxchimp.js')}}"></script>
+
+	<script src="{{asset("libs/owl/owl.carousel.min.js")}}"></script>
 
 	<!--Custom Javascript-->
 	<script src="{{asset('js/app/Utils.js')}}" ></script>

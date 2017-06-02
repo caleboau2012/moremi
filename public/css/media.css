@@ -54,3 +54,14 @@
         display: block;
     }
 }
+
+@media (min-width: 768px) {
+    .navbar-nav > li > a {
+        padding-top: 41px;
+        padding-bottom: 41px;
+    }
+    .st-navbar-mini .navbar-default .navbar-nav > li > a {
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+}

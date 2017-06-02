@@ -26,7 +26,31 @@
 @endsection
 
 @section('content')
-    <div id="home_banner" class="non-xs">
+    <div class="home relative" id="home" data-stellar-background-ratio="0.4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="st-home-unit">
+                        <div class="hero-txt">
+
+                            <h2 class="hero-title">It all begins with a date</h2>
+                            <p class="">Moore.me will help you meet people and set you up on a date. All expenses paid by us.
+                                <br>
+                                Simply pick someone and pick a spot.</p>
+                            <!-- <p class="hero-sub-title">We Provide Hight Quality Bootstrap Template</p> -->
+                            <!-- <a href="#" class="btn btn-default btn-lg left-btn">Purchase Now</a> -->
+                            <a href="#" class="btn main-btn btn-lg">Find a Date</a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="mouse-icon"><div class="wheel"></div></div>
+        <div class="col-md-12 end"></div>
+    </div>
+
+    <div id="home_banner" class="hidden non-xs">
         <div class="overlay">
             <div class="content">
                 <div class="container">
@@ -351,8 +375,6 @@
     <script src="{{ asset('libs/roundabout/roundabout.js') }}"></script>
     <script src="{{ asset('libs/jquery/jquery.event.drag.js') }}"></script>
     <script src="{{ asset('libs/jquery/jquery-event-drop.js') }}"></script>
-    <script src="{{ asset('libs/jquery/jquery-easing.js') }}"></script>
-    <script src="{{asset("libs/owl/owl.carousel.min.js")}}"></script>
     <script src="{{asset('js/app/Vote.js')}}"></script>
     <script src="{{asset('js/app/VotePay.js')}}"></script>
     <script src="{{asset('js/app/Account.js')}}"></script>
