@@ -320,7 +320,6 @@
                                 <img src="{{asset($venue->thumb)}}" class="img-responsive" alt="{{$venue->title}}">
                                 <h4 class="text-center text-primary">{{$venue->name}}</h4>
                             </a>
-
                         </li>
                     @endforeach
                 </ul>
