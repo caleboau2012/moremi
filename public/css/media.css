@@ -65,3 +65,81 @@
         padding-bottom: 20px;
     }
 }
+
+@media (max-width: 767px) {
+
+    .pick-img {
+        margin-bottom: 8em;
+        margin-left: 4em;}
+
+
+    .pick_profile {
+        float: none;
+        background-color: white;
+        padding: 4em 1em 0 2em;
+        border-bottom-right-radius: 0em !important;
+        border-top-right-radius: 0em!important;
+        position: absolute;
+        top: 8em;
+        left: 3em;
+        width: 90%;
+    }
+
+    .week-pick {
+        padding: 3em;
+        background-color: #fe7447;
+        padding-bottom: 25em;
+    }
+
+    .m-title {
+        margin-bottom: 5.5em;
+    }
+
+    .pick_profile .name{font-size: 15px;}
+
+    .picker {
+        border:none;
+        float: right;
+        padding: 3em;
+        position: absolute;
+        right: 50%;
+        bottom: -160%;
+        width: 200px;
+        height: 100px;
+    }
+
+    .picker-profile {
+        position: absolute;
+        bottom: -16%;
+        right: -63%;
+        line-height: 13px;
+    }
+
+
+
+    .home .hero-txt .hero-title {
+        font-family: "Boing",sans-serif;
+        color: #fff;
+        text-transform: uppercase;
+        font-size: 2.5rem;
+        line-height: 28px;
+        font-weight: 600;
+        letter-spacing: 8px;
+        word-spacing: 4px;
+        margin: 100px 0 0;
+    }
+    .home {padding: 70px 0 !important; }
+    .about-text {padding-top: 10px;}
+    .navbar-default .navbar-nav{background-color: rgba(232 ,81, 31, 1);   margin: 0px -15px;}
+    .st-navbar-mini .navbar-default .navbar-nav > li > a {
+        color: white;
+
+    }
+
+    .navbar-default .navbar-nav > li {border-bottom: 1px solid #dc4515;}
+
+    .xs-mb10{margin-bottom:10px;}
+
+    .trending nav{width:100%; margin:0 auto; }
+
+}

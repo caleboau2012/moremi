@@ -1,6 +1,5 @@
 @extends('layouts.app')
 @section('stylesheets')
-    <link href="{{asset('libs/owl/owl.carousel.css')}}" rel="stylesheet">
 @endsection
 
 @section('header')
@@ -26,22 +25,23 @@
 @endsection
 
 @section('content')
+
     <div class="home relative" id="home" data-stellar-background-ratio="0.4">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
                     <div class="st-home-unit">
                         <div class="hero-txt">
-
                             <h2 class="hero-title">It all begins with a date</h2>
                             <p class="">Moore.me will help you meet people and set you up on a date. All expenses paid by us.
                                 <br>
                                 Simply pick someone and pick a spot.</p>
-                            <!-- <p class="hero-sub-title">We Provide Hight Quality Bootstrap Template</p> -->
-                            <!-- <a href="#" class="btn btn-default btn-lg left-btn">Purchase Now</a> -->
-                            <a href="#" class="btn main-btn btn-lg">Find a Date</a>
+                            @if(!$loggedIn)
+                                <button class="btn btn-lg main-btn login"  data-url="{{route("login")}}">Get Started</button>
+                            @else
+                                <a href="{{route('app')}}" class="btn btn-lg main-btn profile" >Find A Date</a>
+                            @endif
                         </div>
-
                     </div>
                 </div>
             </div>
@@ -50,41 +50,43 @@
         <div class="col-md-12 end"></div>
     </div>
 
-    <div id="home_banner" class="hidden non-xs">
-        <div class="overlay">
-            <div class="content">
-                <div class="container">
+
+    {{--About Moore.me--}}
+    <div class="" id="about">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+
                     <div class="row">
-                        <div class="col-md-10 col-md-offset-1" data-scrollreveal="enter left after 0.15s over 1s">
-                            <h1 class="text-white text-center text-uppercase">
-                                <strong>
-                                    It all begins with a date
-                                </strong>
-                            </h1>
-                            <div class="row">
-                                <p class="text-center text-white col-md-6 col-md-offset-3">
-                                    Moore.me will help you meet people and set you up on a date. All expenses paid by us.
-                                    <br>
-                                    Simply pick someone and pick a spot.
-                                </p>
-                            </div>
-                            <div class="row text-center">
-                                @if(!$loggedIn)
-                                    <button class="btn btn-default get_started login"  data-url="{{route("login")}}">Get Started</button>
-                                @else
-                                    <a href="{{route('app')}}" class="btn btn-default get_started profile" >Find A Date</a>
-                                @endif
+                        <div class="col-md-6 no-padding">
+                            <img src="{{asset('images/about_banner.jpg')}}" alt="" class="img-responsive">
+                        </div>
+                        <div class="col-md-6 about-text">
+                            <div class="col-md-8 pull-center">
+                                <h2 class="font-main m-title mb10">Get Connected On Moree.me </h2>
+                                <p>Meeting people has never been this easy. Pick someone from Monday through to Saturday and meet on Sunday. Here's how:</p>
+                                <ul>
+                                    <li> <i class="icon icon-check-square-o" aria-hidden="true"></i>
+                                        Log in with your facebook Account </li>
+                                    <li><i class="icon icon-check-square-o" aria-hidden="true"></i>Create a Profile  </li>
+                                    <li><i class="icon icon-check-square-o" aria-hidden="true"></i> Pick someone </li>
+                                    <li><i class="icon icon-check-square-o" aria-hidden="true"></i> Keep picking the same person in a week. We connect the  highest pickers and the person they pick </li>
+                                    <li> <i class="icon icon-check-square-o" aria-hidden="true"></i>Everything resets at the end of the week so you can pick someone new and go on a date every week </li>
+                                </ul>
+                                <div class="col-md-3 .col-xs-3 pull-center xs-mb10"><a href="#" class="btn main-btn btn-sm pull-center ">Get Started</a></div>
                             </div>
                         </div>
 
-                    </div><!-- Row -->
+                    </div>
+
+
+
                 </div>
             </div>
         </div>
     </div>
 
-    {{--About Moore.me--}}
-    <div id="about_content">
+    <div id="about_content" class="hidden">
         <div class="col-md-6 no-padding">
             <img src="{{asset('images/about_banner.jpg')}}" alt="" class="img-responsive">
 
@@ -128,179 +130,142 @@
     </div>
 
     {{--PICK OF THE MOMENT--}}
+    <div>
     @if($winner != null)
-        <div id="moment_pick_container" >
+        <div class="hidden week-pick" id="pick-of-the-week">
             <div class="container">
                 <div class="row">
-                    <h3 id="header" class="text-center text-white">Pick of the Moment</h3>
+                    <h3 id="header" class="text-center text-white m-title">Pick of the Moment</h3>
                 </div>
 
-                <div class="center-block moment_pick_container_width visible-md visible-lg">
-                    <div class="row moment_pick_container_content" style="position:relative;">
-                        <div class="moment_pics_container pull-left">
-                            <ul class="roundabout roundabout-holder" style="padding: 0; position: relative;">
+                <div class="row relative">
+                    <div class="col-md-12 pick-container">
+                        <div class="col-md-3 col-xs-8 pick-img">
+                            <ul class="roundabout roundabout-holder" style="">
                                 @foreach($winner->profile()->first()->photos()->get() as $photo)
                                     <li class="roundabout-slide"><img class="img-thumbnail img-responsive" src="{{ asset($photo->full_path) }}" alt="Cheek of the moment"></li>
                                 @endforeach
                             </ul>
                         </div>
-                        <div class="moment_profile_container">
-                            <div>
-                                <div class="content name_content">
-                                    <h4 class="no-margin-bottom name">{{$winner->profile()->first()->first_name}} {{$winner->profile()->first()->last_name}}</h4>
-                                    <span class="content-end"></span>
-
-                                </div>
-                                <p class="content no-margin-bottom">
-                                    @if($winner->profile()->first()->venue()->first() != null)
-                                        <span class="icon icon-location text-primary">&nbsp;</span>{{$winner->profile()->first()->venue()->first()->name}}
-                                    @else
-                                        <span class="icon icon-location text-primary">&nbsp;</span>Venue Undisclosed
-                                    @endif
-                                </p>
-                                <p class="content no-margin-top">
-                                    <span class="icon icon-heart3 text-primary">&nbsp;</span>{{$winner->votes}}
-                                </p>
-                                <p class="content">
-                                    <strong>Status:</strong> <br>
-                                    {{$winner->profile()->first()->status}}
-                                </p>
-                                <h5 class="content">
-                                    <a href="#"><span class="icon icon-instagram text-primary"></span></a>
-                                    <a href="#"><span class="icon icon-facebook-official text-primary"></span></a>
-                                    <a href="#"><span class="icon icon-twitter text-primary"></span></a>
-                                </h5>
-
+                        <div class=" col-md-5 pick_profile">
+                            <div class="content name_content">
+                                <h4 class="no-margin-bottom name">{{$winner->profile()->first()->first_name}} {{$winner->profile()->first()->last_name}}</h4>
                             </div>
-
-                        </div>
-
-                        <div class="moment_pick_voter_container">
-                            @if($winner->picker()->first()->photo()->first())
-                                <img src="{{asset($winner->picker()->first()->photo()->first()->thumb_path)}}" alt="" width="65" class="img-circle">
-                            @else
-                                <img class="img-circle"  src="{{asset('images/default.png')}}" alt="" width="65">
+                            <p class="content no-margin">
+                                @if($winner->profile()->first()->venue()->first() != null)
+                                    <span class="icon icon-location text-primary">&nbsp;</span>{{$winner->profile()->first()->venue()->first()->name}}
+                                @else
+                                    <span class="icon icon-location text-primary">&nbsp;</span>Venue Undisclosed
+                                @endif
+                            </p>
+                            <p class="content">
+                                <span class="icon icon-heart3 text-primary">&nbsp;</span>{{$winner->votes}}
+                            </p>
+                            @if($winner->profile()->first()->status))
+                            <p class="content">
+                                <strong>Status:</strong> <br>
+                                {{$winner->profile()->first()->status}}
+                            </p>
                             @endif
-                            <div class="description">
-                                <h5 class="no-margin">Picker</h5>
-                                <p class="no-margin text-white">{{$winner->picker()->first()->first_name}} {{$winner->picker()->first()->last_name}}</p>
+                            <h5 class="content">
+                                <a href="#"><span class="icon icon-instagram text-primary"></span></a>
+                                <a href="#"><span class="icon icon-facebook-official text-primary"></span></a>
+                                <a href="#"><span class="icon icon-twitter text-primary"></span></a>
+                            </h5>
+                        </div>
+
+                        <div class="col-md-3 picker no-margin">
+                            <div class="picker-profile">
+                                @if($winner->picker()->first()->photo()->first())
+                                    <img src="{{asset($winner->picker()->first()->photo()->first()->thumb_path)}}" alt="" width="65" class="img-circle">
+                                @else
+                                    <img class="img-circle"  src="{{asset('images/default.png')}}" alt="" width="65">
+                                @endif
+                                <div class="description" style="float:right;">
+                                    <h5 class="no-margin">Highest Picker</h5>
+                                    <p class="no-margin text-white">{{$winner->picker()->first()->first_name}} {{$winner->picker()->first()->last_name}}</p>
+                                </div>
                             </div>
                         </div>
 
-                    </div>
-                </div>
-                <div class="row  hidden-md hidden-lg">
-                    <div class="col-md-6 col-md-offset-3">
-                        <ul class="roundabout roundabout-holder" style="padding: 0; position: relative;">
-                            @foreach($winner->profile()->first()->photos()->get() as $photo)
-                                <li class="roundabout-slide"><img class="img-thumbnail img-responsive" src="{{ asset($photo->full_path) }}" alt="Cheek of the moment"></li>
-                            @endforeach
-                        </ul>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="panel panel-warning">
-                            <div class="panel-body">
-                                <div class="content name_content">
-                                    <h4 class="no-margin-bottom name">{{$winner->profile()->first()->first_name}} {{$winner->profile()->first()->last_name}}</h4>
-                                    <span class="content-end"></span>
-                                </div>
-                                <p class="content no-margin-bottom">
-                                    @if($winner->profile()->first()->venue()->first() != null)
-                                        <span class="icon icon-location text-primary">&nbsp;</span>{{$winner->profile()->first()->venue()->first()->name}}
-                                    @else
-                                        <span class="icon icon-location text-primary">&nbsp;</span>Venue Undisclosed
-                                    @endif
-                                </p>
-                                <p class="content no-margin-top">
-                                    <span class="icon icon-heart3 text-primary">&nbsp;</span>{{$winner->votes}}                                </p>
-                                <p class="content">
-                                    <strong>Status:</strong> <br>
-                                    {{$winner->profile()->first()->status}}
-                                </p>
-                                <h5 class="content">
-                                    <a href="#"><span class="icon icon-instagram text-primary"></span></a>
-                                    <a href="#"><span class="icon icon-facebook-official text-primary"></span></a>
-                                    <a href="#"><span class="icon icon-twitter text-primary"></span></a>
-                                </h5>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div>
-                            @if($winner->picker()->first()->photo()->first())
-                                <img src="{{asset($winner->picker()->first()->photo()->first()->thumb_path)}}" alt="" width="65" class="img-circle">
-                            @else
-                                <img class="img-circle"  src="{{asset('images/default.png')}}" alt="" width="65">
-                            @endif
-                            <div class="description">
-                                <h5 class="no-margin">Highest Picker</h5>
-                                <p class="no-margin text-white">{{$winner->picker()->first()->first_name}} {{$winner->picker()->first()->last_name}}</p>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
         </div>
     @endif
+    </div>
 
-
-    <div class="container-fluid bg-grey" id="trending_container" >
+    <div class="trending" id="trending">
         <div class="container">
             <div class="row">
-                <div class="col-md-6 col-md-offset-3">
-                    <div class="btn-group btn-group-justified">
-                        <a href="#" class="btn active  trending_menu">Trending</a>
-                        @if($loggedIn)
-                            <a href="{{route("app")}}" class="btn trending_menu">Make Your Pick</a>
-                        @else
-                            <a href="#" data-url="{{route("app")}}" class="btn trending_menu login">Make Your Pick</a>
-                        @endif
+                <div class="col-md-12">
+                    <div class="tabs tabs-style-bar">
+                        <nav style="">
+                            <ul>
+                                <li class="left"><a href="#section-bar-1" class="left"><span>Trending</span></a></li>
+                                <li class="right">
+                                    @if($loggedIn)
+                                        <a href="{{route("app")}}" class="right"><span>Make Your Pick</span></a>
+                                    @else
+                                        <a href="#" data-url="{{route("app")}}" class="right login"><span>Make Your Pick</span></a>
+                                    @endif
+
+                                </li>
+
+                            </ul>
+                        </nav>
+                    </div>
+
+                    <div class="content-wrap">
+                        <div id="section-bar-1">
+                            <div class="row">
+
+
+                            </div>
+
+                        </div>
+
                     </div>
                 </div>
+
             </div>
             <div class="row trending-items">
                 @foreach($trending as $t)
                     <div class="trending-item">
-                        <div class="profile-card">
-                            <div class="profile-card-heading">
+                        <div class="card hovercard">
+                            <div class="cardheader">
+
+                            </div>
+                            <div class="avatar">
                                 @if($t->photo()->first())
                                     <img class="img-responsive img-circle" src="{{asset($t->photo()->first()->full_path)}}" alt="{{$t->first_name .' '. $t->last_name}}">
                                 @else
                                     <img class="img-responsive img-circle"  src="{{asset('images/default.png')}}">
                                 @endif
-
                             </div>
-                            <div class="profile-card-content text-center">
-                                <div class="profile-card-name">
-                                    <h4 class="text-center">{{$t->first_name}} {{$t->last_name}}</h4>
+                            <div class="info">
+                                <div class="title name">
+                                    <h3 class="text-capitalize">{{$t->first_name}} {{$t->last_name}}</h3>
                                     <div class="content-end"></div>
                                 </div>
-                                @if($t->about)
-                                    <p class="about text-center text-muted">{{$t->about}} &nbsp;</p>
-                                @else
-                                    <p class="about">No info!</p>
-                                @endif
-                                <p>
+                                <div class="desc">Status</div>
+                                <div class="desc">
                                     @if($t->venue()->first())
-                                        <span class="icon icon-location">&nbsp;</span>{{$t->venue()->first()->name}}
+                                        <strong class="icon icon-location font-main">&nbsp;</strong>{{$t->venue()->first()->name}}
                                     @else
-                                        <span class="icon icon-location">&nbsp;</span>No venue yet!
+                                        <strong class="icon icon-location font-main">&nbsp;</strong>No venue yet!
                                     @endif
-                                </p>
-                                <p>
-                                    <span class="icon icon-heart3">&nbsp;</span> <span class="vote-count">{{$t->vote}}</span>
-                                </p>
-                                <div>
-                                    <button class="btn get_started btn-sm vote-btn btn-fill" data-id="{{$t->id}}">PICK
-                                        @if($t->sex ==  "male")
-                                            <span class="icon icon-profile-male"></span>
-                                        @else
-                                            <span class="icon icon-profile-female"></span>
-                                        @endif
-                                    </button>
+                                </div>
+                                <div class="desc">
+                                    <strong class="icon icon-heart3 font-main">&nbsp;</strong> <span class="vote-count">{{$t->vote}}</span>
                                 </div>
                             </div>
 
+                            <div class="bottom">
+                                <a href="#" class="pick-btn main-btn vote-btn btn-sm pull-center ">
+                                    <strong class="icon icon-heart3" aria-hidden="true">&nbsp;</strong>Pick
+                                </a>
+                            </div>
                         </div>
                     </div>
                 @endforeach
@@ -308,35 +273,36 @@
         </div>
     </div>
 
-    <div id="profile-counter-container">
+    <div id="profile-counter-container" data-stellar-background-ratio="0.4">
         <div class="overlay">
             <div class="container">
                 <div class="col-md-4">
-                    <div class="text-center">
-                        <span class="text-white icon icon-profile-female"></span>
-                        <h3 class="no-margin text-center text-white">{{$females}}+</h3>
-                        <div class="divider"></div>
-                        <h5 class="no-margin text-white text-center">Registered Ladies</h5>
+                    <div class="funfact">
+                        <div class="st-funfact-icon"><i class="icon icon-profile-female"></i></div>
+                        <div class="st-funfact-counter" ><span class="st-ff-count" data-from="0" data-to="{{$females}}" data-runit="1">0</span>+</div>
+                        <strong class="funfact-title">Registered Ladies</strong>
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <div class="text-center">
-                        <span class="text-white icon icon-profile-male"></span>
-                        <h3 class="no-margin text-center text-white">{{$males}}+</h3>
-                        <div class="divider"></div>
-                        <h5 class="no-margin text-white text-center">Registered Men</h5>
-                    </div>
+                    <div class="funfact">
+                        <div class="st-funfact-icon"><i class="icon icon-profile-male"></i></div>
+                        <div class="st-funfact-counter" ><span class="st-ff-count" data-from="0" data-to="{{$males}}" data-runit="1">0</span>+</div>
+                        <strong class="funfact-title">Registered Men</strong>
+                    </div><!-- .funfact -->
                 </div>
                 <div class="col-md-4">
-                    <div class="text-center">
-                        <span class="text-white icon icon-tags"></span>
-                        <h3 class="no-margin text-center text-white">{{$dates->count()}}+</h3>
-                        <div class="divider"></div>
-                        <h5 class="no-margin text-white text-center">Sponsored Dates</h5>
-                    </div>
+                    <div class="funfact">
+                        <div class="st-funfact-icon"><i class="icon icon-tags"></i></div>
+                        <div class="st-funfact-counter" ><span class="st-ff-count" data-from="0" data-to="{{$dates->count()}}" data-runit="1">0</span>+</div>
+                        <strong class="funfact-title">Sponsored Dates</strong>
+                    </div><!-- .funfact -->
                 </div>
                 <div class="text-center margin-top-sm">
-                    <a href="#" class="btn get_started btn-lg">Connect Now</a>
+                    @if(!$loggedIn)
+                        <button class="btn get_started login"  data-url="{{route("login")}}">Get Started</button>
+                    @else
+                        <a href="{{route('app')}}" class="btn get_started profile"  data-url="{{route("login")}}">Connect Now</a>
+                    @endif
                 </div>
             </div>
         </div>
@@ -345,20 +311,22 @@
     {{--PARTNERS--}}
     <div class="container" id="partners_section">
         <h3 class="text-center">Spots</h3>
-        <div class="row trending-items">
-            @foreach($partners as $venue)
-                <div class="trending-item">
-                    <div class="panel panel-warning">
-                        <div class="panel-body text-center">
+        <div class="row">
+            <div class="col-md-12">
+                <ul class="clients-carousel list-unstyled">
+                    @foreach($partners as $venue)
+                        <li>
                             <a href="{{$venue->url}}" target="_blank">
-                                <img class="img-responsive img-circle" src="{{asset($venue->thumb)}}" alt="{{$venue->name}}">
-                                <div class="clearfix"></div>
-                                <h4 class="text-primary">{{$venue->name}}</h4>
+                                <img src="{{asset($venue->thumb)}}" class="img-responsive" alt="{{$venue->title}}">
+                                <h4 class="text-center text-primary">{{$venue->name}}</h4>
                             </a>
-                        </div>
-                    </div>
-                </div>
-            @endforeach
+
+                        </li>
+                    @endforeach
+                </ul>
+
+            </div>
+
         </div>
     </div>
 
@@ -380,5 +348,13 @@
     <script src="{{asset('js/app/Account.js')}}"></script>
     <script src="{{ asset('js/app/Home.js') }}"></script>
 
+    <script>
+        (function() {
 
+            [].slice.call( document.querySelectorAll( '.tabs' ) ).forEach( function( el ) {
+                new CBPFWTabs( el );
+            });
+
+        })();
+    </script>
 @endsection
