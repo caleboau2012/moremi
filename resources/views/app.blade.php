@@ -174,7 +174,7 @@
     <script src="{{asset("libs/owl/owl.carousel.min.js")}}"></script>
     <script src="{{asset("libs/bootstrap-slider/bslider.js")}}"></script>
     <script src="{{asset('js/app/infiniteScroll.js')}}"></script>
-    <script src="{{asset('js/app/Home.js')}}"></script>
+    <script src="{{asset('js/app/App.js')}}"></script>
     <script src="{{asset('js/app/Vote.js')}}"></script>
     <script src="{{asset('js/app/VotePay.js')}}"></script>
     <script src="{{asset('js/app/Account.js')}}"></script>

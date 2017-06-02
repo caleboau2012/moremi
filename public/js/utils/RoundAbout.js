@@ -5,8 +5,6 @@
  * Time: 10:19 AM
  */
 $(function () {
-
-
     function init_Roundabout() {
     $('.roundabout').roundabout({
     tilt: 0.4,

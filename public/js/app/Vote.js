@@ -91,7 +91,7 @@ Vote ={
             });
 
             $(element).parent().parent().find(".vote-count")[0].innerHTML = count;
-            //Home.fetchCheeks(); //re arrange profile bar
+            //App.fetchCheeks(); //re arrange profile bar
         }
     }
 };

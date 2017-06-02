@@ -8,6 +8,9 @@
 ?>
 @extends('layouts.app')
 @section('stylesheets')
+    @parent
+    {{-- Drag Drop JS --}}
+    <script src="{{asset("js/utils/DragDropTouch.js")}}"></script>
 @endsection
 
 @section('header')

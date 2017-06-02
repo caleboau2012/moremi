@@ -357,7 +357,7 @@
     <script src="{{asset('js/app/VotePay.js')}}"></script>
     <script src="{{asset('js/app/Account.js')}}"></script>
 
-    <script src="{{ asset('js/Home.js') }}"></script>
+    <script src="{{ asset('js/utils/RoundAbout.js') }}"></script>
     <script>
         $(function() {
 

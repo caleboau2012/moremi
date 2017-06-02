@@ -35,7 +35,7 @@ InfiniteScroll ={
     },
     Get: function(){
         if(InfiniteScroll.CONSTANT.END_OF_DATA){
-            Home.filterCheeks($("#input-filter-search").val());
+            App.filterCheeks($("#input-filter-search").val());
             return;
         }
         if(InfiniteScroll.CONSTANT.LOADING){
@@ -106,7 +106,7 @@ InfiniteScroll ={
             $('#cheeks-inf').append(tmp);
         }
 
-        Home.filterCheeks($("#input-filter-search").val());
+        App.filterCheeks($("#input-filter-search").val());
     }
 
 };
