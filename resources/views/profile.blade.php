@@ -68,7 +68,7 @@
 
                                     @else
                                         <p class="text-center hidden text-info image-placeholder">Drag best picture here</p>
-                                        <img class="img-responsive img-thumbnail" id="profile-dp" src="{{asset($profile->photo->full_path)}}">
+                                        <img class="img-responsive img-thumbnail" id="profile-dp" data-index="{{$profile_pic}}" src="{{asset($profile->photo->full_path)}}">
                                     @endif
                                 </div>
                                 <div class="row_">
@@ -86,11 +86,11 @@
                             {{--Previous DP--}}
                             <div class="row" id="pictures-panel" data-url="{{route('my_profile')}}">
                                 @if(!empty($photos))
-                                    @foreach($photos as $photo)
+                                    @foreach($photos as $i => $photo)
                                         <div class="col-md-4">
                                             <div class="image-box picture-panel pointer" draggable="true">
                                                 <div class="image">
-                                                    <img src="{{Request::root() . "/" . $photo['full_path']}}">
+                                                    <img data-index="{{$i}}" src="{{Request::root() . "/" . $photo['full_path']}}">
                                                     <span class="delete-picture icon icon-close" data-url="{{route("delete_pic", $photo['id'])}}"></span>
                                                 </div>
                                             </div>
@@ -151,7 +151,7 @@
                         <div class="col-md-4">
                             <div class="image-box picture-panel pointer" draggable="true">
                                 <div class="image">
-                                    <img src="[[src]]">
+                                    <img data-index="[[i]]" src="[[src]]">
                                     <span class="delete-picture icon icon-close"></span>
                                 </div>
                             </div>

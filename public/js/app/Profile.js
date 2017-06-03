@@ -70,16 +70,19 @@ var Profile = {
                 //    object: this
                 //});
                 e.originalEvent.dataTransfer.setData("url", $(this).find("img").attr("src"));
+                e.originalEvent.dataTransfer.setData("index", $(this).find("img").attr("data-index"));
                 //console.log(e.originalEvent.dataTransfer.getData("url"));
             }).delegate(".profile-pic", "drop", function(e){
                 e.preventDefault();
                 var newURL = e.originalEvent.dataTransfer.getData("url");
+                var index = e.originalEvent.dataTransfer.getData("index");
                 var oldURL = $(this).find("img").attr("src");
                 console.log({
                     new: newURL,
-                    old: oldURL
+                    old: oldURL,
+                    index: index
                 });
-                $(this).find("img").attr("src", newURL).removeClass("hidden").css('display', 'block');
+                $(this).find("img").attr("src", newURL).attr("data-index", index).removeClass("hidden").css('display', 'block');
                 if(oldURL == ""){
                     $(this).find(".image-placeholder").remove();
                 }
@@ -91,7 +94,20 @@ var Profile = {
                 e.stopPropagation();
             }
         ).undelegate(".delete-picture", "click").delegate(".delete-picture", "click", function(e){
-                Profile.deletePicture($(this).parent().parent().parent(), $(this).attr("data-url"));
+                var element = this;
+                swal({
+                        title: "Are you sure?",
+                        text: "We cannot undo this action",
+                        type: "warning",
+                        showCancelButton: true
+                        //confirmButtonColor: "#DD6B55",
+                        //confirmButtonText: "Yes, delete it!",
+                        //closeOnConfirm: false
+                    },
+                    function(){
+                        //console.log(element, this);
+                        Profile.deletePicture($(element).parent().parent().parent(), $(element).attr("data-url"));
+                    });
             }
         );
         //.undelegate(".picture-panel .fa-close").delegate(".picture-panel .fa-close", "click", function(e){
@@ -139,7 +155,7 @@ var Profile = {
             img = $(e).find("img")[0];
             photos.push(img.src);
         });
-        var pPic = $(".profile-pic").find("img")[0].src;
+        var pPic = $($(".profile-pic").find("img")[0]).attr("data-index");
 
         if(pPic == location.href){
             swal("Chill!", "You need a profile picture");
@@ -151,6 +167,8 @@ var Profile = {
             venue: venue,
             profile_pic: pPic
         };
+
+        console.log(data);
 
         Utils.post(url,
             data, "POST", Profile.uploaded, Profile.uploadError
@@ -167,17 +185,19 @@ var Profile = {
             swal('Oh Snap!', data.message);
     },
     uploadError: function(data){
-        console.log(data)
         swal('Oh Snap!', "We don't know what went wrong but we couldn't finish the operation");
         $("#finish").button('reset');
     },
     deletePicture: function(picture, url){
         //console.log(url);
-        //Utils.post(url, null, "GET", Profile.deleteSuccessful, Profile.deleteFailed);
+        Utils.post(url, null, "GET", Profile.deleteSuccessful, Profile.deleteFailed);
         picture.remove();
     },
     deleteSuccessful: function(response){
-        console.log(response);
+        if(response.status)
+            swal('Gone', "That picture is gone...");
+        else
+            swal('Oh Snap', "Something went wrong when deleting your beautiful picture");
     },
     deleteFailed: function(error){
         console.log(error);
@@ -203,7 +223,7 @@ var Profile = {
 
             reader.onload = function(e) {
                 template = $("#picture-template").html();
-                HTML = template.replace("[[src]]", e.target.result);
+                HTML = template.replace("[[src]]", e.target.result).replace("[[i]]", $(".picture-panel").length);
                 $("#pictures-panel").append(HTML);
             };
 
@@ -247,9 +267,10 @@ var Profile = {
         for(var i = 0; i < Profile.facebookPhotos.length; i++){
             //console.log(Profile.facebookPhotos[i]);
             template = $("#picture-template").html();
-            HTML += template.replace("[[src]]", Profile.facebookPhotos[i]);
+            HTML = template.replace("[[src]]", Profile.facebookPhotos[i]).replace("[[i]]", $(".picture-panel").length);
+            $("#pictures-panel").append(HTML);
         }
-        $("#pictures-panel").prepend(HTML);
+        //$("#pictures-panel").prepend(HTML);
     },
     loadApiPix: function(response){
         var HTML = "", template;
@@ -257,9 +278,10 @@ var Profile = {
         $("#status").val(response.status);
         for(var i = 0; i < response.photos.length; i++){
             template = $("#picture-template").html();
-            HTML += template.replace("[[src]]", response.photos[i].full_path);
+            HTML = template.replace("[[src]]", response.photos[i].full_path);
+            $("#pictures-panel").append(HTML);
         }
-        $("#pictures-panel").prepend(HTML);
+        //$("#pictures-panel").prepend(HTML);
     }
 };
 
