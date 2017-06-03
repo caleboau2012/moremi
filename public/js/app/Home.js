@@ -45,13 +45,11 @@ $(function () {
     $('[data-toggle="tooltip"]').tooltip();
 
 
-
-
     function home_height () {
         var element = $('.st-home-unit'),
             elemHeight = element.height(),
             winHeight = $(window).height()
-        padding = (winHeight - elemHeight - 200) /2;
+        var padding = (winHeight - elemHeight - 250) /2;
 
         if (padding < 1 ) {
             padding = 0;
@@ -125,6 +123,10 @@ $(function () {
         itemsTablet	: [768,2],
         navigation : false,
         pagination : false
+    });
+
+    [].slice.call( document.querySelectorAll( '.tabs' ) ).forEach( function( el ) {
+        new CBPFWTabs( el );
     });
 
     init_Roundabout();

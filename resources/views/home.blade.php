@@ -73,7 +73,7 @@
                                     <li><i class="icon icon-check-square-o" aria-hidden="true"></i> Keep picking the same person in a week. We connect the  highest pickers and the person they pick </li>
                                     <li> <i class="icon icon-check-square-o" aria-hidden="true"></i>Everything resets at the end of the week so you can pick someone new and go on a date every week </li>
                                 </ul>
-                                <div class="col-md-3 .col-xs-3 pull-center xs-mb10"><a href="#" class="btn main-btn btn-sm pull-center ">Get Started</a></div>
+                                <div class="text-center xs-mb10"><a href="#" class="btn main-btn btn-sm pull-center "><span class="icon icon-play"></span> Get Started</a></div>
                             </div>
                         </div>
 
@@ -114,9 +114,9 @@
 
                 <div class="text-center">
                     @if(!$loggedIn)
-                        <button class="btn get_started login"  data-url="{{route("login")}}">Get Started</button>
+                        <button class="btn get_started login"  data-url="{{route("login")}}"><span class="icon icon-play"></span> Get Started</button>
                     @else
-                        <a href="{{route('app')}}" class="btn get_started profile"  data-url="{{route("login")}}">Connect Now</a>
+                        <a href="{{route('app')}}" class="btn get_started profile"  data-url="{{route("login")}}"><span class="icon icon-play"></span> Connect Now</a>
                     @endif
                 </div>
             </div>
@@ -245,7 +245,11 @@
                                     <h3 class="text-capitalize">{{$t->first_name}} {{$t->last_name}}</h3>
                                     <div class="content-end"></div>
                                 </div>
-                                <div class="desc">Status</div>
+                                @if($t->about)
+                                    <p class="about text-center text-muted">{{$t->about}} &nbsp;</p>
+                                @else
+                                    <p class="about">No info!</p>
+                                @endif
                                 <div class="desc">
                                     @if($t->venue()->first())
                                         <strong class="icon icon-location font-main">&nbsp;</strong>{{$t->venue()->first()->name}}
@@ -343,14 +347,4 @@
     <script src="{{asset('js/app/VotePay.js')}}"></script>
     <script src="{{asset('js/app/Account.js')}}"></script>
     <script src="{{ asset('js/app/Home.js') }}"></script>
-
-    <script>
-        (function() {
-
-            [].slice.call( document.querySelectorAll( '.tabs' ) ).forEach( function( el ) {
-                new CBPFWTabs( el );
-            });
-
-        })();
-    </script>
 @endsection
