@@ -93,9 +93,12 @@ class PhotoController extends Controller
         if(!$this->auth) {
             return response()->json(['status'=>false,'message'=>'You must be logged in to upload photo']);
         }
+
         $profile_id  =$this->_userId;
         $upload =new UploadPicture();
         $data =$upload->ImageFromUrlOrString($request->photo);
+
+//        $photo_ids = [];
         if(is_array($data) && !empty($data)){
             foreach($data as $d){
                 $photo = new Photo();
@@ -107,37 +110,22 @@ class PhotoController extends Controller
         }
 
         $profile =Profile::find($this->_userId);
+        $photos = $profile->photos->toArray();
+
         if($request->has('profile_pic')){
-            $upl =new UploadPicture();
-            $d =[$request->profile_pic];
-            $data =$upl->ImageFromUrlOrString($d);
-            if(!is_null($data) && !empty($data)) {
-                $profile_ph = new Photo();
-                $profile_ph->full_path = $data[0]['full_path'];
-                $profile_ph->thumb_path = $data[0]['thumb_path'];
-                $profile_ph->profile_id = $profile_id;
-                $profile_ph->save();
-                $profile->photo_id = $profile_ph->id;
-            }
-            else if($upl->urlIsLocal($request->profile_pic)){
-                $elements = explode('/', $request->profile_pic);
-                $element = $elements[sizeof($elements) - 1];
-                $photo = Photo::where('full_path', 'like', '%' . $element . '%')->first();
-//                var_dump($photo);
-                $profile->photo_id = $photo->id;
-            }
+            $profile->photo_id = $photos[$request->profile_pic]['id'];
         }
-        //go ahead and set as feature photo
-        if($request->status!=null) {
+
+        if($request->status !=null) {
             $profile->about = $request->status;
         }
         if($request->venue != null)
             $profile->venue = $request->venue;
+
         $profile->save();
         return response()->json(['status'=>true,
             'message'=>"Your profile was saved successfully",
             ]);
-
     }
 
 

@@ -70,16 +70,19 @@ var Profile = {
                 //    object: this
                 //});
                 e.originalEvent.dataTransfer.setData("url", $(this).find("img").attr("src"));
+                e.originalEvent.dataTransfer.setData("index", $(this).find("img").attr("data-index"));
                 //console.log(e.originalEvent.dataTransfer.getData("url"));
             }).delegate(".profile-pic", "drop", function(e){
                 e.preventDefault();
                 var newURL = e.originalEvent.dataTransfer.getData("url");
+                var index = e.originalEvent.dataTransfer.getData("index");
                 var oldURL = $(this).find("img").attr("src");
                 console.log({
                     new: newURL,
-                    old: oldURL
+                    old: oldURL,
+                    index: index
                 });
-                $(this).find("img").attr("src", newURL).removeClass("hidden").css('display', 'block');
+                $(this).find("img").attr("src", newURL).attr("data-index", index).removeClass("hidden").css('display', 'block');
                 if(oldURL == ""){
                     $(this).find(".image-placeholder").remove();
                 }
@@ -139,7 +142,7 @@ var Profile = {
             img = $(e).find("img")[0];
             photos.push(img.src);
         });
-        var pPic = $(".profile-pic").find("img")[0].src;
+        var pPic = $($(".profile-pic").find("img")[0]).attr("data-index");
 
         if(pPic == location.href){
             swal("Chill!", "You need a profile picture");
@@ -151,6 +154,8 @@ var Profile = {
             venue: venue,
             profile_pic: pPic
         };
+
+        console.log(data);
 
         Utils.post(url,
             data, "POST", Profile.uploaded, Profile.uploadError
@@ -203,7 +208,7 @@ var Profile = {
 
             reader.onload = function(e) {
                 template = $("#picture-template").html();
-                HTML = template.replace("[[src]]", e.target.result);
+                HTML = template.replace("[[src]]", e.target.result).replace("[[i]]", $(".picture-panel").length);
                 $("#pictures-panel").append(HTML);
             };
 
@@ -247,9 +252,10 @@ var Profile = {
         for(var i = 0; i < Profile.facebookPhotos.length; i++){
             //console.log(Profile.facebookPhotos[i]);
             template = $("#picture-template").html();
-            HTML += template.replace("[[src]]", Profile.facebookPhotos[i]);
+            HTML = template.replace("[[src]]", Profile.facebookPhotos[i]).replace("[[i]]", $(".picture-panel").length);
+            $("#pictures-panel").append(HTML);
         }
-        $("#pictures-panel").prepend(HTML);
+        //$("#pictures-panel").prepend(HTML);
     },
     loadApiPix: function(response){
         var HTML = "", template;
@@ -257,9 +263,10 @@ var Profile = {
         $("#status").val(response.status);
         for(var i = 0; i < response.photos.length; i++){
             template = $("#picture-template").html();
-            HTML += template.replace("[[src]]", response.photos[i].full_path);
+            HTML = template.replace("[[src]]", response.photos[i].full_path);
+            $("#pictures-panel").append(HTML);
         }
-        $("#pictures-panel").prepend(HTML);
+        //$("#pictures-panel").prepend(HTML);
     }
 };
 

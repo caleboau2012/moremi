@@ -741,7 +741,7 @@ Profile Card
 .profile-card{
     background: #FFFFFF;
     border: solid thin #dddddd;
-    height: 350px;
+    height: 370px;
     box-shadow: 1px 1px 1px #e6e6e6;
     margin: 15px 0;
 }
@@ -944,7 +944,7 @@ Profile Card
 }
 #filter-container .btn{
     border-radius: 20px;
-    padding: 7px 22px;
+    padding: 7px 10px;
     margin-right: 8px;
 }
 #filter-container .btn.active{
