@@ -122,7 +122,8 @@ $(function () {
         itemsDesktopSmall : [979,3],
         itemsTablet	: [768,2],
         navigation : false,
-        pagination : false
+        navigationText : ['Prev', 'Next'],
+        pagination : true
     });
 
     [].slice.call( document.querySelectorAll( '.tabs' ) ).forEach( function( el ) {

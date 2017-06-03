@@ -791,9 +791,7 @@ Profile Card
     background-attachment: fixed;
     background-size: cover;
 }
-#profile-counter-container .icon{
-    font-size: 70px;
-}
+
 #profile-counter-container .get_started{
     border-radius: 20px;
     padding: 10px 60px;

@@ -213,16 +213,6 @@
                         </nav>
                     </div>
 
-                    {{--<div class="content-wrap">--}}
-                        {{--<div id="section-bar-1">--}}
-                            {{--<div class="row">--}}
-
-
-                            {{--</div>--}}
-
-                        {{--</div>--}}
-
-                    {{--</div>--}}
                 </div>
 
             </div>
@@ -249,11 +239,14 @@
                                     <h3 class="text-capitalize">{{$t->first_name}} {{$t->last_name}}</h3>
                                     <div class="content-end"></div>
                                 </div>
-                                @if($t->about)
-                                    <p class="about text-center text-muted">{{$t->about}} &nbsp;</p>
-                                @else
-                                    <p class="about">No info!</p>
-                                @endif
+                                <div class="desc">
+                                    @if($t->about)
+                                        <p class="about text-center text-muted">{{$t->about}} &nbsp;</p>
+                                    @else
+                                        <p class="about">No info!</p>
+                                    @endif
+                                </div>
+
                                 <div class="desc">
                                     @if($t->venue()->first())
                                         <strong class="icon icon-location font-main">&nbsp;</strong>{{$t->venue()->first()->name}}
@@ -284,7 +277,7 @@
                 <div class="col-md-4">
                     <div class="funfact">
                         <div class="st-funfact-icon">
-                            <img class="img-responsive img-circle"  src="{{asset('images/counter/ladies.png')}}">
+                            <img class="img-responsive"  src="{{asset('images/counter/ladies.png')}}">
                         </div>
                         <div class="st-funfact-counter" ><span class="st-ff-count" data-from="0" data-to="{{$females}}" data-runit="1">0</span>+</div>
                         <strong class="funfact-title">Registered Ladies</strong>
@@ -293,7 +286,7 @@
                 <div class="col-md-4">
                     <div class="funfact">
                         <div class="st-funfact-icon">
-                            <img class="img-responsive img-circle"  src="{{asset('images/counter/men.png')}}">
+                            <img class="img-responsive"  src="{{asset('images/counter/men.png')}}">
                         </div>
                         <div class="st-funfact-counter" ><span class="st-ff-count" data-from="0" data-to="{{$males}}" data-runit="1">0</span>+</div>
                         <strong class="funfact-title">Registered Men</strong>
@@ -302,7 +295,7 @@
                 <div class="col-md-4">
                     <div class="funfact">
                         <div class="st-funfact-icon">
-                            <img class="img-responsive img-circle"  src="{{asset('images/counter/table.png')}}">
+                            <img class="img-responsive"  src="{{asset('images/counter/table.png')}}">
                         </div>
                         <div class="st-funfact-counter" ><span class="st-ff-count" data-from="0" data-to="{{$dates->count()}}" data-runit="1">0</span>+</div>
                         <strong class="funfact-title">Sponsored Dates</strong>
@@ -310,7 +303,7 @@
                 </div>
                 <div class="text-center margin-top-sm">
                     @if(!$loggedIn)
-                        <button class="btn get_started login"  data-url="{{route("login")}}">Get Started</button>
+                        <button class="btn get_started login"  data-url="{{route("login")}}"><span class="icon icon-play">&nbsp;</span>Get Started</button>
                     @else
                         <a href="{{route('app')}}" class="btn get_started profile"  data-url="{{route("login")}}">Connect Now</a>
                     @endif
