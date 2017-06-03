@@ -45,6 +45,8 @@ class HomeController extends Controller
             else
                 $venue = $p->venue()->first()->name;
 
+            $default = ($p->sex == "male")?'images/default-male.png':'images/default-female.png';
+
             $data[] =[
                 'name'=>$p->first_name." ".$p->last_name,
                 'vote'=>is_null($p->vote)?0:$p->vote,
@@ -52,7 +54,7 @@ class HomeController extends Controller
                 'venue'=>$venue,
                 'venue_id'=>$p->venue,
                 'sex'=>$p->sex,
-                'image'=> $p->photo_id!=null && $p->photo_id!=0?Photo::find($p->photo_id)->thumb_path:'images/default.png',
+                'image'=> $p->photo_id!=null && $p->photo_id!=0?Photo::find($p->photo_id)->thumb_path:$default,
                 'photos'=>$p->photos,
                 'about'=>$p->about,
             ];

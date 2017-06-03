@@ -83,7 +83,7 @@ h5, .h5 {
 
 .navbar-brand {
     height: auto;
-    padding: 27px 15px;
+    padding: 10px 10px;
     -webkit-transition: padding 0.3s;
     transition: padding 0.3s;
 }
@@ -521,7 +521,7 @@ a, a:hover{
 
 .card.hovercard .cardheader {
     background-color: #fe7447;
-    height: 135px;
+    height: 100px;
 }
 
 .card.hovercard .avatar {

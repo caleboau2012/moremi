@@ -213,16 +213,16 @@
                         </nav>
                     </div>
 
-                    <div class="content-wrap">
-                        <div id="section-bar-1">
-                            <div class="row">
+                    {{--<div class="content-wrap">--}}
+                        {{--<div id="section-bar-1">--}}
+                            {{--<div class="row">--}}
 
 
-                            </div>
+                            {{--</div>--}}
 
-                        </div>
+                        {{--</div>--}}
 
-                    </div>
+                    {{--</div>--}}
                 </div>
 
             </div>
@@ -231,13 +231,14 @@
                     <div class="trending-item">
                         <div class="card hovercard">
                             <div class="cardheader">
-
                             </div>
                             <div class="avatar">
                                 @if($t->photo()->first())
                                     <img class="img-responsive img-circle" src="{{asset($t->photo()->first()->full_path)}}" alt="{{$t->first_name .' '. $t->last_name}}">
-                                @else
-                                    <img class="img-responsive img-circle"  src="{{asset('images/default.png')}}">
+                                @elseif($t->sex == "male")
+                                    <img class="img-responsive img-circle"  src="{{asset('images/default-male.png')}}">
+                                @elseif($t->sex == "female")
+                                    <img class="img-responsive img-circle"  src="{{asset('images/default-female.png')}}">
                                 @endif
                             </div>
                             <div class="info">
@@ -263,7 +264,7 @@
                             </div>
 
                             <div class="bottom">
-                                <a href="#" class="pick-btn main-btn vote-btn btn-sm pull-center ">
+                                <a href="#" class="pick-btn main-btn vote-btn btn-sm pull-center " data-id="{{$t->id}}">
                                     <strong class="icon icon-heart3" aria-hidden="true">&nbsp;</strong>Pick
                                 </a>
                             </div>

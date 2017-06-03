@@ -40,7 +40,7 @@
         <div class="row hidden">
             <p class="hidden" id="_token">{{ csrf_token() }}"</p>
             <h2 class="text-center hidden" id="user">{{$profile->first_name}} {{$profile->last_name}}</h2>
-            <h3 class="text-center hidden"><span class="text-danger">Votes: {{$profile->vote}} <i class="fa fa-heart"></i></span> </h3>
+            <h3 class="text-center hidden"><span class="text-danger">Picks: {{$profile->vote}} <i class="icon icon-heart"></i></span> </h3>
             <p class="hidden" id="id_user_from">{{$profile->id}}</p>
             <p class="hidden" id="chat-url">{{route('chat-url')}}</p>
             <hr>
@@ -140,7 +140,7 @@
                         <div class="row">
                             <div class="col-sm-6">
                                 <br>
-                                <button id="finish" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> Updating your profile" data-url="{{route("photo_upload")}}" class="btn btn-success btn-block"><span class="fa fa-upload"></span> Save Changes</button>
+                                <button id="finish" data-loading-text="<i class='icon icon-circle-o-notch icon-spin'></i> Updating your profile" data-url="{{route("photo_upload")}}" class="btn btn-success btn-block"><span class="icon icon-upload"></span> Save Changes</button>
                                 <br>
                             </div>
                         </div>
