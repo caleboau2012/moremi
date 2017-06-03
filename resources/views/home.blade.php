@@ -240,7 +240,12 @@
                                 @if($t->photo()->first())
                                     <img class="img-responsive img-circle" src="{{asset($t->photo()->first()->full_path)}}" alt="{{$t->first_name .' '. $t->last_name}}">
                                 @else
-                                    <img class="img-responsive img-circle"  src="{{asset('images/default.png')}}">
+                                    @if($t->sex == 'male')
+                                        <img class="img-responsive img-circle"  src="{{asset('images/maleAvatar.png')}}">
+                                    @else
+                                        <img class="img-responsive img-circle"  src="{{asset('images/femaleAvatar.png')}}">
+                                    @endif
+
                                 @endif
                             </div>
                             <div class="info">
@@ -278,21 +283,27 @@
             <div class="container">
                 <div class="col-md-4">
                     <div class="funfact">
-                        <div class="st-funfact-icon"><i class="icon icon-profile-female"></i></div>
+                        <div class="st-funfact-icon">
+                            <img class="img-responsive img-circle"  src="{{asset('images/counter/ladies.png')}}">
+                        </div>
                         <div class="st-funfact-counter" ><span class="st-ff-count" data-from="0" data-to="{{$females}}" data-runit="1">0</span>+</div>
                         <strong class="funfact-title">Registered Ladies</strong>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="funfact">
-                        <div class="st-funfact-icon"><i class="icon icon-profile-male"></i></div>
+                        <div class="st-funfact-icon">
+                            <img class="img-responsive img-circle"  src="{{asset('images/counter/men.png')}}">
+                        </div>
                         <div class="st-funfact-counter" ><span class="st-ff-count" data-from="0" data-to="{{$males}}" data-runit="1">0</span>+</div>
                         <strong class="funfact-title">Registered Men</strong>
                     </div><!-- .funfact -->
                 </div>
                 <div class="col-md-4">
                     <div class="funfact">
-                        <div class="st-funfact-icon"><i class="icon icon-tags"></i></div>
+                        <div class="st-funfact-icon">
+                            <img class="img-responsive img-circle"  src="{{asset('images/counter/table.png')}}">
+                        </div>
                         <div class="st-funfact-counter" ><span class="st-ff-count" data-from="0" data-to="{{$dates->count()}}" data-runit="1">0</span>+</div>
                         <strong class="funfact-title">Sponsored Dates</strong>
                     </div><!-- .funfact -->
