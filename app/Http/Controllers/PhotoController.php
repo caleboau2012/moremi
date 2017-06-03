@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Photo;
 use App\Profile;
-use app\Services\Photo\DeletePhoto;
+use App\Services\Photo\DeletePhoto;
 use App\Services\Photo\UploadPicture;
 use App\Services\UserService;
 use App\User;
@@ -231,11 +231,17 @@ class PhotoController extends Controller
      */
     public function destroy($id)
     {
+        $status = false;
+
         if($this->_userId!='') {
             $delete = new DeletePhoto($this->_userId, $id);
-            $delete->delete();
+            $status = $delete->delete();
         }
 
+        if($status)
+            return response()->json(['status' => true, 'msg' => 'Deletion Successful']);
+        else
+            return response()->json(['status' => false, 'msg' => 'Nothing was deleted']);
     }
 
     public  function updateStatus(Request $request){

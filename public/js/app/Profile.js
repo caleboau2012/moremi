@@ -94,7 +94,20 @@ var Profile = {
                 e.stopPropagation();
             }
         ).undelegate(".delete-picture", "click").delegate(".delete-picture", "click", function(e){
-                Profile.deletePicture($(this).parent().parent().parent(), $(this).attr("data-url"));
+                var element = this;
+                swal({
+                        title: "Are you sure?",
+                        text: "We cannot undo this action",
+                        type: "warning",
+                        showCancelButton: true
+                        //confirmButtonColor: "#DD6B55",
+                        //confirmButtonText: "Yes, delete it!",
+                        //closeOnConfirm: false
+                    },
+                    function(){
+                        //console.log(element, this);
+                        Profile.deletePicture($(element).parent().parent().parent(), $(element).attr("data-url"));
+                    });
             }
         );
         //.undelegate(".picture-panel .fa-close").delegate(".picture-panel .fa-close", "click", function(e){
@@ -172,17 +185,19 @@ var Profile = {
             swal('Oh Snap!', data.message);
     },
     uploadError: function(data){
-        console.log(data)
         swal('Oh Snap!', "We don't know what went wrong but we couldn't finish the operation");
         $("#finish").button('reset');
     },
     deletePicture: function(picture, url){
         //console.log(url);
-        //Utils.post(url, null, "GET", Profile.deleteSuccessful, Profile.deleteFailed);
+        Utils.post(url, null, "GET", Profile.deleteSuccessful, Profile.deleteFailed);
         picture.remove();
     },
     deleteSuccessful: function(response){
-        console.log(response);
+        if(response.status)
+            swal('Gone', "That picture is gone...");
+        else
+            swal('Oh Snap', "Something went wrong when deleting your beautiful picture");
     },
     deleteFailed: function(error){
         console.log(error);

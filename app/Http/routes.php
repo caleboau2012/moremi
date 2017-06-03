@@ -26,8 +26,7 @@ Route::resource('photo', 'PhotoController');
 Route::post('login', array("as" => "login", "uses" => 'LoginController@login'));
 Route::post('vote','VoteController@vote');
 //Route::get('test','HomeController@test');
-Route::get('seed','HomeController@seed');
-
+//Route::get('seed','HomeController@seed');
 
 Route::get('cheeks/{total}', array("as" => "cheeks", "uses" => 'HomeController@getContestants'));
 Route::post('update/status','PhotoController@updateStatus');
