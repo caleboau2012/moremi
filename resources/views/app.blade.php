@@ -27,8 +27,10 @@
                             <div class="profile-card-heading">
                                 @if($t->photo()->first())
                                     <img class="img-responsive img-circle" src="{{asset($t->photo()->first()->full_path)}}" alt="{{$t->first_name .' '. $t->last_name}}">
-                                @else
-                                    <img class="img-responsive img-circle"  src="{{asset('images/default.png')}}">
+                                @elseif($t->sex == "male")
+                                    <img class="img-responsive img-circle"  src="{{asset('images/default-male.png')}}">
+                                @elseif($t->sex == "female")
+                                    <img class="img-responsive img-circle"  src="{{asset('images/default-female.png')}}">
                                 @endif
 
                             </div>

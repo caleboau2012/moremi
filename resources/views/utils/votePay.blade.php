@@ -5,7 +5,7 @@
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">
-                        <span class="fa fa-close fa-inverse"></span>
+                        <span class="icon icon-close icon-inverse"></span>
                     </span>
                 </button>
                 <h4 class="modal-title" id="votePayModalLabel">This won't take a while</h4>
@@ -21,7 +21,7 @@
                                             ₦ {{config('constants.small_bundle') * config('constants.scale')}}
                                         </h2>
                                         <h3 class="text-center">
-                                            1 vote
+                                            1 pick
                                         </h3>
                                         <input type="hidden" name="email" value="{{$profile->email}}"> {{-- required --}}
                                         <input type="hidden" name="amount" value="{{config('constants.small_bundle') * 100}}"> {{-- required in kobo --}}
@@ -31,9 +31,9 @@
                                         <input type="hidden" name="_token" value="{{ csrf_token() }}"> {{-- employ this in place of csrf_field only in laravel 5.0 --}}
                                         <input type="hidden" name="voted_profile_id" value="">
                                         <p>
-                                            <button class="btn btn-danger btn-lg btn-block" type="submit"
-                                                    data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> Processing...">
-                                                <i class="fa fa-credit-card fa-lg"></i> Pay Now!
+                                            <button class="btn btn-danger btn-block" type="submit"
+                                                    data-loading-text="<i class='icon icon-circle-o-notch icon-spin'></i> Processing...">
+                                                <i class="icon icon-credit-card icon-lg"></i> Pay Now!
                                             </button>
                                         </p>
                                     </div>
@@ -48,7 +48,7 @@
                                             ₦ {{config('constants.medium_bundle') * config('constants.scale')}}
                                         </h2>
                                         <h3 class="text-center">
-                                            5 votes
+                                            5 picks
                                         </h3>
                                         <input type="hidden" name="email" value="{{$profile->email}}"> {{-- required --}}
                                         <input type="hidden" name="amount" value="{{config('constants.medium_bundle') * 100}}"> {{-- required in kobo --}}
@@ -58,9 +58,9 @@
                                         <input type="hidden" name="_token" value="{{ csrf_token() }}"> {{-- employ this in place of csrf_field only in laravel 5.0 --}}
                                         <input type="hidden" name="voted_profile_id" value="">
                                         <p>
-                                            <button class="btn btn-warning btn-lg btn-block" type="submit"
-                                                    data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> Processing...">
-                                                <i class="fa fa-credit-card fa-lg"></i> Pay Now!
+                                            <button class="btn btn-warning btn-block" type="submit"
+                                                    data-loading-text="<i class='icon icon-circle-o-notch icon-spin'></i> Processing...">
+                                                <i class="icon icon-credit-card icon-lg"></i> Pay Now!
                                             </button>
                                         </p>
                                     </div>
@@ -75,7 +75,7 @@
                                             ₦ {{config('constants.large_bundle') * config('constants.scale')}}
                                         </h2>
                                         <h3 class="text-center">
-                                            10 votes
+                                            10 picks
                                         </h3>
                                         <input type="hidden" name="email" value="{{$profile->email}}"> {{-- required --}}
                                         <input type="hidden" name="amount" value="{{config('constants.large_bundle') * 100}}"> {{-- required in kobo --}}
@@ -85,9 +85,9 @@
                                         <input type="hidden" name="_token" value="{{ csrf_token() }}"> {{-- employ this in place of csrf_field only in laravel 5.0 --}}
                                         <input type="hidden" name="voted_profile_id" value="">
                                         <p>
-                                            <button class="btn btn-success btn-lg btn-block" type="submit"
-                                                    data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> Processing...">
-                                                <i class="fa fa-credit-card fa-lg"></i> Pay Now!
+                                            <button class="btn btn-success btn-block" type="submit"
+                                                    data-loading-text="<i class='icon icon-circle-o-notch icon-spin'></i> Processing...">
+                                                <i class="icon icon-credit-card icon-lg"></i> Pay Now!
                                             </button>
                                         </p>
                                     </div>

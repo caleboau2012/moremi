@@ -37,8 +37,8 @@ init: function(){
             var template =$('#contestant').html();
             var vote=0;
             if(data[i].vote>1){
-                vote= data[i].vote +' Votes'}else{
-                vote= data[i].vote +' Vote'
+                vote= data[i].vote +' Picks'}else{
+                vote= data[i].vote +' Pick'
             }
             var h =template.replace('[[name]]',data[i].name)
                 .replace('[[name]]',data[i].name)

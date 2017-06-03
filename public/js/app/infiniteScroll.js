@@ -99,8 +99,9 @@ InfiniteScroll ={
              .replace("[[data-img-4]]",data[i].photos[3].full_path)
              .replace("[[data-img-5]]",data[i].photos[4].full_path)
              .replace("[[data-img-6]]",data[i].photos[5].full_path)**/
+
             tmp= tmp.replace("[[DATA-NAME]]",data[i].name)
-                .replace("[[DATA-ABOUT]]", data[i].about)
+                .replace("[[DATA-ABOUT]]", (data[i].about.trim() == "")?"No info!":data[i].about.trim())
                 .replace("[[SEXICON]]", (data[i].sex == 'male')?"icon-profile-male":"icon-profile-female");
 
             $('#cheeks-inf').append(tmp);

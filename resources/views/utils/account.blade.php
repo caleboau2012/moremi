@@ -5,7 +5,7 @@
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">
-                        <span class="fa fa-close fa-inverse"></span>
+                        <span class="icon icon-close icon-inverse"></span>
                     </span>
                 </button>
                 <h4 class="modal-title" id="accountModalLabel">Personal Details

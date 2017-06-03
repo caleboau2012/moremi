@@ -6,12 +6,12 @@
             <br>
             <!--About Section-->
             <section class="col-xs-12 col-sm-7 footerbg1 text-muted">
-                <h4>About Moremi</h4>
+                <h4>About Moree.me</h4>
 
                 <p>
                     Moree.me is the quickest way to connect.
                     It is well suited for the young, the elderly, the bold and the restless.
-                    It is easy to use. Just make your pick.
+                    Meetign people is easy. Just make your pick.
                     <br>
                     There are only two clauses. You can only pick once a day. The day starts 0:00 GMT. Everything resets on Sunday.
                 </p>

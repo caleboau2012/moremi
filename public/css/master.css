@@ -83,7 +83,7 @@ h5, .h5 {
 
 .navbar-brand {
     height: auto;
-    padding: 27px 15px;
+    padding: 10px 10px;
     -webkit-transition: padding 0.3s;
     transition: padding 0.3s;
 }
@@ -205,7 +205,7 @@ h5, .h5 {
     text-transform: uppercase;
     padding: 20px 10px;
     font-size: 4.8rem;
-    line-height: 20px;
+    /*line-height: 20px;*/
     font-weight: 600;
     letter-spacing: 8px;
     word-spacing: 4px;
@@ -521,7 +521,7 @@ a, a:hover{
 
 .card.hovercard .cardheader {
     background-color: #fe7447;
-    height: 135px;
+    height: 100px;
 }
 
 .card.hovercard .avatar {
@@ -713,6 +713,11 @@ a, a:hover{
 .trending-item img{
     max-width: 100%;
     margin: 0 auto;
+}
+.trending-item .about{
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 .btn.trending_menu{
     padding: 15px;

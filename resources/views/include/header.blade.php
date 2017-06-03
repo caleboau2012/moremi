@@ -65,7 +65,7 @@
                         <li><a href="#" id="app-url" data-url="{{route("login")}}" data-url-app="{{route('app')}}" class="login"><span class="text-white">Join</span></a></li>
                     @else
                         <li>
-                            <a href="{{route("app")}}" class="profile-btn">
+                            <a href="{{route("profile")}}" class="profile-btn">
                                 @if($profile != null)
                                     @if($profile->photo()->first())
                                         <img src="{{asset($profile->photo()->first()->thumb_path)}}" class="profile-thumb">
