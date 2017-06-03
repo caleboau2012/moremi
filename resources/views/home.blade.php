@@ -37,9 +37,9 @@
                                 <br>
                                 Simply pick someone and pick a spot.</p>
                             @if(!$loggedIn)
-                                <button class="btn btn-lg main-btn login"  data-url="{{route("login")}}">Get Started</button>
+                                <button class="btn btn-lg main-btn login"  data-url="{{route("login")}}"><span class="icon icon-play"></span> Get Started</button>
                             @else
-                                <a href="{{route('app')}}" class="btn btn-lg main-btn profile" >Find A Date</a>
+                                <a href="{{route('app')}}" class="btn btn-lg main-btn profile" ><span class="icon icon-play"></span> Find A Date</a>
                             @endif
                         </div>
                     </div>
@@ -78,9 +78,6 @@
                         </div>
 
                     </div>
-
-
-
                 </div>
             </div>
         </div>
