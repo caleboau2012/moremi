@@ -34,6 +34,10 @@
 	<script src="{{asset('js/html5shiv.min.js') }}"></script>
 	<script src="{{asset('js/respond.min.js')}}"></script>
 	<![endif]-->
+
+	{{-- Analytics --}}
+	<script src="{{asset('js/utils/Analytics.js')}}"></script>
+
 	@yield('stylesheets')
 
 </head>
