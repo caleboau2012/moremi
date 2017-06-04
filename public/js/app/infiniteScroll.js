@@ -9,7 +9,8 @@ InfiniteScroll ={
         LAST_PAGE:10,
         END_OF_DATA:false,
         LOADING:false,
-        QUERY: ''
+        QUERY: '',
+
     },
     init: function(){
         InfiniteScroll.Get();
@@ -82,6 +83,7 @@ InfiniteScroll ={
                 .replace("[[PHOTO]]",data[i].image)
                 .replace("[[ID]]",data[i].id)
                 .replace("[[ID]]",data[i].id)
+                .replace("[[URL]]", data[i].url)
                 .replace("[[VENUEID]]", data[i].venue_id)
                 .replace("[[VENUE]]", data[i].venue)
                 .replace("[[SEX]]", data[i].sex)

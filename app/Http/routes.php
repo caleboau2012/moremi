@@ -17,6 +17,7 @@
 Route::get('/', array('uses'=>'UIController@home', 'as' => 'index'));
 Route::get('app', array('uses'=>'UIController@app', 'as' => 'app'));
 Route::get('app/profile', array('uses'=>'UIController@profile', "as"=>"profile"));
+Route::get('my-profile/{id}',["as" => "my_profile", "uses" => 'UIController@myProfile']);
 Route::get('privacy/policy', array("as" => "policy", "uses" => "UIController@policy"));
 
 
@@ -34,7 +35,6 @@ Route::post('upload/photo', ["as" => "photo_upload", "uses" => 'PhotoController@
 Route::post('account-update', ["as" => "account-update", 'uses' => 'ProfileController@updateAccountDetails']);
 
 Route::get('delete/{id}/photo',["as" => "delete_pic", "uses" =>'PhotoController@destroy']);  //delete photo
-Route::get('myprofile',["as" => "my_profile", "uses" => 'ProfileController@myProfile']);
 
 /*
  * Paystack
@@ -56,9 +56,3 @@ Route::group(['prefix' => 'cron'], function(){
  * Chat routes
  */
 Route::post('sendmessage', ['as' => 'chat-url', 'uses' => 'ChatController@sendMessage']);
-
-//Route::group(['prefix' => 'ui'], function(){
-//   Route::get('home', array('uses'=>'UIRevampController@home', 'as' => 'index'));
-//   Route::get('user', array('uses'=>'UIRevampController@user', 'as' => 'app'));
-//   Route::get('user/profile', array('uses'=>'UIRevampController@profile', "as"=>"profile"));
-//});

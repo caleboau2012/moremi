@@ -25,14 +25,15 @@
                     <div class="trending-item">
                         <div class="profile-card">
                             <div class="profile-card-heading">
-                                @if($t->photo()->first())
-                                    <img class="img-responsive img-circle" src="{{asset($t->photo()->first()->full_path)}}" alt="{{$t->first_name .' '. $t->last_name}}">
-                                @elseif($t->sex == "male")
-                                    <img class="img-responsive img-circle"  src="{{asset('images/default-male.png')}}">
-                                @elseif($t->sex == "female")
-                                    <img class="img-responsive img-circle"  src="{{asset('images/default-female.png')}}">
-                                @endif
-
+                                <a href="{{route("my_profile", \Illuminate\Support\Facades\Crypt::encrypt($t->id))}}">
+                                    @if($t->photo()->first())
+                                        <img class="img-responsive img-circle" src="{{asset($t->photo()->first()->full_path)}}" alt="{{$t->first_name .' '. $t->last_name}}">
+                                    @elseif($t->sex == "male")
+                                        <img class="img-responsive img-circle"  src="{{asset('images/default-male.png')}}">
+                                    @elseif($t->sex == "female")
+                                        <img class="img-responsive img-circle"  src="{{asset('images/default-female.png')}}">
+                                    @endif
+                                </a>
                             </div>
                             <div class="profile-card-content text-center">
                                 <div class="profile-card-name">
@@ -47,7 +48,7 @@
                                 <p>
                                     @if($t->venue()->first())
                                         <span class="icon icon-location">&nbsp;</span>{{$t->venue()->first()->name}}
-                                        @else
+                                    @else
                                         <span class="icon icon-location">&nbsp;</span>No venue yet!
                                     @endif
                                 </p>
@@ -56,11 +57,11 @@
                                 </p>
                                 <div>
                                     <button class="btn get_started btn-sm vote-btn btn-fill" data-id="{{$t->id}}">PICK
-                                    @if($t->sex ==  "male")
-                                        <span class="icon icon-profile-male"></span>
-                                    @else
-                                        <span class="icon icon-profile-female"></span>
-                                    @endif
+                                        @if($t->sex ==  "male")
+                                            <span class="icon icon-profile-male"></span>
+                                        @else
+                                            <span class="icon icon-profile-female"></span>
+                                        @endif
                                     </button>
                                 </div>
                             </div>
@@ -125,7 +126,9 @@
                     <div class="pick-item">
                         <div class="profile-card">
                             <div class="profile-card-heading">
+                                <a href="[[URL]]">
                                 <img class="img-responsive img-circle" src="{{\Illuminate\Support\Facades\URL::to('/')}}/[[PHOTO]]" alt="Moses">
+                                </a>
                             </div>
                             <div class="profile-card-content text-center">
                                 <div class="profile-card-name" data-sex="[[SEX]]" data-venue="[[VENUEID]]">

@@ -11,6 +11,7 @@ use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Requests;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
@@ -54,6 +55,7 @@ class HomeController extends Controller
                 'venue'=>$venue,
                 'venue_id'=>$p->venue,
                 'sex'=>$p->sex,
+                'url' => route('my_profile', Crypt::encrypt($p->id)),
                 'image'=> $p->photo_id!=null && $p->photo_id!=0?Photo::find($p->photo_id)->thumb_path:$default,
                 'photos'=>$p->photos,
                 'about'=>$p->about,

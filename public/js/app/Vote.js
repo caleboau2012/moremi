@@ -84,13 +84,20 @@ Vote ={
         }
         else if(data.status){
             swal('Success',data.msg,'success');
-            var count = parseInt($(element).parent().parent().find(".vote-count")[0].innerHTML) + 1;
+
+            if(typeof $(element).parent().parent().find(".vote-count")[0] != "undefined"){
+                var count = parseInt($(element).parent().parent().find(".vote-count")[0].innerHTML) + 1;
+                $(element).parent().parent().find(".vote-count")[0].innerHTML = count;
+            }
+            else{
+                var count = parseInt($(".vote-count")[0].innerHTML) + 1;
+                $(".vote-count")[0].innerHTML = count;
+            }
+
             console.log({
                 element: element,
                 count: count
             });
-
-            $(element).parent().parent().find(".vote-count")[0].innerHTML = count;
             //App.fetchCheeks(); //re arrange profile bar
         }
     }

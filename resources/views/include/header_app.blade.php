@@ -23,8 +23,10 @@
                         </btn>
                         @if($profile->photo()->first())
                             <img src="{{asset($profile->photo()->first()->full_path)}}" alt="Profile DP" id="profile-cover_dp">
-                        @else
-                            <img src="{{asset('images/default.png')}}" id="profile-cover_dp">
+                        @elseif($profile->sex == "male")
+                            <img src="{{asset('images/default-male.png')}}" id="profile-cover_dp">
+                        @elseif(($profile->sex == "female"))
+                            <img src="{{asset('images/default-female.png')}}" id="profile-cover_dp">
                         @endif
                     </a>
                 </div>

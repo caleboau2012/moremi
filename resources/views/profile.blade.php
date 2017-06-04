@@ -84,7 +84,7 @@
                         </div>
                         <div class="col-md-6">
                             {{--Previous DP--}}
-                            <div class="row" id="pictures-panel" data-url="{{route('my_profile')}}">
+                            <div class="row" id="pictures-panel">
                                 @if(!empty($photos))
                                     @foreach($photos as $i => $photo)
                                         <div class="col-md-4">

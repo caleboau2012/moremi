@@ -132,9 +132,6 @@ var Profile = {
             Profile.finish($(this).attr("data-url"));
         });
 
-        //var url = $("#pictures-panel").attr('data-url');
-        //Utils.post(url, null, "GET", Profile.loadFromApi, Profile.loadFromApiError);
-
     },
     loadFromApi: function(response){
         console.log(response);

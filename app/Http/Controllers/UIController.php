@@ -7,6 +7,7 @@ use App\OldCheek;
 use App\Profile;
 use App\Venue;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Crypt;
 use LRedis;
 
 class UIController extends Controller
@@ -122,6 +123,42 @@ class UIController extends Controller
                 'profile' => $profile,
                 'profile_pic' => $profile_pic,
                 'venues' => $venues,
+                'connections' => $connections
+            ]
+        );
+    }
+    public function myProfile($id){
+        $id = Crypt::decrypt($id);
+
+        $profile = Profile::find($id);
+
+        $connections = Connection::where(\TableConstant::PROFILE_ID, $this->_userId)->
+        orWhere(\ConnectionConstant::RECIPIENT_ID, $this->_userId)->get()->toArray();
+
+        for($i = 0; $i < sizeof($connections); $i++){
+            if($connections[$i][\TableConstant::PROFILE_ID] != $this->_userId){
+                $temp = $connections[$i][\TableConstant::PROFILE_ID];
+                $connections[$i][\TableConstant::PROFILE_ID] = $this->_userId;
+                $connections[$i][\ConnectionConstant::RECIPIENT_ID] = $temp;
+            }
+
+            $user = Profile::find($connections[$i][\ConnectionConstant::RECIPIENT_ID]);
+            $connections[$i][\ConnectionConstant::NAME] = $user->first_name . " " . $user->last_name;
+            $connections[$i][\ConnectionConstant::PHOTO] = $user->photo()->first();
+        }
+
+        $photos = $profile->photos->toArray();
+        $profile_pic = -1;
+        foreach($photos as $i => $photo){
+            if(isset($profile->photo->full_path) && $profile->photo->full_path == $photo['full_path'])
+                $profile_pic = $i;
+        }
+
+        return view('my_profile',[
+                'photos' => $profile->photos()->get()->toArray(),
+                'profile' => $profile,
+                'profile_pic' => $profile_pic,
+                'venue' => $profile->venue()->first(),
                 'connections' => $connections
             ]
         );
