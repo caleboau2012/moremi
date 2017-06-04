@@ -99,7 +99,8 @@ var Profile = {
                         title: "Are you sure?",
                         text: "We cannot undo this action",
                         type: "warning",
-                        showCancelButton: true
+                        showCancelButton: true,
+                        confirmButtonColor: "#fe7447"
                         //confirmButtonColor: "#DD6B55",
                         //confirmButtonText: "Yes, delete it!",
                         //closeOnConfirm: false

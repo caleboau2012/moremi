@@ -353,14 +353,4 @@
     <script src="{{asset('js/app/VotePay.js')}}"></script>
     <script src="{{asset('js/app/Account.js')}}"></script>
     <script src="{{ asset('js/app/Home.js') }}"></script>
-
-    <script>
-        (function() {
-
-            [].slice.call( document.querySelectorAll( '.tabs' ) ).forEach( function( el ) {
-                new CBPFWTabs( el );
-            });
-
-        })();
-    </script>
 @endsection
