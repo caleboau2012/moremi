@@ -55,7 +55,7 @@
                         <div class="col-md-6">
                             <div class="profile-pic">
                                 <div class="image">
-                                    @if(is_null($profile->photo_id) || is_null($profile->photo->full_path))
+                                    @if(!isset($profile->photo->full_path) || is_null($profile->photo_id) || is_null($profile->photo->full_path))
                                         <div id="upload_image_placeholder">
                                             <div id="caption"  class="image-placeholder">
                                                 <h1 class="text-center">
@@ -71,14 +71,19 @@
                                         <img class="img-responsive img-thumbnail" id="profile-dp" data-index="{{$profile_pic}}" src="{{asset($profile->photo->full_path)}}">
                                     @endif
                                 </div>
-                                <div class="row_">
+                                <div class="row">
                                     <br>
-                                    <a href="#" title="Upload image" class="btn btn-primary picture-upload">
-                                        Upload <strong class="icon icon-image"></strong>
-                                    </a>
-                                    <a href="#" title="Import image from Facebook" class="btn btn-primary" id="facebook-fetch">
-                                        <span class="icon icon-image"></span> from  <span class="icon icon-facebook-official"></span>
-                                    </a>
+                                    <div class="col-xs-12 col-sm-6">
+                                        <a href="#" title="Upload image" class="btn btn-primary btn-block picture-upload">
+                                            Upload <strong class="icon icon-image"></strong>
+                                        </a>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-6">
+                                        <a href="#" title="Import image from Facebook" class="btn btn-primary btn-block" id="facebook-fetch">
+                                            <span class="icon icon-image"></span> from  <span class="icon icon-facebook-official"></span>
+                                        </a>
+                                        <br>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -118,7 +123,7 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-sm-12">
+                            <div class="col-sm-6">
                                 <div class="form-group">
                                     <label for="venue"><strong>Preferred Spot</strong></label>
                                     <select name="venue" id="venue" class="form-control">
@@ -135,9 +140,6 @@
                                     </select>
                                 </div>
                             </div>
-                        </div>
-
-                        <div class="row">
                             <div class="col-sm-6">
                                 <br>
                                 <button id="finish" data-loading-text="<i class='icon icon-circle-o-notch icon-spin'></i> Updating your profile" data-url="{{route("photo_upload")}}" class="btn btn-success btn-block"><span class="icon icon-upload"></span> Save Changes</button>

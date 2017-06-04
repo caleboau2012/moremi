@@ -4,9 +4,9 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="description" content="It all starts with a date">
+	<meta name="description" content="Moore.me will help you meet people and set you up on a date. All expenses paid by us. Simply pick someone and pick a spot. .It all starts with a date">
 	<meta name="author" content="Moree.me">
-	<meta name="keywords" content="Moree.me">
+	<meta name="keywords" content="moree.me, dating, free, pick, pick of the week">
 	<meta property="fb:app_id" content="469144689836682" />
 	<title>Moree.me</title>
 	<link rel="icon" type="image/x-icon" href="{{ asset('images/favicon.png')}}" />
