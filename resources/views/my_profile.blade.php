@@ -12,7 +12,7 @@
 @endsection
 
 @section('header')
-    @include('include.header_app_public')
+    @include('include.header_public_profile')
 @endsection
 
 @section('content')
