@@ -55,7 +55,7 @@ use AuthTrait;
                 'auth' => true,
                 'free' => true,
                 'profile' => true,
-                'msg'=>'Photo voted successfully',
+                'msg'=>'Picked successfully',
                 'count'=>$vote->count
             ];
             return response()->json($msg)->withCookie(config('settings.vote-cookie-name'), $vote->cookie, 2880);

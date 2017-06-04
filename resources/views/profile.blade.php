@@ -74,10 +74,10 @@
                                 <div class="row_">
                                     <br>
                                     <a href="#" title="Upload image" class="btn btn-primary picture-upload">
-                                        <strong class="icon icon-upload"></strong>
+                                        Upload <strong class="icon icon-image"></strong>
                                     </a>
                                     <a href="#" title="Import image from Facebook" class="btn btn-primary" id="facebook-fetch">
-                                        <span class="icon icon-download2"></span>  <span class="icon icon-facebook-official"></span>
+                                        <span class="icon icon-image"></span> from  <span class="icon icon-facebook-official"></span>
                                     </a>
                                 </div>
                             </div>
@@ -144,17 +144,46 @@
                                 <br>
                             </div>
                         </div>
+
+                        <div class="row">
+                            <div class="row_">
+                                <div class="col-xs-12 col-sm-4">
+                                    <br>
+                                    <a target="_blank" class="btn btn-block bg-facebook text-white"
+                                       href="https://www.facebook.com/sharer/sharer.php?u={{route("my_profile", \Illuminate\Support\Facades\Crypt::encrypt($profile->id))}}">
+                                        Share on <span class="icon icon-facebook-square"></span>
+                                    </a>
+                                </div>
+
+                                <div class="col-xs-12 col-sm-4">
+                                    <br>
+                                    <a target="_blank" class="btn btn-block bg-primary"
+                                       href="https://twitter.com/home?status=Win%20a%20date%20with%20me%20on%20Moree.me%20{{route("my_profile", \Illuminate\Support\Facades\Crypt::encrypt($profile->id))}}">
+                                        Share on <span class="icon icon-twitter"></span>
+                                    </a>
+                                </div>
+
+                                <div class="col-xs-12 col-sm-4">
+                                    <br>
+                                    <a target="_blank" class="btn btn-block btn-danger"
+                                       href="https://plus.google.com/share?url={{route("my_profile", \Illuminate\Support\Facades\Crypt::encrypt($profile->id))}}">
+                                        Share on <span class="icon icon-google-plus"></span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
                         <input type="file" id="pic-upload" class="hidden" multiple="multiple">
                     </div>
 
                     <script id="picture-template" type="text/html">
-                        <div class="col-md-4">
+                        <div class="col-md-4 col-xs-6">
                             <div class="image-box picture-panel pointer" draggable="true">
                                 <div class="image">
                                     <img data-index="[[i]]" src="[[src]]">
                                     <span class="delete-picture icon icon-close"></span>
                                 </div>
                             </div>
+                            <br>
                         </div>
                     </script>
 

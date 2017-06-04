@@ -137,42 +137,6 @@
                             </div>
                         @endforeach
                     </div>
-
-                    {{--CHAT BOX--}}
-                    <div id="chat-container">
-                        <div class="chat-box">
-                            <div class="chat-container-header text-center">
-                                <h5 class="no-margin text-white">
-                                    <span class="icon icon-lightning"></span>Share Profile
-                                </h5>
-                            </div>
-                            <div class="row_">
-                                <div class="col-xs-12">
-                                    <br>
-                                    <a target="_blank" class="btn btn-block bg-facebook text-white"
-                                       href="https://www.facebook.com/sharer/sharer.php?u={{route("my_profile", \Illuminate\Support\Facades\Crypt::encrypt($profile->id))}}">
-                                        Share on <span class="icon icon-facebook-square"></span>
-                                    </a>
-                                </div>
-
-                                <div class="col-xs-12">
-                                    <br>
-                                    <a target="_blank" class="btn btn-block bg-primary"
-                                       href="https://twitter.com/home?status=Win%20a%20date%20with%20me%20on%20Moree.me%20{{route("my_profile", \Illuminate\Support\Facades\Crypt::encrypt($profile->id))}}">
-                                        Share on <span class="icon icon-twitter"></span>
-                                    </a>
-                                </div>
-
-                                <div class="col-xs-12">
-                                    <br>
-                                    <a target="_blank" class="btn btn-block btn-danger"
-                                       href="https://plus.google.com/share?url={{route("my_profile", \Illuminate\Support\Facades\Crypt::encrypt($profile->id))}}">
-                                        Share on <span class="icon icon-google-plus"></span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
