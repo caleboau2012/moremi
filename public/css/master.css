@@ -785,15 +785,13 @@ Profile Card
 }
 
 #profile-counter-container{
-    background-image: url(../images/cheeks.png);
+    background: url(../images/counter/bg.png);
     background-color: #000;
     background-position: center center;
     background-attachment: fixed;
     background-size: cover;
 }
-#profile-counter-container .icon{
-    font-size: 70px;
-}
+
 #profile-counter-container .get_started{
     border-radius: 20px;
     padding: 10px 60px;
@@ -804,7 +802,7 @@ Profile Card
 #profile-counter-container .overlay{
     padding: 100px 0;
     /*height: 100%;*/
-    background-color: rgba(0,0,0,0.12);
+    /*background-color: rgba(0,0,0,0.12);*/
 }
 #profile-counter-container .divider{
     width: 10%;
@@ -838,6 +836,11 @@ Profile Card
     height: 2px;
     background-color: #fe7447;
     margin: 0 auto;
+}
+#profile-counter-container .funfact img{
+    width: 100px;
+    height: 100px;
+    margin: 0 auto
 }
 .profile-card-name{
     max-height: 40px;

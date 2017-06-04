@@ -62,7 +62,7 @@
                     <li><a href="#pick-of-the-week">Pick of the Week</a></li>
                     <li><a href="#trending">Trending</a></li>
                     @if(!$loggedIn)
-                        <li><a href="#" id="app-url" data-url="{{route("login")}}" data-url-app="{{route('app')}}" class="login"><span class="text-white">Join</span></a></li>
+                        <li><a href="#" id="app-url" data-url="{{route("login")}}" data-url-app="{{route('app')}}" class="login">Join</a></li>
                     @else
                         <li>
                             <a href="{{route("profile")}}" class="profile-btn">

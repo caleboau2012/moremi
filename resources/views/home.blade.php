@@ -213,16 +213,6 @@
                         </nav>
                     </div>
 
-                    {{--<div class="content-wrap">--}}
-                    {{--<div id="section-bar-1">--}}
-                    {{--<div class="row">--}}
-
-
-                    {{--</div>--}}
-
-                    {{--</div>--}}
-
-                    {{--</div>--}}
                 </div>
 
             </div>
@@ -248,11 +238,14 @@
                                     <h3 class="text-capitalize">{{$t->first_name}} {{$t->last_name}}</h3>
                                     <div class="content-end"></div>
                                 </div>
-                                @if($t->about)
-                                    <p class="about text-center text-muted">{{$t->about}} &nbsp;</p>
-                                @else
-                                    <p class="about">No info!</p>
-                                @endif
+                                <div class="desc">
+                                    @if($t->about)
+                                        <p class="about text-center text-muted">{{$t->about}} &nbsp;</p>
+                                    @else
+                                        <p class="about">No info!</p>
+                                    @endif
+                                </div>
+
                                 <div class="desc">
                                     @if($t->venue()->first())
                                         <strong class="icon icon-location font-main">&nbsp;</strong>{{$t->venue()->first()->name}}
@@ -282,28 +275,34 @@
             <div class="container">
                 <div class="col-md-4">
                     <div class="funfact">
-                        <div class="st-funfact-icon"><i class="icon icon-profile-female"></i></div>
+                        <div class="st-funfact-icon">
+                            <img class="img-responsive"  src="{{asset('images/counter/ladies.png')}}">
+                        </div>
                         <div class="st-funfact-counter" ><span class="st-ff-count" data-from="0" data-to="{{$females}}" data-runit="1">0</span>+</div>
                         <strong class="funfact-title">Registered Ladies</strong>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="funfact">
-                        <div class="st-funfact-icon"><i class="icon icon-profile-male"></i></div>
+                        <div class="st-funfact-icon">
+                            <img class="img-responsive"  src="{{asset('images/counter/men.png')}}">
+                        </div>
                         <div class="st-funfact-counter" ><span class="st-ff-count" data-from="0" data-to="{{$males}}" data-runit="1">0</span>+</div>
                         <strong class="funfact-title">Registered Men</strong>
                     </div><!-- .funfact -->
                 </div>
                 <div class="col-md-4">
                     <div class="funfact">
-                        <div class="st-funfact-icon"><i class="icon icon-tags"></i></div>
+                        <div class="st-funfact-icon">
+                            <img class="img-responsive"  src="{{asset('images/counter/table.png')}}">
+                        </div>
                         <div class="st-funfact-counter" ><span class="st-ff-count" data-from="0" data-to="{{$dates->count()}}" data-runit="1">0</span>+</div>
                         <strong class="funfact-title">Sponsored Dates</strong>
                     </div><!-- .funfact -->
                 </div>
                 <div class="text-center margin-top-sm">
                     @if(!$loggedIn)
-                        <button class="btn get_started login"  data-url="{{route("login")}}">Get Started</button>
+                        <button class="btn get_started login"  data-url="{{route("login")}}"><span class="icon icon-play">&nbsp;</span>Get Started</button>
                     @else
                         <a href="{{route('app')}}" class="btn get_started profile"  data-url="{{route("login")}}">Connect Now</a>
                     @endif
@@ -350,4 +349,14 @@
     <script src="{{asset('js/app/VotePay.js')}}"></script>
     <script src="{{asset('js/app/Account.js')}}"></script>
     <script src="{{ asset('js/app/Home.js') }}"></script>
+
+    <script>
+        (function() {
+
+            [].slice.call( document.querySelectorAll( '.tabs' ) ).forEach( function( el ) {
+                new CBPFWTabs( el );
+            });
+
+        })();
+    </script>
 @endsection
