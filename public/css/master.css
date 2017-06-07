@@ -1044,9 +1044,9 @@ Profile Card
     height: 25px;
     background: #FF4B1F;
     border-radius: 50%;
-    padding: 4px 7px;
+    padding: 1px 7px;
     font-weight: bold;
-    display: none;
+    display: block;
     transition: all 0.5s ease;
 }
 #profile_dp_container:hover .dp-edit-btn{
@@ -1154,5 +1154,41 @@ Profile Card
         top: 25px;
         opacity: 0;
     }
+}
+
+
+/*Countdown*/
+.countdown_section{
+    /* background: #00a651 url(../images/pattern-default.png) repeat; */
+    background: #fe7447 url(../images/pattern-default-grey.png) repeat;
+    color: #fff;
+    padding: 50px 0 70px;
+}
+.counter {
+    margin-top: 10px;
+    text-shadow: 0 1px 5px rgba(0,0,0,.1);
+}
+.counter .days-wrapper, .counter .hours-wrapper, .counter .minutes-wrapper, .counter .seconds-wrapper {
+    text-align: center;
+    /* width: 160px; */
+    /* height: 140px; */
+    /* margin: 0 10px; */
+    /* padding-top: 20px; */
+    background: #2d2d2d;
+    background: rgba(0, 0, 0, 0.85);
+    font-size: 18px;
+    color: #ff4b1f;
+    /* -moz-border-radius: 50%; */
+    /* -webkit-border-radius: 50%; */
+    /* border-radius: 50%; */
+    /* width: 250px; */
+    /* height: 250px; */
+    /* border-radius: 50%; */
+    padding: 26px 15px;
+    border-radius: 50px;
+}
+.counter .days, .counter .hours, .counter .minutes, .counter .seconds {
+    font-size: 80px;
+    line-height: 90px;
 }
 

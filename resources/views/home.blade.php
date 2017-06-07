@@ -270,6 +270,36 @@
         </div>
     </div>
 
+    <div class="container-fluid countdown_section">
+        <div class="container">
+        <h1 class="text-center">GAME STOPS IN</h1>
+
+        <div class="row">
+            <div class="counter">
+                <div class="col-md-3 col-sm-6">
+                    <div class="days-wrapper"> <span class="days">5</span> <br>
+                        DAYS </div>
+                </div>
+                <div class="col-sm-6 col-md-3">
+                    <div class="hours-wrapper"> <span class="hours">10</span> <br>
+                        HOURS
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-3">
+                    <div class="minutes-wrapper"> <span class="minutes">20</span> <br>
+                        MINUTES
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-3">
+                    <div class="seconds-wrapper"> <span class="seconds">30</span> <br>
+                        SECONDS
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+
     <div id="profile-counter-container" data-stellar-background-ratio="0.4">
         <div class="overlay">
             <div class="container">
@@ -349,8 +379,31 @@
     <script src="{{ asset('libs/roundabout/roundabout.js') }}"></script>
     <script src="{{ asset('libs/jquery/jquery.event.drag.js') }}"></script>
     <script src="{{ asset('libs/jquery/jquery-event-drop.js') }}"></script>
+    <script src="{{ asset('libs/countdown/jquery.countdown.js') }}"></script>
     <script src="{{asset('js/app/Vote.js')}}"></script>
     <script src="{{asset('js/app/VotePay.js')}}"></script>
     <script src="{{asset('js/app/Account.js')}}"></script>
     <script src="{{ asset('js/app/Home.js') }}"></script>
+    <script>
+        /*
+         Final Countdown Settings
+         */
+        var finalDate = '2017/06/14';
+
+
+
+        $('div.counter').countdown(finalDate)
+            .on('update.countdown', function(event) {
+                $(".days").html(event.strftime('%D'));
+                $(".hours").html(event.strftime('%H'));
+                $(".minutes").html(event.strftime('%M'));
+                $(".seconds").html(event.strftime('%S'));
+//                console.log(event);
+
+//                $(this).html(event.strftime('<div class="days-wrapper"><span class="days">%D</span><br>days</div>' +
+//                    '<div class="hours-wrapper"><span class="hours">%H</span><br>hours</div>' +
+//                    '<div class="minutes-wrapper"><span class="minutes">%M</span><br>minutes</div>' +
+//                    '<div class="seconds-wrapper"><span class="seconds">%S</span><br>seconds</div>'));
+            });
+    </script>
 @endsection
