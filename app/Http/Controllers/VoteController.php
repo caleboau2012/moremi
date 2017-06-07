@@ -11,6 +11,7 @@ use App\Traits\AuthTrait;
 use App\User;
 use App\Venue;
 use App\Voter;
+use App\VotingConfig;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 
@@ -74,6 +75,7 @@ use AuthTrait;
      * End the Voting process
      * */
     public function endVotes(){
+
         $votingResult = DB::table('voters')
             ->select('profile_id', 'voter_id',  DB::raw('SUM(frequency) as total'))
             ->groupBy('voter_id')
@@ -110,9 +112,11 @@ use AuthTrait;
             $spot = Venue::find($winner->venue);
             $this->saveWinner($votingResult[0], $winner, $highestVoter, $spot);
             $this->resetVote();
+            $this->resetVotingParam();
             return response()->json('Vote reset successfully');
 
         }else{
+            $this->resetVotingParam();
             return response()->json('No action performed');
 
         }
@@ -223,5 +227,17 @@ use AuthTrait;
 
         Voter::where('created_at', '!=', null)->delete();
 
+    }
+
+    private static function resetVotingParam(){
+        $now = new \DateTime();
+
+        $votingParam = new VotingConfig();
+        $votingParam[\VotingConfigConstant::STARTED_AT] = $now;
+        $terminationDate = new \DateTime();
+        $terminationDate->modify('+7 day');
+        $votingParam[\VotingConfigConstant::TERMINATED_AT] = $terminationDate;
+
+        $votingParam->save();
     }
 }

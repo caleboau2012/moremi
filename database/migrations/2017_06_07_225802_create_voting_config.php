@@ -17,6 +17,8 @@ class CreateVotingConfig extends Migration
             $table->dateTime('started_at');
             $table->dateTime('terminated_at');
             $table->timestamps();
+            $table->softDeletes();
+
         });
     }
 
