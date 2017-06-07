@@ -75,7 +75,6 @@ use AuthTrait;
      * End the Voting process
      * */
     public function endVotes(){
-
         $votingResult = DB::table('voters')
             ->select('profile_id', 'voter_id',  DB::raw('SUM(frequency) as total'))
             ->groupBy('voter_id')

@@ -6,6 +6,7 @@ use App\Connection;
 use App\OldCheek;
 use App\Profile;
 use App\Venue;
+use App\VotingConfig;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
 use LRedis;
@@ -43,7 +44,13 @@ class UIController extends Controller
 
         $partners = Venue::all();
 
-//        die(var_dump($trending));
+        $votingConfig = VotingConfig::orderBy('created_at', 'desc')->first();
+
+        if($votingConfig == null){
+            $voteEnds = null;
+        }else{
+            $voteEnds = $votingConfig->terminated_at;
+        }
 
         return view('home', [
             'loggedIn' => $this->loggedIn,
@@ -53,7 +60,8 @@ class UIController extends Controller
             'males' => $males,
             'females' => $females,
             'dates' => $dates,
-            'partners' => $partners
+            'partners' => $partners,
+            'voteEnds' => $voteEnds
         ]);
     }
     /*user homepage*/

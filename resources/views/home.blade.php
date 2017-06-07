@@ -270,7 +270,8 @@
         </div>
     </div>
 
-    <div class="container-fluid countdown_section">
+    @if($voteEnds != null)
+        <div class="container-fluid countdown_section">
         <div class="container">
         <h1 class="text-center">GAME STOPS IN</h1>
 
@@ -299,6 +300,7 @@
         </div>
         </div>
     </div>
+    @endif
 
     <div id="profile-counter-container" data-stellar-background-ratio="0.4">
         <div class="overlay">
@@ -388,22 +390,17 @@
         /*
          Final Countdown Settings
          */
-        var finalDate = '2017/06/14';
+        var finalDate = "{{$voteEnds}}";
 
+        if(finalDate){
+            $('div.counter').countdown(finalDate)
+                .on('update.countdown', function(event) {
+                    $(".days").html(event.strftime('%D'));
+                    $(".hours").html(event.strftime('%H'));
+                    $(".minutes").html(event.strftime('%M'));
+                    $(".seconds").html(event.strftime('%S'));
+                });
+        }
 
-
-        $('div.counter').countdown(finalDate)
-            .on('update.countdown', function(event) {
-                $(".days").html(event.strftime('%D'));
-                $(".hours").html(event.strftime('%H'));
-                $(".minutes").html(event.strftime('%M'));
-                $(".seconds").html(event.strftime('%S'));
-//                console.log(event);
-
-//                $(this).html(event.strftime('<div class="days-wrapper"><span class="days">%D</span><br>days</div>' +
-//                    '<div class="hours-wrapper"><span class="hours">%H</span><br>hours</div>' +
-//                    '<div class="minutes-wrapper"><span class="minutes">%M</span><br>minutes</div>' +
-//                    '<div class="seconds-wrapper"><span class="seconds">%S</span><br>seconds</div>'));
-            });
     </script>
 @endsection
