@@ -85,7 +85,7 @@ class PaymentController extends Controller
             'auth' => true,
             'free' => false,
             'profile' => true,
-            'msg'=>'Photo voted successfully',
+            'msg'=>'Picked successfully',
             'count'=>$vote->count
         ];
 
