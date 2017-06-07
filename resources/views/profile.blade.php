@@ -1,12 +1,9 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: moscoworld
- * Date: 5/12/17
- * Time: 10:44 PM
- */
-?>
 @extends('layouts.app')
+
+@section('title')
+    <title>Moree.me - Connecting people: Profile Page</title>
+@endsection
+
 @section('stylesheets')
     @parent
     {{-- Drag Drop JS --}}
