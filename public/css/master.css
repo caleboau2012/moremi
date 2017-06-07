@@ -1159,7 +1159,6 @@ Profile Card
 
 /*Countdown*/
 .countdown_section{
-    /* background: #00a651 url(../images/pattern-default.png) repeat; */
     background: #fe7447 url(../images/pattern-default-grey.png) repeat;
     color: #fff;
     padding: 50px 0 70px;
@@ -1170,22 +1169,15 @@ Profile Card
 }
 .counter .days-wrapper, .counter .hours-wrapper, .counter .minutes-wrapper, .counter .seconds-wrapper {
     text-align: center;
-    /* width: 160px; */
-    /* height: 140px; */
-    /* margin: 0 10px; */
-    /* padding-top: 20px; */
     background: #2d2d2d;
     background: rgba(0, 0, 0, 0.85);
     font-size: 18px;
     color: #ff4b1f;
-    /* -moz-border-radius: 50%; */
-    /* -webkit-border-radius: 50%; */
-    /* border-radius: 50%; */
-    /* width: 250px; */
-    /* height: 250px; */
-    /* border-radius: 50%; */
+     -moz-border-radius: 50px;
+     -webkit-border-radius: 50px;
+     border-radius: 50px;
     padding: 26px 15px;
-    border-radius: 50px;
+    margin-bottom: 20px;
 }
 .counter .days, .counter .hours, .counter .minutes, .counter .seconds {
     font-size: 80px;
