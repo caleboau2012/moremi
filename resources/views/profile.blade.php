@@ -91,17 +91,19 @@
                             {{--Previous DP--}}
                             <div class="row" id="pictures-panel">
                                 @if(!empty($photos))
+                                    <div class="masonry_items">
                                     @foreach($photos as $i => $photo)
                                         <div class="col-md-4">
                                             <div class="image-box picture-panel pointer" draggable="true">
                                                 <div class="image">
-                                                    <img data-index="{{$i}}" src="{{Request::root() . "/" . $photo['full_path']}}">
+                                                    <img class="masonry_item" data-index="{{$i}}" src="{{Request::root() . "/" . $photo['full_path']}}">
                                                     <span class="delete-picture icon icon-close" data-url="{{route("delete_pic", $photo['id'])}}"></span>
                                                 </div>
                                             </div>
                                             <br>
                                         </div>
                                     @endforeach
+                                    </div>
                                     @else
                                     <p class="text-center text-muted">No image yet!</p>
                                 @endif
@@ -309,6 +311,13 @@
     <script>
         $(document).ready(function(){
             $('[data-toggle="tooltip"]').tooltip();
+
+            $('.masonry_items').masonry({
+                // options
+                itemSelector: '.masonry_item'
+//                columnWidth: 200
+            });
         });
     </script>
+
 @endsection

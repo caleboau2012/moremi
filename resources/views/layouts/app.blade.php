@@ -70,6 +70,8 @@
 
 	<script src="{{asset("libs/owl/owl.carousel.min.js")}}"></script>
 	<script src="{{asset("js/cbpFWTabs.js")}}"></script>
+{{--Masonry --}}
+	<script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
 
 	<!--Custom Javascript-->
 	<script src="{{asset('js/app/Utils.js')}}" ></script>

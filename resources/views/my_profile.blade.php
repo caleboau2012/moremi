@@ -67,33 +67,7 @@
                             </div>
                         </div>
                     </div>
-
-
-                    {{--profile--}}
-                    <div class="profile-form">
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <div class="form-group">
-                                    <div>
-                                        <label for="status" class="control-label"><strong>Status</strong></label>
-                                        <textarea placeholder="My status message" readonly class="form-control margin-top-sm" id="status">{{$profile->about}}</textarea>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <div class="form-group">
-                                    <label for="venue"><strong>Preferred Spot</strong></label>
-                                    @if(isset($venue))
-                                        <p>{{$venue->name}}</p>
-                                    @else
-                                        <p>No Spot Chosen</p>
-                                    @endif
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    
 
                     <script id="picture-template" type="text/html">
                         <div class="col-md-4">
@@ -114,6 +88,15 @@
                     <div class="row">
                         <div class="col-sm-12">
                             <br>
+                            <h4 class="no-margin-top text-primary text-center">Preferred Spot</h4>
+                            <p class="text-center">
+                                <span class="icon icon-location"></span>
+                                @if(isset($venue))
+                                    {{$venue->name}}
+                                @else
+                                    Undisclosed
+                                @endif
+                            </p>
                             <p class="text-center">
                                 <a href="#" class="pick-btn main-btn vote-btn btn-sm" data-id="{{$profile->id}}">
                                     <strong class="icon icon-heart3" aria-hidden="true">&nbsp;</strong>Pick
@@ -122,6 +105,7 @@
                         </div>
                     </div>
 
+                    <hr class="">
                     <h4 class="text-primary text-center margin-bottom-md">Connections</h4>
 
                     <div class="row">
@@ -151,4 +135,9 @@
     <script src="{{asset('js/app/Vote.js')}}"></script>
     <script src="{{asset('js/app/VotePay.js')}}"></script>
     <script src="{{asset('js/app/Account.js')}}"></script>
+    <script>
+        $(document).ready(function(){
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+    </script>
 @endsection
