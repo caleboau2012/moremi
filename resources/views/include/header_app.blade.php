@@ -15,8 +15,8 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse main-nav" id="sept-main-nav">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="{{route('app')}}">Find a Date</a></li>
-                    <li><a href="#home" class="edit_profile_btn">Edit Profile</a></li>
+                    <li><a href="{{route('app')}}"><span class="icon icon-search">&nbsp;</span>Find a Date</a></li>
+                    <li><a href="#home" class="edit_profile_btn"><span class="icon icon-pencil2">&nbsp;</span>Edit Profile</a></li>
                     <li class="active">
                         <a href="{{route("profile")}}" class="profile-btn">
                             @if($profile != null)
@@ -146,30 +146,9 @@
     </div>
 </div>
 
-<div class="hidden visible-xs visible-sm" id="app-header">
+<div class="hidden visible-xs visible-sm">
     <div class="container-fluid">
-        <a href="{{route('index')}}">
-            <img id="logo" src="{{asset('images/logo.png')}}" alt="">
-        </a>
-    </div>
-    <div class="container">
-        <div class="text-center">
-            <div id="profile-dp-xs" class="center-block">
-                @if($profile->photo()->first())
-                    <img src="{{asset($profile->photo()->first()->full_path)}}" alt="Profile DP" class="img-responsive img-circle" style="width: 100px; margin: 0 auto; height: 100px; border-radius: 50%;">
-                @else
-                    <img class="profile_info_item" src="{{asset('images/default.png')}}" alt="" style="width: 100px; height: 100px; border-radius: 50%;">
-                @endif
-            </div>
-        </div>
-        <h4 class="text-center no-margin-bottom">{{$profile->first_name}} {{$profile->last_name}}</h4>
-        <p class="no-margin text-center hidden">
-            <strong>Status: </strong> {{$profile->about}}
-        </p>
-        <div class="text-center">
-            <a href="{{route("profile")}}"><span class="icon icon-pencil">&nbsp;</span>Edit Profile</a> &nbsp;
-            <a href="#" class="edit_profile_btn"><span class="icon icon-pencil2">&nbsp;</span>Account Details</a>
-        </div>
+        <div style="height: 70px;"></div>
     </div>
 </div>
 </div>

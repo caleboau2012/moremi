@@ -72,7 +72,7 @@
                                     @else
                                         <img src="{{asset('images/default.png')}}" class="profile-thumb">
                                     @endif
-                                    <span class="text-white">{{$profile->first_name}} {{$profile->last_name}}</span>
+                                    <span>{{$profile->first_name}} {{$profile->last_name}}</span>
                                 @else
                                     <img src="{{asset('images/default.png')}}" class="profile-thumb">
                                 @endif

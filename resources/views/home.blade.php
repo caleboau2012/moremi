@@ -278,21 +278,21 @@
         <div class="row">
             <div class="counter">
                 <div class="col-md-3 col-sm-6">
-                    <div class="days-wrapper"> <span class="days">5</span> <br>
+                    <div class="days-wrapper"> <span class="days">0</span> <br>
                         DAYS </div>
                 </div>
                 <div class="col-sm-6 col-md-3">
-                    <div class="hours-wrapper"> <span class="hours">10</span> <br>
+                    <div class="hours-wrapper"> <span class="hours">0</span> <br>
                         HOURS
                     </div>
                 </div>
                 <div class="col-sm-6 col-md-3">
-                    <div class="minutes-wrapper"> <span class="minutes">20</span> <br>
+                    <div class="minutes-wrapper"> <span class="minutes">0</span> <br>
                         MINUTES
                     </div>
                 </div>
                 <div class="col-sm-6 col-md-3">
-                    <div class="seconds-wrapper"> <span class="seconds">30</span> <br>
+                    <div class="seconds-wrapper"> <span class="seconds">0</span> <br>
                         SECONDS
                     </div>
                 </div>

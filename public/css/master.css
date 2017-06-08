@@ -533,6 +533,7 @@ a, a:hover{
 .card.hovercard .avatar img {
     width: 100px;
     height: 100px;
+    margin: 0 auto;
     max-width: 100px;
     max-height: 100px;
     -webkit-border-radius: 50%;
