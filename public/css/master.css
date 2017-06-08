@@ -904,6 +904,7 @@ Profile Card
     background: url("../images/header_app.png") no-repeat;
     background-size: 100%;
     background-attachment: fixed;
+    margin-top: 64px;
 }
 #app-header{
     position: relative;
