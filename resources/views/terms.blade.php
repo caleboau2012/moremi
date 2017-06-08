@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('title')
+    <title>Moree.me - Connecting people: Terms & Conditions</title>
+@endsection
+
 @section('header')
     @include('include.header_terms')
 @endsection

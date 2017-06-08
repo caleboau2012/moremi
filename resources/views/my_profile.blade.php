@@ -1,12 +1,13 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: moscoworld
- * Date: 5/12/17
- * Time: 10:44 PM
- */
-?>
 @extends('layouts.app')
+
+@section('description')
+    <meta name="description" content="Win a date with {{$profile->first_name}} {{$profile->last_name}}">
+@endsection
+
+@section('title')
+    <title>Moree.me - Connecting people to {{$profile->first_name}} {{$profile->last_name}} </title>
+@endsection
+
 @section('stylesheets')
     @parent
 @endsection

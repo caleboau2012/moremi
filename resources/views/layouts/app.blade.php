@@ -4,11 +4,15 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="description" content="Moore.me will help you meet people and set you up on a date. All expenses paid by us. Simply pick someone and pick a spot. .It all starts with a date">
+	@section("description")
+		<meta name="description" content="Moore.me will help you meet people and set you up on a date. All expenses paid by us. Simply pick someone and pick a spot. It all starts with a date.">
+	@show
 	<meta name="author" content="Moree.me">
-	<meta name="keywords" content="moree.me, dating, free, pick, pick of the week">
+	<meta name="keywords" content="moree.me, dating, free, pick, pick of the week, more, marry me, more of me, moremi">
 	<meta property="fb:app_id" content="469144689836682" />
-	<title>Moree.me</title>
+	@section("title")
+		<title>Moree.me - Connecting people</title>
+	@show
 	<link rel="icon" type="image/x-icon" href="{{ asset('images/favicon.png')}}" />
 	{{--<link href="https://fonts.googleapis.com/css?family=Raleway|Kalam" rel="stylesheet">--}}
 	{{--<link href="https://fonts.googleapis.com/css?family=Droid+Sans|Muli|Noto+Sans|PT+Sans|PT+Sans+Narrow|Poppins|Titillium+Web" rel="stylesheet">--}}
