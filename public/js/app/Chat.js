@@ -70,7 +70,7 @@ var Chat = {
         }
     },
     initialiseSocket: function(){
-        var socket = io.connect('http://localhost:8890');
+        var socket = io.connect('http://' + location.host + ':8890');
 
         socket.on('message', function (data) {
             data = jQuery.parseJSON(data);
