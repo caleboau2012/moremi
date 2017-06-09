@@ -88,18 +88,19 @@
                             {{--Previous DP--}}
                             <div class="row" id="pictures-panel">
                                 @if(!empty($photos))
-                                    <div class="masonry_items">
+                                    <div class="masonry_items" id="masonry_items">
                                     @foreach($photos as $i => $photo)
-                                        <div class="col-md-4">
+                                        <div class="col-md-4 masonry_item">
                                             <div class="image-box picture-panel pointer" draggable="true">
                                                 <div class="image">
-                                                    <img class="masonry_item" data-index="{{$i}}" src="{{Request::root() . "/" . $photo['full_path']}}">
+                                                    <img class="" data-index="{{$i}}" src="{{Request::root() . "/" . $photo['full_path']}}">
                                                     <span class="delete-picture icon icon-close" data-url="{{route("delete_pic", $photo['id'])}}"></span>
                                                 </div>
                                             </div>
                                             <br>
                                         </div>
                                     @endforeach
+
                                     </div>
                                     @else
                                     <p class="text-center text-muted">No image yet!</p>
@@ -306,15 +307,13 @@
     <script src="https://cdn.socket.io/socket.io-1.3.4.js"></script>
     <script src="{{asset('js/app/Chat.js')}}"></script>
     <script>
-        $(document).ready(function(){
+        $(window).load(function(){
             $('[data-toggle="tooltip"]').tooltip();
 
-            $('.masonry_items').masonry({
-                // options
-                itemSelector: '.masonry_item'
-//                columnWidth: 200
-            });
         });
+        (function($){
+
+        })(jQuery);
     </script>
 
 @endsection
