@@ -19,7 +19,6 @@ var Facebook = {
     status: function(){
         FB.getLoginStatus(function(response) {
             if(response.status == "connected"){
-                console.log(response);
                 Facebook.authResponse = response.authResponse;
                 FB.api('/me?fields=id,first_name,last_name,email,gender', function(response) {
                     Facebook.profile = response;
@@ -39,7 +38,7 @@ var Facebook = {
                             );
                     }
                     else{
-                        console.log("The Login failed");
+                        // console.log("The Login failed");
                         $(".profile-actions").addClass("hidden");
                         $("#login").removeClass("hidden");
                     }

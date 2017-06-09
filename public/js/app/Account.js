@@ -18,13 +18,12 @@ var Account = {
         })
     },
     success: function(data){
-        console.log(data);
         if(data.status){
-            //document.account.reset();
             swal({
                     title: "Sweet",
                     text: data.msg,
-                    type: "success"
+                    type: "success",
+                    confirmButtonColor: "#fe7447"
                 },
                 function(){
                     $('#accountModal').modal('hide');
@@ -33,8 +32,6 @@ var Account = {
     },
     error: function(response){
         response = JSON.parse(response.responseText);
-        console.log(response);
-
         $.each(response, function(key, data){
             $('#' + key).parent().addClass('has-error');
             data.forEach(function(element){

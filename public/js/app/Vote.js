@@ -53,7 +53,8 @@ Vote ={
                 swal({
                     title: "Ouch...",
                     text: data.msg,
-                    type: "error"
+                    type: "error",
+                    confirmButtonColor: "#fe7447"
                 });
             }
             else if(!data.profile) {
@@ -62,7 +63,7 @@ Vote ={
                         text: data.msg,
                         type: "warning",
                         showCancelButton: true,
-                        confirmButtonColor: "#DD6B55",
+                        confirmButtonColor: "#fe7447"
                     },
                     function(){
                         $("#accountModal").modal('show');
@@ -74,7 +75,7 @@ Vote ={
                         text: data.msg,
                         type: "warning",
                         showCancelButton: true,
-                        confirmButtonColor: "#DD6B55",
+                        confirmButtonColor: "#fe7447",
                         confirmButtonText: "Pay!"
                     },
                     function(){
@@ -83,7 +84,17 @@ Vote ={
             }
         }
         else if(data.status){
-            swal('Success',data.msg,'success');
+            swal({
+                    title: "Success",
+                    text: data.msg,
+                    type: "success",
+                    showCancelButton: true,
+                    confirmButtonColor: "#fe7447"
+                },
+                function(){
+                });
+
+            // swal('Success',data.msg,'success');
 
             if(typeof $(element).parent().parent().find(".vote-count")[0] != "undefined"){
                 var count = parseInt($(element).parent().parent().find(".vote-count")[0].innerHTML) + 1;
@@ -94,10 +105,6 @@ Vote ={
                 $(".vote-count")[0].innerHTML = count;
             }
 
-            console.log({
-                element: element,
-                count: count
-            });
             //App.fetchCheeks(); //re arrange profile bar
         }
     }

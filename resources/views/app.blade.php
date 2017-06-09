@@ -28,47 +28,51 @@
             <div class="row trending-items">
                 @foreach($trending as $t)
                     <div class="trending-item">
-                        <div class="profile-card">
-                            <div class="profile-card-heading">
-                                <a href="{{route("my_profile", \Illuminate\Support\Facades\Crypt::encrypt($t->id))}}">
-                                    @if($t->photo()->first())
-                                        <img class="img-responsive img-circle" src="{{asset($t->photo()->first()->full_path)}}" alt="{{$t->first_name .' '. $t->last_name}}">
-                                    @elseif($t->sex == "male")
-                                        <img class="img-responsive img-circle"  src="{{asset('images/default-male.png')}}">
-                                    @elseif($t->sex == "female")
-                                        <img class="img-responsive img-circle"  src="{{asset('images/default-female.png')}}">
-                                    @endif
-                                </a>
+                        <div class="card hovercard">
+                            <div class="cardheader">
                             </div>
-                            <div class="profile-card-content text-center">
-                                <div class="profile-card-name">
-                                    <h4 class="text-center">{{$t->first_name}} {{$t->last_name}}</h4>
+                                <a href="{{route("my_profile", \Illuminate\Support\Facades\Crypt::encrypt($t->id))}}">
+                                    <div class="avatar">
+                                        @if($t->photo()->first())
+                                            <img class="img-responsive img-circle" src="{{asset($t->photo()->first()->full_path)}}" alt="{{$t->first_name .' '. $t->last_name}}">
+                                        @elseif($t->sex == "male")
+                                            <img class="img-responsive img-circle"  src="{{asset('images/default-male.png')}}">
+                                        @elseif($t->sex == "female")
+                                            <img class="img-responsive img-circle"  src="{{asset('images/default-female.png')}}">
+                                        @endif
+                                    </div>
+                                </a>
+
+                            <div class="info">
+                                <div class="title name">
+                                    <h4 class="text-center text-capitalize">{{$t->first_name}} {{$t->last_name}}</h4>
                                     <div class="content-end"></div>
                                 </div>
-                                @if($t->about)
-                                    <p class="about text-center text-muted">{{$t->about}} &nbsp;</p>
-                                @else
-                                    <p class="about">No info!</p>
-                                @endif
-                                <p>
-                                    @if($t->venue()->first())
-                                        <span class="icon icon-location">&nbsp;</span>{{$t->venue()->first()->name}}
+                                <div class="desc">
+                                    @if($t->about)
+                                        <p class="about text-center text-muted">{{$t->about}} &nbsp;</p>
                                     @else
-                                        <span class="icon icon-location">&nbsp;</span>No venue yet!
+                                        <p class="about">No info!</p>
                                     @endif
-                                </p>
-                                <p>
-                                    <span class="icon icon-heart3">&nbsp;</span> <span class="vote-count">{{$t->vote}}</span>
-                                </p>
-                                <div>
-                                    <button class="btn get_started btn-sm vote-btn btn-fill" data-id="{{$t->id}}">PICK
-                                        @if($t->sex ==  "male")
-                                            <span class="icon icon-profile-male"></span>
-                                        @else
-                                            <span class="icon icon-profile-female"></span>
-                                        @endif
-                                    </button>
                                 </div>
+
+                                <div class="desc">
+                                    @if($t->venue()->first())
+                                        <strong class="icon icon-location font-main">&nbsp;</strong>{{$t->venue()->first()->name}}
+                                    @else
+                                        <strong class="icon icon-location font-main">&nbsp;</strong>No venue yet!
+                                    @endif
+                                </div>
+                                <div class="desc">
+                                    <strong class="icon icon-heart3 font-main">&nbsp;</strong> <span class="vote-count">{{$t->vote}}</span>
+                                </div>
+
+                            </div>
+
+                            <div class="bottom">
+                                <a href="#" class="pick-btn main-btn vote-btn btn-sm pull-center " data-id="{{$t->id}}">
+                                    <strong class="icon icon-heart3" aria-hidden="true">&nbsp;</strong>Pick
+                                </a>
                             </div>
 
                         </div>
@@ -129,29 +133,33 @@
             <script type="text/html" id="profile_TMP">
                 <div class="col-md-3">
                     <div class="pick-item">
-                        <div class="profile-card">
-                            <div class="profile-card-heading">
-                                <a href="[[URL]]">
-                                <img class="img-responsive img-circle" src="{{\Illuminate\Support\Facades\URL::to('/')}}/[[PHOTO]]" alt="Moses">
-                                </a>
-                            </div>
-                            <div class="profile-card-content text-center">
-                                <div class="profile-card-name" data-sex="[[SEX]]" data-venue="[[VENUEID]]">
+                        <div class="card hovercard">
+                            <div class="cardheader"></div>
+                            <a href="[[URL]]">
+                                <div class="avatar center-block">
+                                    <img class="img-responsive img-circle" src="{{\Illuminate\Support\Facades\URL::to('/')}}/[[PHOTO]]" alt="[[NAME]]">
+                                </div>
+                            </a>
+                            <div class="info">
+                                <div class="title name">
                                     <h4 class="text-center">[[NAME]]</h4>
                                     <div class="content-end"></div>
                                 </div>
-                                <p class="about">[[DATA-ABOUT]] &nbsp;</p>
-                                <p>
-                                    <span class="icon icon-location">&nbsp;</span>[[VENUE]]
-                                </p>
-                                <p>
-                                    <span class="icon icon-heart3">&nbsp;</span><span class="vote-count">[[VOTE]]</span>
-                                </p>
-                                <div>
-                                    <button class="btn get_started btn-sm vote-btn btn-fill" data-id="[[ID]]">
-                                        Pick <span class="icon [[SEXICON]]"></span>
-                                    </button>
+                                <div class="desc">
+                                    <p>[[DATA-ABOUT]]</p>
                                 </div>
+                                <div class="desc">
+                                    <strong class="icon icon-location font-main">&nbsp;</strong>[[VENUE]]
+                                </div>
+                                <div class="desc">
+                                    <strong class="icon icon-heart3 font-main">&nbsp;</strong> <span class="vote-count">[[VOTE]]</span>
+                                </div>
+                            </div>
+
+                            <div class="bottom">
+                                <a href="#" class="pick-btn main-btn vote-btn btn-sm pull-center " data-id="[[ID]]">
+                                    <strong class="icon icon-heart3" aria-hidden="true">&nbsp;</strong>Pick
+                                </a>
                             </div>
                         </div>
                     </div>

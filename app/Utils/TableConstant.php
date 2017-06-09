@@ -49,3 +49,8 @@ class TicketConstant{
     const CODE = 'code';
     const VENUE_ID = 'venue_id';
 }
+
+class VotingConfigConstant{
+    const STARTED_AT = 'started_at';
+    const TERMINATED_AT = 'terminated_at';
+}
