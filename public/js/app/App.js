@@ -63,7 +63,17 @@ var App = {
             App.CONSTANTS[filter_id] = true;
 
             InfiniteScroll.Get();
-        })
+        });
+
+        App.showDemo();
+    },
+    showDemo: function(){
+        if((localStorage.getItem('app') == null) && ($(window).width() > 750)){
+            introJs().start();
+            if(typeof(Storage) !== "undefined"){
+                localStorage.setItem('app', 'true');
+            }
+        }
     },
     filterCheeks: function(query){
         //console.log(query);

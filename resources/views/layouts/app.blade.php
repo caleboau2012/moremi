@@ -31,6 +31,7 @@
 	<link href="{{ asset('css/util.css') }}" rel="stylesheet" >
 	<link href="{{ asset('css/media.css') }}" rel="stylesheet" >
 	<link href="{{ asset('libs/sweetalert/sweetalert.css') }}" rel="stylesheet" >
+	<link href="{{asset('libs/introjs/introjs.min.css')}}" rel="stylesheet">
 
 	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -76,6 +77,7 @@
 	<script src="{{asset("js/cbpFWTabs.js")}}"></script>
 {{--Masonry --}}
 	<script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
+	<script src="{{asset("libs/introjs/intro.min.js")}}"></script>
 
 	<!--Custom Javascript-->
 	<script src="{{asset('js/app/Utils.js')}}" ></script>
