@@ -12,6 +12,17 @@ var Profile = {
             swal('Wait a minute', 'We detect your browser is outdated. Kindly upgrade');
         }
 
+        /*masonry*/
+        $('#masonry_items').masonry({
+            itemSelector: '.masonry_item'
+        });
+
+        $('.masonry_item').each(function() {
+            $(this).imagesLoaded(function () {
+                $('#masonry_items').masonry();
+            });
+        });
+
         //$(".image-box").each(function(i){
         //    $(this).height($(this).width());
         //});

@@ -74,8 +74,9 @@
 
 	<script src="{{asset("libs/owl/owl.carousel.min.js")}}"></script>
 	<script src="{{asset("js/cbpFWTabs.js")}}"></script>
-{{--Masonry --}}
-	<script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
+	{{--Masonry --}}
+	<script src="{{asset("libs/masonry/masonry.min.js")}}"></script>
+	<script src="{{asset("libs/masonry/imagesLoaded.js")}}"></script>
 
 	<!--Custom Javascript-->
 	<script src="{{asset('js/app/Utils.js')}}" ></script>

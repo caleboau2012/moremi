@@ -1239,3 +1239,8 @@ font-size: 16px;
     line-height: 90px;
 }
 
+
+
+.masonry_item{
+    width: 150px;
+}
