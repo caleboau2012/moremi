@@ -32,7 +32,7 @@
                 <div class="col-md-12">
                     <div class="st-home-unit">
                         <div class="hero-txt">
-                            <h2 class="hero-title">It all begins with a date</h2>
+                            <h2 class="hero-title">Connecting people</h2>
                             <p class="">Moore.me will help you meet people and set you up on a date. All expenses paid by us.
                                 <br>
                                 Simply pick someone and pick a spot.</p>

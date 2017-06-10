@@ -4,8 +4,9 @@
  * Date: 4/22/17
  * Time: 10:19 AM
  */
+@import url('https://fonts.googleapis.com/css?family=Nunito:200,400');
 body{
-    font-family: "Open Sans";
+     font-family: "Nunito", "sans-serif", "Avenir-Roman", "Helvetica Neue",Arial,sans-serif;
     color: #808080;
     font-weight: 400;
     font-size: 14px;
@@ -30,7 +31,7 @@ h3,
 h4,
 h5,
 h6 {
-    font-family: "Oswald";
+    font-family: "Nunito", "sans-serif", "Avenir-Roman", "Helvetica Neue",Arial,sans-serif;
     color: #4c4c4c;
     letter-spacing: 1px;
     font-weight: 400;
@@ -93,7 +94,7 @@ h5, .h5 {
     transition: height 0.3s;
 }
 .navbar-nav > li > a {
-    font-family: "Oswald";
+     font-family: "Nunito", "sans-serif", "Avenir-Roman", "Helvetica Neue",Arial,sans-serif;
     font-size: 15px;
     font-weight: 300;
     letter-spacing: 1px;
@@ -200,7 +201,7 @@ h5, .h5 {
     text-align: center;
 }
 .home .hero-txt .hero-title {
-    font-family: "Oswald";
+    font-family: "Nunito", "sans-serif", "Avenir-Roman", "Helvetica Neue",Arial,sans-serif;
     color: #fff;
     text-transform: uppercase;
     padding: 20px 10px;
@@ -216,7 +217,7 @@ h5, .h5 {
     font-size: 1.2em;
 }
 .home .hero-txt .hero-work {
-    font-family: "Oswald";
+    font-family: "Nunito", "sans-serif", "Avenir-Roman", "Helvetica Neue",Arial,sans-serif;
     font-weight: 300;
     letter-spacing: 2px;
     margin-bottom: 0;
@@ -239,7 +240,7 @@ h5, .h5 {
     margin-right: 20px !important;
 }
 .home .hero-txt .hero-sub-title {
-    font-family: "Oswald";
+    font-family: "Nunito", "sans-serif", "Avenir-Roman", "Helvetica Neue",Arial,sans-serif;
     font-size: 30px;
     letter-spacing: 5px;
     font-weight: 300;
@@ -266,7 +267,7 @@ a, a:hover{
 }
 
 /*PICK Moment*/
-.week-pick{padding: 3em; background-color: #fe7447; padding-bottom: 10em;  font-family: "Boing",sans-serif;}
+.week-pick{padding: 3em; background-color: #fe7447; padding-bottom: 10em;      font-family: "Nunito", "sans-serif", "Avenir-Roman", "Helvetica Neue",Arial,sans-serif;}
 .week-pick i{ margin-right: 7px; color:#fe7447; font-size:15px;}
 .pick-container{position: relative;}
 .m-title{margin-bottom:7em; }
@@ -284,12 +285,12 @@ a, a:hover{
     right: -49%;}
 
 .picker-profile .description{ line-height: 15px; padding-top: 10px;}
-.picker-profile .description  h5{font-weight: bold;  font-family: "Boing",sans-serif;}
+.picker-profile .description  h5{font-weight: bold;      font-family: "Nunito", "sans-serif", "Avenir-Roman", "Helvetica Neue",Arial,sans-serif;}
 
 .week-pick{padding: 3em; background-color: #fe7447; padding-bottom: 10em;  font-family: "Boing",sans-serif;}
 .week-pick i{ margin-right: 7px; color:#fe7447; font-size:15px;}
 .pick-container{position: relative;}
-.m-title{margin-bottom:7em;  font-family: "Boing",sans-serif;}
+.m-title{margin-bottom:7em; font-family: "Nunito", "sans-serif", "Avenir-Roman", "Helvetica Neue",Arial,sans-serif;}
 .pick-img{margin-bottom: 8em; margin-left: 12em;}
 .pick_profile{float:none; background-color: white; padding: 2em 5em 0 5em ; border-bottom-right-radius:10em !important; border-top-right-radius: 10em!important; position: absolute; top:-50%; right:15%; }
 
@@ -304,7 +305,7 @@ a, a:hover{
     right: -49%;}
 
 .picker-profile .description{ line-height: 15px; padding-top: 10px;}
-.picker-profile .description  h5{font-weight: bold;  font-family: "Boing",sans-serif;}
+.picker-profile .description  h5{font-weight: bold;      font-family: "Nunito", "sans-serif", "Avenir-Roman", "Helvetica Neue",Arial,sans-serif;}
 
 
 
@@ -811,7 +812,7 @@ Profile Card
     border: solid 2px #FFFFFF;
 }
 #profile-counter-container .funfact {
-    font-family: "Oswald";
+    font-family: "Nunito", "sans-serif", "Avenir-Roman", "Helvetica Neue",Arial,sans-serif;
     text-align: center;
     color: #fff;
 }
@@ -895,9 +896,61 @@ Profile Card
 
 /*Footer*/
 #footer{
-    background: #000000;
+    background: #181818;
+    color: #ffffff;
 }
 
+.footer-bottom{border-top: 1px solid #484747; padding:1em;}
+.footerbg1 h4{color: #d0d0df;
+padding-bottom: 10px;
+border-bottom: 1px solid #484747;
+margin-bottom: 20px;
+font-weight: 200;
+font-size: 16px;
+ text-align: center;    width: 50%;
+    margin: 0 auto;
+    margin-bottom: 20px;
+}
+.footer-bottom ul {list-style: none; float: right;}
+.footer-bottom ul li {float:left; margin-right:35px;}
+
+.footerbg1 p{color:#d0d0df; text-align:left;}
+
+.footer-about img {width: 90% !important;}
+.social-media>p>a {
+    font-size: 15px;
+    color: #000000;
+    width: 25px;
+    height: 25px;
+    line-height: 25px;
+    background: #FFFFFF;
+    border: 1px solid #FFFFFF;
+    border-radius: 50%;
+    text-align: center;
+    margin-right: 15px;
+}
+.social-media>p {
+    width: 60%;
+    margin: 0 auto;
+    padding: 5px;
+    padding-left: 20px;
+
+}
+.fa {display: inline-block;}
+.fa-instagram::before {
+    content: "\f16d";
+}
+
+
+.fa-facebook-f::before, .fa-facebook::before {
+
+    content: "\f09a";
+
+}
+
+.fa-twitter::before {
+    content: "\f099";
+}
 
 /*APP HEADER*/
 #app-header{
