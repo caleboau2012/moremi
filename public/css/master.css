@@ -900,8 +900,15 @@ Profile Card
 #footer{
     background: #181818;
     color: #ffffff;
+    position: relative;
 }
 
+.foot-top{height: 5px;
+    background-image: url(../images/header_multi_new.png);
+    position: absolute;
+    top:0;
+    width: 100%;
+}
 .footer-bottom{border-top: 1px solid #484747; padding:1em;}
 .footerbg1 h4{color: #d0d0df;
 padding-bottom: 10px;

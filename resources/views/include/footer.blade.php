@@ -1,4 +1,7 @@
 <div class="container-fluid" id="footer">
+     <div class="row">
+      <div class=" col-md-12 foot-top"></div>
+    </div>
     <!--Main Footer Section-->
     {{--<div class="container-fluid row">--}}
     <div class="container">
