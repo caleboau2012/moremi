@@ -18,9 +18,9 @@
             <div class="collapse navbar-collapse main-nav" id="sept-main-nav">
                 <ul class="nav navbar-nav navbar-right">
                     @if(\Request::route()->getName() == "app")
-                        <li><a href="#game"><span class="icon icon-play">&nbsp;</span>Find a Date</a></li>
+                        <li><a href="#game"><span class="icon icon-play">&nbsp;</span>Connect Now</a></li>
                     @else
-                        <li><a href="{{route('app')}}"><span class="icon icon-play">&nbsp;</span>Find a Date</a></li>
+                        <li><a href="{{route('app')}}"><span class="icon icon-play">&nbsp;</span>Connect Now</a></li>
                     @endif
                     <li><a href="#home" class="edit_profile_btn"><span class="icon icon-pencil2">&nbsp;</span>Account Details</a></li>
                     <li><a href="{{route("profile")}}"><span class="icon icon-pencil">&nbsp;</span>Edit Profile</a></li>

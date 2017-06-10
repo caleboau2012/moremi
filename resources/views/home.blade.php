@@ -33,13 +33,13 @@
                     <div class="st-home-unit">
                         <div class="hero-txt">
                             <h2 class="hero-title">Connecting people</h2>
-                            <p class="">Moore.me will help you meet people and set you up on a date. All expenses paid by us.
+                            <p class="">Moore.me will help you meet new people and give you the opportunity to meet. All expenses paid by us.
                                 <br>
                                 Simply pick someone and pick a spot.</p>
                             @if(!$loggedIn)
                                 <button class="btn btn-lg main-btn login"  data-url="{{route("login")}}"><span class="icon icon-play"></span> Get Started</button>
                             @else
-                                <a href="{{route('app')}}" class="btn btn-lg main-btn profile" ><span class="icon icon-play"></span> Find A Date</a>
+                                <a href="{{route('app')}}" class="btn btn-lg main-btn profile" ><span class="icon icon-play"></span> Connect Now</a>
                             @endif
                         </div>
                     </div>
@@ -71,7 +71,7 @@
                                     <li><i class="icon icon-check-square-o" aria-hidden="true"></i>Create a Profile  </li>
                                     <li><i class="icon icon-check-square-o" aria-hidden="true"></i> Pick someone </li>
                                     <li><i class="icon icon-check-square-o" aria-hidden="true"></i> Keep picking the same person in a week. We connect the  highest pickers and the person they pick </li>
-                                    <li> <i class="icon icon-check-square-o" aria-hidden="true"></i>Everything resets at the end of the week so you can pick someone new and go on a date every week </li>
+                                    <li> <i class="icon icon-check-square-o" aria-hidden="true"></i>Everything resets at the end of the week so you can pick someone new and get to meet every week </li>
                                 </ul>
                                 <div class="text-center xs-mb10"><a href="#" class="btn main-btn btn-sm pull-center "><span class="icon icon-play"></span> Get Started</a></div>
                             </div>
@@ -108,7 +108,7 @@
                         Keep picking the same person in a week. We connect the highest pickers and the person they pick
                     </li>
                     <li>
-                        Everything resets at the end of the week so you can pick someone new and go on a date every week
+                        Everything resets at the end of the week so you can pick someone new and get to meet every week
                     </li>
                 </ul>
 

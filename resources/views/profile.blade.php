@@ -126,7 +126,7 @@
                                     <div class="form-group">
                                         <label for="venue"><strong>Preferred Spot</strong></label>
                                         <select name="venue" id="venue" class="form-control">
-                                            <option value="0">Select your preferred date location</option>
+                                            <option value="0">Select your preferred meeting location</option>
                                             @foreach($venues as $venue)
                                                 @if($venue->id == $profile->venue)
                                                     <option selected value="{{$venue->id}}" data-url="{{$venue->url}}"

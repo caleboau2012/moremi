@@ -22,7 +22,7 @@
                     @if(!$loggedIn)
                         <li><a href="#" id="app-url" data-url="{{route("login")}}" data-url-app="{{route('app')}}" class="login"><span class="icon icon-facebook-official"></span> Login/Sign Up</a></li>
                     @else
-                        <li><a href="{{route("app")}}"><span class="icon icon-play"></span> Find A Date</a></li>
+                        <li><a href="{{route("app")}}"><span class="icon icon-play"></span> Connect Now</a></li>
                         <li>
                             <a href="{{route("profile")}}" class="profile-btn">
                                 @if($profile != null)

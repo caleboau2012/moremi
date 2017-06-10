@@ -18,7 +18,7 @@
                     @if(!isset($profile) || is_null($profile))
                         <li><a href="#" id="app-url" data-url="{{route("login")}}" data-url-app="{{route('app')}}" class="login"><span class="icon icon-facebook-official"></span> Login/Sign Up</a></li>
                     @else
-                        <li><a href="{{route('app')}}"><span class="icon icon-play">&nbsp;</span>Find a Date</a></li>
+                        <li><a href="{{route('app')}}"><span class="icon icon-play">&nbsp;</span>Connect Now</a></li>
                         <li><a href="#home" class="edit_profile_btn"><span class="icon icon-pencil2">&nbsp;</span>Account Details</a></li>
                         <li><a href="{{route("profile")}}"><span class="icon icon-pencil">&nbsp;</span>Edit Profile</a></li>
                         <li class="active">

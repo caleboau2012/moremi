@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('description')
-    <meta name="description" content="Win a date with {{$p->first_name}} {{$p->last_name}}">
+    <meta name="description" content="Connect with {{$p->first_name}} {{$p->last_name}}">
 @endsection
 
 @section('title')

@@ -569,6 +569,7 @@ a, a:hover{
     line-height: 20px;
     color: #737373;
     text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .card.hovercard .bottom {

@@ -14,7 +14,7 @@
                         <br> by a total of<strong>  {{ $poll->total }} picks.</strong><br> <br> <span style="color:#f59c43">
                             Find below, the details of your new connection
                         </span>
-                        Log into your account now to connect with your new connection to set up a date .
+                        Log into your account now to connect with your new connection.
                     </td>
                 </tr>
 
