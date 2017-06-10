@@ -133,6 +133,25 @@ var Profile = {
             Profile.finish($(this).attr("data-url"));
         });
 
+        Profile.showDemo();
+    },
+    showDemo: function(){
+        if((localStorage.getItem('profile') == null) && ($(window).width() > 750)){
+            introJs()
+                //    .onchange(function(targetElement) {
+                //    console.log(targetElement, targetElement.id);
+                //    switch (targetElement.id)
+                //    {
+                //        case "demo-3":
+                //            Facebook.userAlbums();
+                //            break;
+                //    }
+                //})
+                .start();
+            if(typeof(Storage) !== "undefined"){
+                localStorage.setItem('profile', 'true');
+            }
+        }
     },
     loadFromApi: function(response){
         console.log(response);

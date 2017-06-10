@@ -88,7 +88,7 @@
 	<script src="{{asset('js/app/Facebook.js')}}"></script>
 
 	<script src="{{asset('js/app/Profile.js')}}" ></script>
-	<script src="{{ asset('js/app/moment.js') }}"></script>
+	<script src="{{ asset('js/utils/moment.js') }}"></script>
 
 	<script>
         $('.format_time').each(function (e) {
