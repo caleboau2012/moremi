@@ -15,7 +15,7 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse main-nav" id="sept-main-nav">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="{{route('app')}}"><span class="icon icon-search">&nbsp;</span>Find a Date</a></li>
+                    <li><a href="{{route('app')}}"><span class="icon icon-play">&nbsp;</span>Find a Date</a></li>
                 </ul>
             </div><!-- /.navbar-collapse -->
         </div>

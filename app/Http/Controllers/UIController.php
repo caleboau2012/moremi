@@ -163,9 +163,10 @@ class UIController extends Controller
         }
 
         return view('my_profile',[
+                'profile' => $this->profile,
                 'photos' => $profile->photos()->get()->toArray(),
-                'profile' => $profile,
-                'profile_pic' => $profile_pic,
+                'p' => $profile,
+                'p_p' => $profile_pic,
                 'venue' => $profile->venue()->first(),
                 'connections' => $connections
             ]

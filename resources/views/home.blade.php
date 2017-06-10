@@ -222,7 +222,7 @@
                         <div class="card hovercard">
                             <div class="cardheader">
                             </div>
-                            <a href="{{route("my_profile", \Illuminate\Support\Facades\Crypt::encrypt($t->id))}}">
+                            <a target="_blank" href="{{route("my_profile", \Illuminate\Support\Facades\Crypt::encrypt($t->id))}}">
                                 <div class="avatar">
                                     @if($t->photo()->first())
                                         <img class="img-responsive img-circle" src="{{asset($t->photo()->first()->full_path)}}" alt="{{$t->first_name .' '. $t->last_name}}">
