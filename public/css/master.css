@@ -250,8 +250,14 @@ h5, .h5 {
 .home .hero-txt .hero-img {
     margin-top: 80px;
 }
+/*Counter*/
 
-
+.counter{background-color: #F06B3B; position: fixed; top: 20%; right: 0%; z-index: 555px; padding: 0!important; width: 4%; z-index: 30;}
+.counter ul{list-style: none; color: #fff; padding:5px 3px 5px 1px; text-align: center;}
+.counter li {font-size: 12px; border-bottom:1px solid #dc4c05;}
+.counter span{font-weight: bold; font-size: 18px; display: block;}
+.counter p{ font-weight:bold;  margin: 0; text-align: center;}
+.cter-label {background-color: white; color:#F06B3B; text-align: center;line-height: 14px; padding: 3px; font-weight: bold;}
 /*About*/
 
 .about {padding: 0;}
