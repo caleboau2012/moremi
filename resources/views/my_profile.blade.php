@@ -13,11 +13,7 @@
 @endsection
 
 @section('header')
-    @if(!isset($profile) || is_null($profile))
-        @include('include.header_public_profile')
-    @else
-        @include('include.header_app')
-    @endif
+    @include('include.header_public_profile')
 @endsection
 
 @section('content')
@@ -58,7 +54,7 @@
                                 @if(!empty($photos))
                                     <div class="masonry_items" id="masonry_items">
                                     @foreach($photos as $i => $photo)
-                                        <div class="col-md-4f masonry_item">
+                                        <div class="col-md-4 col-sm-6 masonry_item">
                                             <div class="image-box picture-panel pointer">
                                                 <div class="image">
                                                     <img data-index="{{$i}}" src="{{Request::root() . "/" . $photo['full_path']}}">
@@ -118,6 +114,7 @@
                     <div class="row">
                         @foreach($connections as $c)
                             <div class="col-xs-3">
+                                <a href="{{route('my_profile', \Illuminate\Support\Facades\Crypt::encrypt($c[\ConnectionConstant::RECIPIENT_ID]))}}">
                                 <div class="connection-item" data-id="messages-between-{{$c[\TableConstant::PROFILE_ID]}}-{{$c[\ConnectionConstant::RECIPIENT_ID]}}">
                                     @if($c[\ConnectionConstant::PHOTO])
                                         <img data-toggle="tooltip" data-placement="top" data-original-title="{{ucwords($c[\ConnectionConstant::NAME])}}"  src="{{asset($c[\ConnectionConstant::PHOTO]->thumb_path)}}" alt="{{$c[\ConnectionConstant::NAME]}}" class="img-circle img-responsive">
@@ -125,6 +122,7 @@
                                         <img data-toggle="tooltip" data-placement="top" data-original-title="{{ucwords($c[\ConnectionConstant::NAME])}}" src="{{asset('images/default.png')}}" alt="{{$c[\ConnectionConstant::NAME]}}" class="img-circle img-responsive">
                                     @endif
                                 </div>
+                                </a>
                             </div>
                         @endforeach
                     </div>

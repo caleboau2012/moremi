@@ -90,14 +90,13 @@
                                 @if(!empty($photos))
                                     <div class="masonry_items" id="masonry_items" data-step="4" data-intro="Your pictures show here">
                                     @foreach($photos as $i => $photo)
-                                        <div class="col-md-4 masonry_item">
+                                        <div class="col-md-4 col-sm-6 masonry_item">
                                             <div class="image-box picture-panel pointer" draggable="true">
                                                 <div class="image">
                                                     <img class="img-responsive" data-index="{{$i}}" src="{{Request::root() . "/" . $photo['full_path']}}">
                                                     <span class="delete-picture icon icon-close" data-url="{{route("delete_pic", $photo['id'])}}"></span>
                                                 </div>
                                             </div>
-                                            <br>
                                         </div>
                                     @endforeach
                                     </div>
@@ -199,14 +198,14 @@
                                 </div>
                                 <div class="modal-body">
                                     <div class="row">
-                                        <div id="pictures-pane">
+                                        <div id="pictures-pane" class="masonry_items">
                                         </div>
                                     </div>
                                     <script type="text/html" id="facebook-picture">
-                                        <div class="col-sm-2">
+                                        <div class="col-sm-2 masonry_item">
                                             <div class="select-picture pointer image-box">
                                                 <div class="image">
-                                                    <img src="[[src]]">
+                                                    <img class="img-responsive" src="[[src]]">
                                                     <span class="icon icon-square-o"></span>
                                                 </div>
                                             </div>

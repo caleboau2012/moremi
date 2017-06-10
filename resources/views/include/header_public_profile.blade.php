@@ -15,7 +15,28 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse main-nav" id="sept-main-nav">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="{{route('app')}}"><span class="icon icon-play">&nbsp;</span>Find a Date</a></li>
+                    @if(!isset($profile) || is_null($profile))
+                        <li><a href="#" id="app-url" data-url="{{route("login")}}" data-url-app="{{route('app')}}" class="login"><span class="icon icon-facebook-official"></span> Login/Sign Up</a></li>
+                    @else
+                        <li><a href="{{route('app')}}"><span class="icon icon-play">&nbsp;</span>Find a Date</a></li>
+                        <li><a href="#home" class="edit_profile_btn"><span class="icon icon-pencil2">&nbsp;</span>Account Details</a></li>
+                        <li><a href="{{route("profile")}}"><span class="icon icon-pencil">&nbsp;</span>Edit Profile</a></li>
+                        <li class="active">
+                            @if($profile != null)
+                                <a href="{{route("my_profile", \Illuminate\Support\Facades\Crypt::encrypt($profile->id))}}" class="profile-btn" title="Public Profile">
+                                    @if($profile->photo()->first())
+                                        <img src="{{asset($profile->photo()->first()->thumb_path)}}" class="profile-thumb">
+                                    @else
+                                        <img src="{{asset('images/default.png')}}" class="profile-thumb">
+                                    @endif
+                                    <span>{{$profile->first_name}} {{$profile->last_name}}</span>
+                                    @else
+                                        <a href="#" class="profile-btn" title="Public Profile">
+                                            <img src="{{asset('images/default.png')}}" class="profile-thumb">
+                                            @endif
+                                        </a>
+                        </li>
+                    @endif
                 </ul>
             </div><!-- /.navbar-collapse -->
         </div>
@@ -33,28 +54,28 @@
                     <p class="text-right text-white no-margin">Picks this Week</p>
                     <h4 class="no-margin text-white text-right">
                         <strong class="icon icon-heart3 text-white"></strong>
-                        <span class="vote-count">{{$profile->vote}}</span>
+                        <span class="vote-count">{{$p->vote}}</span>
                     </h4>
                 </div>
 
             </div>
             <div class="col-md-4">
                 <div class="profile_info_item_center" id="profile_dp_container">
-                    @if($profile->photo()->first())
-                        <img src="{{asset($profile->photo()->first()->full_path)}}" alt="Profile DP" id="profile-cover_dp">
-                    @elseif($profile->sex == "male")
+                    @if($p->photo()->first())
+                        <img src="{{asset($p->photo()->first()->full_path)}}" alt="Profile DP" id="profile-cover_dp">
+                    @elseif($p->sex == "male")
                         <img src="{{asset('images/default-male.png')}}" id="profile-cover_dp">
-                    @elseif(($profile->sex == "female"))
+                    @elseif(($p->sex == "female"))
                         <img src="{{asset('images/default-female.png')}}" id="profile-cover_dp">
                     @endif
                 </div>
             </div>
             <div class="col-md-4" style="position: relative">
                 <div class="profile_info_item_right">
-                    <h4 class="text-left text-white no-margin"> {{$profile->first_name}} {{$profile->last_name}} </h4>
-                    @if($profile->about)
+                    <h4 class="text-left text-white no-margin"> {{$p->first_name}} {{$p->last_name}} </h4>
+                    @if($p->about)
                         <p class="no-margin text-white"><strong>Status:</strong></p>
-                        <p class="no-margin text-white">{{$profile->about}}</p>
+                        <p class="no-margin text-white">{{$p->about}}</p>
                     @else
                         <br><br>
                     @endif
@@ -73,18 +94,18 @@
 
             </div>
             <div class="profile_info_item text-center" id="profile_dp_container">
-                @if($profile->photo()->first())
-                    <img id="profile-cover_dp"  src="{{asset($profile->photo()->first()->full_path)}}" alt="Profile DP">
+                @if($p->photo()->first())
+                    <img id="profile-cover_dp"  src="{{asset($p->photo()->first()->full_path)}}" alt="Profile DP">
                 @else
                     <img src="{{asset('images/default.png')}}" id="profile-cover_dp">
                 @endif
             </div>
 
             <div class="profile_info_item text-left">
-                <h4 class="profile_info_item text-white no-margin"> {{$profile->first_name}} {{$profile->last_name}} </h4>
-                @if($profile->about)
+                <h4 class="profile_info_item text-white no-margin"> {{$p->first_name}} {{$p->last_name}} </h4>
+                @if($p->about)
                     <p class="no-margin text-white"><strong>Status:</strong></p>
-                    <p class="no-margin text-white">{{$profile->about}}</p>
+                    <p class="no-margin text-white">{{$p->about}}</p>
                 @else
                     <br><br>
                 @endif
@@ -94,25 +115,25 @@
     <div class="hidden">
             <div id="profile-container hidden-xs hidden-sm">
                 <div id="profile-info-left" class="profile-info hidden-sm hidden-xs">
-                    <h4 class="no-margin text-white">{{$profile->first_name}} {{$profile->last_name}}</h4>
+                    <h4 class="no-margin text-white">{{$p->first_name}} {{$p->last_name}}</h4>
                     <p class="no-margin text-white">
-                        {{$profile->about}}
+                        {{$p->about}}
                     </p>
                 </div>
                 <div id="profile-dp" class="hidden-sm hidden-xs">
-                    @if($profile->photo()->first())
-                        <img src="{{asset($profile->photo()->first()->full_path)}}" alt="Profile DP" class="img-responsive img-circle">
+                    @if($p->photo()->first())
+                        <img src="{{asset($p->photo()->first()->full_path)}}" alt="Profile DP" class="img-responsive img-circle">
                     @else
                         <img src="{{asset('images/default.png')}}" class="img-circle img-responsive">
                     @endif
                 </div>
                 <div id="profile-info-right" class="profile-info hidden-sm hidden-xs">
-                    <h4 class="no-margin text-white"><span class="vote-count">{{$profile->vote}}<span class="vote-count"> picks</h4>
+                    <h4 class="no-margin text-white"><span class="vote-count">{{$p->vote}}<span class="vote-count"> picks</h4>
                     <p class="no-margin text-white">
                         <span class="icon icon-location"></span>
-                        @if($profile->venue()->first())
-                            <span>{{$profile->venue()->first()->name}}</span>
-                            <span id='spot' class="hidden">{{$profile->venue}}</span>
+                        @if($p->venue()->first())
+                            <span>{{$p->venue()->first()->name}}</span>
+                            <span id='spot' class="hidden">{{$p->venue}}</span>
                         @else
                             <span>No venue selected</span>
                         @endif
@@ -128,7 +149,7 @@
 
     </div>
     <div class="container">
-        <h4 class="text-center no-margin-bottom">{{$profile->first_name}} {{$profile->last_name}}</h4>
+        <h4 class="text-center no-margin-bottom">{{$p->first_name}} {{$p->last_name}}</h4>
     </div>
 </div>
 

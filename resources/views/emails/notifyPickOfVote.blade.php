@@ -5,7 +5,7 @@
             <table border="0" cellpadding="0" cellspacing="0" width="100%">
                 <tr>
                     <td style="text-transform: capitalize; color:#fe574a;font-family:Arial,sans-serif;font-size:24px">
-                        <b>Dear {{$user->first_name}} {{$user->last_name}},</b> you have been picked by <b>{{$picker->first_name}} {{$picker->last_name}}</b>
+                        <b>Dear {{$picked->first_name}} {{$picked->last_name}},</b> you have been picked by <b>{{$picker->first_name}} {{$picker->last_name}}</b>
                     </td>
                 </tr>
                 <tr>
