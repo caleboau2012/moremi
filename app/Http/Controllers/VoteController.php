@@ -59,6 +59,15 @@ use AuthTrait;
                 'msg'=>'Picked successfully',
                 'count'=>$vote->count
             ];
+
+            /*send mail*/
+
+            $picker = Profile::find($this->_userId);
+           Mail::send('emails.notifyPickOfVote', ['user' => $profile, 'picker' => $picker], function ($m)  use($picker){
+                $m->from(\MailConstants::SUPPORT_MAIL, \MailConstants::TEAM_NAME);
+                $m->to($picker->email)->subject('You just got a pick on Moore.me');
+            });
+
             return response()->json($msg)->withCookie(config('settings.vote-cookie-name'), $vote->cookie, 2880);
         }
         else{

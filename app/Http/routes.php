@@ -17,7 +17,7 @@
 Route::get('/', array('uses'=>'UIController@home', 'as' => 'index'));
 Route::get('app', array('uses'=>'UIController@app', 'as' => 'app'));
 Route::get('app/profile', array('uses'=>'UIController@profile', "as"=>"profile"));
-Route::get('my-profile/{id}',["as" => "my_profile", "uses" => 'UIController@myProfile']);
+Route::get('profile/{id}',["as" => "my_profile", "uses" => 'UIController@myProfile']);
 Route::get('privacy/policy', array("as" => "policy", "uses" => "UIController@policy"));
 
 

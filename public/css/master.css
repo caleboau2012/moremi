@@ -1188,26 +1188,6 @@ Profile Card
 
 
 
-#container_ {
-    border: 1px solid;
-    padding: 5px;
-}
-
-.item {
-    width: 60px;
-    height: 60px;
-    float: left;
-    margin: 5px;
-    background: #CCC;
-}
-
-.item.w2 {
-    width: 130px;
-}
-
-.item.h2 {
-    height: 130px;
-}
 .masonry_item{
-    /*width: 50px;*/
+    width: 150px;
 }

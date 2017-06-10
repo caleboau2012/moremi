@@ -129,7 +129,7 @@
     {{--PICK OF THE MOMENT--}}
     <div>
         @if($winner != null)
-            <div class="hidden week-pick" id="pick-of-the-week">
+            <div class="week-pick" id="pick-of-the-week">
                 <div class="container">
                     <div class="row">
                         <h3 id="header" class="text-center text-white m-title">Pick of the Moment</h3>
@@ -199,7 +199,7 @@
                     <div class="tabs tabs-style-bar">
                         <nav style="">
                             <ul>
-                                <li class="left"><a href="#section-bar-1" class="left"><span>Trending</span></a></li>
+                                <li class="left tab-current"><a href="#trending" class="left"><span>Trending</span></a></li>
                                 <li class="right">
                                     @if($loggedIn)
                                         <a href="{{route("app")}}" class="right"><span>Make Your Pick</span></a>

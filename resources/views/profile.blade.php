@@ -90,17 +90,16 @@
                                 @if(!empty($photos))
                                     <div class="masonry_items" id="masonry_items">
                                     @foreach($photos as $i => $photo)
-                                        <div class="col-md-4 masonry_item">
+                                        <div class="masonry_item">
                                             <div class="image-box picture-panel pointer" draggable="true">
                                                 <div class="image">
-                                                    <img class="" data-index="{{$i}}" src="{{Request::root() . "/" . $photo['full_path']}}">
+                                                    <img class="img-responsive" data-index="{{$i}}" src="{{Request::root() . "/" . $photo['full_path']}}">
                                                     <span class="delete-picture icon icon-close" data-url="{{route("delete_pic", $photo['id'])}}"></span>
                                                 </div>
                                             </div>
                                             <br>
                                         </div>
                                     @endforeach
-
                                     </div>
                                     @else
                                     <p class="text-center text-muted">No image yet!</p>
@@ -314,6 +313,8 @@
         (function($){
 
         })(jQuery);
+
+
     </script>
 
 @endsection
