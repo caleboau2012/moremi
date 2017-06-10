@@ -5,20 +5,27 @@
         <div class="row">
             <br>
             <!--About Section-->
-            <section class="col-xs-12 col-sm-7 footerbg1 text-muted">
+            <section class="col-xs-12 col-sm-5 footerbg1 text-muted footer-about">
                 <h4>About Moree.me</h4>
-
-                <p>
-                    Moree.me is the quickest way to connect.
-                    It is well suited for the young, the elderly, the bold and the restless.
-                    Meetign people is easy. Just make your pick.
-                    <br>
-                    There are only two clauses. You can only pick once a day. The day starts 0:00 GMT. Everything resets on Sunday.
-                </p>
-
+                 <div class="row">
+                     <div class="col-md-5">
+                        <p>
+                            <img src="{{asset('images/logo.png')}}" id="">
+                            
+                        </p>
+                     </div>
+                      <div class="col-md-7">
+                        <p>
+                            Moree.me is the quickest way to connect.
+                            
+                            <br>
+                            There are only two clauses. You can only pick once a day. The day starts 0:00 GMT. Everything resets on Sunday.
+                        </p>
+                     </div>
+                </div>
             </section>
 
-            <section class="col-xs-12 col-sm-5 footerbg1 text-muted">
+            <section class="col-xs-12 col-sm-4 footerbg1 text-muted">
                 <h4>Spots</h4>
 
                 <p>
@@ -28,16 +35,35 @@
                 </p>
 
             </section>
+            
+              <section class="col-xs-12 col-md-3 footerbg1 text-muted social-media">
+                <h4>Social Media</h4>
+
+               <p>
+                
+                   <a href="http://twitter.com" target="_blank" class="fa fa-twitter" ></a>
+                            <a href="http://facebook.com" target="_blank" class="fa fa-facebook"></a>
+                                <a href="http://instagram.com" class="fa fa-instagram" target="_blank"></a>
+                            </p>
+                
+            </section>
+            
         </div>
-        <div class="row">
-            <div class="col-xs-10">
-                <a href="{{route("policy")}}">Copyright 2017. All rights reserved.</a>
+        <div class="row footer-bottom">
+            <div class="col-xs-10 col-md-5">
+                <a href="{{route("policy")}}">&copy; Moree.me 2017 </a>
             </div>
-            <div class="col-xs-2 text-right">
-                <a href="https://www.facebook.com/moremitesoau/"><i class="icon icon-facebook icon-rotate"></i></a>
-                {{--<a href="#"><i class="fa fa-twitter"></i></a>--}}
-                {{--<a href="#"><i class="fa fa-google-plus"></i></a>--}}
-                {{--<a href="#"><i class="fa fa-instagram"></i></a>--}}
+            <div class="col-xs-2 col-md-5 text-right pull-right">
+                <ul>
+                    <li><a href="Terms">Contact</a></li>
+                    <li><a href="Terms">How it Works</a></li>
+                    <li><a href="#">FAQ </a></li>
+                    <li><a href="#">Terms </a></li>
+                   
+                
+                </ul>
+                
+               
             </div>
         </div>
     </div>
