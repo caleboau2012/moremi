@@ -303,13 +303,13 @@
     @endif
 
     <div id="profile-counter-container" data-stellar-background-ratio="0.4">
-        <div class="overlay">
+        <div class="">
             <div class="container">
                 <div class="row">
                     <div class="col-md-4">
                         <div class="funfact">
                             <div class="st-funfact-icon">
-                                <img class="img-responsive"  src="{{asset('images/counter/ladies.png')}}">
+                                <img class="img-responsive" width="15%;" src="{{asset('images/counter/ladies.png')}}" >
                             </div>
                             <div class="st-funfact-counter" ><span class="st-ff-count" data-from="0" data-to="{{$females}}" data-runit="1">0</span>+</div>
                             <strong class="funfact-title">Registered Ladies</strong>
@@ -318,7 +318,7 @@
                     <div class="col-md-4">
                         <div class="funfact">
                             <div class="st-funfact-icon">
-                                <img class="img-responsive"  src="{{asset('images/counter/men.png')}}">
+                                <img class="img-responsive" width="15%;" src="{{asset('images/counter/men.png')}}">
                             </div>
                             <div class="st-funfact-counter" ><span class="st-ff-count" data-from="0" data-to="{{$males}}" data-runit="1">0</span>+</div>
                             <strong class="funfact-title">Registered Men</strong>
@@ -327,7 +327,7 @@
                     <div class="col-md-4">
                         <div class="funfact">
                             <div class="st-funfact-icon">
-                                <img class="img-responsive"  src="{{asset('images/counter/table.png')}}">
+                                <img class="img-responsive" width="20%;" src="{{asset('images/counter/table.png')}}">
                             </div>
                             <div class="st-funfact-counter" ><span class="st-ff-count" data-from="0" data-to="{{$dates->count()}}" data-runit="1">0</span>+</div>
                             <strong class="funfact-title">Sponsored Dates</strong>
@@ -339,7 +339,7 @@
                         @if(!$loggedIn)
                             <button class="btn get_started login"  data-url="{{route("login")}}"><span class="icon icon-play">&nbsp;</span>Get Started</button>
                         @else
-                            <a href="{{route('app')}}" class="btn get_started profile"  data-url="{{route("login")}}">Connect Now</a>
+                            <a href="{{route('app')}}" class="btn btn-lg get_started profile"  data-url="{{route("login")}}">Connect Now</a>
                         @endif
                     </div>
                 </div>

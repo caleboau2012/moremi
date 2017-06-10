@@ -40,13 +40,12 @@
                 <h4>Social Media</h4>
 
                <p>
-                   <a href="http://twitter.com" target="_blank" class="fa fa-twitter"></a>
+                
+                   <a href="http://twitter.com" target="_blank" class="fa fa-twitter" ></a>
                             <a href="http://facebook.com" target="_blank" class="fa fa-facebook"></a>
                                 <a href="http://instagram.com" class="fa fa-instagram" target="_blank"></a>
                             </p>
                 
-                        
-
             </section>
             
         </div>
