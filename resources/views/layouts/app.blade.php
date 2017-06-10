@@ -16,7 +16,7 @@
 	<link rel="icon" type="image/x-icon" href="{{ asset('images/favicon.png')}}" />
 	{{--<link href="https://fonts.googleapis.com/css?family=Raleway|Kalam" rel="stylesheet">--}}
 	{{--<link href="https://fonts.googleapis.com/css?family=Droid+Sans|Muli|Noto+Sans|PT+Sans|PT+Sans+Narrow|Poppins|Titillium+Web" rel="stylesheet">--}}
-	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,800italic,800,700italic,700,600italic,400italic,600,300italic,300|Oswald:400,300,700' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,800italic,800,700italic,700,600italic,400italic,600,300italic,300|Oswald:400,300,700' rel='stylesheet' type='text/css'>
 	<link href="{{ asset('libs/bootstrap/bootstrap.min.css') }}" rel="stylesheet" >
 
 	<link href="{{ asset('css/tabs.css') }}" rel="stylesheet" >
@@ -75,8 +75,10 @@
 
 	<script src="{{asset("libs/owl/owl.carousel.min.js")}}"></script>
 	<script src="{{asset("js/cbpFWTabs.js")}}"></script>
-{{--Masonry --}}
+	{{--Masonry --}}
 	<script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
+	<script src="{{asset("libs/masonry/imagesLoaded.js")}}"></script>
+	{{--IntroJs--}}
 	<script src="{{asset("libs/introjs/intro.min.js")}}"></script>
 
 	<!--Custom Javascript-->

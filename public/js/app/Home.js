@@ -126,10 +126,11 @@ $(function () {
         pagination : true
     });
 
-    [].slice.call( document.querySelectorAll( '.tabs' ) ).forEach( function( el ) {
-        new CBPFWTabs( el );
-    });
 
     init_Roundabout();
+
+    // [].slice.call( document.querySelectorAll( '.tabs' ) ).forEach( function( el ) {
+    //     new CBPFWTabs( el );
+    // });
 
 });

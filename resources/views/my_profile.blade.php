@@ -56,8 +56,9 @@
                             {{--Previous DP--}}
                             <div class="row" id="pictures-panel">
                                 @if(!empty($photos))
+                                    <div class="masonry_items" id="masonry_items">
                                     @foreach($photos as $i => $photo)
-                                        <div class="col-md-4">
+                                        <div class="col-md-4f masonry_item">
                                             <div class="image-box picture-panel pointer">
                                                 <div class="image">
                                                     <img data-index="{{$i}}" src="{{Request::root() . "/" . $photo['full_path']}}">
@@ -66,6 +67,7 @@
                                             <br>
                                         </div>
                                     @endforeach
+                                    </div>
                                 @else
                                     <p class="text-center text-muted">No image yet!</p>
                                 @endif
