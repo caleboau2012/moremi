@@ -140,13 +140,13 @@ class UIController extends Controller
 
         $profile = Profile::find($id);
 
-        $connections = Connection::where(\TableConstant::PROFILE_ID, $this->_userId)->
-        orWhere(\ConnectionConstant::RECIPIENT_ID, $this->_userId)->get()->toArray();
+        $connections = Connection::where(\TableConstant::PROFILE_ID, $id)->
+        orWhere(\ConnectionConstant::RECIPIENT_ID, $id)->get()->toArray();
 
         for($i = 0; $i < sizeof($connections); $i++){
-            if($connections[$i][\TableConstant::PROFILE_ID] != $this->_userId){
+            if($connections[$i][\TableConstant::PROFILE_ID] != $id){
                 $temp = $connections[$i][\TableConstant::PROFILE_ID];
-                $connections[$i][\TableConstant::PROFILE_ID] = $this->_userId;
+                $connections[$i][\TableConstant::PROFILE_ID] = $id;
                 $connections[$i][\ConnectionConstant::RECIPIENT_ID] = $temp;
             }
 
@@ -163,9 +163,10 @@ class UIController extends Controller
         }
 
         return view('my_profile',[
+                'profile' => $this->profile,
                 'photos' => $profile->photos()->get()->toArray(),
-                'profile' => $profile,
-                'profile_pic' => $profile_pic,
+                'p' => $profile,
+                'p_p' => $profile_pic,
                 'venue' => $profile->venue()->first(),
                 'connections' => $connections
             ]

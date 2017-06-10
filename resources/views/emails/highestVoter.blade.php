@@ -13,7 +13,7 @@
                         Congratulations!!! , You are the highest <strong>picker for the week</strong> on <a href="{{route('index')}}" target="_blank">Moree.me</a>,
                         <br> by a total of<strong>  {{ $poll->total }} picks.</strong><br> <br> <span style="color:#f59c43"> Find below, the ticket to your spot ,****please note that the ticket is only valid if you go with your new connection
                             (<i style="text-transform: capitalize">{{ $winner->first_name }} {{$winner->last_name}}</i>)<br><br></span>
-                        Log into your account now to connect with your new connection to set up a date .
+                        Log into your account now to connect with your new connection.
                     </td>
                 </tr>
 

@@ -5,7 +5,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	@section("description")
-		<meta name="description" content="Moore.me will help you meet people and set you up on a date. All expenses paid by us. Simply pick someone and pick a spot. It all starts with a date.">
+		<meta name="description" content="Moore.me will help you meet new people. All expenses paid by us. Simply pick someone and pick a spot. It all starts with a pick.">
 	@show
 	<meta name="author" content="Moree.me">
 	<meta name="keywords" content="moree.me, dating, free, pick, pick of the week, more, marry me, more of me, moremi">
@@ -32,6 +32,7 @@
 	<link href="{{ asset('css/util.css') }}" rel="stylesheet" >
 	<link href="{{ asset('css/media.css') }}" rel="stylesheet" >
 	<link href="{{ asset('libs/sweetalert/sweetalert.css') }}" rel="stylesheet" >
+	<link href="{{asset('libs/introjs/introjs.min.css')}}" rel="stylesheet">
 
 	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -76,8 +77,10 @@
 	<script src="{{asset("libs/owl/owl.carousel.min.js")}}"></script>
 	<script src="{{asset("js/cbpFWTabs.js")}}"></script>
 	{{--Masonry --}}
-	<script src="{{asset("libs/masonry/masonry.min.js")}}"></script>
+	<script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
 	<script src="{{asset("libs/masonry/imagesLoaded.js")}}"></script>
+	{{--IntroJs--}}
+	<script src="{{asset("libs/introjs/intro.min.js")}}"></script>
 
 	<!--Custom Javascript-->
 	<script src="{{asset('js/app/Utils.js')}}" ></script>
@@ -88,7 +91,7 @@
 	<script src="{{asset('js/app/Facebook.js')}}"></script>
 
 	<script src="{{asset('js/app/Profile.js')}}" ></script>
-	<script src="{{ asset('js/app/moment.js') }}"></script>
+	<script src="{{ asset('js/utils/moment.js') }}"></script>
 
 	<script>
         $('.format_time').each(function (e) {

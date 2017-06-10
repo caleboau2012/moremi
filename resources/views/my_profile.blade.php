@@ -1,11 +1,11 @@
 @extends('layouts.app')
 
 @section('description')
-    <meta name="description" content="Win a date with {{$profile->first_name}} {{$profile->last_name}}">
+    <meta name="description" content="Connect with {{$p->first_name}} {{$p->last_name}}">
 @endsection
 
 @section('title')
-    <title>Moree.me - Connecting people to {{$profile->first_name}} {{$profile->last_name}} </title>
+    <title>Moree.me - Connecting people to {{$p->first_name}} {{$p->last_name}} </title>
 @endsection
 
 @section('stylesheets')
@@ -20,9 +20,9 @@
     <div style="height: 65px;">
         <div class="row hidden">
             <p class="hidden" id="_token">{{ csrf_token() }}"</p>
-            <h2 class="text-center hidden" id="user">{{$profile->first_name}} {{$profile->last_name}}</h2>
-            <h3 class="text-center hidden"><span class="text-danger">Picks: {{$profile->vote}} <i class="icon icon-heart"></i></span> </h3>
-            <p class="hidden" id="id_user_from">{{$profile->id}}</p>
+            <h2 class="text-center hidden" id="user">{{$p->first_name}} {{$p->last_name}}</h2>
+            <h3 class="text-center hidden"><span class="text-danger">Picks: {{$p->vote}} <i class="icon icon-heart"></i></span> </h3>
+            <p class="hidden" id="id_user_from">{{$p->id}}</p>
             <p class="hidden" id="chat-url">{{route('chat-url')}}</p>
             <hr>
         </div>
@@ -35,15 +35,15 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="image text-center">
-                                @if((!isset($profile->photo_id)) || (!isset($profile->photo->full_path)) ||
-                                 is_null($profile->photo_id) || is_null($profile->photo->full_path))
-                                    @if($profile->sex == "male")
+                                @if((!isset($p->photo_id)) || (!isset($p->photo->full_path)) ||
+                                 is_null($p->photo_id) || is_null($p->photo->full_path))
+                                    @if($p->sex == "male")
                                         <img class="img-responsive img-thumbnail" id="profile-dp" src="{{asset("images/default-male.png")}}">
                                     @else
                                         <img class="img-responsive img-thumbnail" id="profile-dp" src="{{asset("images/default-female.png")}}">
                                     @endif
                                 @else
-                                    <img class="img-responsive img-thumbnail" id="profile-dp" data-index="{{$profile_pic}}" src="{{asset($profile->photo->full_path)}}">
+                                    <img class="img-responsive img-thumbnail" id="profile-dp" data-index="{{$p_p}}" src="{{asset($p->photo->full_path)}}">
                                 @endif
                             </div>
                             <br>
@@ -54,7 +54,7 @@
                                 @if(!empty($photos))
                                     <div class="masonry_items" id="masonry_items">
                                     @foreach($photos as $i => $photo)
-                                        <div class="col-md-4f masonry_item">
+                                        <div class="col-md-4 col-sm-6 masonry_item">
                                             <div class="image-box picture-panel pointer">
                                                 <div class="image">
                                                     <img data-index="{{$i}}" src="{{Request::root() . "/" . $photo['full_path']}}">
@@ -101,7 +101,7 @@
                                 @endif
                             </p>
                             <p class="text-center">
-                                <a href="#" class="pick-btn main-btn vote-btn btn-sm" data-id="{{$profile->id}}">
+                                <a href="#" class="pick-btn main-btn vote-btn btn-sm" data-id="{{$p->id}}">
                                     <strong class="icon icon-heart3" aria-hidden="true">&nbsp;</strong>Pick
                                 </a>
                             </p>
@@ -114,6 +114,7 @@
                     <div class="row">
                         @foreach($connections as $c)
                             <div class="col-xs-3">
+                                <a href="{{route('my_profile', \Illuminate\Support\Facades\Crypt::encrypt($c[\ConnectionConstant::RECIPIENT_ID]))}}">
                                 <div class="connection-item" data-id="messages-between-{{$c[\TableConstant::PROFILE_ID]}}-{{$c[\ConnectionConstant::RECIPIENT_ID]}}">
                                     @if($c[\ConnectionConstant::PHOTO])
                                         <img data-toggle="tooltip" data-placement="top" data-original-title="{{ucwords($c[\ConnectionConstant::NAME])}}"  src="{{asset($c[\ConnectionConstant::PHOTO]->thumb_path)}}" alt="{{$c[\ConnectionConstant::NAME]}}" class="img-circle img-responsive">
@@ -121,6 +122,7 @@
                                         <img data-toggle="tooltip" data-placement="top" data-original-title="{{ucwords($c[\ConnectionConstant::NAME])}}" src="{{asset('images/default.png')}}" alt="{{$c[\ConnectionConstant::NAME]}}" class="img-circle img-responsive">
                                     @endif
                                 </div>
+                                </a>
                             </div>
                         @endforeach
                     </div>

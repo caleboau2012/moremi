@@ -26,12 +26,16 @@
                 </div>
             </div>
             <div class="row trending-items">
-                @foreach($trending as $t)
+                @foreach($trending as $i => $t)
                     <div class="trending-item">
-                        <div class="card hovercard">
+                        @if($i == 1)
+                            <div class="card hovercard" data-step="2" data-intro='This is a potential connection!' data-position="bottom">
+                        @else
+                            <div class="card hovercard">
+                        @endif
                             <div class="cardheader">
                             </div>
-                                <a href="{{route("my_profile", \Illuminate\Support\Facades\Crypt::encrypt($t->id))}}">
+                                <a target="_blank" href="{{route("my_profile", \Illuminate\Support\Facades\Crypt::encrypt($t->id))}}">
                                     <div class="avatar">
                                         @if($t->photo()->first())
                                             <img class="img-responsive img-circle" src="{{asset($t->photo()->first()->full_path)}}" alt="{{$t->first_name .' '. $t->last_name}}">
@@ -56,20 +60,32 @@
                                     @endif
                                 </div>
 
-                                <div class="desc">
+                                @if($i == 1)
+                                    <div class="desc" data-step="3" data-intro='This is the spot this person would like to meet!' data-position="bottom">
+                                @else
+                                    <div class="desc">
+                                @endif
                                     @if($t->venue()->first())
                                         <strong class="icon icon-location font-main">&nbsp;</strong>{{$t->venue()->first()->name}}
                                     @else
                                         <strong class="icon icon-location font-main">&nbsp;</strong>No venue yet!
                                     @endif
                                 </div>
-                                <div class="desc">
+                                @if($i == 1)
+                                    <div class="desc" data-step="4" data-intro='This is the number of picks this person has so far this week!' data-position="bottom">
+                                @else
+                                    <div class="desc">
+                                @endif
                                     <strong class="icon icon-heart3 font-main">&nbsp;</strong> <span class="vote-count">{{$t->vote}}</span>
                                 </div>
 
                             </div>
 
-                            <div class="bottom">
+                            @if($i == 1)
+                                <div class="bottom" data-step="5" data-intro="Pick this person as many times as you can">
+                            @else
+                                <div class="bottom">
+                            @endif
                                 <a href="#" class="pick-btn main-btn vote-btn btn-sm pull-center " data-id="{{$t->id}}">
                                     <strong class="icon icon-heart3" aria-hidden="true">&nbsp;</strong>Pick
                                 </a>
@@ -86,7 +102,7 @@
     <div class="container-fluid bg-grey">
         <div class="row">
             <div class="col-md-6 col-md-offset-3">
-                <div class="btn-group btn-group-justified">
+                <div class="btn-group btn-group-justified" id="game">
                     <a href="#" class="btn active  trending_menu">Pick</a>
                 </div>
             </div>
@@ -176,9 +192,9 @@
 
             <div class="clearfix"></div>
 
-            <div class="text-center">
-                <button class="btn btn-primary">Invite your friends to see more...</button>
-            </div>
+            {{--<div class="text-center">--}}
+                {{--<button class="btn btn-primary">Invite your friends to see more...</button>--}}
+            {{--</div>--}}
         </div>
 
     </div>
@@ -191,6 +207,7 @@
     @parent
     <script src="{{asset("libs/owl/owl.carousel.min.js")}}"></script>
     <script src="{{asset("libs/bootstrap-slider/bslider.js")}}"></script>
+    <script src="{{asset('js/utils/appDemo.js')}}"></script>
     <script src="{{asset('js/app/infiniteScroll.js')}}"></script>
     <script src="{{asset('js/app/App.js')}}"></script>
     <script src="{{asset('js/app/Vote.js')}}"></script>

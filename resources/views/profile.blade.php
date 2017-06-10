@@ -48,8 +48,8 @@
         <div class="row">
             <div class="col-md-8 bg-white">
                 <div class=" profile-court">
-                    <div class="row">
-                        <div class="col-md-6">
+                    <div class="row" data-step="2" data-intro="Your pictures show here">
+                        <div class="col-md-6" data-step="5" data-intro="Drag a picture here to use as your profile picture">
                             <div class="profile-pic">
                                 <div class="image">
                                     @if(!isset($profile->photo->full_path) || is_null($profile->photo_id) || is_null($profile->photo->full_path))
@@ -68,7 +68,7 @@
                                         <img class="img-responsive img-thumbnail" id="profile-dp" data-index="{{$profile_pic}}" src="{{asset($profile->photo->full_path)}}">
                                     @endif
                                 </div>
-                                <div class="row">
+                                <div class="row" data-step="3" data-intro="Click here to import pictures from your computer or Facebook">
                                     <br>
                                     <div class="col-xs-12 col-sm-6">
                                         <a href="#" title="Upload image" class="btn btn-primary btn-block picture-upload">
@@ -88,16 +88,15 @@
                             {{--Previous DP--}}
                             <div class="row" id="pictures-panel">
                                 @if(!empty($photos))
-                                    <div class="masonry_items" id="masonry_items">
+                                    <div class="masonry_items" id="masonry_items" data-step="4" data-intro="Your pictures show here">
                                     @foreach($photos as $i => $photo)
-                                        <div class="masonry_item">
+                                        <div class="col-md-4 col-sm-6 masonry_item">
                                             <div class="image-box picture-panel pointer" draggable="true">
                                                 <div class="image">
                                                     <img class="img-responsive" data-index="{{$i}}" src="{{Request::root() . "/" . $photo['full_path']}}">
                                                     <span class="delete-picture icon icon-close" data-url="{{route("delete_pic", $photo['id'])}}"></span>
                                                 </div>
                                             </div>
-                                            <br>
                                         </div>
                                     @endforeach
                                     </div>
@@ -111,38 +110,40 @@
 
                     {{--profile--}}
                     <div class="profile-form">
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <div class="form-group">
-                                    <div>
-                                        <label for="status" class="control-label"><strong>Status</strong></label>
-                                        <textarea placeholder="My status message" class="form-control margin-top-sm" id="status">{{$profile->about}}</textarea>
+                        <div data-step="6" data-position="top" data-intro="Don't forget to change your status and select your Spot">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <div>
+                                            <label for="status" class="control-label"><strong>Status</strong></label>
+                                            <textarea placeholder="My status message" class="form-control margin-top-sm" id="status">{{$profile->about}}</textarea>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <label for="venue"><strong>Preferred Spot</strong></label>
-                                    <select name="venue" id="venue" class="form-control">
-                                        <option value="0">Select your preferred date location</option>
-                                        @foreach($venues as $venue)
-                                            @if($venue->id == $profile->venue)
-                                                <option selected value="{{$venue->id}}" data-url="{{$venue->url}}"
-                                                        data-title="{{$venue->title}}" data-image="{{$venue->thumb}}">{{$venue->name}}</option>
-                                            @else
-                                                <option value="{{$venue->id}}" data-url="{{$venue->url}}"
-                                                        data-title="{{$venue->title}}" data-image="{{$venue->thumb}}">{{$venue->name}}</option>
-                                            @endif
-                                        @endforeach
-                                    </select>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="venue"><strong>Preferred Spot</strong></label>
+                                        <select name="venue" id="venue" class="form-control">
+                                            <option value="0">Select your preferred meeting location</option>
+                                            @foreach($venues as $venue)
+                                                @if($venue->id == $profile->venue)
+                                                    <option selected value="{{$venue->id}}" data-url="{{$venue->url}}"
+                                                            data-title="{{$venue->title}}" data-image="{{$venue->thumb}}">{{$venue->name}}</option>
+                                                @else
+                                                    <option value="{{$venue->id}}" data-url="{{$venue->url}}"
+                                                            data-title="{{$venue->title}}" data-image="{{$venue->thumb}}">{{$venue->name}}</option>
+                                                @endif
+                                            @endforeach
+                                        </select>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <br>
-                                <button id="finish" data-loading-text="<i class='icon icon-circle-o-notch icon-spin'></i> Updating your profile" data-url="{{route("photo_upload")}}" class="btn btn-success btn-block"><span class="icon icon-upload"></span> Save Changes</button>
-                                <br>
+                                <div class="col-sm-6">
+                                    <br>
+                                    <button data-step="7" data-intro="Click finish to save all you've done and become trending..." id="finish" data-loading-text="<i class='icon icon-circle-o-notch icon-spin'></i> Updating your profile" data-url="{{route("photo_upload")}}" class="btn btn-success btn-block"><span class="icon icon-upload"></span> Save Changes</button>
+                                    <br>
+                                </div>
                             </div>
                         </div>
 
@@ -197,14 +198,14 @@
                                 </div>
                                 <div class="modal-body">
                                     <div class="row">
-                                        <div id="pictures-pane">
+                                        <div id="pictures-pane" class="masonry_items">
                                         </div>
                                     </div>
                                     <script type="text/html" id="facebook-picture">
-                                        <div class="col-sm-2">
+                                        <div class="col-sm-2 masonry_item">
                                             <div class="select-picture pointer image-box">
                                                 <div class="image">
-                                                    <img src="[[src]]">
+                                                    <img class="img-responsive" src="[[src]]">
                                                     <span class="icon icon-square-o"></span>
                                                 </div>
                                             </div>
@@ -213,7 +214,6 @@
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-primary" data-dismiss="modal">Done</button>
-                                    {{--<button type="button" class="btn btn-primary">Save changes</button>--}}
                                 </div>
                             </div><!-- /.modal-content -->
                         </div><!-- /.modal-dialog -->

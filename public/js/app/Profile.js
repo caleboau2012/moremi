@@ -144,6 +144,25 @@ var Profile = {
             Profile.finish($(this).attr("data-url"));
         });
 
+        Profile.showDemo();
+    },
+    showDemo: function(){
+        if((localStorage.getItem('profile') == null) && ($(window).width() > 750)){
+            introJs()
+                //    .onchange(function(targetElement) {
+                //    console.log(targetElement, targetElement.id);
+                //    switch (targetElement.id)
+                //    {
+                //        case "demo-3":
+                //            Facebook.userAlbums();
+                //            break;
+                //    }
+                //})
+                .start();
+            if(typeof(Storage) !== "undefined"){
+                localStorage.setItem('profile', 'true');
+            }
+        }
     },
     loadFromApi: function(response){
         console.log(response);
@@ -245,6 +264,7 @@ var Profile = {
     //},
     setPhotos: function(data){
         var url, HTML, template;
+        $("#pictures-pane").empty();
         for(var i = 0; i < data.length; i++) {
             HTML = "";
             //console.log(Facebook.photo(data[i]));
@@ -253,10 +273,10 @@ var Profile = {
                     template = $("#facebook-picture").html();
                     url = response;
                     HTML = template.replace("[[src]]", url);
-                    if ($("#pictures-pane .select-picture").length < 12) {
+                    if ($("#pictures-pane .select-picture").length < 6) {
                         $("#pictures-pane").append(HTML);
                     }
-                    else if (($("#pictures-pane .select-picture").length == 13)) {
+                    else {
                         $("#pictures-pane").append(HTML);
                         $(".select-picture").each(function (i) {
                             $(this).height($(this).width());
@@ -279,7 +299,6 @@ var Profile = {
             HTML = template.replace("[[src]]", Profile.facebookPhotos[i]).replace("[[i]]", $(".picture-panel").length);
             $("#pictures-panel").append(HTML);
         }
-        //$("#pictures-panel").prepend(HTML);
     },
     loadApiPix: function(response){
         var HTML = "", template;

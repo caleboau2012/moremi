@@ -62,10 +62,11 @@ use AuthTrait;
 
             /*send mail*/
 
-            $picker = Profile::find($this->_userId);
-           Mail::send('emails.notifyPickOfVote', ['user' => $profile, 'picker' => $picker], function ($m)  use($picker){
+            $picked = Profile::find($profile_id);
+           Mail::send('emails.notifyPickOfVote', ['picker' => $profile, 'picked' => $picked], function ($m)  use($picked){
                 $m->from(\MailConstants::SUPPORT_MAIL, \MailConstants::TEAM_NAME);
-                $m->to($picker->email)->subject('You just got a pick on Moore.me');
+//                $m->to('caleboau2012@gmail.com')->subject('You just got a pick on Moore.me');
+                $m->to($picked->email)->subject('You just got a pick on Moore.me');
             });
 
             return response()->json($msg)->withCookie(config('settings.vote-cookie-name'), $vote->cookie, 2880);
