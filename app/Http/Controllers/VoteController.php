@@ -260,7 +260,6 @@ use AuthTrait;
                 $picked = Profile::find($p->profile_id);
                 Mail::send('emails.dailyPollVote', ['picked' => $picked, 'poll' => $p], function ($m)  use($picked){
                     $m->from(\MailConstants::SUPPORT_MAIL, \MailConstants::TEAM_NAME);
-                    $m->to('moses.adebayo@taxtech.com.ng')->subject('Your Daily Pick on Moore.me');
                     $m->to($picked->email)->subject('Your Daily Picks on Moore.me');
                 });
             }
