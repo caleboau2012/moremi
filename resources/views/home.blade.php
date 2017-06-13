@@ -50,7 +50,17 @@
         <div class="col-md-12 end"></div>
     </div>
 
+    <div class=" col-md-1 counter">
+        <div class="cter-label"> <p>Pick stops In</p></div>
+       
+        <ul>
+            <li><span>5</span>Days</li>
+            <li><span>23</span>Hours</li>
+            <li><span>48</span>Minutes</li>
+            <li><span>55</span>Seconds</li>
+        </ul>
 
+    </div>
     {{--About Moore.me--}}
     <div class="" id="about">
         <div class="container-fluid">
