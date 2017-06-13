@@ -12,6 +12,7 @@ use App\User;
 use App\Venue;
 use App\Voter;
 use App\VotingConfig;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 
@@ -59,15 +60,6 @@ use AuthTrait;
                 'msg'=>'Picked successfully',
                 'count'=>$vote->count
             ];
-
-            /*send mail*/
-
-            $picked = Profile::find($profile_id);
-           Mail::send('emails.notifyPickOfVote', ['picker' => $profile, 'picked' => $picked], function ($m)  use($picked){
-                $m->from(\MailConstants::SUPPORT_MAIL, \MailConstants::TEAM_NAME);
-//                $m->to('caleboau2012@gmail.com')->subject('You just got a pick on Moore.me');
-                $m->to($picked->email)->subject('You just got a pick on Moore.me');
-            });
 
             return response()->json($msg)->withCookie(config('settings.vote-cookie-name'), $vote->cookie, 2880);
         }
@@ -122,11 +114,11 @@ use AuthTrait;
             $this->saveWinner($votingResult[0], $winner, $highestVoter, $spot);
             $this->resetVote();
             $this->resetVotingParam();
-            return response()->json('Vote reset successfully');
+//            return response()->json('Vote reset successfully');
 
         }else{
             $this->resetVotingParam();
-            return response()->json('No action performed');
+//            return response()->json('No action performed');
 
         }
     }
@@ -248,5 +240,30 @@ use AuthTrait;
         $votingParam[\VotingConfigConstant::TERMINATED_AT] = $terminationDate;
 
         $votingParam->save();
+    }
+
+    /*Daily CRON of Poll  stat*/
+    public function dailyPollStat()
+    {
+        /*send mail*/
+        $now = Carbon::today()->toDateString();
+        $poll = DB::table('voters')
+            ->select('profile_id', DB::raw('SUM(frequency) as total'))
+            ->groupBy('profile_id')
+            ->orderBy('total', 'DESC')
+            ->whereDate(\TableConstant::CREATED_AT, '=', $now)
+            ->where('deleted_at', null)
+            ->get();
+
+        if($poll){
+            foreach ($poll as $p){
+                $picked = Profile::find($p->profile_id);
+                Mail::send('emails.dailyPollVote', ['picked' => $picked, 'poll' => $p], function ($m)  use($picked){
+                    $m->from(\MailConstants::SUPPORT_MAIL, \MailConstants::TEAM_NAME);
+                    $m->to($picked->email)->subject('Your Daily Picks on Moore.me');
+                });
+            }
+            return response()->json('Polls sent successfully');
+        }
     }
 }
