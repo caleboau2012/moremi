@@ -548,7 +548,8 @@ a, a:hover{
     -webkit-border-radius: 50%;
     -moz-border-radius: 50%;
     border-radius: 50%;
-    border: 5px solid rgba(255,255,255,0.5);
+    border: 5px solid rgba(255,255,255,0.6);
+    
 }
 
 .card.hovercard .info {
@@ -1066,6 +1067,7 @@ font-size: 16px;
     width: 25px;
     height: 25px;
     border-radius: 50%;
+    border: 1px #e78f79 solid;
 }
 .image-box img, .profile-pic img, .picture-pane img{
     display: block;
@@ -1108,7 +1110,7 @@ font-size: 16px;
     display: inline-block;
 }
 #profile-cover_dp{
-    width: 100px; height: 100px; border-radius: 50%;
+    width: 100px; height: 100px; border-radius: 50%; border:5px solid rgba(255,255,255,0.6); 
 }
 #profile_dp_container .dp-edit-btn{
     position: absolute;
@@ -1122,6 +1124,7 @@ font-size: 16px;
     font-weight: bold;
     display: block;
     transition: all 0.5s ease;
+    
 }
 #profile_dp_container:hover .dp-edit-btn{
     display: block;
