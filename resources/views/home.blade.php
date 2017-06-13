@@ -11,7 +11,7 @@
                 xfbml      : true,
                 version    : 'v2.7'
             });
-            FB.Event.subscribe('xfbml.render', Facebook.status);
+//            FB.Event.subscribe('xfbml.render', Facebook.status);
         };
 
         (function(d, s, id){

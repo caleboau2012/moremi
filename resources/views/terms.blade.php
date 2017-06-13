@@ -5,7 +5,7 @@
 @endsection
 
 @section('header')
-    @include('include.header_terms')
+    @include('include.header_public_profile')
 @endsection
 
 @section('content')

@@ -20,7 +20,7 @@
                     <li><a href="#pick-of-the-week">Pick of the Week</a></li>
                     <li><a href="#trending">Trending</a></li>
                     @if(!$loggedIn)
-                        <li><a href="#" id="app-url" data-url="{{route("login")}}" data-url-app="{{route('app')}}" class="login"><span class="icon icon-facebook-official"></span> Login/Sign Up</a></li>
+                        <li><a href="#" id="app-url" data-url="{{route("login")}}" data-url-app="{{route('profile')}}" class="login"><span class="icon icon-facebook-official"></span> Login/Sign Up</a></li>
                     @else
                         <li><a href="{{route("app")}}"><span class="icon icon-play"></span> Connect Now</a></li>
                         <li>

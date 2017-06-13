@@ -20,7 +20,7 @@
                     @else
                         <li><a href="{{route('app')}}"><span class="icon icon-play">&nbsp;</span>Connect Now</a></li>
                         <li><a href="#home" class="edit_profile_btn"><span class="icon icon-pencil2">&nbsp;</span>Account Details</a></li>
-                        <li><a href="{{route("profile")}}"><span class="icon icon-pencil">&nbsp;</span>Edit Profile</a></li>
+                        <li><a href="{{route("profile")}}"><span class="icon icon-user">&nbsp;</span>Edit Profile</a></li>
                         <li class="active">
                             @if($profile != null)
                                 <a href="{{route("my_profile", \Illuminate\Support\Facades\Crypt::encrypt($profile->id))}}" class="profile-btn" title="Public Profile">
@@ -49,30 +49,63 @@
     </div>
     <div class="container">
         <div class="row">
-            <div class="col-md-4">
-                <div class="profile_info_item_left">
-                    <p class="text-right text-white no-margin">Picks this Week</p>
-                    <h4 class="no-margin text-white text-right">
-                        <strong class="icon icon-heart3 text-white"></strong>
-                        <span class="vote-count">{{$p->vote}}</span>
-                    </h4>
-                </div>
+            @if(isset($p) && !is_null($p))
+                <div class="col-md-4">
+                    <div class="profile_info_item_left">
+                        <p class="text-right text-white no-margin">Picks this Week</p>
+                        <h4 class="no-margin text-white text-right">
+                            <strong class="icon icon-heart3 text-white"></strong>
+                            <span class="vote-count">{{$p->vote}}</span>
+                        </h4>
+                    </div>
 
-            </div>
-            <div class="col-md-4">
-                <div class="profile_info_item_center" id="profile_dp_container">
+                </div>
+                <div class="col-md-4">
+                    <div class="profile_info_item_center" id="profile_dp_container">
+                        @if($p->photo()->first())
+                            <img src="{{asset($p->photo()->first()->full_path)}}" alt="Profile DP" id="profile-cover_dp">
+                        @elseif($p->sex == "male")
+                            <img src="{{asset('images/default-male.png')}}" id="profile-cover_dp">
+                        @elseif(($p->sex == "female"))
+                            <img src="{{asset('images/default-female.png')}}" id="profile-cover_dp">
+                        @endif
+                    </div>
+                </div>
+                <div class="col-md-4" style="position: relative">
+                    <div class="profile_info_item_right">
+                        <h4 class="text-left text-white no-margin"> {{$p->first_name}} {{$p->last_name}} </h4>
+                        @if($p->about)
+                            <p class="no-margin text-white"><strong>Status:</strong></p>
+                            <p class="no-margin text-white">{{$p->about}}</p>
+                        @else
+                            <br><br>
+                        @endif
+                    </div>
+
+                </div>
+            @endif
+        </div>
+    </div>
+    <div class="hidden">
+        <div id="profile_cover_info_container">
+            @if(isset($p) && !is_null($p))
+                <div class="profile_info_item">
+                    <p class="profile_info_item text-center text-white no-margin">Picks this Week</p>
+                    <h4 class="no-margin text-white text-center">
+                        <strong class="icon icon-heart3 text-white">&nbsp;</strong>{{$p->vote}}
+                    </h4>
+
+                </div>
+                <div class="profile_info_item text-center" id="profile_dp_container">
                     @if($p->photo()->first())
-                        <img src="{{asset($p->photo()->first()->full_path)}}" alt="Profile DP" id="profile-cover_dp">
-                    @elseif($p->sex == "male")
-                        <img src="{{asset('images/default-male.png')}}" id="profile-cover_dp">
-                    @elseif(($p->sex == "female"))
-                        <img src="{{asset('images/default-female.png')}}" id="profile-cover_dp">
+                        <img id="profile-cover_dp"  src="{{asset($p->photo()->first()->full_path)}}" alt="Profile DP">
+                    @else
+                        <img src="{{asset('images/default.png')}}" id="profile-cover_dp">
                     @endif
                 </div>
-            </div>
-            <div class="col-md-4" style="position: relative">
-                <div class="profile_info_item_right">
-                    <h4 class="text-left text-white no-margin"> {{$p->first_name}} {{$p->last_name}} </h4>
+
+                <div class="profile_info_item text-left">
+                    <h4 class="profile_info_item text-white no-margin"> {{$p->first_name}} {{$p->last_name}} </h4>
                     @if($p->about)
                         <p class="no-margin text-white"><strong>Status:</strong></p>
                         <p class="no-margin text-white">{{$p->about}}</p>
@@ -80,40 +113,12 @@
                         <br><br>
                     @endif
                 </div>
-
-            </div>
+            @endif
         </div>
     </div>
     <div class="hidden">
-        <div id="profile_cover_info_container">
-            <div class="profile_info_item">
-                <p class="profile_info_item text-center text-white no-margin">Picks this Week</p>
-                <h4 class="no-margin text-white text-center">
-                    <strong class="icon icon-heart3 text-white">&nbsp;</strong>20
-                </h4>
-
-            </div>
-            <div class="profile_info_item text-center" id="profile_dp_container">
-                @if($p->photo()->first())
-                    <img id="profile-cover_dp"  src="{{asset($p->photo()->first()->full_path)}}" alt="Profile DP">
-                @else
-                    <img src="{{asset('images/default.png')}}" id="profile-cover_dp">
-                @endif
-            </div>
-
-            <div class="profile_info_item text-left">
-                <h4 class="profile_info_item text-white no-margin"> {{$p->first_name}} {{$p->last_name}} </h4>
-                @if($p->about)
-                    <p class="no-margin text-white"><strong>Status:</strong></p>
-                    <p class="no-margin text-white">{{$p->about}}</p>
-                @else
-                    <br><br>
-                @endif
-            </div>
-        </div>
-    </div>
-    <div class="hidden">
-            <div id="profile-container hidden-xs hidden-sm">
+        <div id="profile-container hidden-xs hidden-sm">
+            @if(isset($p) && !is_null($p))
                 <div id="profile-info-left" class="profile-info hidden-sm hidden-xs">
                     <h4 class="no-margin text-white">{{$p->first_name}} {{$p->last_name}}</h4>
                     <p class="no-margin text-white">
@@ -139,7 +144,8 @@
                         @endif
                     </p>
                 </div>
-            </div>
+            @endif
+        </div>
     </div>
 
 </div>
@@ -149,7 +155,9 @@
 
     </div>
     <div class="container">
-        <h4 class="text-center no-margin-bottom">{{$p->first_name}} {{$p->last_name}}</h4>
+        @if(isset($p) && !is_null($p))
+            <h4 class="text-center no-margin-bottom">{{$p->first_name}} {{$p->last_name}}</h4>
+        @endif
     </div>
 </div>
 

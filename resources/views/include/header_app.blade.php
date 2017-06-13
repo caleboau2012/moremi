@@ -23,7 +23,7 @@
                         <li><a href="{{route('app')}}"><span class="icon icon-play">&nbsp;</span>Connect Now</a></li>
                     @endif
                     <li><a href="#home" class="edit_profile_btn"><span class="icon icon-pencil2">&nbsp;</span>Account Details</a></li>
-                    <li><a href="{{route("profile")}}"><span class="icon icon-pencil">&nbsp;</span>Edit Profile</a></li>
+                    <li><a href="{{route("profile")}}"><span class="icon icon-user">&nbsp;</span>Edit Profile</a></li>
                     <li class="active">
                             @if($profile != null)
                             <a href="{{route("my_profile", \Illuminate\Support\Facades\Crypt::encrypt($profile->id))}}" class="profile-btn" title="Public Profile">
