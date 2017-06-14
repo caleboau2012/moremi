@@ -29,8 +29,10 @@
                             <a href="{{route("my_profile", \Illuminate\Support\Facades\Crypt::encrypt($profile->id))}}" class="profile-btn" title="Public Profile">
                                 @if($profile->photo()->first())
                                     <img src="{{asset($profile->photo()->first()->thumb_path)}}" class="profile-thumb">
-                                @else
-                                    <img src="{{asset('images/default.png')}}" class="profile-thumb">
+                                @elseif($profile->sex == "male")
+                                    <img src="{{asset('images/default-male.png')}}" class="profile-thumb">
+                                @elseif(($profile->sex == "female"))
+                                    <img src="{{asset('images/default-female.png')}}" class="profile-thumb">
                                 @endif
                                 <span>{{$profile->first_name}} {{$profile->last_name}}</span>
                             @else
@@ -101,11 +103,13 @@
 
                 </div>
                 <div class="profile_info_item text-center" id="profile_dp_container">
-                    @if($profile->photo()->first())
-                        <img id="profile-cover_dp"  src="{{asset($profile->photo()->first()->full_path)}}" alt="Profile DP">
-                    @else
-                        <img src="{{asset('images/default.png')}}" id="profile-cover_dp">
-                    @endif
+                        @if($profile->photo()->first())
+                            <img src="{{asset($profile->photo()->first()->full_path)}}" alt="Profile DP" id="profile-cover_dp">
+                        @elseif($profile->sex == "male")
+                            <img src="{{asset('images/default-male.png')}}" id="profile-cover_dp">
+                        @elseif(($profile->sex == "female"))
+                            <img src="{{asset('images/default-female.png')}}" id="profile-cover_dp">
+                        @endif
                     <a href="#" class="dp-edit-btn"><span class="icon icon-pencil2 text-white"></span></a>
                 </div>
 
@@ -133,8 +137,10 @@
                         <a href="{{route("profile")}}" class="dp-edit-btn"><span class="icon icon-pencil2 text-white"></span></a>
                         @if($profile->photo()->first())
                             <img src="{{asset($profile->photo()->first()->full_path)}}" alt="Profile DP" class="img-responsive img-circle">
-                        @else
-                            <img src="{{asset('images/default.png')}}" class="img-circle img-responsive">
+                        @elseif($profile->sex == "male")
+                            <img src="{{asset('images/default-male.png')}}" class="img-responsive img-circle">
+                        @elseif(($profile->sex == "female"))
+                            <img src="{{asset('images/default-female.png')}}" class="img-responsive img-circle">
                         @endif
                     </div>
                     <div id="profile-info-right" class="profile-info hidden-sm hidden-xs">

@@ -26,8 +26,10 @@
                                 <a href="{{route("my_profile", \Illuminate\Support\Facades\Crypt::encrypt($profile->id))}}" class="profile-btn" title="Public Profile">
                                     @if($profile->photo()->first())
                                         <img src="{{asset($profile->photo()->first()->thumb_path)}}" class="profile-thumb">
-                                    @else
-                                        <img src="{{asset('images/default.png')}}" class="profile-thumb">
+                                    @elseif($profile->sex == "male")
+                                        <img src="{{asset('images/default-male.png')}}" class="profile-thumb">
+                                    @elseif(($profile->sex == "female"))
+                                        <img src="{{asset('images/default-female.png')}}" class="profile-thumb">
                                     @endif
                                     <span>{{$profile->first_name}} {{$profile->last_name}}</span>
                                     @else
@@ -99,8 +101,10 @@
                 <div class="profile_info_item text-center" id="profile_dp_container">
                     @if($p->photo()->first())
                         <img id="profile-cover_dp"  src="{{asset($p->photo()->first()->full_path)}}" alt="Profile DP">
-                    @else
-                        <img src="{{asset('images/default.png')}}" id="profile-cover_dp">
+                    @elseif($p->sex == "male")
+                        <img src="{{asset('images/default-male.png')}}" id="profile-cover_dp">
+                    @elseif(($p->sex == "female"))
+                        <img src="{{asset('images/default-female.png')}}" id="profile-cover_dp">
                     @endif
                 </div>
 
@@ -128,8 +132,10 @@
                 <div id="profile-dp" class="hidden-sm hidden-xs">
                     @if($p->photo()->first())
                         <img src="{{asset($p->photo()->first()->full_path)}}" alt="Profile DP" class="img-responsive img-circle">
-                    @else
-                        <img src="{{asset('images/default.png')}}" class="img-circle img-responsive">
+                    @elseif($p->sex == "male")
+                        <img src="{{asset('images/default-male.png')}}" class="img-responsive img-circle">
+                    @elseif(($p->sex == "female"))
+                        <img src="{{asset('images/default-female.png')}}" class="img-responsive img-circle">
                     @endif
                 </div>
                 <div id="profile-info-right" class="profile-info hidden-sm hidden-xs">

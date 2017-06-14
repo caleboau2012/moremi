@@ -28,8 +28,10 @@
                                 @if($profile != null)
                                     @if($profile->photo()->first())
                                         <img src="{{asset($profile->photo()->first()->thumb_path)}}" class="profile-thumb">
-                                    @else
-                                        <img src="{{asset('images/default.png')}}" class="profile-thumb">
+                                    @elseif($profile->sex == "male")
+                                        <img src="{{asset('images/default-male.png')}}" class="profile-thumb">
+                                    @elseif(($profile->sex == "female"))
+                                        <img src="{{asset('images/default-female.png')}}" class="profile-thumb">
                                     @endif
                                     <span>{{$profile->first_name}} {{$profile->last_name}}</span>
                                 @else
