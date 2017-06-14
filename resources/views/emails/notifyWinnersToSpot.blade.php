@@ -49,7 +49,7 @@
 
                                         <tr>
                                             <td style="padding:25px 0 13px 0;color:#153643;font-family:Arial,sans-serif;font-size:16px;line-height:20px">
-                                                Validity :
+                                                Expires :
                                             </td>
                                         </tr>
                                     </table>
