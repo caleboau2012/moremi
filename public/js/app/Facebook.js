@@ -20,7 +20,7 @@ var Facebook = {
         FB.getLoginStatus(function(response) {
             if(response.status == "connected"){
                 Facebook.authResponse = response.authResponse;
-                FB.api('/me?fields=id,first_name,last_name,email,gender', function(response) {
+                FB.api('/me?fields=id,first_name,last_name,email,gender,cover', function(response) {
                     Facebook.profile = response;
 
                     if((Profile.checkToken())){
@@ -33,7 +33,8 @@ var Facebook = {
                                     last_name: response.last_name,
                                     email: response.email,
                                     sex: response.gender,
-                                    facebook_id: response.id
+                                    facebook_id: response.id,
+                                    cover: response.cover
                                 }, "POST", Facebook.saveToken,Facebook.loginError
                             );
                     }
@@ -53,12 +54,14 @@ var Facebook = {
     },
     loginError: function () {
         $(".profile-actions").addClass("hidden");
-        //swal('Error','Error logging you in with facebook','error');
+        swal('Error','Error logging you in with facebook','error');
     },
     saveToken: function(response){
         Profile.saveToken(response);
 
         window.location = $('#app-url').attr('data-url-app');
+
+        console.log("strange", $('#app-url').attr('data-url-app'));
 
         $(".profile-actions").addClass("hidden");
         if(location.pathname == "/profile"){

@@ -7,6 +7,7 @@
  */
 
 namespace App\Services;
+use App\Http\Controllers\PhotoController;
 use App\Profile;
 use App\User;
 
@@ -49,7 +50,7 @@ use App\User;
          $user->password = bcrypt(str_random(8));
          $user->save();
 
-         return Profile::create([
+         $profile =  Profile::create([
              'first_name'=>$facebookUser->first_name,
              'last_name'=>$facebookUser->last_name,
              'phone'=>$facebookUser->phone,
@@ -58,6 +59,11 @@ use App\User;
              'sex'=>$facebookUser->sex,
              'user_id'=>$user->id
          ]);
+
+         $photoController = new PhotoController($facebookUser);
+         $profile = $photoController->storefb($profile, $facebookUser);
+
+         return $profile;
      }
 
 }
