@@ -91,6 +91,15 @@
                     <div class="row">
                         <div class="col-sm-12">
                             <br>
+                            <h4 class="no-margin-top text-primary text-center">About</h4>
+                            <p class="text-center">
+                                @if(trim($p->about) != "")
+                                    {{$p->about}}
+                                @else
+                                    No Info!
+                                @endif
+                            </p>
+                            <br>
                             <h4 class="no-margin-top text-primary text-center">Preferred Spot</h4>
                             <p class="text-center">
                                 <span class="icon icon-location"></span>
@@ -100,6 +109,7 @@
                                     Undisclosed
                                 @endif
                             </p>
+                            <br>
                             <p class="text-center">
                                 <a href="#" class="pick-btn main-btn vote-btn btn-sm" data-id="{{$p->id}}">
                                     <strong class="icon icon-heart3" aria-hidden="true">&nbsp;</strong>Pick

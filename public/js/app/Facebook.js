@@ -62,14 +62,6 @@ var Facebook = {
         window.location = $('#app-url').attr('data-url-app');
 
         console.log("strange", $('#app-url').attr('data-url-app'));
-
-        $(".profile-actions").addClass("hidden");
-        if(location.pathname == "/profile"){
-            $("#facebook-fetch").removeClass("hidden");
-        }
-        else{
-            $("#login-cheek").removeClass("hidden");
-        }
     },
     convertPhoto: function(url, callback){
             var xhr = new XMLHttpRequest();
