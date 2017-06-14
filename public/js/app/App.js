@@ -12,7 +12,7 @@ var App = {
     init: function(){
         App.CONSTANTS.spot = $('#spot').text();
 
-        $("#cheek-search, #input-filter-search").on("keyup", function(e){
+        $("#input-filter-search").on("keyup", function(e){
             //console.log(this.value);
         }).on("keyup", function(e){
             if(e.keyCode == 13){
@@ -77,9 +77,9 @@ var App = {
     },
     filterCheeks: function(query){
         //console.log(query);
-        $("#cheeks-inf .user h2, #cheeks-inf .profile-card-name h4").each(function(i){
-            //if(typeof query == "undefined")
-            //query = "";
+        $("#cheeks-inf .pick-item h4").each(function(i){
+            if(typeof query == "undefined")
+            query = "";
             if($(this).text().toLowerCase().indexOf(query.toLowerCase()) == -1){
                 //$(this).parent().parent().parent().addClass("hidden");
                 $(this).parent().parent().parent().parent().parent().addClass("hidden");
@@ -89,17 +89,23 @@ var App = {
                 //$(this).parent().parent().parent().removeClass("hidden");
             }
 
+            //console.log({
+            //    female: App.CONSTANTS.femaleFilter,
+            //    male: App.CONSTANTS.maleFilter,
+            //    spot: App.CONSTANTS.spotFilter
+            //});
+
             //Filters
             if(App.CONSTANTS.maleFilter || App.CONSTANTS.femaleFilter || App.CONSTANTS.spotFilter){
-                if(($(this).parent().attr('data-sex') != 'male') && (App.CONSTANTS.maleFilter)){
+                if(($(this).attr('data-sex') != 'male') && (App.CONSTANTS.maleFilter)){
                     $(this).parent().parent().parent().parent().parent().addClass("hidden");
                 }
 
-                if(($(this).parent().attr('data-sex') != 'female') && (App.CONSTANTS.femaleFilter)){
+                if(($(this).attr('data-sex') != 'female') && (App.CONSTANTS.femaleFilter)){
                     $(this).parent().parent().parent().parent().parent().addClass("hidden");
                 }
 
-                if(($(this).parent().attr('data-venue') != App.CONSTANTS.spot) && (App.CONSTANTS.spotFilter)){
+                if(($(this).attr('data-venue') != App.CONSTANTS.spot) && (App.CONSTANTS.spotFilter)){
                     $(this).parent().parent().parent().parent().parent().addClass("hidden");
                 }
             }

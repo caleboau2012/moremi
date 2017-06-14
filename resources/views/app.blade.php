@@ -158,7 +158,7 @@
                             </a>
                             <div class="info">
                                 <div class="title name">
-                                    <h4 class="text-center">[[NAME]]</h4>
+                                    <h4 data-venue="[[VENUEID]]" data-sex="[[SEX]]" class="text-center">[[NAME]]</h4>
                                     <div class="content-end"></div>
                                 </div>
                                 <div class="desc">
@@ -207,7 +207,6 @@
     @parent
     <script src="{{asset("libs/owl/owl.carousel.min.js")}}"></script>
     <script src="{{asset("libs/bootstrap-slider/bslider.js")}}"></script>
-    <script src="{{asset('js/utils/appDemo.js')}}"></script>
     <script src="{{asset('js/app/infiniteScroll.js')}}"></script>
     <script src="{{asset('js/app/App.js')}}"></script>
     <script src="{{asset('js/app/Vote.js')}}"></script>
