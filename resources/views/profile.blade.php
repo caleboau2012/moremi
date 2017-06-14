@@ -51,22 +51,26 @@
                     <div class="row" data-step="2" data-intro="Your pictures show here">
                         <div class="col-md-6" data-step="5" data-intro="Drag a picture here to use as your profile picture">
                             <div class="profile-pic">
-                                <div class="image">
-                                    @if(!isset($profile->photo->full_path) || is_null($profile->photo_id) || is_null($profile->photo->full_path))
-                                        <div id="upload_image_placeholder">
-                                            <div id="caption"  class="image-placeholder">
-                                                <h1 class="text-center">
-                                                    <span class="icon icon-upload2"></span>
-                                                </h1>
-                                                <p class="text-center text-muted">Drag best picture here</p>
-                                            </div>
-                                            <img class="hidden" src="">
-                                        </div>
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <div class="image">
+                                            @if(!isset($profile->photo->full_path) || is_null($profile->photo_id) || is_null($profile->photo->full_path))
+                                                <div id="upload_image_placeholder">
+                                                    <div id="caption"  class="image-placeholder">
+                                                        <h1 class="text-center">
+                                                            <span class="icon icon-upload2"></span>
+                                                        </h1>
+                                                        <p class="text-center text-muted">Drag best picture here</p>
+                                                    </div>
+                                                    <img class="hidden" src="">
+                                                </div>
 
-                                    @else
-                                        <p class="text-center hidden text-info image-placeholder">Drag best picture here</p>
-                                        <img class="img-responsive img-thumbnail" id="profile-dp" data-index="{{$profile_pic}}" src="{{asset($profile->photo->full_path)}}">
-                                    @endif
+                                            @else
+                                                <p class="text-center hidden text-info image-placeholder">Drag best picture here</p>
+                                                <img class="img-responsive img-thumbnail" id="profile-dp" data-index="{{$profile_pic}}" src="{{asset($profile->photo->full_path)}}">
+                                            @endif
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="row" data-step="3" data-intro="Click here to import pictures from your computer or Facebook">
                                     <br>
