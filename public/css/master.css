@@ -953,6 +953,18 @@ font-size: 16px;
     padding-left: 20px;
 
 }
+
+.social-media>span>p {
+    margin-top: 13px;
+    text-align: center;
+
+}
+.social-media>span>p>i {
+    margin-right:10px;
+    font-size:17px;
+    color: white;
+
+}
 .fa {display: inline-block;}
 .fa-instagram::before {
     content: "\f16d";
