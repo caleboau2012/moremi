@@ -114,13 +114,13 @@
                 <h5 class="text-muted">Filter</h5>
                 <div class="row">
                     <div class="col-xs-6 col-sm-4">
-                        <button id="femaleFilter" class="btn btn-block btn-default filter-btn-option" data-filter-id="femaleFilter">Females</button>
+                        <button id="femaleFilter" class="btn btn-block btn-default filter-btn-option btn-sm" data-filter-id="femaleFilter">Females</button>
                     </div>
                     <div class="col-xs-6 col-sm-4">
-                        <button id="maleFilter" class="btn btn-block btn-default filter-btn-option" data-filter-id="maleFilter">Males</button>
+                        <button id="maleFilter" class="btn btn-block btn-default filter-btn-option btn-sm" data-filter-id="maleFilter">Males</button>
                     </div>
                     <div class="col-xs-12 col-sm-4">
-                        <button id="spotFilter" class="btn btn-block btn-default filter-btn-option" data-filter-id="spotFilter">My Spot</button>
+                        <button id="spotFilter" class="btn btn-block btn-default filter-btn-option btn-sm" data-filter-id="spotFilter">My Spot</button>
                     </div>
                 </div>
 

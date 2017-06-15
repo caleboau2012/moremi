@@ -1037,10 +1037,17 @@ font-size: 16px;
 #filter-container .btn{
     border-radius: 20px;
     padding: 7px 10px;
-    margin-right: 8px;
+    margin-right: 5px;
+    border: 1px #FF4B1F solid;
+    background-color: transparent;
+    box-shadow: none;
+    color: #FF4B1F;
+    font-size: 12px;
 }
 #filter-container .btn.active{
-    color: #FF4B1F;
+        color: #Ffffff;
+        background-color:#FF4B1F;
+        box-shadow:none;
 }
 #filter-container #input-filter-search{
     height: 33px;
