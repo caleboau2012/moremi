@@ -5,6 +5,8 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Services\VenueService;
 use App\Venue;
+use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\Redirect;
 use Mockery\CountValidator\Exception;
 
 class VenueController extends Controller {
@@ -32,5 +34,11 @@ class VenueController extends Controller {
             "status" => "done",
             "previews" => $previews
         ]);
+    }
+
+    public function redirect($url){
+        $url = Crypt::decrypt($url);
+
+        return Redirect::to($url);
     }
 }

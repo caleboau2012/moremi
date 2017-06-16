@@ -143,6 +143,11 @@ var Profile = {
             Profile.finish($(this).attr("data-url"));
         });
 
+        $(".help").click(function(e){
+            e.preventDefault();
+            introJs().start();
+        });
+
         Profile.showDemo();
     },
     showDemo: function(){

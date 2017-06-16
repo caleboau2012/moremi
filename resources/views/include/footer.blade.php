@@ -48,7 +48,7 @@
                             <a href="http://facebook.com" target="_blank" class="fa fa-facebook"></a>
                                 <a href="http://instagram.com" class="fa fa-instagram" target="_blank"></a>
                             </p>
-                  <span style=""><p><i class="fa fa-envelope" aria-hidden="true"></i>mail@moree.me</p></span>
+                  <span><p class="text-center"><i class="fa fa-envelope" aria-hidden="true"></i>mail@moree.me</p></span>
             </section>
             
         </div>
@@ -58,6 +58,7 @@
             </div>
             <div class="col-xs-2 col-md-5 text-right pull-right">
                 <ul>
+                    <li><a href="#" class="help"><span class="icon icon-question-circle"></span> </a> </li>
                     <li><a href="#">How it Works</a></li>
                     <li><a href="#">FAQ </a></li>
                     <li><a href="{{route("policy")}}">Terms </a></li>

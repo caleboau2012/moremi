@@ -23,7 +23,7 @@ Route::get('privacy/policy', array("as" => "policy", "uses" => "UIController@pol
 Route::resource('photo', 'PhotoController');
 Route::post('login', array("as" => "login", "uses" => 'LoginController@login'));
 Route::post('vote','VoteController@vote');
-//Route::get('test','HomeController@test');
+Route::get('spot/{url}',[ 'uses' => 'VenueController@redirect', 'as' => 'spot_redirect']);
 //Route::get('seed','HomeController@seed');
 
 Route::get('cheeks/{total}', array("as" => "cheeks", "uses" => 'HomeController@getContestants'));

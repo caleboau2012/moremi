@@ -65,6 +65,11 @@ var App = {
             InfiniteScroll.Get();
         });
 
+        $(".help").click(function(e){
+            e.preventDefault();
+            introJs().start();
+        });
+
         App.showDemo();
     },
     showDemo: function(){
