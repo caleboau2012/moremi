@@ -19,4 +19,15 @@ class VotingConfig extends Model
      */
     protected $table = 'voting_config';
 
+    public static function termination(){
+        $votingConfig = VotingConfig::orderBy('created_at', 'desc')->first();
+
+        if($votingConfig == null){
+            $voteEnds = null;
+        }else{
+            $voteEnds = $votingConfig->terminated_at;
+        }
+        return $voteEnds;
+    }
+
 }

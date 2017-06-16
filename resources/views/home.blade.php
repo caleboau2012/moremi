@@ -50,17 +50,6 @@
         <div class="col-md-12 end"></div>
     </div>
 
-    <div class=" col-md-1 counter">
-        <div class="cter-label"> <p>Pick stops In</p></div>
-       
-        <ul>
-            <li><span>5</span>Days</li>
-            <li><span>23</span>Hours</li>
-            <li><span>48</span>Minutes</li>
-            <li><span>55</span>Seconds</li>
-        </ul>
-
-    </div>
     {{--About Moore.me--}}
     <div class="" id="about">
         <div class="container-fluid">
@@ -280,38 +269,6 @@
         </div>
     </div>
 
-    @if($voteEnds != null)
-        <div class="container-fluid countdown_section">
-        <div class="container">
-        <h1 class="text-center">GAME STOPS IN</h1>
-
-        <div class="row">
-            <div class="counter">
-                <div class="col-md-3 col-sm-6">
-                    <div class="days-wrapper"> <span class="days">0</span> <br>
-                        DAYS </div>
-                </div>
-                <div class="col-sm-6 col-md-3">
-                    <div class="hours-wrapper"> <span class="hours">0</span> <br>
-                        HOURS
-                    </div>
-                </div>
-                <div class="col-sm-6 col-md-3">
-                    <div class="minutes-wrapper"> <span class="minutes">0</span> <br>
-                        MINUTES
-                    </div>
-                </div>
-                <div class="col-sm-6 col-md-3">
-                    <div class="seconds-wrapper"> <span class="seconds">0</span> <br>
-                        SECONDS
-                    </div>
-                </div>
-            </div>
-        </div>
-        </div>
-    </div>
-    @endif
-
     <div id="profile-counter-container" data-stellar-background-ratio="0.4">
         <div class="">
             <div class="container">
@@ -391,26 +348,8 @@
     <script src="{{ asset('libs/roundabout/roundabout.js') }}"></script>
     <script src="{{ asset('libs/jquery/jquery.event.drag.js') }}"></script>
     <script src="{{ asset('libs/jquery/jquery-event-drop.js') }}"></script>
-    <script src="{{ asset('libs/countdown/jquery.countdown.js') }}"></script>
     <script src="{{asset('js/app/Vote.js')}}"></script>
     <script src="{{asset('js/app/VotePay.js')}}"></script>
     <script src="{{asset('js/app/Account.js')}}"></script>
     <script src="{{ asset('js/app/Home.js') }}"></script>
-    <script>
-        /*
-         Final Countdown Settings
-         */
-        var finalDate = "{{$voteEnds}}";
-
-        if(finalDate){
-            $('div.counter').countdown(finalDate)
-                .on('update.countdown', function(event) {
-                    $(".days").html(event.strftime('%D'));
-                    $(".hours").html(event.strftime('%H'));
-                    $(".minutes").html(event.strftime('%M'));
-                    $(".seconds").html(event.strftime('%S'));
-                });
-        }
-
-    </script>
 @endsection
