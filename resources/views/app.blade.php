@@ -20,7 +20,8 @@
             <div class="row">
                 <div class="col-md-6 col-md-offset-3">
                     <div class="btn-group btn-group-justified">
-                        <a href="#" class="btn active  trending_menu">Trending</a>
+                         <p class="subtitle fancy"><span>Trending</span></p>
+                        
                         {{--<a href="#" class="btn  trending_menu">Trending</a>--}}
                     </div>
                 </div>
@@ -103,7 +104,7 @@
         <div class="row">
             <div class="col-md-6 col-md-offset-3">
                 <div class="btn-group btn-group-justified" id="game">
-                    <a href="#" class="btn active  trending_menu">Pick</a>
+                     <p class="subtitle fancy"><span>Pick</span></p>
                 </div>
             </div>
         </div>

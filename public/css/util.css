@@ -124,7 +124,8 @@ select:focus, select.form-control:focus {
 .no-margin{margin:0!important;}
 .img-circle {border-radius: 50%!important;}
 .relative {position:relative;}
-.main-btn{    background-image: linear-gradient(-146deg, #FF4B1F 0%, #F06B3B 180%);color: #FFFFFF;}
+.main-btn{background-image: linear-gradient(-146deg, #FF4B1F 0%, #F06B3B 180%);color: #FFFFFF;}
+a.main-btn:hover{color: #FFFFFF;}
 .main-bg{background-color: #fe7447;}
 .font-main{color:#fe7447;}
 .end{height:5px;background-image:url(../images/header_multi_new.png); position: absolute; bottom: 0; width: 100%;}

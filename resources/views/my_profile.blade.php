@@ -89,7 +89,7 @@
             <div class="col-md-4">
                 <div class="connections-container">
                     <div class="row">
-                        <div class="col-sm-12">
+                        <div class="col-sm-12 about-me">
                             <br>
                             <h4 class="no-margin-top text-primary text-center">About</h4>
                             <p class="text-center">
