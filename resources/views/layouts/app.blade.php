@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="utf-8">
@@ -51,6 +51,10 @@
 
 @section('header')
 @show
+
+
+{{--Game counter--}}
+@include('utils.game_counter')
 
 @yield('content')
 

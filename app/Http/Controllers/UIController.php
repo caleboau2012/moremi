@@ -44,14 +44,6 @@ class UIController extends Controller
 
         $partners = Venue::all();
 
-        $votingConfig = VotingConfig::orderBy('created_at', 'desc')->first();
-
-        if($votingConfig == null){
-            $voteEnds = null;
-        }else{
-            $voteEnds = $votingConfig->terminated_at;
-        }
-
         return view('home', [
             'loggedIn' => $this->loggedIn,
             'profile' => $this->profile,
@@ -61,7 +53,7 @@ class UIController extends Controller
             'females' => $females,
             'dates' => $dates,
             'partners' => $partners,
-            'voteEnds' => $voteEnds
+            'voteEnds' => VotingConfig::termination()
         ]);
     }
     /*user homepage*/
@@ -74,7 +66,7 @@ class UIController extends Controller
 
         $all = Profile::paginate(10);
 
-        return view('app', ['profile' => $this->profile, 'trending' => $trending, 'all' => $all]);
+        return view('app', ['profile' => $this->profile, 'trending' => $trending, 'all' => $all, 'voteEnds' => VotingConfig::termination()]);
     }
 
     /*user profile*/
@@ -131,6 +123,7 @@ class UIController extends Controller
                 'profile' => $profile,
                 'profile_pic' => $profile_pic,
                 'venues' => $venues,
+                'voteEnds' => VotingConfig::termination(),
                 'connections' => $connections
             ]
         );
@@ -168,7 +161,8 @@ class UIController extends Controller
                 'p' => $profile,
                 'p_p' => $profile_pic,
                 'venue' => $profile->venue()->first(),
-                'connections' => $connections
+                'connections' => $connections,
+                'voteEnds' => VotingConfig::termination()
             ]
         );
     }
@@ -181,5 +175,4 @@ class UIController extends Controller
     public function policy(){
         return view('terms');
     }
-
 }

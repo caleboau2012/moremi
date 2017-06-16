@@ -50,17 +50,6 @@
         <div class="col-md-12 end"></div>
     </div>
 
-    <div class=" col-md-1 counter">
-        <div class="cter-label"> <p>Pick stops In</p></div>
-       
-        <ul>
-            <li><span>5</span>Days</li>
-            <li><span>23</span>Hours</li>
-            <li><span>48</span>Minutes</li>
-            <li><span>55</span>Seconds</li>
-        </ul>
-
-    </div>
     {{--About Moore.me--}}
     <div class="" id="about">
         <div class="container-fluid">
@@ -281,7 +270,7 @@
     </div>
 
     @if($voteEnds != null)
-        <div class="container-fluid countdown_section">
+        <div class="container-fluid hidden countdown_section">
         <div class="container">
         <h1 class="text-center">GAME STOPS IN</h1>
 
@@ -391,26 +380,8 @@
     <script src="{{ asset('libs/roundabout/roundabout.js') }}"></script>
     <script src="{{ asset('libs/jquery/jquery.event.drag.js') }}"></script>
     <script src="{{ asset('libs/jquery/jquery-event-drop.js') }}"></script>
-    <script src="{{ asset('libs/countdown/jquery.countdown.js') }}"></script>
     <script src="{{asset('js/app/Vote.js')}}"></script>
     <script src="{{asset('js/app/VotePay.js')}}"></script>
     <script src="{{asset('js/app/Account.js')}}"></script>
     <script src="{{ asset('js/app/Home.js') }}"></script>
-    <script>
-        /*
-         Final Countdown Settings
-         */
-        var finalDate = "{{$voteEnds}}";
-
-        if(finalDate){
-            $('div.counter').countdown(finalDate)
-                .on('update.countdown', function(event) {
-                    $(".days").html(event.strftime('%D'));
-                    $(".hours").html(event.strftime('%H'));
-                    $(".minutes").html(event.strftime('%M'));
-                    $(".seconds").html(event.strftime('%S'));
-                });
-        }
-
-    </script>
 @endsection
