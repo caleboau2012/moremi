@@ -49,8 +49,7 @@ var Profile = {
 
         $("#login-cheek").addClass("hidden");
         $("#facebook-fetch").removeClass("hidden").on("click", function(e){
-            //Facebook.userPicture();
-            //Facebook.userPhotos();
+            //$("#picturesModal").modal("show");
             Facebook.userAlbums();
         });
         $(document).undelegate(".select-picture", "click").delegate(".select-picture", "click", function(e){
