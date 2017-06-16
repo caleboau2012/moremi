@@ -33,9 +33,11 @@
                     <div class="st-home-unit">
                         <div class="hero-txt">
                             <h2 class="hero-title">Connecting people</h2>
-                            <p class="">Moore.me will help you meet new people and give you the opportunity to meet. All expenses paid by us.
+                            <p class="">
+                                Moore.me will help you meet new people and give you the opportunity to hangout. All expenses paid by us.
                                 <br>
-                                Simply pick someone and pick a spot.</p>
+                                Simply pick someone and pick a spot.
+                            </p>
                             @if(!$loggedIn)
                                 <button class="btn btn-lg main-btn login"  data-url="{{route("login")}}"><span class="icon icon-play"></span> Get Started</button>
                             @else
