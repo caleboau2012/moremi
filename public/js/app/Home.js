@@ -1,164 +1,136 @@
 /**
- * Created by KayLee on 30/06/2016.
+ * Created by PhpStorm.
+ * User: moscoworld
+ * Date: 4/22/17
+ * Time: 10:19 AM
  */
-var Home = {
-    CONSTANTS: {
-        page: 0
-    },
-    init: function(){
-        //Home.fetchCheeks();
+$(function () {
+    $(window).stellar({
+        horizontalScrolling: false
+    });
 
-        $("#cheek-search").on("keyup", function(e){
-            //console.log(this.value);
-        }).on("keyup", function(e){
-            if(e.keyCode == 13){
-                e.preventDefault();
-            }
-            //if(this.value.length > 2){
-                //Home.fetchCheeks(this.value);
-                Home.filterCheeks(this.value);
-            //}
-        });
+    // Custom Scrollbar
+    var nice = $("html").niceScroll({
+        cursorwidth: 8,
+        cursorborder: "0px solid #fff",
+        cursorborderradius: '0'
+    });
 
-        $("#login-cheek").click(function(e){
-            location.href = $(this).attr("data-url");
-        });
+    $('.main-nav a:not(.dropdown-toggle)').bind('click', function(event) {
+        var $anchor = $(this);
 
-        var cheeks = $("#contestant-parent");
+        $('html, body').stop().animate({
+            scrollTop: $($anchor.attr('href')).offset().top
+        }, 1500, 'easeInOutExpo');
 
-        cheeks.scroll(function() {
-            console.log({
-                element: cheeks,
-                top: cheeks.scrollTop()
-            });
-            //if(cheeks.scrollTop() == cheeks.height() - $(window).height()) {
-            //    // ajax call get data from server and append to the div
-            //}
-        });
+        event.preventDefault();
+    });
+    /*
+     * Fun Fact with Count Animation
+     */
+    $('.st-ff-count').appear();
+    $(document.body).on('appear', '.st-ff-count', function(e, $affected) {
+        $affected.each(function(i) {
+            if (parseInt($(this).data('runit'))) {
+                $(this).countTo({
+                    speed: 3000,
+                    refreshInterval: 50
+                });
+                $(this).data('runit', "0");
+            };
 
-        $(document).delegate(".avatar", "click", function(){
-            Home.showCheek($(this));
         });
+    });
 
-        $(".winner-photo").click(function(e){
-            $("#winner-photo").attr('src', this.src);
-        });
-    },
-    filterCheeks: function(query){
-        //console.log(query);
-        $("#cheeks-inf .user h2").each(function(i){
-            //console.log({
-            //    element: $(this),
-            //    query: query,
-            //    name: $(this).text(),
-            //    conditional: ($(this).text().indexOf(query) == -1)
-            //});
-            if($(this).text().toLowerCase().indexOf(query.toLowerCase()) == -1){
-                $(this).parent().parent().parent().addClass("hidden");
-            }
-            else{
-                $(this).parent().parent().parent().removeClass("hidden");
-            }
-        });
-    },
-    showCheek: function(element){
-        var data = {
-            name: element.attr('data-name'),
-            about: element.attr('data-about'),
-            images: [
-                $(element.children()[0]).attr('data-img-1'),
-                $(element.children()[0]).attr('data-img-2'),
-                $(element.children()[0]).attr('data-img-3'),
-                $(element.children()[0]).attr('data-img-4'),
-                $(element.children()[0]).attr('data-img-5'),
-                $(element.children()[0]).attr('data-img-6')
-            ],
-            vote: element.attr('data-vote'),
-            id: element.attr('data-id')
+    $('[data-toggle="tooltip"]').tooltip();
+
+
+    function home_height () {
+        var element = $('.st-home-unit'),
+            elemHeight = element.height(),
+            winHeight = $(window).height()
+        var padding = (winHeight - elemHeight - 250) /2;
+
+        if (padding < 1 ) {
+            padding = 0;
         };
+        element.css('padding', padding+'px 0');
+    }
+    home_height ();
 
-        $("#profileModalLabel").text(data.name);
-        $("#profileModalVote").text(data.vote);
-        $(".carousel-indicators").empty();
-        $(".carousel-inner").empty();
+    $(window).resize(function () {
+        home_height ();
+    });
 
-        var controlHTML, carouselImage, voteHTML;
-        var first = true;
 
-        voteHTML = $("#profile-vote-template").html();
-        voteHTML = voteHTML.replaceAll("[[id]]", data.id);
-        $("#profileVote").html(voteHTML);
+    var fadeStart=$(window).height()/3 // 100px scroll or less will equiv to 1 opacity
+        ,fadeUntil=$(window).height() // 200px scroll or more will equiv to 0 opacity
+        ,fading = $('.st-home-unit')
+        ,fading2 = $('.hero-overlayer')
+        ;
 
-        for(var i = 0; i < data.images.length; i++) {
-            if(data.images[i] != ""){
-                controlHTML = $("#carousel-control-template").html();
-                carouselImage = $("#carousel-image-template").html();
-
-                if(first){
-                    controlHTML = controlHTML.replaceAll("[[0]]", "active");
-                    carouselImage = carouselImage.replaceAll("[[0]]", "active");
-                    first = false;
-                }
-                else{
-                    controlHTML = controlHTML.replaceAll("[[0]]", "");
-                    carouselImage = carouselImage.replaceAll("[[0]]", "");
-                }
-
-                controlHTML = controlHTML.replaceAll("[[i]]", i);
-
-                carouselImage = carouselImage.replaceAll("[[i]]", i);
-                carouselImage = carouselImage.replaceAll("[[src]]", data.images[i]);
-                carouselImage = carouselImage.replaceAll("[[about]]", data.about);
-
-                $(".carousel-indicators").append(controlHTML);
-                $(".carousel-inner").append(carouselImage);
-            }
+    $(window).bind('scroll', function(){
+        var offset = $(document).scrollTop()
+            ,opacity=0
+            ,opacity2=1
+            ;
+        if( offset<=fadeStart ){
+            opacity=1;
+            opacity2=0;
+        }else if( offset<=fadeUntil ){
+            opacity=1-offset/fadeUntil;
+            opacity2=offset/fadeUntil;
         }
+        fading.css({'opacity': opacity});
 
-        $("#carousel-example-generic").carousel();
-        $("#profileModal").modal("show");
-    },
-    fetchCheeks: function(query){
-        $("#cheeks-loading").removeClass("hidden");
-
-        var url;
-
-        if(query){
-            url = $("#cheek-search").attr("data-url") + "?search=" + query;
+        if (offset >= 120) {
+            $('.st-navbar').addClass("st-navbar-mini");
+        } else if (offset <= 119) {
+            $('.st-navbar').removeClass("st-navbar-mini");
         }
-        else{
-            url = $("#cheek-search").attr("data-url");
-        }
+    });
 
-        //console.log(url);
 
-        var HTML = "";
+    $('.clients-carousel').owlCarousel({
+        items: 5,
+        autoPlay: true,
+        pagination: false
+    });
 
-        $.getJSON(url, function(response){
-            //console.log(response);
-
-            $("#contestant-parent").empty();
-
-            if(response.status){
-                for(var i = response.data.length - 1; i >= 0; i--){
-                    HTML = $("#cheeks-template").html();
-                    HTML = HTML.replaceAll("[[img-url]]", response.data[i].image);
-                    HTML = HTML.replaceAll("[[name]]", response.data[i].name);
-                    HTML = HTML.replaceAll("[[votes]]", response.data[i].vote);
-                    HTML = HTML.replaceAll("[[id]]", response.data[i].id);
-                    $("#contestant-parent").prepend(HTML);
-                }
-            }
-            else{
-                HTML = $("#cheeks-none").html();
-                $("#contestant-parent").prepend(HTML);
-            }
-
-            $("#cheeks-loading").addClass("hidden");
+    function init_Roundabout() {
+        $('.roundabout').roundabout({
+            tilt: 0.4,
+            autoplay: true,
+            autoplayDuration: 5000,
+            autoplayPauseOnHover: true,
+            minScale:0.5,
+            minOpacity: 1,
+            duration: 400,
+            easing: 'easeOutQuad',
+            enableDrag: true,
+            dropEasing: 'easeOutBack',
+            dragFactor: 2,
+            responsive: true
         });
     }
-};
 
-$(document).ready(function(){
-    Home.init();
+    /* Trending Block */
+    $(".trending-items").owlCarousel({
+        autoPlay: 3000, //Set AutoPlay to 3 seconds
+        items : 4,
+        itemsDesktop : [1199,4],
+        itemsDesktopSmall : [979,3],
+        itemsTablet	: [768,2],
+        navigation : false,
+        navigationText : ['Prev', 'Next'],
+        pagination : true
+    });
+
+
+    init_Roundabout();
+
+    // [].slice.call( document.querySelectorAll( '.tabs' ) ).forEach( function( el ) {
+    //     new CBPFWTabs( el );
+    // });
+
 });

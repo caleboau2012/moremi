@@ -24,7 +24,18 @@ class Profile extends Model
         return $this->hasOne('App\Photo','id','photo_id');
     }
 
+    public function venue()
+    {
+        return $this->hasOne('App\Venue','id','venue');
+    }
 
 
+    public function oldCheeks(){
+        return $this->hasMany('App\OldCheek', 'profile_id', 'id');
+    }
+
+    public function pastWins(){
+        return $this->hasMany('App\OldCheek', 'voter_id', 'id');
+    }
 
 }

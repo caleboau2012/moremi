@@ -12,29 +12,59 @@ var Profile = {
             swal('Wait a minute', 'We detect your browser is outdated. Kindly upgrade');
         }
 
+        /*masonry*/
+        $('#masonry_items').masonry({
+            itemSelector: '.masonry_item'
+        });
+
+        $('.masonry_item').each(function() {
+            $(this).imagesLoaded(function () {
+                $('#masonry_items').masonry();
+            });
+        });
+
         //$(".image-box").each(function(i){
         //    $(this).height($(this).width());
         //});
+        $(".edit_profile_btn").click(function (e) {
+            e.preventDefault();
+            $('#accountModal').modal();
+        });
+
+        $("#venue").change(function(e){
+            var selected = $(this).find('option:selected');
+
+            if(this.value == 0)
+                $("#venue-url").addClass('hidden');
+            else{
+                var src = selected.data('image');
+                var url = selected.data('url');
+                var title = selected.data('title');
+
+                $("#venue-image").attr('src', src);
+                $("#venue-url").attr('href', url).removeClass('hidden');
+                $("#venue-title").text(title);
+            }
+        });
 
         $("#login-cheek").addClass("hidden");
         $("#facebook-fetch").removeClass("hidden").on("click", function(e){
-            //Facebook.userPicture();
-            //Facebook.userPhotos();
+            //$("#picturesModal").modal("show");
             Facebook.userAlbums();
         });
         $(document).undelegate(".select-picture", "click").delegate(".select-picture", "click", function(e){
             var pix = $(".pictures-panel");
-            if(($(this).find("span").hasClass("fa-square-o")) && ((Profile.facebookPhotos.length + pix.length) < 6)) {
-                $(this).find("span").toggleClass("fa-square-o").toggleClass("fa-check-square-o");
+            if(($(this).find("span").hasClass("icon-square-o")) && ((Profile.facebookPhotos.length + pix.length) < 6)) {
+                $(this).find("span").toggleClass("icon-square-o").toggleClass("icon-check-square-o");
                 Profile.facebookPhotos.push($(this).find("img").attr("src"));
                 //console.log("Pushed" + $(this).find("img").attr("src"));
             }
-            else if(($(this).find("span").hasClass("fa-square-o")) && (Profile.facebookPhotos.length >= 6)){
+            else if(($(this).find("span").hasClass("icon-square-o")) && (Profile.facebookPhotos.length >= 6)){
                 swal('Relax','We only allow a total of 6 pictures');
                 //console.log("Prevented" + $(this).find("img").attr("src"));
             }
-            else if($(this).find("span").hasClass("fa-check-square-o")){
-                $(this).find("span").toggleClass("fa-square-o").toggleClass("fa-check-square-o");
+            else if($(this).find("span").hasClass("icon-check-square-o")){
+                $(this).find("span").toggleClass("icon-square-o").toggleClass("icon-check-square-o");
                 for(var i = 0; i < Profile.facebookPhotos.length; i++){
                     if(Profile.facebookPhotos[i] == $(this).find("img").attr("src")){
                         //console.log("Removed" + Profile.facebookPhotos[i]);
@@ -50,18 +80,21 @@ var Profile = {
                 //    object: this
                 //});
                 e.originalEvent.dataTransfer.setData("url", $(this).find("img").attr("src"));
+                e.originalEvent.dataTransfer.setData("index", $(this).find("img").attr("data-index"));
                 //console.log(e.originalEvent.dataTransfer.getData("url"));
             }).delegate(".profile-pic", "drop", function(e){
                 e.preventDefault();
                 var newURL = e.originalEvent.dataTransfer.getData("url");
+                var index = e.originalEvent.dataTransfer.getData("index");
                 var oldURL = $(this).find("img").attr("src");
-                //console.log({
-                //    new: newURL,
-                //    old: oldURL
-                //});
-                $(this).find("img").attr("src", newURL).removeClass("hidden");
+                console.log({
+                    new: newURL,
+                    old: oldURL,
+                    index: index
+                });
+                $(this).find("img").attr("src", newURL).attr("data-index", index).removeClass("hidden").css('display', 'block');
                 if(oldURL == ""){
-                    $(this).find("p").remove();
+                    $(this).find(".image-placeholder").remove();
                 }
             }).delegate(".profile-pic", "dragover", function(e){
                 e.preventDefault();
@@ -71,12 +104,26 @@ var Profile = {
                 e.stopPropagation();
             }
         ).undelegate(".delete-picture", "click").delegate(".delete-picture", "click", function(e){
-                Profile.deletePicture($(this).parent().parent().parent(), $(this).attr("data-url"));
+                var element = this;
+                swal({
+                        title: "Are you sure?",
+                        text: "We cannot undo this action",
+                        type: "warning",
+                        showCancelButton: true,
+                        confirmButtonColor: "#fe7447"
+                        //confirmButtonColor: "#DD6B55",
+                        //confirmButtonText: "Yes, delete it!",
+                        //closeOnConfirm: false
+                    },
+                    function(){
+                        //console.log(element, this);
+                        Profile.deletePicture($(element).parent().parent().parent(), $(element).attr("data-url"));
+                    });
             }
         );
-            //.undelegate(".picture-panel .fa-close").delegate(".picture-panel .fa-close", "click", function(e){
-            //    Profile.deletePicture($(this).parent().parent().parent());
-            //});
+        //.undelegate(".picture-panel .fa-close").delegate(".picture-panel .fa-close", "click", function(e){
+        //    Profile.deletePicture($(this).parent().parent().parent());
+        //});
 
         $(".picture-upload").click(function(e){
             $("#pic-upload").click();
@@ -96,9 +143,30 @@ var Profile = {
             Profile.finish($(this).attr("data-url"));
         });
 
-        //var url = $("#pictures-panel").attr('data-url');
-        //Utils.post(url, null, "GET", Profile.loadFromApi, Profile.loadFromApiError);
+        $(".help").click(function(e){
+            e.preventDefault();
+            introJs().start();
+        });
 
+        Profile.showDemo();
+    },
+    showDemo: function(){
+        if((localStorage.getItem('profile') == null) && ($(window).width() > 750)){
+            introJs()
+                //    .onchange(function(targetElement) {
+                //    console.log(targetElement, targetElement.id);
+                //    switch (targetElement.id)
+                //    {
+                //        case "demo-3":
+                //            Facebook.userAlbums();
+                //            break;
+                //    }
+                //})
+                .start();
+            if(typeof(Storage) !== "undefined"){
+                localStorage.setItem('profile', 'true');
+            }
+        }
     },
     loadFromApi: function(response){
         console.log(response);
@@ -112,13 +180,14 @@ var Profile = {
     finish: function(url){
         //console.log($(".picture-panel"));
         var status = $("#status").val();
+        var venue = $('#venue').val();
         var img;
         var photos = [];
         $(".picture-panel").each(function(index, e){
             img = $(e).find("img")[0];
             photos.push(img.src);
         });
-        var pPic = $(".profile-pic").find("img")[0].src;
+        var pPic = $($(".profile-pic").find("img")[0]).attr("data-index");
 
         if(pPic == location.href){
             swal("Chill!", "You need a profile picture");
@@ -127,28 +196,40 @@ var Profile = {
         var data = {
             status: status,
             photo: photos,
+            venue: venue,
             profile_pic: pPic
         };
 
+        console.log(data);
+
         Utils.post(url,
-            data, "POST", Profile.uploaded,Profile.uploadError
+            data, "POST", Profile.uploaded, Profile.uploadError
         );
 
-        //console.log(JSON.stringify(data));
+        $("#finish").button('loading');
     },
     uploaded: function(data){
         console.log(data);
+        $("#finish").button('reset');
+        if(data.status)
+            swal('Awesome', data.message);
+        else
+            swal('Oh Snap!', data.message);
     },
     uploadError: function(data){
-        console.log(data)
+        swal('Oh Snap!', "We don't know what went wrong but we couldn't finish the operation");
+        $("#finish").button('reset');
     },
     deletePicture: function(picture, url){
         //console.log(url);
-        //Utils.post(url, null, "GET", Profile.deleteSuccessful, Profile.deleteFailed);
+        Utils.post(url, null, "GET", Profile.deleteSuccessful, Profile.deleteFailed);
         picture.remove();
     },
     deleteSuccessful: function(response){
-        console.log(response);
+        if(response.status)
+            swal('Gone', "That picture is gone...");
+        else
+            swal('Oh Snap', "Something went wrong when deleting your beautiful picture");
     },
     deleteFailed: function(error){
         console.log(error);
@@ -174,7 +255,7 @@ var Profile = {
 
             reader.onload = function(e) {
                 template = $("#picture-template").html();
-                HTML = template.replace("[[src]]", e.target.result);
+                HTML = template.replace("[[src]]", e.target.result).replace("[[i]]", $(".picture-panel").length);
                 $("#pictures-panel").append(HTML);
             };
 
@@ -187,6 +268,7 @@ var Profile = {
     //},
     setPhotos: function(data){
         var url, HTML, template;
+        $("#pictures-pane").empty();
         for(var i = 0; i < data.length; i++) {
             HTML = "";
             //console.log(Facebook.photo(data[i]));
@@ -195,10 +277,10 @@ var Profile = {
                     template = $("#facebook-picture").html();
                     url = response;
                     HTML = template.replace("[[src]]", url);
-                    if ($("#pictures-pane .select-picture").length < 12) {
+                    if ($("#pictures-pane .select-picture").length < 6) {
                         $("#pictures-pane").append(HTML);
                     }
-                    else if (($("#pictures-pane .select-picture").length == 13)) {
+                    else {
                         $("#pictures-pane").append(HTML);
                         $(".select-picture").each(function (i) {
                             $(this).height($(this).width());
@@ -218,9 +300,9 @@ var Profile = {
         for(var i = 0; i < Profile.facebookPhotos.length; i++){
             //console.log(Profile.facebookPhotos[i]);
             template = $("#picture-template").html();
-            HTML += template.replace("[[src]]", Profile.facebookPhotos[i]);
+            HTML = template.replace("[[src]]", Profile.facebookPhotos[i]).replace("[[i]]", $(".picture-panel").length);
+            $("#pictures-panel").append(HTML);
         }
-        $("#pictures-panel").prepend(HTML);
     },
     loadApiPix: function(response){
         var HTML = "", template;
@@ -228,9 +310,10 @@ var Profile = {
         $("#status").val(response.status);
         for(var i = 0; i < response.photos.length; i++){
             template = $("#picture-template").html();
-            HTML += template.replace("[[src]]", response.photos[i].full_path);
+            HTML = template.replace("[[src]]", response.photos[i].full_path);
+            $("#pictures-panel").append(HTML);
         }
-        $("#pictures-panel").prepend(HTML);
+        //$("#pictures-panel").prepend(HTML);
     }
 };
 

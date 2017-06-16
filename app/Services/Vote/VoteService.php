@@ -31,10 +31,11 @@ class VoteService
         }
     }
 
-    public function  vote($profile_id) {
+    public function  vote($profile_id, $count=0) {
         $profile =Profile::find($profile_id);
         if(!is_null($profile_id)) {
-            $profile->vote =$profile->vote+config('settings.vote_counter');
+
+            $profile->vote =$profile->vote + config('settings.vote_counter') + $count;
             $profile->save();
             $this->count=$profile->vote;
             return true;
@@ -59,13 +60,15 @@ class VoteService
     }
 
 
-    public function storeRequest($profile_id,$voter_id) {
+    public function storeRequest($profile_id,$voter_id,$frequency=1) {
         //$cookie = Cookie::queue('vote', str_random(48), 2880);
         //$this->cookie =str_random(48);
+//        die(var_dump($frequency));
         $array=[
             'ip_address'=>$this->_request->ip(),
             'user_agent'=>$this->_request->header('User-Agent'),
             'cookie'=>$this->cookie,
+            'frequency'=>$frequency,
             'profile_id'=>$profile_id,
             'voter_id'=>$voter_id
         ];

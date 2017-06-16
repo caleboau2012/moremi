@@ -6,64 +6,61 @@ use App\OldCheek;
 use App\Photo;
 use App\Profile;
 use App\Services\Vote\VoteResetter;
+use App\Traits\AuthTrait;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Requests;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
+    use AuthTrait;
 
     private $_vote;
     private $_request;
 
     public function __construct(Request $request){
         $this->_request =$request;
-
+        $this->authenticate();
     }
-
-    public function index(){
-        $profiles= Profile::where('sex','!=','M')->orderBy('vote', 'desc')->paginate(4);
-        $topsix = Profile::where('sex','!=','M')->orderBy('vote', 'desc')->take(8)->get();
-       $w =OldCheek::orderBy('created_at', 'desc')->first();
-        $winner=null;
-        if($w!=null) {
-            $winner = Profile::find($w->profile_id);
-        }
-        return view('home',['profiles'=>$profiles,'topsix'=>$topsix,'winner'=>$winner, 'pastwinners'=>$this->pastWinners(), 'pagination' =>
-            ['link' => (string)$profiles->links(),
-                'current_page' => $profiles->currentPage(),
-                'total' => $profiles->total(),
-                'per_page' => $profiles->perPage()
-            ]]);
-    }
-
 
     public  function getContestants($total=10){
+//        dd($this->_request);
         $total =(int)$total;
         if($this->_request->search!=null){
             $search=$this->_request->search;
             $profiles= Profile::where('sex','!=','M')->orderBy('vote', 'desc')
-                 ->where("first_name", "LIKE","%$search%")
+                ->where("first_name", "LIKE","%$search%")
                 ->orWhere("last_name", "LIKE", "%$search%")
                 ->paginate($total);
         }else {
             $profiles = Profile::orderBy('vote', 'desc')
                 ->paginate($total);
         }
-       $data=[];
+        $data=[];
         foreach($profiles as $p){
+            if($p->venue == 0)
+                $venue = "";
+            else
+                $venue = $p->venue()->first()->name;
 
-        $data[] =[
-            'name'=>$p->first_name." ".$p->last_name,
-            'vote'=>is_null($p->vote)?0:$p->vote,
-            'id'=>$p->id,
-            'image'=> $p->photo_id!=null && $p->photo_id!=0?Photo::find($p->photo_id)->thumb_path:asset('images/default.png'),
-            'photos'=>$p->photos,
-            'about'=>$p->about,
-        ];
-       }
+            $default = ($p->sex == "male")?'images/default-male.png':'images/default-female.png';
+
+            $data[] =[
+                'name'=>$p->first_name." ".$p->last_name,
+                'vote'=>is_null($p->vote)?0:$p->vote,
+                'id'=>$p->id,
+                'venue'=>$venue,
+                'venue_id'=>$p->venue,
+                'sex'=>$p->sex,
+                'url' => route('my_profile', Crypt::encrypt($p->id)),
+                'image'=> $p->photo_id!=null && $p->photo_id!=0?Photo::find($p->photo_id)->thumb_path:$default,
+                'photos'=>$p->photos,
+                'about'=>$p->about,
+            ];
+        }
 
         return response()->json(['status'=>true,'data'=>$data,
             'pagination' =>
@@ -76,57 +73,33 @@ class HomeController extends Controller
 
     }
 
-
-    //cheek of the week
-    public function winner(){
-      $user=DB::table('profiles')->where('vote', DB::raw("(select max(`vote`) from profiles)"))->first();
-       $profile_pic =Photo::find($user->photo_id);
-        return response()->json(['status'=>true,
-            'user'=>$user,
-            'profile'=>[
-                'full_path'=>$profile_pic->full_path,
-                'thumb_path'=>$profile_pic->thumb_path
-            ],
-        ]);
-    }
-    //contestants
-    public function getAll(){
-     $profile= Profile::orderBy('vote', 'desc')->get();
-
-        $data=[];
-        $data['status']=true;
-        foreach($profile as $p ){
-            $data['user'][] =[
-                'profile'=>$p,
-                'profile_pic'=>['thumb_path'=>$p->photo->thumb_path,'full_path'=>$p->photo->full_path],
-                'photos'=>$p->photos
-            ];
-        }
-        return response()->json([$data]);
-    }
-
-    public function test(){
-        $new =new VoteResetter();
-    }
     public function seed(){
         $faker = \Faker\Factory::create();
-        for ($i = 0; $i < 10 ;$i++) {
-            $profile = new \App\Profile();
-            $profile->first_name = $faker->firstName;
-            $profile->last_name = $faker->lastName;
-            $profile->email = $faker->email;
-            $profile->phone = $faker->phoneNumber;
-            $profile->facebook_id = $faker->randomNumber(8);
-            $profile->show_private_info = 0;
+        for ($i = 1; $i < 11 ;$i++) {
+            $firstName = $faker->firstName;
+            $lastName = $faker->lastName;
+            $sex = "female";
+            $email = $faker->email;
+            $phone = $faker->phoneNumber;
+            $facebook_id = $faker->randomNumber(8);
 
-            $profile->save();
-            $user=User::create([
-               'name'=>$profile->first_name." ".$profile->last_name,
-                'email'=>$profile->email,
-                'password'=>bcrypt('password1')
-            ]);
+            $user = new User();
+            $user->name = $firstName . " " . $lastName;
+            $user->email = $email;
+            $user->password = bcrypt('password1');
+            $user->save();
+
+            $profile = new \App\Profile();
+            $profile->first_name = $firstName;
+            $profile->last_name = $lastName;
+            $profile->sex = $sex;
+            $profile->email = $email;
+            $profile->phone = $phone;
+            $profile->facebook_id = $facebook_id;
+            $profile->show_private_info = 0;
             $profile->user_id =$user->id;
-            $profile->update();
+            $profile->save();
+
             for ($a = 0; $a < 6; $a++) {
                 $full = $faker->image(config('photo.uploads.full_path'), 600, 400, 'cats');  // 'tmp/13b73edae8443990be1aa8f1a483bc27.jpg' it's a cat!
                 $thumb = $faker->image(config('photo.uploads.full_path').DIRECTORY_SEPARATOR.'thumbs', 200, 200, 'cats');  // 'tmp/13b73edae8443990be1aa8f1a483bc27.jpg' it's a cat!
@@ -139,16 +112,6 @@ class HomeController extends Controller
             }
             $profile->update(['photo_id'=>$photo->id]);
         }
-    }
-
-    public function pastWinners(){
-        $chicks =OldCheek::orderBy('created_at', 'desc')->take(10)->get();
-        return $chicks;
-
-    }
-
-    public function policy(){
-        return view('pages.terms');
     }
 
 }

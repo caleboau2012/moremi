@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Photo;
 use App\Profile;
-use app\Services\Photo\DeletePhoto;
+use App\Services\Photo\DeletePhoto;
 use App\Services\Photo\UploadPicture;
 use App\Services\UserService;
 use App\User;
@@ -40,7 +40,7 @@ class PhotoController extends Controller
 
     public function index(Request $request)
     {
-       return response()->json($request->header('authToken'));
+        return response()->json($request->header('authToken'));
     }
 
     /**
@@ -75,7 +75,7 @@ class PhotoController extends Controller
 
         //go ahead and set as feature photo
         $profile =Profile::find($this->_userId);
-       // echo $photo->id;
+        // echo $photo->id;
         $profile->photo_id=$photo->id;
         $profile->save();
 
@@ -89,71 +89,82 @@ class PhotoController extends Controller
 
     }
 
-    public  function storeImgFromString(Requests\PhotoFromStringRequest $request){
-        if(!$this->auth) {
-            return response()->json(['status'=>false,'message'=>'You must be logged in to upload photo']);
+    public  function storeImgFromString(Requests\PhotoFromStringRequest $request)
+    {
+        if (!$this->auth) {
+            return response()->json(['status' => false, 'message' => 'You must be logged in to upload photo']);
         }
-        $profile_id  =$this->_userId;
-        $upload =new UploadPicture();
-        $data =$upload->ImageFromUrlOrString($request->photo);
-        if(is_array($data) && !empty($data)){
-            foreach($data as $d){
-                $photo = new Photo();
-                $photo->full_path =$d['full_path'];
-                $photo->thumb_path =$d['thumb_path'];
-                $photo->profile_id =$profile_id;
-                $photo->save();
+
+        if ((!$request->has('photo')) && ($request->status == "") && ($request->venue == 0)){
+            return response()->json(['status' => false, 'message' => "You didn't enter anything. Why?"]);
+        }
+
+        $profile_id = $this->_userId;
+        $profile = Profile::find($profile_id);
+
+        if($request->has('photo')) {
+            $upload = new UploadPicture();
+            $data = $upload->ImageFromUrlOrString($request->photo);
+
+//        $photo_ids = [];
+            if (is_array($data) && !empty($data)) {
+                foreach ($data as $d) {
+                    $photo = new Photo();
+                    $photo->full_path = $d['full_path'];
+                    $photo->thumb_path = $d['thumb_path'];
+                    $photo->profile_id = $profile_id;
+                    $photo->save();
+                }
+            }
+
+            $photos = $profile->photos->toArray();
+
+            if ($request->has('profile_pic')) {
+                $profile->photo_id = $photos[$request->profile_pic]['id'];
             }
         }
 
-        $profile =Profile::find($this->_userId);
-        if($request->has('profile_pic')){
-            $upl =new UploadPicture();
-            $d =[$request->profile_pic];
-            $data =$upl->ImageFromUrlOrString($d);
-            if(!is_null($data) && !empty($data)) {
-                $profile_ph = new Photo();
-                $profile_ph->full_path = $data[0]['full_path'];
-                $profile_ph->thumb_path = $data[0]['thumb_path'];
-                $profile_ph->profile_id = $profile_id;
-                $profile_ph->save();
-                $profile->photo_id = $profile_ph->id;
-            }
-        }
-        //go ahead and set as feature photo
-        if($request->status!=null) {
+        if($request->status !=null) {
             $profile->about = $request->status;
         }
+        if($request->venue != null)
+            $profile->venue = $request->venue;
+
         $profile->save();
         return response()->json(['status'=>true,
-            'message'=>"Your photo was uploaded successfully",
-            'photo'=>[
-                'id'=>isset($photo->id)?$photo->id:null,
-                'thumb_path'=>isset($photo)?asset($photo->thumb_path):null,
-                'full_path'=>isset($photo)?asset($photo->full_path):null]]);
-
+            'message'=>"Your profile was saved successfully",
+        ]);
     }
 
 
-    public function storefb(Requests\FacebookUploadRequest $request){
-        if(!$this->auth) {
-            return response()->json(['status'=>false,'message'=>'You must be logged in to upload photo']);
+    public function storefb($profile, $request){
+//        dd($request->cover);
+        if (!$profile){
+            return false;
         }
-        $profile_id  =$this->_userId;
 
-        foreach($request->urls as $url){
-            $photo = new Photo();
-            $photo->full_path =$url;
-            $photo->thumb_path =$url;
-            $photo->profile_id =$profile_id;
-            $photo->save();
+        $photo_id = null;
+
+        if($request->has('cover')) {
+            $upload = new UploadPicture();
+            $data = $upload->ImageFromUrlOrString([$request->cover['source']]);
+
+            if (is_array($data) && !empty($data)) {
+                foreach ($data as $d) {
+                    $photo = new Photo();
+                    $photo->full_path = $d['full_path'];
+                    $photo->thumb_path = $d['thumb_path'];
+                    $photo->profile_id = $profile->id;
+                    $photo->save();
+                    $photo_id = $photo->id;
+                }
+            }
+
+            $profile->photo_id = $photo_id;
         }
-     $p =Photo::where('full_path',$request->profile_pic)->where('profile_id',$profile_id)->first();
-        $profile =Profile::find($profile_id);
-        $profile->about=$request->status;
-        $profile->photo_id =$p->id;
+
         $profile->save();
-        return response()->json(['status'=>true,'message'=>'Pictures were saved successfully']);
+        return $profile;
     }
 
     /**
@@ -204,7 +215,7 @@ class PhotoController extends Controller
             foreach($photos as $photo){
                 //$this->upload($uphoto);
             }
-            }
+        }
         if(count($photos)>$spaceRemain  ) //& request does not have profile pic
         {
             $photoToupload = [];
@@ -218,11 +229,11 @@ class PhotoController extends Controller
             $a = 1;
             foreach ($profile->photos as $p) {
                 while ($a >= count($spaceRemain) && $p->id!=$profile->photo_id ){
-                        ///delete pic
+                    ///delete pic
                 }
                 ///upload all
 
-        }
+            }
 
         }
     }
@@ -237,26 +248,32 @@ class PhotoController extends Controller
      */
     public function destroy($id)
     {
+        $status = false;
+
         if($this->_userId!='') {
             $delete = new DeletePhoto($this->_userId, $id);
-            $delete->delete();
+            $status = $delete->delete();
         }
 
+        if($status)
+            return response()->json(['status' => true, 'msg' => 'Deletion Successful']);
+        else
+            return response()->json(['status' => false, 'msg' => 'Nothing was deleted']);
     }
 
     public  function updateStatus(Request $request){
-            $validator = Validator::make($request->all(), [
-                'status' => 'required|max:255',
-            ]);
+        $validator = Validator::make($request->all(), [
+            'status' => 'required|max:255',
+        ]);
 
-            if ($validator->fails()) {
+        if ($validator->fails()) {
             return response()->json(['status'=>false,'msg'=>'Invalid status update']);
-            }
+        }
         $profile =Profile::find($this->_userId);
         $profile->about =$request->status;
         $profile->update();
         return response()->json(['status'=>true,'msg'=>'Status updated successfully']);
 
-        }
+    }
 
 }

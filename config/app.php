@@ -39,7 +39,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://moremi.dev'),
+    'url' => env('APP_URL', 'http://moree.dev'),
 
     /*
     |--------------------------------------------------------------------------
@@ -162,7 +162,7 @@ return [
          */
         Intervention\Image\ImageServiceProvider::class,
         App\Providers\HelperServiceProvider::class,
-
+        Unicodeveloper\Paystack\PaystackServiceProvider::class
 
 
     ],
@@ -200,7 +200,8 @@ return [
         'Password' => Illuminate\Support\Facades\Password::class,
         'Queue' => Illuminate\Support\Facades\Queue::class,
         'Redirect' => Illuminate\Support\Facades\Redirect::class,
-        'Redis' => Illuminate\Support\Facades\Redis::class,
+//        'Redis' => Illuminate\Support\Facades\Redis::class,
+        'LRedis' => 'Illuminate\Support\Facades\Redis',
         'Request' => Illuminate\Support\Facades\Request::class,
         'Response' => Illuminate\Support\Facades\Response::class,
         'Route' => Illuminate\Support\Facades\Route::class,
@@ -215,8 +216,8 @@ return [
         /**
          * Custom alias
          */
-        'Image' => Intervention\Image\Facades\Image::class
-
+        'Image' => Intervention\Image\Facades\Image::class,
+        'Paystack' => Unicodeveloper\Paystack\Facades\Paystack::class,
 
     ],
 

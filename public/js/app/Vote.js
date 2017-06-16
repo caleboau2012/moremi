@@ -3,19 +3,13 @@
  */
 Vote ={
     CONSTANT: {
-        url: Routes.Vote
+        url: Routes.Vote,
+        profileID: null
     },
 
     init: function(){
-        //$('#contestant-parent').on('click','.vote-c', function(e){
-        //    //$('.vote-c').click( function(e){
-        //    e.preventDefault();
-        //    var id =$(this).attr('data-id');
-        //    $(this).attr('disabled');
-        //    Vote.voteProfile(id,Vote.showResponse,this);
-        //});
-
-        $(document).delegate('.vote-c-tw', 'click', function(e){
+        console.log("Clicked");
+        $(document).delegate('.vote-btn', 'click', function(e){
             e.preventDefault();
             var id =$(this).attr('data-id');
 
@@ -30,6 +24,7 @@ Vote ={
 
     voteProfile : function (id, callback, element) {
         var data ={'profile_id':id};
+        Vote.CONSTANT.profileID = id;
         Vote.sendVote(data,callback,element);
     },
 
@@ -52,30 +47,67 @@ Vote ={
             }
         });
     },
-
-    //showResponse: function (data, element) {
-    //    if(data.status==false){
-    //        swal('Oops..',data.msg,'error');
-    //    }
-    //    if(data.status==true){
-    //        swal('Success',data.msg,'success');
-    //        //Home.fetchCheeks(); //re arrange profile bar
-    //    }
-    //},
     increaseCount: function(data, element){
         if(data.status==false){
-            swal('Oops..',data.msg,'error');
+            if(!data.auth){
+                swal({
+                    title: "Ouch...",
+                    text: data.msg,
+                    type: "error",
+                    confirmButtonColor: "#fe7447"
+                });
+            }
+            else if(!data.profile) {
+                swal({
+                        title: "Ouch...",
+                        text: data.msg,
+                        type: "warning",
+                        showCancelButton: true,
+                        confirmButtonColor: "#fe7447"
+                    },
+                    function(){
+                        $("#accountModal").modal('show');
+                    });
+            }
+            else{
+                swal({
+                        title: "Ouch...",
+                        text: data.msg,
+                        type: "warning",
+                        showCancelButton: true,
+                        confirmButtonColor: "#fe7447",
+                        confirmButtonText: "Pay!"
+                    },
+                    function(){
+                        $("#votePayModal").modal('show');
+                    });
+            }
         }
-        if(data.status==true){
-            swal('Success',data.msg,'success');
-            var count = parseInt($(element).parent().find(".vote-count span")[0].innerHTML) + 1;
-            //console.log({
-            //    element: element,
-            //    count: count
-            //});
+        else if(data.status){
+            swal({
+                    title: "Success",
+                    text: data.msg,
+                    type: "success",
+                    showCancelButton: true,
+                    confirmButtonColor: "#fe7447"
+                },
+                function(){
+                });
 
-            $(element).parent().find(".vote-count span")[0].innerHTML = count;
-            //Home.fetchCheeks(); //re arrange profile bar
+            // swal('Success',data.msg,'success');
+
+            if(typeof $(element).parent().parent().find(".vote-count")[0] != "undefined"){
+                var count = parseInt($(element).parent().parent().find(".vote-count")[0].innerHTML) + 1;
+                $(element).parent().parent().find(".vote-count")[0].innerHTML = count;
+            }
+            else{
+                var count = parseInt($(".vote-count")[0].innerHTML) + 1;
+                $(".vote-count")[0].innerHTML = count;
+            }
+
+            //App.fetchCheeks(); //re arrange profile bar
         }
     }
 };
+
+$(document).ready(Vote.init);
