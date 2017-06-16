@@ -182,4 +182,8 @@ class UIController extends Controller
         return view('terms');
     }
 
+    public function faq(){
+        return view('faq');
+    }
+
 }
