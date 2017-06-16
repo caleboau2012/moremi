@@ -79,16 +79,19 @@ class PaymentController extends Controller
         }
 
         $vote->vote($payment->voted_profile_id, $count);
-        $vote->storeRequest($payment->voted_profile_id,$this->_userId);
+        $vote->storeRequest($payment->voted_profile_id,$this->_userId,(config('settings.vote_counter') +$count));
         $msg =[
             'status'=>true,
             'auth' => true,
             'free' => false,
             'profile' => true,
-            'msg'=>'Photo voted successfully',
+            'msg'=>'Picked successfully',
             'count'=>$vote->count
         ];
 
-        return redirect()->route('home');
+//        dd(url()->previous());
+//
+//        return redirect()->back();
+        return redirect()->route('app');
     }
 }

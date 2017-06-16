@@ -11,7 +11,7 @@ class Voter extends Model
 
     protected $dates = ['deleted_at'];
 
-    protected $fillable = ['ip_address','last_name','phone','email','vote', 'voter_id',
+    protected $fillable = ['ip_address','last_name','phone','email','frequency','vote', 'voter_id',
         'user_agent','cookie','profile_id','lat','lon'];
 
 

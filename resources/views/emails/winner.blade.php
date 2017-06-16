@@ -1,78 +1,99 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <style type="text/css">
-        img {
-            max-width: 100%;
-        }
-        body {
-            -webkit-font-smoothing: antialiased; -webkit-text-size-adjust: none; width: 100% !important; height: 100%; line-height: 1.6em;
-        }
-        body {
-            background-color: #f6f6f6;
-        }
-    </style>
-</head>
 
-<body  style="background: #f3f3f3; padding: 10px;">
+@extends('emails.layout')
+@section('content')
+    <tr>
+        <td bgcolor="#ffffff" style="padding:40px 30px 40px 30px">
+            <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                <tr>
+                    <td style="text-transform: capitalize; color:#fe574a;font-family:Arial,sans-serif;font-size:24px">
+                        <b>Dear {{$user->first_name}} {{$user->last_name}},</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="padding:20px 0 30px 0;color:#153643;font-family:Arial,sans-serif;font-size:16px;line-height:25px">
+                        Congratulations!!! , You are the new <strong>pick of the week</strong> on <a href="{{route('index')}}" target="_blank">Moree.me</a>,
+                        <br> by a total of<strong>  {{ $poll->total }} picks.</strong><br> <br> <span style="color:#f59c43"> Find below, the ticket to your spot ,****please note that the ticket is only valid if you go with your new connection (<i style="text-transform: capitalize">{{ $voter->first_name }} {{$voter->last_name}}</i>)<br><br></span>
+                        Log into your account now to connect with your new connection.
+                    </td>
+                </tr>
 
-<div class="body-wrap" style="padding: 20px 10px; font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; width: 80%; background-color: #ffffff; margin: 5px auto 10px">
-    <h3 style="text-transform: capitalize;">Dear {{$user->first_name}} {{$user->last_name}}</h3>
-    <p>
-        You are the winner of this week's contest!.
-    </p>
-    <table style="width: 100%;">
-        <tbody>
-        <tr style="text-align: left; margin-top: 0; padding: 6px; width: 100%;">
-            <td colspan="2" style="color: #fff; background: #f82226; font-family: 'Roboto', 'Helvetica Neue',Helvetica,Arial,sans-serif; padding: 7px;">Poll's Details</td>
-        </tr>
-        <tr style="margin-left: 0;">
-            <td width="35%" style="font-family: 'Roboto', 'Helvetica Neue',Helvetica,Arial,sans-serif; text-align: right; color: #000; font-weight: 600; background: #DCDCDC; padding: 5px 10px 5px 7px; text-transform: capitalize;">
-                Total votes
-            </td>
-            <td style="text-transform: capitalize; font-family: 'Roboto', 'Helvetica Neue',Helvetica,Arial,sans-serif; background: #E7E7E7; padding-left: 5px;">
-                {{ $poll->total }}
-            </td>
-        </tr>
-        <tr style="margin-left: 0;">
-            <td width="35%" style="font-family: 'Roboto', 'Helvetica Neue',Helvetica,Arial,sans-serif; text-align: right; color: #000; font-weight: 600; background: #DCDCDC; padding: 5px 10px 5px 7px; text-transform: capitalize;">
-                Highest Voter
-            </td>
-            <td style="text-transform: capitalize; font-family: 'Roboto', 'Helvetica Neue',Helvetica,Arial,sans-serif; background: #E7E7E7; padding-left: 5px;">
-                {{ $voter->first_name }} {{$voter->last_name}}
-            </td>
-        </tr>
-        <tr style="margin-left: 0;">
-            <td width="35%" style="font-family: 'Roboto', 'Helvetica Neue',Helvetica,Arial,sans-serif; text-align: right; color: #000; font-weight: 600; background: #DCDCDC; padding: 5px 10px 5px 7px; text-transform: capitalize;">
-                Location
-            </td>
-            <td style="text-transform: capitalize; font-family: 'Roboto', 'Helvetica Neue',Helvetica,Arial,sans-serif; background: #E7E7E7; padding-left: 5px;">
-                {{$location}}
-            </td>
-        </tr>
-        <tr style="margin-left: 0;">
-            <td width="35%" style="font-family: 'Roboto', 'Helvetica Neue',Helvetica,Arial,sans-serif; text-align: right; color: #000; font-weight: 600; background: #DCDCDC; padding: 5px 10px 5px 7px; text-transform: capitalize;">
-                Expiry Date
-            </td>
-            <td style="text-transform: capitalize; font-family: 'Roboto', 'Helvetica Neue',Helvetica,Arial,sans-serif; background: #E7E7E7; padding-left: 5px;">
-               {{$expiryDate->format('l, d F, Y')}}
-            </td>
-        </tr>
-        </tbody>
-    </table>
+                <tr>
+                    <td style="padding:10px 0 30px 0;color:#153643;font-family:Arial,sans-serif;font-size:16px;line-height:25px;text-align:center">
+                        <a href="{{route('profile')}}" style="padding:10px 30px 10px 30px;color:#ffffff;font-family:Arial,sans-serif;font-size:16px;line-height:25px;background-color:#fe574a;text-decoration:none">LOG IN</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                            <tr>
+                                <td width="260" valign="top" style="border-bottom:solid 1px #ededed">
+                                    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                        <tr>
+                                            <td style="padding:25px 0 13px 0;color:#153643;font-family:Arial,sans-serif;font-size:16px;line-height:20px;border-bottom:solid 1px #ededed">
+                                                Reference :
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding:25px 0 13px 0;color:#153643;font-family:Arial,sans-serif;font-size:16px;line-height:20px;border-bottom:solid 1px #ededed">
+                                                Spot :
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding:25px 0 13px 0;color:#153643;font-family:Arial,sans-serif;font-size:16px;line-height:20px;border-bottom:solid 1px #ededed">
+                                                Ticket Id :
+                                            </td>
+                                        </tr>
 
-</div>
+                                        <tr>
+                                            <td style="padding:25px 0 13px 0;color:#153643;font-family:Arial,sans-serif;font-size:16px;line-height:20px;border-bottom:solid 1px #ededed">
+                                                Admits :
+                                            </td>
+                                        </tr>
 
-<div style="width: 80%; margin : 0 auto;">
-    <p style="color: #8e8d89; text-align: center;">
-        You're receiving these emails because you signed up on Moree.me.
-        Moree.me would never send you emails asking you to enter your account information on any site other than www.moree.me
-    </p>
-    <p style="color: #8e8d89; text-align: center;">
-        Copyright © 2017 Moree.me All rights reserved.
-    </p>
-</div>
-</body>
-</html>
+                                        <tr>
+                                            <td style="padding:25px 0 13px 0;color:#153643;font-family:Arial,sans-serif;font-size:16px;line-height:20px">
+                                                Expires :
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+
+                                <td width="260" valign="top" style="border-bottom:solid 1px #ededed">
+                                    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                        <tr>
+                                            <td style="text-transform: capitalize; padding:25px 0 13px 0;color:#153643;font-family:Arial,sans-serif;font-size:16px;line-height:20px;border-bottom:solid 1px #ededed">
+                                                <b>{{$reference}}</b>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="text-transform: capitalize; padding:25px 0 13px 0;color:#153643;font-family:Arial,sans-serif;font-size:16px;line-height:20px;border-bottom:solid 1px #ededed">
+                                                <b>{{$location}}</b>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding:25px 0 13px 0;color:#153643;font-family:Arial,sans-serif;font-size:16px;line-height:20px;border-bottom:solid 1px #ededed">
+                                                <b>{{$ticket}}</b>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td style="padding:25px 0 13px 0;color:#153643;font-family:Arial,sans-serif;font-size:16px;line-height:20px;border-bottom:solid 1px #ededed">
+                                                <b>Two people</b>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td style="padding:25px 0 13px 0;color:#153643;font-family:Arial,sans-serif;font-size:16px;line-height:20px">
+                                                <b> {{$expiryDate->format('l, d F, Y')}}</b>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+@endsection

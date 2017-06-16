@@ -8,7 +8,8 @@ Vote ={
     },
 
     init: function(){
-        $(document).delegate('.vote-c-tw', 'click', function(e){
+        console.log("Clicked");
+        $(document).delegate('.vote-btn', 'click', function(e){
             e.preventDefault();
             var id =$(this).attr('data-id');
 
@@ -52,7 +53,8 @@ Vote ={
                 swal({
                     title: "Ouch...",
                     text: data.msg,
-                    type: "error"
+                    type: "error",
+                    confirmButtonColor: "#fe7447"
                 });
             }
             else if(!data.profile) {
@@ -61,7 +63,7 @@ Vote ={
                         text: data.msg,
                         type: "warning",
                         showCancelButton: true,
-                        confirmButtonColor: "#DD6B55",
+                        confirmButtonColor: "#fe7447"
                     },
                     function(){
                         $("#accountModal").modal('show');
@@ -73,7 +75,7 @@ Vote ={
                         text: data.msg,
                         type: "warning",
                         showCancelButton: true,
-                        confirmButtonColor: "#DD6B55",
+                        confirmButtonColor: "#fe7447",
                         confirmButtonText: "Pay!"
                     },
                     function(){
@@ -82,15 +84,30 @@ Vote ={
             }
         }
         else if(data.status){
-            swal('Success',data.msg,'success');
-            var count = parseInt($(element).parent().find(".vote-count span")[0].innerHTML) + 1;
-            //console.log({
-            //    element: element,
-            //    count: count
-            //});
+            swal({
+                    title: "Success",
+                    text: data.msg,
+                    type: "success",
+                    showCancelButton: true,
+                    confirmButtonColor: "#fe7447"
+                },
+                function(){
+                });
 
-            $(element).parent().find(".vote-count span")[0].innerHTML = count;
-            //Home.fetchCheeks(); //re arrange profile bar
+            // swal('Success',data.msg,'success');
+
+            if(typeof $(element).parent().parent().find(".vote-count")[0] != "undefined"){
+                var count = parseInt($(element).parent().parent().find(".vote-count")[0].innerHTML) + 1;
+                $(element).parent().parent().find(".vote-count")[0].innerHTML = count;
+            }
+            else{
+                var count = parseInt($(".vote-count")[0].innerHTML) + 1;
+                $(".vote-count")[0].innerHTML = count;
+            }
+
+            //App.fetchCheeks(); //re arrange profile bar
         }
     }
 };
+
+$(document).ready(Vote.init);

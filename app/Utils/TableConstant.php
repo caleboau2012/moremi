@@ -25,6 +25,9 @@ class ProfileConstant{
     const SEX = 'sex';
     const PHOTO = 'photo_id';
     const ABOUT = 'about';
+
+    const MALE = 'male';
+    const FEMALE = 'female';
 }
 
 class OldCheekConstant{
@@ -32,7 +35,7 @@ class OldCheekConstant{
     const WON_PHOTO = 'won_photo';
     const FACEBOOK_POST = 'facebook_post_id';
     const VOTER = 'voter_id';
-
+    const VOTES = 'votes';
 }
 
 class ConnectionConstant{
@@ -40,4 +43,14 @@ class ConnectionConstant{
     const NAME = 'name';
     const PHOTO = 'photo';
     const MESSAGES = 'messages';
+}
+
+class TicketConstant{
+    const CODE = 'code';
+    const VENUE_ID = 'venue_id';
+}
+
+class VotingConfigConstant{
+    const STARTED_AT = 'started_at';
+    const TERMINATED_AT = 'terminated_at';
 }

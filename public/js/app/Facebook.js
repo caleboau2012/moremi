@@ -8,7 +8,7 @@ var Facebook = {
     profile: {},
     authResponse: {},
     init: function(){
-        $("#login").click(Facebook.login);
+        $("#login, .login").click(Facebook.login);
     },
     login: function(){
         FB.login(function(response) {
@@ -19,25 +19,27 @@ var Facebook = {
     status: function(){
         FB.getLoginStatus(function(response) {
             if(response.status == "connected"){
-                console.log(response);
                 Facebook.authResponse = response.authResponse;
-                FB.api('/me?fields=id,first_name,last_name,email,gender', function(response) {
+                FB.api('/me?fields=id,first_name,last_name,email,gender,cover', function(response) {
                     Facebook.profile = response;
 
                     if((Profile.checkToken())){
-                        var url = $("#login").attr("data-url");
+                        var url = $("#login, .login").attr("data-url");
 
-                        Utils.post(url,
-                            {
-                                first_name: response.first_name,
-                                last_name: response.last_name,
-                                email: response.email,
-                                sex: response.gender,
-                                facebook_id: response.id
-                            }, "POST", Facebook.saveToken,Facebook.loginError
-                        );
+                        if(typeof url != "undefined")
+                            Utils.post(url,
+                                {
+                                    first_name: response.first_name,
+                                    last_name: response.last_name,
+                                    email: response.email,
+                                    sex: response.gender,
+                                    facebook_id: response.id,
+                                    cover: response.cover
+                                }, "POST", Facebook.saveToken,Facebook.loginError
+                            );
                     }
                     else{
+                        // console.log("The Login failed");
                         $(".profile-actions").addClass("hidden");
                         $("#login").removeClass("hidden");
                     }
@@ -52,18 +54,14 @@ var Facebook = {
     },
     loginError: function () {
         $(".profile-actions").addClass("hidden");
-        //swal('Error','Error logging you in with facebook','error');
+        swal('Error','Error logging you in with facebook','error');
     },
     saveToken: function(response){
         Profile.saveToken(response);
 
-        $(".profile-actions").addClass("hidden");
-        if(location.pathname == "/profile"){
-            $("#facebook-fetch").removeClass("hidden");
-        }
-        else{
-            $("#login-cheek").removeClass("hidden");
-        }
+        window.location = $('#app-url').attr('data-url-app');
+
+        console.log("strange", $('#app-url').attr('data-url-app'));
     },
     convertPhoto: function(url, callback){
             var xhr = new XMLHttpRequest();

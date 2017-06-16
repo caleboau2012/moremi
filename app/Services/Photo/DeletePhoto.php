@@ -6,7 +6,7 @@
  * Time: 12:57 AM
  */
 
-namespace app\Services\Photo;
+namespace App\Services\Photo;
 
 
 use App\Photo;
@@ -23,18 +23,16 @@ class DeletePhoto
         $this->photo_id=$id;
     }
 
-
-
     public function delete(){
-        if($this->IsNotProfilePhoto() && $this->PhotoOwnerCheck()){
+        if($this->ValidateDelete() && $this->PhotoOwnerCheck()){
             Photo::destroy($this->photo_id);
             return true;
         }
-
+        return false;
     }
 
     public function ValidateDelete(){
-    $profile =Profile::where('profile_id',$this->user_id)->first();
+    $profile =Profile::where('user_id',$this->user_id)->first();
       if($profile->photo_id==$this->photo_id) {
           $this->msg="Can not delete profile photo. You have to change it before you can delete it";
           return false;
