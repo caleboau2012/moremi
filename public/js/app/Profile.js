@@ -147,22 +147,11 @@ var Profile = {
             e.preventDefault();
             introJs().start();
         });
-
-        Profile.showDemo();
     },
     showDemo: function(){
+        console.log(localStorage.getItem('profile'));
         if((localStorage.getItem('profile') == null) && ($(window).width() > 750)){
-            introJs()
-                //    .onchange(function(targetElement) {
-                //    console.log(targetElement, targetElement.id);
-                //    switch (targetElement.id)
-                //    {
-                //        case "demo-3":
-                //            Facebook.userAlbums();
-                //            break;
-                //    }
-                //})
-                .start();
+                introJs().start();
             if(typeof(Storage) !== "undefined"){
                 localStorage.setItem('profile', 'true');
             }

@@ -42,7 +42,10 @@ use App\User;
         $facebook_id =$facebookUser->facebook_id; //facebook Id
          $authUser =Profile::where('facebook_id', $facebook_id)->first();
          if($authUser) {
-             return $authUser;
+             return [
+                 "route" => route("app"),
+                 "profile" => $authUser
+             ];
          }
          $user = new User();
          $user->name = $facebookUser->first_name." ".$facebookUser->last_name;
@@ -63,7 +66,10 @@ use App\User;
          $photoController = new PhotoController($facebookUser);
          $profile = $photoController->storefb($profile, $facebookUser);
 
-         return $profile;
+         return [
+             "route" => route('profile'),
+             "profile" => $profile
+         ];
      }
 
 }

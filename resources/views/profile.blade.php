@@ -48,7 +48,7 @@
         <div class="row">
             <div class="col-md-8 bg-white">
                 <div class=" profile-court">
-                    <div class="row" data-step="2" data-intro="Your pictures show here">
+                    <div class="row" data-step="2" data-intro="These are your pictures">
                         <div class="col-md-6" data-step="5" data-intro="Drag a picture here to use as your profile picture">
                             <div class="profile-pic">
                                 <div class="row">
@@ -318,7 +318,7 @@
 
         })(jQuery);
 
-
+        Profile.showDemo();
     </script>
 
 @endsection

@@ -59,9 +59,9 @@ var Facebook = {
     saveToken: function(response){
         Profile.saveToken(response);
 
-        window.location = $('#app-url').attr('data-url-app');
+        window.location = response.user.route;
 
-        console.log("strange", $('#app-url').attr('data-url-app'));
+        //console.log(response);
     },
     convertPhoto: function(url, callback){
             var xhr = new XMLHttpRequest();
