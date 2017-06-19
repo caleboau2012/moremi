@@ -5,7 +5,7 @@
             <table border="0" cellpadding="0" cellspacing="0" width="100%">
                 <tr>
                     <td style="color:#fe574a;font-family:Arial,sans-serif;font-size:24px">
-                        <b style="text-transform: capitalize; ">Dear {{$picked->first_name}} {{$picked->last_name}},</b> you have been picked <b>{{$poll->total }}</b> times today
+                        <b style="text-transform: capitalize; ">Dear {{$picked->first_name}} {{$picked->last_name}},</b> you were picked <b>{{$poll->total }}</b> time{{($poll->total > 1)?"s":""}} today
                     </td>
                 </tr>
                 <tr>
