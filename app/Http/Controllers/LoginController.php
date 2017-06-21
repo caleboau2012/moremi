@@ -19,15 +19,17 @@ class LoginController extends Controller
         $userService = new UserService();
         $user = $userService->findOrCreate($request);
         if (!empty($user)) {
-            $token = customencrypt($user->id);
+            $token = customencrypt($user['profile']->id);
             $data=[
                 'authToken'=>$token
             ];
             session($data);
-            return response()->json(['status' => true,
+            return response()->json([
+                'status' => true,
                 'message' => 'Authentication successful',
                 'user' => $user,
-                'authToken' =>$token]);
+                'authToken' =>$token
+            ]);
         }
     }
 

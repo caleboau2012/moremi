@@ -299,7 +299,7 @@
                                 <img class="img-responsive" width="20%;" src="{{asset('images/counter/table.png')}}">
                             </div>
                             <div class="st-funfact-counter" ><span class="st-ff-count" data-from="0" data-to="{{$dates->count()}}" data-runit="1">0</span>+</div>
-                            <strong class="funfact-title">Sponsored Dates</strong>
+                            <strong class="funfact-title">Sponsored Hangouts</strong>
                         </div><!-- .funfact -->
                     </div>
                 </div>

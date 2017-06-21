@@ -48,7 +48,7 @@
         <div class="row">
             <div class="col-md-8 bg-white">
                 <div class=" profile-court">
-                    <div class="row" data-step="2" data-intro="Your pictures show here">
+                    <div class="row" data-step="2" data-intro="These are your pictures">
                         <div class="col-md-6" data-step="5" data-intro="Drag a picture here to use as your profile picture">
                             <div class="profile-pic">
                                 <div class="row">
@@ -164,7 +164,7 @@
                                 <div class="col-xs-12 col-sm-4">
                                     <br>
                                     <a target="_blank" class="btn btn-block bg-primary"
-                                       href="https://twitter.com/home?status=Win%20a%20date%20with%20me%20on%20Moree.me%20{{route("my_profile", \Illuminate\Support\Facades\Crypt::encrypt($profile->id))}}">
+                                       href="https://twitter.com/home?status=Hangout%20with%20me%20for%20free%20on%20Moree.me%20{{route("my_profile", \Illuminate\Support\Facades\Crypt::encrypt($profile->id))}}%20.">
                                         Share on <span class="icon icon-twitter"></span>
                                     </a>
                                 </div>
@@ -318,7 +318,7 @@
 
         })(jQuery);
 
-
+        Profile.showDemo();
     </script>
 
 @endsection
