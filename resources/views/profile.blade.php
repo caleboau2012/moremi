@@ -164,7 +164,7 @@
                                 <div class="col-xs-12 col-sm-4">
                                     <br>
                                     <a target="_blank" class="btn btn-block bg-primary"
-                                       href="https://twitter.com/home?status=Win%20a%20date%20with%20me%20on%20Moree.me%20{{route("my_profile", \Illuminate\Support\Facades\Crypt::encrypt($profile->id))}}">
+                                       href="https://twitter.com/home?status=Hangout%20with%20me%20for%20free%20on%20Moree.me%20{{route("my_profile", \Illuminate\Support\Facades\Crypt::encrypt($profile->id))}}%20.">
                                         Share on <span class="icon icon-twitter"></span>
                                     </a>
                                 </div>

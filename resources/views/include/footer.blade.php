@@ -34,7 +34,7 @@
                 <p>
                     Spots are where the hangouts happen. From Cinemas to restaurants, to parties. Select your preferred spot in your profile.
                     <br>
-                    The number of spots we provided for your dates will continue to increase as we thrive to bring you the best money can buy for free :)
+                    The number of spots we provide for your hangouts will continue to increase as we thrive to bring you the best money can buy for free :)
                 </p>
 
             </section>
