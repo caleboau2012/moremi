@@ -44,7 +44,6 @@ use App\User;
          if($authUser) {
              return $authUser;
          }
-
          DB::transaction(function () use ($facebookUser) {
              $user = new User();
              $user->name = $facebookUser->first_name." ".$facebookUser->last_name;
@@ -67,7 +66,6 @@ use App\User;
 
              return $profile;
          });
-
      }
 
 }
