@@ -91,9 +91,9 @@
                         </div>
                         <div class="col-md-6">
                             <h4 class="no-margin">Gallery</h4>
-                            <p class="small text-muted no-margin">Use best picture as profile picture</p>
+                            <p class="small text-muted no-margin">Use your best picture as profile picture</p>
                             {{--Previous DP--}}
-                            <div class="row" id="pictures-panel">
+                            <div class="row" id="pictures-panel" data-url="{{route("photo_upload")}}">
                                 @if(!empty($photos))
                                     <div class="masonry_items" id="masonry_items" data-step="4" data-intro="Your pictures show here">
                                     @foreach($photos as $i => $photo)
@@ -127,7 +127,7 @@
                     <div class="profile-form">
                         <div>
                             <div class="row">
-                                <div class="col-sm-6">
+                                <div class="col-sm-6 hidden">
                                     <div class="form-group">
                                         <div data-step="6" data-position="top" data-intro="Don't forget to change your status, this appears on your public profile.">
                                             <label for="status" class="control-label"><strong>Status</strong></label>
@@ -136,7 +136,7 @@
                                     </div>
                                 </div>
 
-                                <div class="col-sm-6">
+                                <div class="col-sm-6 hidden">
                                     <div class="form-group" data-step="7" data-position="top" data-intro="It is important to select your preferred spot, this determines where your date will take place">
                                         <label for="venue"><strong>Preferred Spot</strong></label>
                                         <select name="venue" id="venue" class="form-control">

@@ -15,8 +15,8 @@ var Profile = {
         $('.drag-pp').click(function () {
             var _src = $(this).attr('data-img-src');
             var _index = $(this).attr('data-img-index');
-           $('#profile-active-dp').attr('src', _src).attr('data-index', _index);
-           $('#finish').trigger('click');
+            $('#profile-active-dp').attr('src', _src).attr('data-index', _index);
+            Profile.finish($('#pictures-panel').attr("data-url"));
         });
 
         /*masonry*/
@@ -244,12 +244,14 @@ var Profile = {
     uploaded: function(data){
         // console.log(data);
         $("#finish").button('reset');
-        if(data.status)
+        if(data.status){
             swal({
                 title: "Awesome",
                 text: data.message,
                 confirmButtonColor: "#fe7447"
             });
+            $(".profile-dp-img").attr('src', $('#profile-active-dp').attr('src'));
+        }
         else
             swal({
                 title: "Oh Snap!",
