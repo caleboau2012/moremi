@@ -10,8 +10,9 @@ namespace App\Services;
 use App\Http\Controllers\PhotoController;
 use App\Profile;
 use App\User;
+use Illuminate\Support\Facades\DB;
 
- class UserService
+class UserService
 {
 
 
