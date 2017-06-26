@@ -34,7 +34,7 @@ var Chat = {
         console.log(id);
 
         $(".chat-box").addClass("hidden");
-        $("#" + id).removeClass("hidden");
+        $("#" + id).removeClass("hidden").css();
     },
     send: function(element){
         var token = $("#_token").text();

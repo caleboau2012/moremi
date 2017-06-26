@@ -7,6 +7,7 @@
 @section('stylesheets')
     @parent
     {{-- Drag Drop JS --}}
+    <link href="{{asset('css/chat.css')}}" rel="stylesheet">
     <script src="{{asset("js/utils/DragDropTouch.js")}}"></script>
 @endsection
 
@@ -245,56 +246,38 @@
                         @endforeach
                     </div>
 
-                    {{--CHAT BOX--}}
-                    <div id="chat-container">
-                        <div class="chat-box">
-                            <div class="chat-container-header text-center">
-                                <h5 class="no-margin text-white">
-                                    <span class="icon icon-lightning"></span>Chat Box
-                                </h5>
-                            </div>
-                        </div>
+                    {{-- Voters --}}
+                    <div class="row table-responsive">
+                        <h4 class="text-primary text-center">People who picked you</h4>
 
-                        @foreach($connections as $c)
-                            <div class="hidden chat-box" id="messages-between-{{$c[\TableConstant::PROFILE_ID]}}-{{$c[\ConnectionConstant::RECIPIENT_ID]}}">
-                                <div class="chat-container-header text-center">
-                                    <h3 class="panel-title text-capitalize">
-                                        @if($c[\ConnectionConstant::PHOTO])
-                                            <img src="{{asset($c[\ConnectionConstant::PHOTO]->thumb_path)}}" class="img-thumb img-circle img-small">
-                                        @else
-                                            <img src="{{asset('images/default.png')}}" alt="{{$c[\ConnectionConstant::NAME]}}" class="img-thumb img-circle img-small">
-                                        @endif
-                                        {{$c[\ConnectionConstant::NAME]}}
-                                    </h3>
-                                </div>
-                                <div class="chat-container-body">
-                                    <div class="row">
-                                        <div class="col-xs-12" >
-                                            <div class="chat-messages">
-                                                @if(isset($c[\ConnectionConstant::MESSAGES]))
-                                                    @foreach($c[\ConnectionConstant::MESSAGES] as $m)
-                                                        <div>
-                                                            <strong>{{$m->user}}:</strong>
-                                                            <p class="chat-message">{{$m->message}}</p>
-                                                            <small class="text-right chat-time format_time">{{$m->time}}</small>
-                                                        </div>
-                                                    @endforeach
-                                                {{--@else--}}
-                                                    {{--&nbsp;--}}
-                                                @endif
-                                            </div>
-                                        </div>
-                                        <div class="col-xs-8" >
-                                            <p class="hidden" id="id_user_to">{{$c[\ConnectionConstant::RECIPIENT_ID]}}</p>
-                                            <textarea class="form-control msg"></textarea>
-                                        </div>
-                                        <div class="col-xs-4">
-                                            <input type="button" value="Send" class="btn btn-block btn-success send-msg">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        @endforeach
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th colspan="2">Picked by</th>
+                                <th>Picks</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {{--{{dd($voters)}}--}}
+                            @if(isset($voters) && !is_null($voters))
+                                @foreach($voters as $v)
+                                    <tr>
+                                        <td class="text-center">
+                                            <a target="_blank" href='{{route('my_profile', \Illuminate\Support\Facades\Crypt::encrypt($v['profile']->id))}}'>
+                                                <img width="20px" src="{{asset($v['profile']->photo->thumb_path)}}" alt="{{$v['profile']->first_name}} {{$v['profile']->last_name}}" class="img-circle img-responsive">
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a target="_blank" href='{{route('my_profile', \Illuminate\Support\Facades\Crypt::encrypt($v['profile']->id))}}'>
+                                                {{$v['profile']->first_name}} {{$v['profile']->last_name}}
+                                            </a>
+                                        </td>
+                                        <td>{{$v['count']}}</td>
+                                    </tr>
+                                @endforeach
+                            @endif
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
@@ -302,6 +285,7 @@
     </div>
 
     @include('utils.votePay')
+    @include('utils.chat')
 @endsection
 
 @section('bottomScripts')
