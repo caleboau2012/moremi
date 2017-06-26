@@ -52,7 +52,7 @@ class UIController extends Controller
             'males' => $males,
             'females' => $females,
             'dates' => $dates,
-            'partners' => $partners,
+            'venues' => $partners,
             'voteEnds' => VotingConfig::termination()
         ]);
     }
@@ -65,8 +65,8 @@ class UIController extends Controller
         $trending = Profile::orderBy('updated_at', 'desc')->take(10)->get();
 
         $all = Profile::paginate(10);
-
-        return view('app', ['profile' => $this->profile, 'trending' => $trending, 'all' => $all, 'voteEnds' => VotingConfig::termination()]);
+        $venues = Venue::all();
+        return view('app', ['profile' => $this->profile, 'trending' => $trending, 'all' => $all, 'venues' => $venues, 'voteEnds' => VotingConfig::termination()]);
     }
 
     /*user profile*/
@@ -154,6 +154,7 @@ class UIController extends Controller
             if(isset($profile->photo->full_path) && $profile->photo->full_path == $photo['full_path'])
                 $profile_pic = $i;
         }
+        $venues = Venue::all();
 
         return view('my_profile',[
                 'profile' => $this->profile,
@@ -161,6 +162,7 @@ class UIController extends Controller
                 'p' => $profile,
                 'p_p' => $profile_pic,
                 'venue' => $profile->venue()->first(),
+                'venues' => $venues,
                 'connections' => $connections,
                 'voteEnds' => VotingConfig::termination()
             ]

@@ -267,12 +267,12 @@ class PhotoController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return response()->json(['status'=>false,'msg'=>'Invalid status update']);
+            return response()->json(['status'=>false,'message'=>'Invalid status update']);
         }
         $profile =Profile::find($this->_userId);
         $profile->about =$request->status;
         $profile->update();
-        return response()->json(['status'=>true,'msg'=>'Status updated successfully']);
+        return response()->json(['status'=>true,'message'=>'Status updated successfully']);
 
     }
 

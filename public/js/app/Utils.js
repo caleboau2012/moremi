@@ -29,6 +29,8 @@ Utils = {
         });
     },
     swalLoader: function (title) {
+        if(!title)
+            title = 'Relax and sit back...';
         swal({
             title: title,
             // text: "Relax and sit back...",

@@ -12,6 +12,7 @@ var Account = {
                 last_name: this.last_name.value,
                 phone: this.phone.value,
                 email: this.email.value,
+                venue: this.venue.value
             };
 
             Utils.post(url, data, 'POST', Account.success, Account.error);

@@ -1097,6 +1097,19 @@ font-size: 16px;
     margin-bottom: 20px;
 }
 
+.status-container{
+    background-color: white; padding: 2em;
+    outline: rgba(232, 152, 99,.7) 1px dashed;
+    outline-offset: -10px;
+    margin-bottom: 20px;
+}
+.status-container textarea{
+    resize: vertical;
+}
+.status-container .btn{
+    padding: 7px 25px;
+}
+
 .connections-container{
     background: #ffe3d2;
     padding: 10px 20px;

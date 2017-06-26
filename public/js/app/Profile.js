@@ -156,6 +156,14 @@ var Profile = {
         });
 
         Profile.showDemo();
+
+        /*Save status*/
+        $('#statusForm').on('submit', function (e) {
+            e.preventDefault();
+            var status_ = $('#statusContent').val();
+            Utils.swalLoader();
+            Utils.post($(this).attr('action'), {status: status_}, 'POST', Profile.statusUploaded, Profile.uploadError);
+        });
     },
     showDemo: function(){
         if((localStorage.getItem('profile') == null) && ($(window).width() > 750)){
@@ -214,6 +222,24 @@ var Profile = {
         );
 
         $("#finish").button('loading');
+    },
+    statusUploaded: function(data){
+        // console.log(data);
+        $("#finish").button('reset');
+        if(data.status)
+            swal({
+                title: "Awesome",
+                text: data.message,
+                confirmButtonColor: "#fe7447"
+            });
+        else
+            swal({
+                title: "Oh Snap!",
+                text: data.message,
+                confirmButtonColor: "#fe7447"
+            });
+        $(".status-content").html($("#statusContent").val());
+        $("#statusForm").trigger('reset');
     },
     uploaded: function(data){
         // console.log(data);

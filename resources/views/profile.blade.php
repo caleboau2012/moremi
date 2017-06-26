@@ -50,7 +50,7 @@
                 <div class=" profile-court">
                     <div class="row" data-step="2" data-intro="Your pictures show here">
                         <div class="col-md-6" data-step="5" data-intro="Drag a picture here to use as your profile picture">
-                            <h4 class="no-margin-top">Profile Picture</h4>
+                            {{--<h4 class="no-margin-top">Profile Picture</h4>--}}
                             <div class="profile-pic">
                                 <div class="row">
                                     <div class="col-xs-12">
@@ -91,7 +91,7 @@
                         </div>
                         <div class="col-md-6">
                             <h4 class="no-margin">Gallery</h4>
-                            <p class="small text-muted no-margin">Drag best picture as profile picture</p>
+                            <p class="small text-muted no-margin">Use best picture as profile picture</p>
                             {{--Previous DP--}}
                             <div class="row" id="pictures-panel">
                                 @if(!empty($photos))
@@ -101,7 +101,7 @@
                                             <div class="image-box picture-panel pointer" draggable="true">
                                                 <div class="image">
                                                     <img class="img-responsive" data-index="{{$i}}" src="{{Request::root() . "/" . $photo['full_path']}}">
-                                                    <span class="delete-picture icon icon-close" data-url="{{route("delete_pic", $photo['id'])}}"></span>
+                                                    {{--<span class="delete-picture icon icon-search" data-url="{{route("delete_pic", $photo['id'])}}"></span>--}}
                                                 </div>
                                                 <div class="action-button-bg text-center">
                                                     <a class="action-btn drag-pp" data-img-src="{{Request::root() . "/" . $photo['full_path']}}" data-img-index="{{$i}}" >
@@ -193,8 +193,17 @@
                         <div class="col-md-4 col-xs-6">
                             <div class="image-box picture-panel pointer" draggable="true">
                                 <div class="image">
-                                    <img data-index="[[i]]" src="[[src]]">
-                                    <span class="delete-picture icon icon-close"></span>
+                                    <img data-index="[[i]]" src="[[src]]" class="img-responsive">
+                                    <span class="delete-picture icon icon-search"></span>
+                                </div>
+                                <div class="action-button-bg text-center">
+                                    <a data-img-src="[[src]]" class="action-btn drag-pp">
+                                        Make Profile Picture
+                                    </a>
+                                    <a class="action-btn delete-picture">
+                                        Delete Picture
+                                    </a>
+
                                 </div>
                             </div>
                             <br>
@@ -237,7 +246,48 @@
 
             <div class="col-md-4">
                 <div class="connections-container">
-                    <h4 class="text-primary text-center margin-bottom-md">Your Connections</h4>
+                    <div class="status-container">
+                        <div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <form action="{{route('new-status')}}" id="statusForm">
+                                    <div class="form-group">
+                                        <div data-step="6" data-position="top" data-intro="Don't forget to change your status, this appears on your public profile.">
+                                            {{--<label for="status" class="control-label"><strong>Status</strong></label>--}}
+                                                <textarea placeholder="What's on your mind?" class="form-control margin-top-sm" id="statusContent"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <button class="btn btn-primary btn-sm" id="submitStatus">Save</button>
+                                    </div>
+                                    </form>
+                                </div>
+
+                                <div class="col-sm-6 hidden">
+                                    <div class="form-group" data-step="7" data-position="top" data-intro="It is important to select your preferred spot, this determines where your date will take place">
+                                        <label for="venue"><strong>Preferred Spot</strong></label>
+                                        <select name="venue" id="venue" class="form-control">
+                                            <option value="0">Select your preferred meeting location</option>
+                                            @foreach($venues as $venue)
+                                                @if($venue->id == $profile->venue)
+                                                    <option selected value="{{$venue->id}}" data-url="{{$venue->url}}"
+                                                            data-title="{{$venue->title}}" data-image="{{$venue->thumb}}">{{$venue->name}}</option>
+                                                @else
+                                                    <option value="{{$venue->id}}" data-url="{{$venue->url}}"
+                                                            data-title="{{$venue->title}}" data-image="{{$venue->thumb}}">{{$venue->name}}</option>
+                                                @endif
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <br>
+                                    <button data-step="8" data-intro="Click finish to save all you've done and become trending..." id="finish" data-loading-text="<i class='icon icon-circle-o-notch icon-spin'></i> Updating your profile" data-url="{{route("photo_upload")}}" class="btn btn-success btn-block"><span class="icon icon-upload"></span> Save Changes</button>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h4 class="text-primary text-center margin-bottom-sm">Your Connections</h4>
 
                     <div class="row">
                         @foreach($connections as $c)
