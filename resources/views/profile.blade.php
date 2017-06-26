@@ -50,6 +50,7 @@
                 <div class=" profile-court">
                     <div class="row" data-step="2" data-intro="Your pictures show here">
                         <div class="col-md-6" data-step="5" data-intro="Drag a picture here to use as your profile picture">
+                            <h4 class="no-margin-top">Profile Picture</h4>
                             <div class="profile-pic">
                                 <div class="row">
                                     <div class="col-xs-12">
@@ -67,7 +68,7 @@
 
                                             @else
                                                 <p class="text-center hidden text-info image-placeholder">Drag best picture here</p>
-                                                <img class="img-responsive img-thumbnail" id="profile-dp" data-index="{{$profile_pic}}" src="{{asset($profile->photo->full_path)}}">
+                                                <img class="img-responsive img-thumbnail" id="profile-active-dp" data-index="{{$profile_pic}}" src="{{asset($profile->photo->full_path)}}">
                                             @endif
                                         </div>
                                     </div>
@@ -89,6 +90,8 @@
                             </div>
                         </div>
                         <div class="col-md-6">
+                            <h4 class="no-margin">Gallery</h4>
+                            <p class="small text-muted no-margin">Drag best picture as profile picture</p>
                             {{--Previous DP--}}
                             <div class="row" id="pictures-panel">
                                 @if(!empty($photos))
@@ -99,6 +102,14 @@
                                                 <div class="image">
                                                     <img class="img-responsive" data-index="{{$i}}" src="{{Request::root() . "/" . $photo['full_path']}}">
                                                     <span class="delete-picture icon icon-close" data-url="{{route("delete_pic", $photo['id'])}}"></span>
+                                                </div>
+                                                <div class="action-button-bg text-center">
+                                                    <a class="action-btn drag-pp" data-img-src="{{Request::root() . "/" . $photo['full_path']}}" data-img-index="{{$i}}" >
+                                                        Make Profile Picture
+                                                    </a>
+                                                    <a class="action-btn delete-picture" data-url="{{route("delete_pic", $photo['id'])}}">
+                                                        Delete Picture
+                                                    </a>
                                                 </div>
                                             </div>
                                         </div>
@@ -114,20 +125,19 @@
 
                     {{--profile--}}
                     <div class="profile-form">
-                        <div data-step="6" data-position="top" data-intro="Don't forget to change your status and select your Spot">
+                        <div>
                             <div class="row">
-                                <div class="col-sm-12">
+                                <div class="col-sm-6">
                                     <div class="form-group">
-                                        <div>
+                                        <div data-step="6" data-position="top" data-intro="Don't forget to change your status, this appears on your public profile.">
                                             <label for="status" class="control-label"><strong>Status</strong></label>
                                             <textarea placeholder="My status message" class="form-control margin-top-sm" id="status">{{$profile->about}}</textarea>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row">
+
                                 <div class="col-sm-6">
-                                    <div class="form-group">
+                                    <div class="form-group" data-step="7" data-position="top" data-intro="It is important to select your preferred spot, this determines where your date will take place">
                                         <label for="venue"><strong>Preferred Spot</strong></label>
                                         <select name="venue" id="venue" class="form-control">
                                             <option value="0">Select your preferred meeting location</option>
@@ -142,16 +152,14 @@
                                             @endforeach
                                         </select>
                                     </div>
-                                </div>
-                                <div class="col-sm-6">
                                     <br>
-                                    <button data-step="7" data-intro="Click finish to save all you've done and become trending..." id="finish" data-loading-text="<i class='icon icon-circle-o-notch icon-spin'></i> Updating your profile" data-url="{{route("photo_upload")}}" class="btn btn-success btn-block"><span class="icon icon-upload"></span> Save Changes</button>
-                                    <br>
+                                    <button data-step="8" data-intro="Click finish to save all you've done and become trending..." id="finish" data-loading-text="<i class='icon icon-circle-o-notch icon-spin'></i> Updating your profile" data-url="{{route("photo_upload")}}" class="btn btn-success btn-block"><span class="icon icon-upload"></span> Save Changes</button>
+
                                 </div>
                             </div>
                         </div>
 
-                        <div class="row">
+                        <div class="row" data-step="9" data-position="top" data-intro="Share your profile on social media to get more picks.">
                             <div class="row_">
                                 <div class="col-xs-12 col-sm-4">
                                     <br>

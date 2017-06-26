@@ -12,6 +12,13 @@ var Profile = {
             swal('Wait a minute', 'We detect your browser is outdated. Kindly upgrade');
         }
 
+        $('.drag-pp').click(function () {
+            var _src = $(this).attr('data-img-src');
+            var _index = $(this).attr('data-img-index');
+           $('#profile-active-dp').attr('src', _src).attr('data-index', _index);
+           $('#finish').trigger('click');
+        });
+
         /*masonry*/
         $('#masonry_items').masonry({
             itemSelector: '.masonry_item'
@@ -200,7 +207,7 @@ var Profile = {
             profile_pic: pPic
         };
 
-        console.log(data);
+        Utils.swalLoader('Relax and sit back...');
 
         Utils.post(url,
             data, "POST", Profile.uploaded, Profile.uploadError
@@ -209,12 +216,20 @@ var Profile = {
         $("#finish").button('loading');
     },
     uploaded: function(data){
-        console.log(data);
+        // console.log(data);
         $("#finish").button('reset');
         if(data.status)
-            swal('Awesome', data.message);
+            swal({
+                title: "Awesome",
+                text: data.message,
+                confirmButtonColor: "#fe7447"
+            });
         else
-            swal('Oh Snap!', data.message);
+            swal({
+                title: "Oh Snap!",
+                text: data.message,
+                confirmButtonColor: "#fe7447"
+            });
     },
     uploadError: function(data){
         swal('Oh Snap!', "We don't know what went wrong but we couldn't finish the operation");
