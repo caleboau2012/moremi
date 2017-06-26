@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('description')
-    <meta name="description" content="Connect with {{$p->first_name}} {{$p->last_name}}">
+    <meta name="description" content="Connect with {{$p->first_name}} {{$p->last_name}}. It's FREE. You PICK the person, you PICK the SPOT, we PAY for the HANGOUT.">
 @endsection
 
 @section('title')
