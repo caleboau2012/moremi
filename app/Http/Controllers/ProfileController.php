@@ -113,30 +113,4 @@ class ProfileController extends Controller
             ]);
         }
     }
-    /*status*/
-    public function addStatus(Requests\UpdateAccountRequest $request){
-        die(var_dump(1));
-        return response()->json([
-            'status' => true,
-            'msg' => "Profile saved successfully"
-        ]);
-        if(!$this->auth) {
-            return response()->json([
-                "status" => false,
-                "msg" => "You must be logged in to add status"
-            ]);
-        }
-        else{
-            $profile = Profile::find($this->_userId);
-
-            $profile->about = $request->status;
-
-            $profile->save();
-
-            return response()->json([
-                'status' => true,
-                'msg' => "Profile saved successfully"
-            ]);
-        }
-    }
 }
