@@ -266,4 +266,16 @@ use AuthTrait;
             return response()->json('Polls sent successfully');
         }
     }
+
+    public function voters($profile_id){
+        $poll = DB::table('voters')
+            ->select('profile_id', 'voter_id', DB::raw('SUM(frequency) as total'))
+            ->groupBy('voter_id')
+            ->orderBy('total', 'DESC')
+            ->where('profile_id', $profile_id)
+            ->where('deleted_at', null)
+            ->get();
+
+        return $poll;
+    }
 }
