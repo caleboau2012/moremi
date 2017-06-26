@@ -43,7 +43,7 @@
                 <h4>Social Media</h4>
                 <p>
                     <a href="https://twitter.com/officialmoreeme" target="_blank" class="fa fa-twitter" ></a>
-                    <a href="https://www.facebook.com/moree.me.page/" target="_blank" class="fa fa-facebook"></a>
+                    <a href="https://www.facebook.com/officialmoreeme/" target="_blank" class="fa fa-facebook"></a>
                     <a href="https://www.instagram.com/officialmoreeme/" class="fa fa-instagram" target="_blank"></a>
                 </p>
                 <span><p class="text-center"><i class="fa fa-envelope" aria-hidden="true"></i>mail@moree.me</p></span>
@@ -56,7 +56,7 @@
             </div>
             <div class="col-xs-2 col-md-5 text-right pull-right">
                 <ul>
-                    <li><a href="#" class="help"><span class="icon icon-question-circle"></span> </a> </li>
+                    <li><a href="#" class="help">How it works <span class="icon icon-question-circle"></span></a> </li>
                     <li><a href="{{route('faq')}}">FAQs</a></li>
                     <li><a href="{{route("policy")}}">Terms </a></li>
                 </ul>
