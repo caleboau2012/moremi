@@ -25,6 +25,10 @@ var Chat = {
             Chat.open($(this).attr('data-id'));
         });
 
+        $('.chat-box .icon-close').click(function(){
+            $(this).parent().parent().parent().addClass('hidden');
+        });
+
         //$('.chat-messages').each(function(){
         //    Chat.CONSTANTS.messages = this;
         //    Chat.scrollToBottom();
@@ -34,7 +38,7 @@ var Chat = {
         console.log(id);
 
         $(".chat-box").addClass("hidden");
-        $("#" + id).removeClass("hidden").css();
+        $("#" + id).removeClass("hidden");
     },
     send: function(element){
         var token = $("#_token").text();

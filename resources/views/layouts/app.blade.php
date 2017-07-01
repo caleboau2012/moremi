@@ -52,7 +52,6 @@
 @section('header')
 @show
 
-
 {{--Game counter--}}
 @include('utils.game_counter')
 
