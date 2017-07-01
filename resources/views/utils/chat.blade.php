@@ -2,6 +2,7 @@
     <div class="connections">
         <h4 class="text-primary text-center margin-bottom-md">Your Connections</h4>
         <div class="row">
+            @if(sizeof($connections) != 0)
             @foreach($connections as $c)
                 <div class="col-xs-3">
                     <div class="connection-item" data-id="messages-between-{{$c[\TableConstant::PROFILE_ID]}}-{{$c[\ConnectionConstant::RECIPIENT_ID]}}">
@@ -13,6 +14,11 @@
                     </div>
                 </div>
             @endforeach
+            @else
+                <div class="col-xs-12">
+                    <p class="text-primary text-center">Keep Picking. We'll connect you shortly...</p>
+                </div>
+            @endif
         </div>
 
     </div>
@@ -39,7 +45,7 @@
                         <div class="chat-messages">
                             @if(isset($c[\ConnectionConstant::MESSAGES]))
                                 @foreach($c[\ConnectionConstant::MESSAGES] as $m)
-                                    <div>
+                                    <div class="chat-message-item">
                                         <strong>{{$m->user}}:</strong>
                                         <p class="chat-message">{{$m->message}}</p>
                                         <small class="text-right chat-time format_time">{{$m->time}}</small>

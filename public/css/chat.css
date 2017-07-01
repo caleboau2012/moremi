@@ -48,3 +48,7 @@
 .chat-box .chat-messages small{
     display: block;
 }
+
+.chat-message-item{
+    border-bottom: dashed thin;
+}
