@@ -11,65 +11,65 @@ use App\Http\Controllers\PhotoController;
 use App\Profile;
 use App\User;
 
- class UserService
+class UserService
 {
 
 
-     private static $instance = null;
+    private static $instance = null;
 
-     public function __construct(){
+    public function __construct(){
 
 
-     }
+    }
 
-     public static function  instance(){
-         if(self::$instance == null) {
-             self::$instance = new UserService();
-         }
-         return self::$instance;
-     }
+    public static function  instance(){
+        if(self::$instance == null) {
+            self::$instance = new UserService();
+        }
+        return self::$instance;
+    }
 
-     public function isValid($userId){
-         $count = Profile::where('id', $userId)->count();
-         if($count==1) {
-             return true;
-         }
-         return false;
+    public function isValid($userId){
+        $count = Profile::where('id', $userId)->count();
+        if($count==1) {
+            return true;
+        }
+        return false;
 
-     }
+    }
 
-     public function findOrCreate($facebookUser){
+    public function findOrCreate($facebookUser){
         $facebook_id =$facebookUser->facebook_id; //facebook Id
-         $authUser =Profile::where('facebook_id', $facebook_id)->first();
-         if($authUser) {
-             return [
-                 "route" => route("app"),
-                 "profile" => $authUser
-             ];
-         }
-         $user = new User();
-         $user->name = $facebookUser->first_name." ".$facebookUser->last_name;
-         $user->email = $facebookUser->email;
-         $user->password = bcrypt(str_random(8));
-         $user->save();
+        $authUser =Profile::where('facebook_id', $facebook_id)->first();
+        if($authUser) {
+            return [
+                "route" => route("app"),
+                "profile" => $authUser
+            ];
+        }
+        $user = new User();
+        $user->name = $facebookUser->first_name." ".$facebookUser->last_name;
+        $user->email = $facebookUser->email;
+        $user->password = bcrypt(str_random(8));
+        $user->save();
 
-         $profile =  Profile::create([
-             'first_name'=>$facebookUser->first_name,
-             'last_name'=>$facebookUser->last_name,
-             'phone'=>$facebookUser->phone,
-             'facebook_id'=>$facebookUser->facebook_id,
-             'email'=>$facebookUser->email,
-             'sex'=>$facebookUser->sex,
-             'user_id'=>$user->id
-         ]);
+        $profile =  Profile::create([
+            'first_name'=>$facebookUser->first_name,
+            'last_name'=>$facebookUser->last_name,
+            'phone'=>$facebookUser->phone,
+            'facebook_id'=>$facebookUser->facebook_id,
+            'email'=>$facebookUser->email,
+            'sex'=>$facebookUser->sex,
+            'user_id'=>$user->id
+        ]);
 
-         $photoController = new PhotoController($facebookUser);
-         $profile = $photoController->storefb($profile, $facebookUser);
+        $photoController = new PhotoController($facebookUser);
+        $profile = $photoController->storefb($profile, $facebookUser);
 
-         return [
-             "route" => route('profile'),
-             "profile" => $profile
-         ];
-     }
+        return [
+            "route" => route('profile'),
+            "profile" => $profile
+        ];
+    }
 
 }

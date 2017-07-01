@@ -17,6 +17,14 @@
     .xs-only{
         display: block;
     }
+
+    .chat-widget{
+        width: 75px;
+    }
+
+    #chat-container{
+        right: 70px;
+    }
 }
 @media(min-width:768px) and (max-width: 991px){
    /* #app-header{

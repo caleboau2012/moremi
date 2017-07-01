@@ -278,71 +278,15 @@
                             </tbody>
                         </table>
                     </div>
-
-                    {{--CHAT BOX--}}
-                    <div id="chat-container">
-                        <div class="chat-box">
-                            <div class="chat-container-header text-center">
-                                <h5 class="no-margin text-white">
-                                    <span class="icon icon-lightning"></span>Chat Box
-                                </h5>
-                            </div>
-                        </div>
-
-                        @foreach($connections as $c)
-                            <div class="hidden chat-box" id="messages-between-{{$c[\TableConstant::PROFILE_ID]}}-{{$c[\ConnectionConstant::RECIPIENT_ID]}}">
-                                <div class="chat-container-header text-center">
-                                    <h3 class="panel-title text-capitalize">
-                                        @if($c[\ConnectionConstant::PHOTO])
-                                            <img src="{{asset($c[\ConnectionConstant::PHOTO]->thumb_path)}}" class="img-thumb img-circle img-small">
-                                        @else
-                                            <img src="{{asset('images/default.png')}}" alt="{{$c[\ConnectionConstant::NAME]}}" class="img-thumb img-circle img-small">
-                                        @endif
-                                        {{$c[\ConnectionConstant::NAME]}}
-                                    </h3>
-                                </div>
-                                <div class="chat-container-body">
-                                    <div class="row">
-                                        <div class="col-xs-12" >
-                                            <div class="chat-messages">
-                                                @if(isset($c[\ConnectionConstant::MESSAGES]))
-                                                    @foreach($c[\ConnectionConstant::MESSAGES] as $m)
-                                                        <div>
-                                                            <strong>{{$m->user}}:</strong>
-                                                            <p class="chat-message">{{$m->message}}</p>
-                                                            <small class="text-right chat-time format_time">{{$m->time}}</small>
-                                                        </div>
-                                                    @endforeach
-                                                    {{--@else--}}
-                                                    {{--&nbsp;--}}
-                                                @endif
-                                            </div>
-                                        </div>
-                                        <div class="col-xs-8" >
-                                            <p class="hidden" id="id_user_to">{{$c[\ConnectionConstant::RECIPIENT_ID]}}</p>
-                                            <textarea class="form-control msg"></textarea>
-                                        </div>
-                                        <div class="col-xs-4">
-                                            <input type="button" value="Send" class="btn btn-block btn-success send-msg">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        @endforeach
-                    </div>
                 </div>
             </div>
         </div>
     </div>
-
-    @include('utils.votePay')
 @endsection
 
 @section('bottomScripts')
     @parent
     <script src="{{asset('js/app/Account.js')}}"></script>
-    <script src="https://cdn.socket.io/socket.io-1.3.4.js"></script>
-    <script src="{{asset('js/app/Chat.js')}}"></script>
     <script>
         $(window).load(function(){
             $('[data-toggle="tooltip"]').tooltip();

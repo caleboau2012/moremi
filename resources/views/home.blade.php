@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @section('stylesheets')
+    @parent
 @endsection
 
 @section('header')

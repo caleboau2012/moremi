@@ -39,24 +39,24 @@
 
             </section>
 
-            <section class="col-xs-12 col-md-3 footerbg1 text-muted social-media">
+            <section class="col-xs-12 col-sm-3 footerbg1 text-muted social-media text-center">
                 <h4>Social Media</h4>
-                <p>
+                <p class="text-center">
                     <a href="https://twitter.com/officialmoreeme" target="_blank" class="fa fa-twitter" ></a>
                     <a href="https://www.facebook.com/officialmoreeme/" target="_blank" class="fa fa-facebook"></a>
                     <a href="https://www.instagram.com/officialmoreeme/" class="fa fa-instagram" target="_blank"></a>
                 </p>
-                <span><p class="text-center"><i class="fa fa-envelope" aria-hidden="true"></i>mail@moree.me</p></span>
+                <p class="text-center"><i class="fa fa-envelope" aria-hidden="true"></i>mail@moree.me</p>
             </section>
 
         </div>
         <div class="row footer-bottom">
-            <div class="col-xs-10 col-md-5">
+            <div class="col-xs-7 col-sm-4">
                 <a href="#"> Moree.me 2017 </a>
             </div>
-            <div class="col-xs-2 col-md-5 text-right pull-right">
+            <div class="col-xs-5 col-sm-8 text-right pull-right">
                 <ul>
-                    <li><a href="#" class="help">How it works <span class="icon icon-question-circle"></span></a> </li>
+                    <li><a href="#" class="help"><span class="hidden-xs">How it works</span> <span class="icon icon-question-circle"></span></a> </li>
                     <li><a href="{{route('faq')}}">FAQs</a></li>
                     <li><a href="{{route("policy")}}">Terms </a></li>
                 </ul>

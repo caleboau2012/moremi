@@ -27,9 +27,15 @@ class LoginController extends Controller
             return response()->json([
                 'status' => true,
                 'message' => 'Authentication successful',
-                'user' => $user,
+                'route' => $user['route'],
                 'authToken' =>$token
             ]);
+        }
+        else{
+            dd(response()->json([
+                'status' => false,
+                'message' => 'Authentication unsuccessful'
+            ]));
         }
     }
 
