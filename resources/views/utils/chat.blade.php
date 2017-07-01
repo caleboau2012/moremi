@@ -1,10 +1,10 @@
 <div class="chat-widget">
     <div class="connections">
-        <h4 class="text-primary text-center margin-bottom-md">Your Connections</h4>
+        <h4 class="text-primary text-center margin-bottom-md hidden-sm hidden-xs">Your Connections</h4>
         <div class="row">
             @if(sizeof($connections) != 0)
             @foreach($connections as $c)
-                <div class="col-xs-3">
+                <div class="col-xs-12 col-sm-3">
                     <div class="connection-item" data-id="messages-between-{{$c[\TableConstant::PROFILE_ID]}}-{{$c[\ConnectionConstant::RECIPIENT_ID]}}">
                         @if($c[\ConnectionConstant::PHOTO])
                             <img data-toggle="tooltip" data-placement="top" data-original-title="{{ucwords($c[\ConnectionConstant::NAME])}}"  src="{{asset($c[\ConnectionConstant::PHOTO]->thumb_path)}}" alt="{{$c[\ConnectionConstant::NAME]}}" class="img-circle img-responsive">

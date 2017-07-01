@@ -28,14 +28,14 @@
 	<link href="{{asset('libs/owl/owl.theme.css')}}" rel="stylesheet">
 	<link href="{{asset('libs/owl/owl.transitions.css')}}" rel="stylesheet">
 
+	{{--Chat--}}
+	<link href="{{asset('css/chat.css')}}" rel="stylesheet">
+
 	<link href="{{ asset('css/master.css') }}" rel="stylesheet" >
 	<link href="{{ asset('css/util.css') }}" rel="stylesheet" >
 	<link href="{{ asset('css/media.css') }}" rel="stylesheet" >
 	<link href="{{ asset('libs/sweetalert/sweetalert.css') }}" rel="stylesheet" >
 	<link href="{{asset('libs/introjs/introjs.min.css')}}" rel="stylesheet">
-
-	{{--Chat--}}
-	<link href="{{asset('css/chat.css')}}" rel="stylesheet">
 
 	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
