@@ -284,7 +284,7 @@
         </div>
     </div>
 
-    @include('utils.votePay')
+    {{--@include('utils.votePay')--}}
     @include('utils.chat')
 @endsection
 

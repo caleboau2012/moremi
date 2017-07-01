@@ -10,6 +10,7 @@
 
 @section('stylesheets')
     @parent
+    <link href="{{asset('css/chat.css')}}" rel="stylesheet">
 @endsection
 
 @section('header')
@@ -122,7 +123,7 @@
                     <h4 class="text-primary text-center margin-bottom-md">Connections</h4>
 
                     <div class="row">
-                        @foreach($connections as $c)
+                        @foreach($connects as $c)
                             <div class="col-xs-3">
                                 <a href="{{route('my_profile', \Illuminate\Support\Facades\Crypt::encrypt($c[\ConnectionConstant::RECIPIENT_ID]))}}">
                                 <div class="connection-item" data-id="messages-between-{{$c[\TableConstant::PROFILE_ID]}}-{{$c[\ConnectionConstant::RECIPIENT_ID]}}">
@@ -142,7 +143,8 @@
     </div>
 
     @include('utils.votePay')
-    @include('utils.account');
+    @include('utils.account')
+    @include('utils.chat')
 @endsection
 
 @section('bottomScripts')
@@ -150,6 +152,8 @@
     <script src="{{asset('js/app/Vote.js')}}"></script>
     <script src="{{asset('js/app/VotePay.js')}}"></script>
     <script src="{{asset('js/app/Account.js')}}"></script>
+    <script src="https://cdn.socket.io/socket.io-1.3.4.js"></script>
+    <script src="{{asset('js/app/Chat.js')}}"></script>
     <script>
         $(document).ready(function(){
             $('[data-toggle="tooltip"]').tooltip();

@@ -66,7 +66,7 @@
                         <textarea class="form-control msg"></textarea>
                     </div>
                     <div class="col-xs-5">
-                        <button class="btn btn-sm btn-block btn-success send-msg"><span class="icon icon-send" </button>
+                        <button class="btn btn-sm btn-block btn-success send-msg"><span class="icon icon-send"></span> </button>
                         {{--<input type="button" value="Send" class="btn btn-sm btn-block btn-success send-msg">--}}
                     </div>
                 </div>
