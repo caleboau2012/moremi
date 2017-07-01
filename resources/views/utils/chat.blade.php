@@ -60,7 +60,7 @@
                 <div class="row">
                     <div class="col-xs-7" >
                         <p class="hidden" id="id_user_to">{{$c[\ConnectionConstant::RECIPIENT_ID]}}</p>
-                        <textarea class="form-control msg"></textarea>
+                        <textarea class="form-control msg" placeholder="Type Here..."></textarea>
                     </div>
                     <div class="col-xs-5">
                         <button class="btn btn-sm btn-block btn-success send-msg"><span class="icon icon-send"></span> </button>

@@ -89,7 +89,7 @@ class UIController extends Controller
             'males' => $males,
             'females' => $females,
             'dates' => $dates,
-            'partners' => $partners,
+            'venues' => $partners,
             'connections' => $this->connections,
             'voteEnds' => VotingConfig::termination()
         ]);
