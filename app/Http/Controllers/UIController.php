@@ -186,11 +186,19 @@ class UIController extends Controller
     }
 
     public function policy(){
-        return view('terms');
+        return view('terms', [
+            'profile' => $this->profile,
+            'connections' => $this->connections,
+            'voteEnds' => VotingConfig::termination()
+        ]);
     }
 
     public function faq(){
-        return view('faq');
+        return view('faq', [
+            'profile' => $this->profile,
+            'connections' => $this->connections,
+            'voteEnds' => VotingConfig::termination()
+        ]);
     }
 
 }

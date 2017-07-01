@@ -17,7 +17,7 @@
 	{{--<link href="https://fonts.googleapis.com/css?family=Raleway|Kalam" rel="stylesheet">--}}
 	{{--<link href="https://fonts.googleapis.com/css?family=Droid+Sans|Muli|Noto+Sans|PT+Sans|PT+Sans+Narrow|Poppins|Titillium+Web" rel="stylesheet">--}}
 	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,800italic,800,700italic,700,600italic,400italic,600,300italic,300|Oswald:400,300,700' rel='stylesheet' type='text/css'>
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet"/>
+	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet"/>
 	<link href="{{ asset('libs/bootstrap/bootstrap.min.css') }}" rel="stylesheet" >
 
 	<link href="{{ asset('css/tabs.css') }}" rel="stylesheet" >
@@ -33,6 +33,9 @@
 	<link href="{{ asset('css/media.css') }}" rel="stylesheet" >
 	<link href="{{ asset('libs/sweetalert/sweetalert.css') }}" rel="stylesheet" >
 	<link href="{{asset('libs/introjs/introjs.min.css')}}" rel="stylesheet">
+
+	{{--Chat--}}
+	<link href="{{asset('css/chat.css')}}" rel="stylesheet">
 
 	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -54,12 +57,13 @@
 
 {{--Game counter--}}
 @include('utils.game_counter')
+@include('utils.chat')
 
 @yield('content')
 
- @section('footer')
-    @include('include.footer')
- @show
+@section('footer')
+	@include('include.footer')
+@show
 
 @section('bottomScripts')
 	{{-- Libs --}}
@@ -97,12 +101,15 @@
 	<script src="{{ asset('js/utils/moment.js') }}"></script>
 
 	<script>
-        $('.format_time').each(function (e) {
-            var val = $(this).text();
-            var date = moment(new Date(val));
-            $(this).text(date.fromNow());
-        });
+		$('.format_time').each(function (e) {
+			var val = $(this).text();
+			var date = moment(new Date(val));
+			$(this).text(date.fromNow());
+		});
 	</script>
+
+	<script src="https://cdn.socket.io/socket.io-1.3.4.js"></script>
+	<script src="{{asset('js/app/Chat.js')}}"></script>
 
 	<!--Start of Tawk.to Script-->
 	<script type="text/javascript">

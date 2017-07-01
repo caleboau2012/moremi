@@ -1,7 +1,6 @@
 @extends('layouts.app')
 @section('stylesheets')
     @parent
-    <link href="{{asset('css/chat.css')}}" rel="stylesheet">
 @endsection
 
 @section('header')
@@ -344,7 +343,6 @@
 
     @include('utils.votePay');
     @include('utils.account');
-    @include('utils.chat')
 @endsection
 
 @section('footer')
@@ -360,6 +358,4 @@
     <script src="{{asset('js/app/VotePay.js')}}"></script>
     <script src="{{asset('js/app/Account.js')}}"></script>
     <script src="{{ asset('js/app/Home.js') }}"></script>
-    <script src="https://cdn.socket.io/socket.io-1.3.4.js"></script>
-    <script src="{{asset('js/app/Chat.js')}}"></script>
 @endsection

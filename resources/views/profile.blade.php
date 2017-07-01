@@ -7,7 +7,6 @@
 @section('stylesheets')
     @parent
     {{-- Drag Drop JS --}}
-    <link href="{{asset('css/chat.css')}}" rel="stylesheet">
     <script src="{{asset("js/utils/DragDropTouch.js")}}"></script>
 @endsection
 
@@ -283,16 +282,11 @@
             </div>
         </div>
     </div>
-
-    {{--@include('utils.votePay')--}}
-    @include('utils.chat')
 @endsection
 
 @section('bottomScripts')
     @parent
     <script src="{{asset('js/app/Account.js')}}"></script>
-    <script src="https://cdn.socket.io/socket.io-1.3.4.js"></script>
-    <script src="{{asset('js/app/Chat.js')}}"></script>
     <script>
         $(window).load(function(){
             $('[data-toggle="tooltip"]').tooltip();

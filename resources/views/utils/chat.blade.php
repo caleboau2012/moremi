@@ -1,7 +1,6 @@
 <div class="chat-widget">
     <div class="connections">
         <h4 class="text-primary text-center margin-bottom-md">Your Connections</h4>
-
         <div class="row">
             @foreach($connections as $c)
                 <div class="col-xs-3">
@@ -21,14 +20,6 @@
 
 {{--CHAT BOX--}}
 <div id="chat-container">
-    {{--<div class="chat-box">--}}
-    {{--<div class="chat-container-header text-center">--}}
-    {{--<h5 class="no-margin text-white">--}}
-    {{--<span class="icon icon-lightning"></span>Chat Box--}}
-    {{--</h5>--}}
-    {{--</div>--}}
-    {{--</div>--}}
-
     @foreach($connections as $c)
         <div class="hidden chat-box" id="messages-between-{{$c[\TableConstant::PROFILE_ID]}}-{{$c[\ConnectionConstant::RECIPIENT_ID]}}">
             <div class="chat-container-header text-center">
