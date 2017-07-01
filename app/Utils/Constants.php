@@ -6,7 +6,7 @@
  * Time: 11:17 PM
  */
 class MailConstants{
-    const TEAM_MAIL = 'mailer@moree.me';
+    const TEAM_MAIL = 'mail@moree.me';
     const TEAM_NAME = 'Moree.me Team';
     const SUPPORT_MAIL = 'mailer@moree.me';
 
