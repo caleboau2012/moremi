@@ -43,7 +43,7 @@ var Profile = {
             $('#accountModal').modal();
         });
 
-        $("#spot").change(function(e){
+        $("#p_spot").change(function(e){
             var selected = $(this).find('option:selected');
 
             if(this.value == 0)
@@ -157,7 +157,7 @@ var Profile = {
 
         $(".help").click(function(e){
             e.preventDefault();
-            introJs().start();
+            introJs().setOption('disableInteraction', true).start();
         });
 
         Profile.showDemo();
@@ -166,10 +166,10 @@ var Profile = {
         $('#statusForm').on('submit', function (e) {
             e.preventDefault();
             var status_ = $('#statusContent').val();
-            var spot_ = $('#spot').val();
+            var spot_ = $('#p_spot').val();
 
             if(spot_ == 0){
-                swal('Oh Snap!', "You didn't choose a spot");
+                swal('Oh Snap!', "You didn't pick a spot");
                 return;
             }
 
@@ -182,17 +182,7 @@ var Profile = {
     },
     showDemo: function(){
         if((localStorage.getItem('profile') == null) && ($(window).width() > 750)){
-            introJs()
-                //    .onchange(function(targetElement) {
-                //    console.log(targetElement, targetElement.id);
-                //    switch (targetElement.id)
-                //    {
-                //        case "demo-3":
-                //            Facebook.userAlbums();
-                //            break;
-                //    }
-                //})
-                .start();
+            introJs().setOption('disableInteraction', true).start();
             if(typeof(Storage) !== "undefined"){
                 localStorage.setItem('profile', 'true');
             }
@@ -254,7 +244,6 @@ var Profile = {
                 confirmButtonColor: "#fe7447"
             });
         $(".status-content").html($("#statusContent").val());
-        //$("#statusForm").trigger('reset');
     },
     uploaded: function(data){
         // console.log(data);

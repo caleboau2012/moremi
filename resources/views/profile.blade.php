@@ -48,8 +48,8 @@
         <div class="row">
             <div class="col-md-8 bg-white">
                 <div class=" profile-court">
-                    <div class="row" data-step="2" data-intro="Your pictures show here">
-                        <div class="col-md-6" data-step="5" data-intro="Drag a picture here to use as your profile picture">
+                    <div class="row">
+                        <div class="col-md-6" data-step="4" data-intro="Select or Drag a picture from your gallery to use as your profile picture">
                             {{--<h4 class="no-margin-top">Profile Picture</h4>--}}
                             <div class="profile-pic">
                                 <div class="row">
@@ -73,7 +73,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row" data-step="3" data-intro="Click here to import pictures from your computer or Facebook">
+                                <div class="row" data-step="2" data-intro="Click here to import pictures from your computer or Facebook">
                                     <br>
                                     <div class="col-xs-12 col-sm-6">
                                         <a href="#" title="Upload image" class="btn btn-primary btn-block picture-upload">
@@ -89,13 +89,13 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-6" data-step="3" data-intro="This is your Gallery. Your imported pictures end up here.">
                             <h4 class="no-margin text-primary">Gallery</h4>
                             <p class="small text-muted no-margin">Use your best picture as your profile picture</p>
                             {{--Previous DP--}}
                             <div class="row" id="pictures-panel" data-url="{{route("photo_upload")}}">
                                 @if(!empty($photos))
-                                    <div class="masonry_items" id="masonry_items" data-step="4" data-intro="Your pictures show here">
+                                    <div class="masonry_items" id="masonry_items">
                                         @foreach($photos as $i => $photo)
                                             <div class="col-xs-6 masonry_item">
                                                 <div class="image-box picture-panel pointer" draggable="true">
@@ -126,41 +126,7 @@
 
                     {{--profile--}}
                     <div class="profile-form">
-                        <div>
-                            <div class="row">
-                                <div class="col-sm-6 hidden">
-                                    <div class="form-group">
-                                        <div data-step="6" data-position="top" data-intro="Don't forget to change your status, this appears on your public profile.">
-                                            <label for="status" class="control-label"><strong>Status</strong></label>
-                                            <textarea placeholder="My status message" class="form-control margin-top-sm" id="status">{{$profile->about}}</textarea>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-sm-6 hidden">
-                                    <div class="form-group" data-step="7" data-position="top" data-intro="It is important to select your preferred spot, this determines where your date will take place">
-                                        <label for="spot"><strong>Preferred Spot</strong></label>
-                                        <select name="venue" id="venue" class="form-control">
-                                            <option value="0">Select your preferred meeting location</option>
-                                            @foreach($venues as $venue)
-                                                @if($venue->id == $profile->venue)
-                                                    <option selected value="{{$venue->id}}" data-url="{{$venue->url}}"
-                                                            data-title="{{$venue->title}}" data-image="{{$venue->thumb}}">{{$venue->name}}</option>
-                                                @else
-                                                    <option value="{{$venue->id}}" data-url="{{$venue->url}}"
-                                                            data-title="{{$venue->title}}" data-image="{{$venue->thumb}}">{{$venue->name}}</option>
-                                                @endif
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                    <br>
-                                    <button data-step="8" data-intro="Click finish to save all you've done and become trending..." id="finish" data-loading-text="<i class='icon icon-circle-o-notch icon-spin'></i> Updating your profile" data-url="{{route("photo_upload")}}" class="btn btn-success btn-block"><span class="icon icon-upload"></span> Save Changes</button>
-
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row" data-step="9" data-position="top" data-intro="Share your profile on social media to get more picks.">
+                        <div class="row" data-step="8" data-position="top" data-intro="Share your profile on social media to get more picks.">
                             <div class="row_">
                                 <div class="col-xs-12 col-sm-4">
                                     <br>
@@ -253,15 +219,15 @@
                             <div class="row">
                                 <div class="col-sm-12">
                                     <form action="{{route('new-status')}}" id="statusForm">
-                                        <div class="form-group">
-                                            <div data-step="6" data-position="top" data-intro="Don't forget to change your status, this appears on your public profile.">
-                                                {{--<label for="status" class="control-label"><strong>Status</strong></label>--}}
+                                        <div class="form-group text-center">
+                                            <div data-step="5" data-position="top" data-intro="Don't forget to change your status, this appears on your public profile.">
+                                                <h4 class="text-primary">Status</h4>
                                                 <textarea placeholder="What's on your mind?" class="form-control margin-top-sm" id="statusContent">{{$profile->about}}</textarea>
                                             </div>
                                         </div>
-                                        <div class="form-group" data-step="7" data-position="top" data-intro="It is important to select your preferred spot, this determines where your date will take place">
-                                            <label for="venue"><strong>Preferred Spot</strong></label>
-                                            <select name="spot" id="spot" class="form-control">
+                                        <div class="form-group text-center" data-step="6" data-position="top" data-intro="Select your preferred spot, this where you will hangout">
+                                            <h4 class="text-primary">Preferred Spot</h4>
+                                            <select name="p_spot" id="p_spot" class="form-control">
                                                 <option value="0">Select your preferred meeting location</option>
                                                 @foreach($venues as $venue)
                                                     @if($venue->id == $profile->venue)
@@ -287,30 +253,9 @@
                                             </div>
                                         </div>
                                         <div class="form-group text-center">
-                                            <button class="btn btn-primary btn-sm" id="submitStatus">Save</button>
+                                            <button class="btn btn-primary btn-sm" id="submitStatus" data-step="7" data-position="top" data-intro="Save when you are done">Save</button>
                                         </div>
                                     </form>
-                                </div>
-
-                                <div class="col-sm-6 hidden">
-                                    <div class="form-group" data-step="7" data-position="top" data-intro="It is important to select your preferred spot, this determines where your date will take place">
-                                        <label for="venue"><strong>Preferred Spot</strong></label>
-                                        <select name="venue" id="venue" class="form-control">
-                                            <option value="0">Select your preferred meeting location</option>
-                                            @foreach($venues as $venue)
-                                                @if($venue->id == $profile->venue)
-                                                    <option selected value="{{$venue->id}}" data-url="{{$venue->url}}"
-                                                            data-title="{{$venue->title}}" data-image="{{$venue->thumb}}">{{$venue->name}}</option>
-                                                @else
-                                                    <option value="{{$venue->id}}" data-url="{{$venue->url}}"
-                                                            data-title="{{$venue->title}}" data-image="{{$venue->thumb}}">{{$venue->name}}</option>
-                                                @endif
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                    <br>
-                                    <button data-step="8" data-intro="Click finish to save all you've done and become trending..." id="finish" data-loading-text="<i class='icon icon-circle-o-notch icon-spin'></i> Updating your profile" data-url="{{route("photo_upload")}}" class="btn btn-success btn-block"><span class="icon icon-upload"></span> Save Changes</button>
-
                                 </div>
                             </div>
                         </div>
