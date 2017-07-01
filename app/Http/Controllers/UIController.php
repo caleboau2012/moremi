@@ -17,6 +17,7 @@ class UIController extends Controller
         $this->loggedIn = false;
         $this->profile = null;
         $this->_userId = 0;
+        $this->connections = [];
 
         $token = session(\AppConstants::AUTH);
 
