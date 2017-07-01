@@ -17,7 +17,7 @@
                 <ul class="nav navbar-nav navbar-right">
                     {{--<li class="active"><a href="#home">Home</a></li>--}}
                     <li><a href="#about">About</a></li>
-                    <li><a href="#pick-of-the-week">Pick of the Week</a></li>
+                    {{--<li><a href="#pick-of-the-week">Pick of the Week</a></li>--}}
                     <li><a href="#trending">Trending</a></li>
                     @if(!$loggedIn)
                         <li><a href="#" id="app-url" data-url="{{route("login")}}" data-url-app="{{route('profile')}}" class="login"><span class="icon icon-facebook-official"></span> Login/Sign Up</a></li>

@@ -1104,7 +1104,7 @@ font-size: 16px;
     margin-bottom: 20px;
 }
 .status-container textarea{
-    resize: vertical;
+    resize: none;
 }
 .status-container .btn{
     padding: 7px 25px;

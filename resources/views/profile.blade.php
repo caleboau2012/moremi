@@ -90,32 +90,33 @@
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <h4 class="no-margin">Gallery</h4>
-                            <p class="small text-muted no-margin">Use your best picture as profile picture</p>
+                            <h4 class="no-margin text-primary">Gallery</h4>
+                            <p class="small text-muted no-margin">Use your best picture as your profile picture</p>
                             {{--Previous DP--}}
                             <div class="row" id="pictures-panel" data-url="{{route("photo_upload")}}">
                                 @if(!empty($photos))
                                     <div class="masonry_items" id="masonry_items" data-step="4" data-intro="Your pictures show here">
-                                    @foreach($photos as $i => $photo)
-                                        <div class="col-md-4 col-sm-6 masonry_item">
-                                            <div class="image-box picture-panel pointer" draggable="true">
-                                                <div class="image">
-                                                    <img class="img-responsive" data-index="{{$i}}" src="{{Request::root() . "/" . $photo['full_path']}}">
-                                                    {{--<span class="delete-picture icon icon-search" data-url="{{route("delete_pic", $photo['id'])}}"></span>--}}
-                                                </div>
-                                                <div class="action-button-bg text-center">
-                                                    <a class="action-btn drag-pp" data-img-src="{{Request::root() . "/" . $photo['full_path']}}" data-img-index="{{$i}}" >
-                                                        Make Profile Picture
-                                                    </a>
-                                                    <a class="action-btn delete-picture" data-url="{{route("delete_pic", $photo['id'])}}">
-                                                        Delete Picture
-                                                    </a>
+                                        @foreach($photos as $i => $photo)
+                                            <div class="col-xs-6 masonry_item">
+                                                <div class="image-box picture-panel pointer" draggable="true">
+                                                    <div class="image">
+                                                        <img class="img-responsive" data-index="{{$i}}" src="{{Request::root() . "/" . $photo['full_path']}}">
+                                                        {{--<span class="delete-picture icon icon-search" data-url="{{route("delete_pic", $photo['id'])}}"></span>--}}
+                                                    </div>
+                                                    <div class="action-button-bg text-center">
+                                                        <a class="action-btn drag-pp" data-img-src="{{Request::root() . "/" . $photo['full_path']}}" data-img-index="{{$i}}" >
+                                                            Make Profile Picture
+                                                        </a>
+                                                        <br>
+                                                        <a class="action-btn delete-picture" data-url="{{route("delete_pic", $photo['id'])}}">
+                                                            Delete Picture
+                                                        </a>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    @endforeach
+                                        @endforeach
                                     </div>
-                                    @else
+                                @else
                                     <p class="text-center text-muted">No image yet!</p>
                                 @endif
                             </div>
@@ -138,7 +139,7 @@
 
                                 <div class="col-sm-6 hidden">
                                     <div class="form-group" data-step="7" data-position="top" data-intro="It is important to select your preferred spot, this determines where your date will take place">
-                                        <label for="venue"><strong>Preferred Spot</strong></label>
+                                        <label for="spot"><strong>Preferred Spot</strong></label>
                                         <select name="venue" id="venue" class="form-control">
                                             <option value="0">Select your preferred meeting location</option>
                                             @foreach($venues as $venue)
@@ -190,16 +191,17 @@
                     </div>
 
                     <script id="picture-template" type="text/html">
-                        <div class="col-md-4 col-xs-6">
+                        <div class="col-xs-6">
                             <div class="image-box picture-panel pointer" draggable="true">
                                 <div class="image">
                                     <img data-index="[[i]]" src="[[src]]" class="img-responsive">
-                                    <span class="delete-picture icon icon-search"></span>
+                                    {{--<span class="delete-picture icon icon-search"></span>--}}
                                 </div>
                                 <div class="action-button-bg text-center">
-                                    <a data-img-src="[[src]]" class="action-btn drag-pp">
+                                    <a data-img-src="[[src]]" class="action-btn drag-pp" data-img-index="[[i]]">
                                         Make Profile Picture
                                     </a>
+                                    <br>
                                     <a class="action-btn delete-picture">
                                         Delete Picture
                                     </a>
@@ -251,15 +253,42 @@
                             <div class="row">
                                 <div class="col-sm-12">
                                     <form action="{{route('new-status')}}" id="statusForm">
-                                    <div class="form-group">
-                                        <div data-step="6" data-position="top" data-intro="Don't forget to change your status, this appears on your public profile.">
-                                            {{--<label for="status" class="control-label"><strong>Status</strong></label>--}}
-                                                <textarea placeholder="What's on your mind?" class="form-control margin-top-sm" id="statusContent"></textarea>
+                                        <div class="form-group">
+                                            <div data-step="6" data-position="top" data-intro="Don't forget to change your status, this appears on your public profile.">
+                                                {{--<label for="status" class="control-label"><strong>Status</strong></label>--}}
+                                                <textarea placeholder="What's on your mind?" class="form-control margin-top-sm" id="statusContent">{{$profile->about}}</textarea>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <button class="btn btn-primary btn-sm" id="submitStatus">Save</button>
-                                    </div>
+                                        <div class="form-group" data-step="7" data-position="top" data-intro="It is important to select your preferred spot, this determines where your date will take place">
+                                            <label for="venue"><strong>Preferred Spot</strong></label>
+                                            <select name="spot" id="spot" class="form-control">
+                                                <option value="0">Select your preferred meeting location</option>
+                                                @foreach($venues as $venue)
+                                                    @if($venue->id == $profile->venue)
+                                                        <option selected value="{{$venue->id}}" data-url="{{$venue->url}}"
+                                                                data-title="{{$venue->title}}" data-image="{{$venue->thumb}}">{{$venue->name}}</option>
+                                                    @else
+                                                        <option value="{{$venue->id}}" data-url="{{$venue->url}}"
+                                                                data-title="{{$venue->title}}" data-image="{{$venue->thumb}}">{{$venue->name}}</option>
+                                                    @endif
+                                                @endforeach
+                                            </select>
+                                            <div class="row">
+                                                <a target="_blank" href="" id="venue-url" class="hidden">
+                                                    <div class="col-xs-6">
+                                                        <div class="well-sm">
+                                                            <img src="" id="venue-image" style="width: 100%">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xs-6">
+                                                        <p id="venue-title"></p>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="form-group text-center">
+                                            <button class="btn btn-primary btn-sm" id="submitStatus">Save</button>
+                                        </div>
                                     </form>
                                 </div>
 
@@ -294,7 +323,7 @@
                             <div class="col-xs-3">
                                 <div class="connection-item" data-id="messages-between-{{$c[\TableConstant::PROFILE_ID]}}-{{$c[\ConnectionConstant::RECIPIENT_ID]}}">
                                     @if($c[\ConnectionConstant::PHOTO])
-                                         <img data-toggle="tooltip" data-placement="top" data-original-title="{{ucwords($c[\ConnectionConstant::NAME])}}"  src="{{asset($c[\ConnectionConstant::PHOTO]->thumb_path)}}" alt="{{$c[\ConnectionConstant::NAME]}}" class="img-circle img-responsive">
+                                        <img data-toggle="tooltip" data-placement="top" data-original-title="{{ucwords($c[\ConnectionConstant::NAME])}}"  src="{{asset($c[\ConnectionConstant::PHOTO]->thumb_path)}}" alt="{{$c[\ConnectionConstant::NAME]}}" class="img-circle img-responsive">
                                     @else
                                         <img data-toggle="tooltip" data-placement="top" data-original-title="{{ucwords($c[\ConnectionConstant::NAME])}}" src="{{asset('images/default.png')}}" alt="{{$c[\ConnectionConstant::NAME]}}" class="img-circle img-responsive">
                                     @endif
@@ -337,7 +366,7 @@
                                                             <small class="text-right chat-time format_time">{{$m->time}}</small>
                                                         </div>
                                                     @endforeach
-                                                {{--@else--}}
+                                                    {{--@else--}}
                                                     {{--&nbsp;--}}
                                                 @endif
                                             </div>

@@ -28,7 +28,7 @@ Route::get('spot/{url}',[ 'uses' => 'VenueController@redirect', 'as' => 'spot_re
 //Route::get('seed','HomeController@seed');
 
 Route::get('cheeks/{total}', array("as" => "cheeks", "uses" => 'HomeController@getContestants'));
-Route::post('update/status', ['as'=>'new-status', 'uses'=>'PhotoController@updateStatus']);
+Route::post('update/status', ['as'=>'new-status', 'uses'=>'ProfileController@updateStatus']);
 Route::post('upload/photo', ["as" => "photo_upload", "uses" => 'PhotoController@storeImgFromString']);
 Route::post('account-update', ["as" => "account-update", 'uses' => 'ProfileController@updateAccountDetails']);
 

@@ -4,14 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Connection;
 use App\Profile;
-use App\Services\UserService;
 use App\Traits\AuthTrait;
 use App\Venue;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 use LRedis;
 
 use App\Http\Requests;
-use App\Http\Controllers\Controller;
 
 class ProfileController extends Controller
 {
@@ -112,5 +111,21 @@ class ProfileController extends Controller
                 'msg' => "Profile saved successfully"
             ]);
         }
+    }
+
+    public  function updateStatus(Request $request){
+        $validator = Validator::make($request->all(), [
+            'status' => 'required|max:255',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(['status'=>false,'message'=>'Invalid status update']);
+        }
+        $profile =Profile::find($this->_userId);
+        $profile->about = $request->status;
+        $profile->venue = $request->spot;
+        $profile->update();
+        return response()->json(['status'=>true,'message'=>'Status updated successfully']);
+
     }
 }

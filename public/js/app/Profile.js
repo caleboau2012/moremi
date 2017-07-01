@@ -12,10 +12,15 @@ var Profile = {
             swal('Wait a minute', 'We detect your browser is outdated. Kindly upgrade');
         }
 
-        $('.drag-pp').click(function () {
+        $(document).undelegate('.drag-pp', 'click').delegate('.drag-pp', 'click' , function () {
             var _src = $(this).attr('data-img-src');
             var _index = $(this).attr('data-img-index');
             $('#profile-active-dp').attr('src', _src).attr('data-index', _index);
+
+            console.log({
+                src: _src,
+                index: _index
+            });
             Profile.finish($('#pictures-panel').attr("data-url"));
         });
 
@@ -38,7 +43,7 @@ var Profile = {
             $('#accountModal').modal();
         });
 
-        $("#venue").change(function(e){
+        $("#spot").change(function(e){
             var selected = $(this).find('option:selected');
 
             if(this.value == 0)
@@ -161,8 +166,18 @@ var Profile = {
         $('#statusForm').on('submit', function (e) {
             e.preventDefault();
             var status_ = $('#statusContent').val();
+            var spot_ = $('#spot').val();
+
+            if(spot_ == 0){
+                swal('Oh Snap!', "You didn't choose a spot");
+                return;
+            }
+
             Utils.swalLoader();
-            Utils.post($(this).attr('action'), {status: status_}, 'POST', Profile.statusUploaded, Profile.uploadError);
+            Utils.post($(this).attr('action'), {
+                status: status_,
+                spot: spot_
+            }, 'POST', Profile.statusUploaded, Profile.uploadError);
         });
     },
     showDemo: function(){
@@ -239,7 +254,7 @@ var Profile = {
                 confirmButtonColor: "#fe7447"
             });
         $(".status-content").html($("#statusContent").val());
-        $("#statusForm").trigger('reset');
+        //$("#statusForm").trigger('reset');
     },
     uploaded: function(data){
         // console.log(data);
@@ -343,7 +358,10 @@ var Profile = {
         for(var i = 0; i < Profile.facebookPhotos.length; i++){
             //console.log(Profile.facebookPhotos[i]);
             template = $("#picture-template").html();
-            HTML = template.replace("[[src]]", Profile.facebookPhotos[i]).replace("[[i]]", $(".picture-panel").length);
+            HTML = template.replace("[[src]]", Profile.facebookPhotos[i])
+                .replace("[[i]]", $(".picture-panel").length)
+                .replace("[[src]]", Profile.facebookPhotos[i])
+                .replace("[[i]]", $(".picture-panel").length);
             $("#pictures-panel").append(HTML);
         }
     },
