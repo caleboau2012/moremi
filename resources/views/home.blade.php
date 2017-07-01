@@ -326,7 +326,7 @@
         <div class="row">
             <div class="col-md-12">
                 <ul class="clients-carousel list-unstyled">
-                    @foreach($partners as $venue)
+                    @foreach($venues as $venue)
                         <li>
                             <a href="{{route('spot_redirect', \Illuminate\Support\Facades\Crypt::encrypt($venue->url))}}" target="_blank">
                                 <img src="{{route('spot_redirect', \Illuminate\Support\Facades\Crypt::encrypt($venue->thumb))}}" class="img-responsive" alt="{{$venue->title}}">

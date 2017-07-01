@@ -37,6 +37,9 @@
 	<link href="{{ asset('libs/sweetalert/sweetalert.css') }}" rel="stylesheet" >
 	<link href="{{asset('libs/introjs/introjs.min.css')}}" rel="stylesheet">
 
+	<!-- Include a polyfill for ES6 Promises (optional) for IE11 and Android browser -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
+
 	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 	<!--[if lt IE 9]>
@@ -71,7 +74,6 @@
 	<script src="{{asset('libs/bootstrap/bootstrap.min.js')}}"></script>
 	<script src="{{asset('libs/sweetalert/sweetalert.min.js')}}" ></script>
 	<script src="{{ asset('libs/jquery/jquery-easing.js') }}"></script>
-
 	<script src="{{asset('libs/jquery/jquery.stellar.min.js')}}"></script>
 	<script src="{{asset('libs/jquery/jquery.stellar.min.js')}}"></script>
 	<script src="{{asset('libs/jquery/jquery.appear.js')}}"></script>

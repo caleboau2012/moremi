@@ -19,24 +19,22 @@
                         <li><a href="#" id="app-url" data-url="{{route("login")}}" data-url-app="{{route('app')}}" class="login"><span class="icon icon-facebook-official"></span> Login/Sign Up</a></li>
                     @else
                         <li><a href="{{route('app')}}"><span class="icon icon-play">&nbsp;</span>Connect Now</a></li>
-                        <li><a href="#home" class="edit_profile_btn"><span class="icon icon-pencil2">&nbsp;</span>Account Details</a></li>
-                        <li><a href="{{route("profile")}}"><span class="icon icon-user">&nbsp;</span>Edit Profile</a></li>
+                        <li><a href="#" class="edit_profile_btn"><span class="icon icon-user">&nbsp;</span>Edit Profile</a></li>
                         <li class="active">
                             @if($profile != null)
-                                <a href="{{route("my_profile", \Illuminate\Support\Facades\Crypt::encrypt($profile->id))}}" class="profile-btn" title="Public Profile">
+                                <a href="{{route("profile")}}" class="profile-btn">
                                     @if($profile->photo()->first())
                                         <img src="{{asset($profile->photo()->first()->thumb_path)}}" class="profile-thumb">
                                     @elseif($profile->sex == "male")
                                         <img src="{{asset('images/default-male.png')}}" class="profile-thumb">
                                     @elseif(($profile->sex == "female"))
                                         <img src="{{asset('images/default-female.png')}}" class="profile-thumb">
+                                    @else
+                                        <img src="{{asset('images/default.png')}}" class="profile-thumb">
                                     @endif
                                     <span>{{$profile->first_name}} {{$profile->last_name}}</span>
-                                    @else
-                                        <a href="#" class="profile-btn" title="Public Profile">
-                                            <img src="{{asset('images/default.png')}}" class="profile-thumb">
-                                            @endif
-                                        </a>
+                                </a>
+                            @endif
                         </li>
                     @endif
                 </ul>

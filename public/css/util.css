@@ -93,6 +93,9 @@ a:hover, a:focus {
 .margin-bottom-md{
     margin-bottom: 45px;
 }
+.margin-bottom-sm{
+    margin-bottom: 15px;
+}
 
 .btn-default:hover, .btn-default:active:hover {
     background-color: #FFFFFF;

@@ -27,5 +27,16 @@ Utils = {
                 authToken: token
             }
         });
+    },
+    swalLoader: function (title) {
+        if(!title)
+            title = 'Relax and sit back...';
+        swal({
+            title: title,
+            // text: "Relax and sit back...",
+            text: "<div class='loading-icon'>Loading...</div>",
+            html: true,
+            showConfirmButton: false
+        });
     }
 };

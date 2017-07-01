@@ -103,11 +103,13 @@ class UIController extends Controller
         $trending = Profile::orderBy('updated_at', 'desc')->take(10)->get();
 
         $all = Profile::paginate(10);
+        $venues = Venue::all();
 
         return view('app', [
             'profile' => $this->profile,
             'trending' => $trending,
             'all' => $all,
+            'venues' => $venues,
             'connections' => $this->connections,
             'voteEnds' => VotingConfig::termination()
         ]);
@@ -176,6 +178,7 @@ class UIController extends Controller
             if(isset($profile->photo->full_path) && $profile->photo->full_path == $photo['full_path'])
                 $profile_pic = $i;
         }
+        $venues = Venue::all();
 
         return view('my_profile',[
                 'profile' => $this->profile,
@@ -183,6 +186,7 @@ class UIController extends Controller
                 'p' => $profile,
                 'p_p' => $profile_pic,
                 'venue' => $profile->venue()->first(),
+                'venues' => $venues,
                 'connects' => $connections,
                 'connections' => $this->connections,
                 'voteEnds' => VotingConfig::termination()
