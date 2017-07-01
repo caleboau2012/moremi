@@ -93,18 +93,18 @@
                             <div class="row" id="pictures-panel">
                                 @if(!empty($photos))
                                     <div class="masonry_items" id="masonry_items" data-step="4" data-intro="Your pictures show here">
-                                    @foreach($photos as $i => $photo)
-                                        <div class="col-md-4 col-sm-6 masonry_item">
-                                            <div class="image-box picture-panel pointer" draggable="true">
-                                                <div class="image">
-                                                    <img class="img-responsive" data-index="{{$i}}" src="{{Request::root() . "/" . $photo['full_path']}}">
-                                                    <span class="delete-picture icon icon-close" data-url="{{route("delete_pic", $photo['id'])}}"></span>
+                                        @foreach($photos as $i => $photo)
+                                            <div class="col-md-4 col-sm-6 masonry_item">
+                                                <div class="image-box picture-panel pointer" draggable="true">
+                                                    <div class="image">
+                                                        <img class="img-responsive" data-index="{{$i}}" src="{{Request::root() . "/" . $photo['full_path']}}">
+                                                        <span class="delete-picture icon icon-close" data-url="{{route("delete_pic", $photo['id'])}}"></span>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    @endforeach
+                                        @endforeach
                                     </div>
-                                    @else
+                                @else
                                     <p class="text-center text-muted">No image yet!</p>
                                 @endif
                             </div>
@@ -236,13 +236,47 @@
                             <div class="col-xs-3">
                                 <div class="connection-item" data-id="messages-between-{{$c[\TableConstant::PROFILE_ID]}}-{{$c[\ConnectionConstant::RECIPIENT_ID]}}">
                                     @if($c[\ConnectionConstant::PHOTO])
-                                         <img data-toggle="tooltip" data-placement="top" data-original-title="{{ucwords($c[\ConnectionConstant::NAME])}}"  src="{{asset($c[\ConnectionConstant::PHOTO]->thumb_path)}}" alt="{{$c[\ConnectionConstant::NAME]}}" class="img-circle img-responsive">
+                                        <img data-toggle="tooltip" data-placement="top" data-original-title="{{ucwords($c[\ConnectionConstant::NAME])}}"  src="{{asset($c[\ConnectionConstant::PHOTO]->thumb_path)}}" alt="{{$c[\ConnectionConstant::NAME]}}" class="img-circle img-responsive">
                                     @else
                                         <img data-toggle="tooltip" data-placement="top" data-original-title="{{ucwords($c[\ConnectionConstant::NAME])}}" src="{{asset('images/default.png')}}" alt="{{$c[\ConnectionConstant::NAME]}}" class="img-circle img-responsive">
                                     @endif
                                 </div>
                             </div>
                         @endforeach
+                    </div>
+
+                    {{-- Voters --}}
+                    <div class="row table-responsive">
+                        <h4 class="text-primary text-center">People who picked you</h4>
+
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th colspan="2">Picked by</th>
+                                <th>Picks</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {{--{{dd($voters)}}--}}
+                            @if(isset($voters) && !is_null($voters))
+                                @foreach($voters as $v)
+                                    <tr>
+                                        <td class="text-center">
+                                            <a target="_blank" href='{{route('my_profile', \Illuminate\Support\Facades\Crypt::encrypt($v['profile']->id))}}'>
+                                                <img width="20px" src="{{asset($v['profile']->photo->thumb_path)}}" alt="{{$v['profile']->first_name}} {{$v['profile']->last_name}}" class="img-circle img-responsive">
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a target="_blank" href='{{route('my_profile', \Illuminate\Support\Facades\Crypt::encrypt($v['profile']->id))}}'>
+                                                {{$v['profile']->first_name}} {{$v['profile']->last_name}}
+                                            </a>
+                                        </td>
+                                        <td>{{$v['count']}}</td>
+                                    </tr>
+                                @endforeach
+                            @endif
+                            </tbody>
+                        </table>
                     </div>
 
                     {{--CHAT BOX--}}
@@ -279,7 +313,7 @@
                                                             <small class="text-right chat-time format_time">{{$m->time}}</small>
                                                         </div>
                                                     @endforeach
-                                                {{--@else--}}
+                                                    {{--@else--}}
                                                     {{--&nbsp;--}}
                                                 @endif
                                             </div>
