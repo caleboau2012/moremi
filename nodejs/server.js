@@ -2,7 +2,16 @@
  * Created by KayLee on 21/04/2017.
  */
 var app = require('express')();
-var server = require('http').Server(app);
+var fs = require('fs');
+//var http = require('http');
+//var https = require('https');
+var privateKey  = fs.readFileSync('/etc/letsencrypt/archive/moree.me/privkey.pem');
+var certificate = fs.readFileSync('/etc/letsencrypt/archive/moree.me/fullchain.pem');
+var chain = fs.readFileSync('/etc/letsencrypt/archive/moree.me/chain.pem');
+
+var credentials = {key: privateKey, cert: certificate, ca: chain};
+
+var server = require('https').Server(credentials, app);
 var io = require('socket.io')(server);
 var redis = require('redis');
 
