@@ -114,11 +114,11 @@ use AuthTrait;
             $this->saveWinner($votingResult[0], $winner, $highestVoter, $spot);
             $this->resetVote();
             $this->resetVotingParam();
-//            return response()->json('Vote reset successfully');
+            return response()->json('Vote reset successfully');
 
         }else{
             $this->resetVotingParam();
-//            return response()->json('No action performed');
+            return response()->json('No action performed');
 
         }
     }
