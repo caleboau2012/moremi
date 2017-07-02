@@ -5,11 +5,12 @@ var app = require('express')();
 var fs = require('fs');
 //var http = require('http');
 //var https = require('https');
-var privateKey  = fs.readFileSync('/etc/letsencrypt/archive/moree.me/privkey.pem');
-var certificate = fs.readFileSync('/etc/letsencrypt/archive/moree.me/fullchain.pem');
-var chain = fs.readFileSync('/etc/letsencrypt/archive/moree.me/chain.pem');
+var privateKey  = fs.readFileSync('privkey.pem');
+var certificate = fs.readFileSync('fullchain.pem');
+//var chain = fs.readFileSync('/etc/letsencrypt/archive/moree.me/chain.pem');
 
-var credentials = {key: privateKey, cert: certificate, ca: chain};
+//var credentials = {key: privateKey, cert: certificate, ca: chain};
+var credentials = {key: privateKey, cert: certificate};
 
 var server = require('https').Server(credentials, app);
 var io = require('socket.io')(server);
