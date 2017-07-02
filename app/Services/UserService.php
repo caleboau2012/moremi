@@ -66,7 +66,7 @@ class UserService
              ]);
 
              $photoController = new PhotoController($facebookUser);
-             $profile = $photoController->storefb($profile, $facebookUser);
+             $photoController->storefb($profile, $facebookUser);
 
              return [
                  "route" => route('profile'),
