@@ -4,14 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Connection;
 use App\Profile;
-use App\Services\UserService;
 use App\Traits\AuthTrait;
 use App\Venue;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 use LRedis;
 
 use App\Http\Requests;
-use App\Http\Controllers\Controller;
 
 class ProfileController extends Controller
 {
@@ -26,7 +25,7 @@ class ProfileController extends Controller
         if(!$this->auth) {
             return response()->json(['status'=>false,'message'=>'You must be logged in to upload photo']);
         }
-        $profile =Profile::find($this->_userId);
+        $profile =Profile::where('user_id', $this->_userId)->first();
         return response()->json([
             'status'=>true,
             'data'=>[
@@ -45,7 +44,7 @@ class ProfileController extends Controller
 
         $venues = Venue::all();
 
-        $profile = Profile::find($this->_userId);
+        $profile = Profile::where('user_id', $this->_userId)->first();
 
         $connections = Connection::where(\TableConstant::PROFILE_ID, $this->_userId)->
         orWhere(\ConnectionConstant::RECIPIENT_ID, $this->_userId)->get()->toArray();
@@ -97,12 +96,13 @@ class ProfileController extends Controller
             ]);
         }
         else{
-            $profile = Profile::find($this->_userId);
+            $profile = Profile::where('user_id', $this->_userId)->first();
 
             $profile->first_name = $request->first_name;
             $profile->last_name = $request->last_name;
             $profile->phone = $request->phone;
             $profile->email = $request->email;
+            $profile->venue = $request->venue;
 
             $profile->save();
 
@@ -111,5 +111,21 @@ class ProfileController extends Controller
                 'msg' => "Profile saved successfully"
             ]);
         }
+    }
+
+    public  function updateStatus(Request $request){
+        $validator = Validator::make($request->all(), [
+            'status' => 'required|max:255',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(['status'=>false,'message'=>'Invalid status update']);
+        }
+        $profile =Profile::where('user_id', $this->_userId)->first();
+        $profile->about = $request->status;
+        $profile->venue = $request->spot;
+        $profile->update();
+        return response()->json(['status'=>true,'message'=>'Status updated successfully']);
+
     }
 }

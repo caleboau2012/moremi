@@ -67,14 +67,14 @@ var App = {
 
         $(".help").click(function(e){
             e.preventDefault();
-            introJs().start();
+            introJs().setOption('disableInteraction', true).start();
         });
 
         App.showDemo();
     },
     showDemo: function(){
         if((localStorage.getItem('app') == null) && ($(window).width() > 750)){
-            introJs().start();
+            introJs().setOption('disableInteraction', true).start();
             if(typeof(Storage) !== "undefined"){
                 localStorage.setItem('app', 'true');
             }

@@ -8,7 +8,7 @@
 ?>
 @if(isset($voteEnds) && $voteEnds != null)
         <div class=" col-md-1 counter">
-            <div class="cter-label"> <p>Pick stops In</p></div>
+            <div class="cter-label"> <p>Picking stops In</p></div>
 
             <ul>
                 <li><span id="cter_days">0</span>Days</li>
@@ -16,6 +16,8 @@
                 <li><span id="cter_minutes">0</span>Minutes</li>
                 <li><span id="cter_seconds">0</span>Seconds</li>
             </ul>
+
+            <div class="cter-label"><a href="{{route('app')}}"><span class="icon icon-play"></span></a> </div>
         </div>
 
 @section('bottomScripts')

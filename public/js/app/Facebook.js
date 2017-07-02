@@ -57,11 +57,10 @@ var Facebook = {
         swal('Error','Error logging you in with facebook','error');
     },
     saveToken: function(response){
+        //console.log(response);
         Profile.saveToken(response);
 
-        window.location = response.user.route;
-
-        //console.log(response);
+        window.location = response.route;
     },
     convertPhoto: function(url, callback){
             var xhr = new XMLHttpRequest();

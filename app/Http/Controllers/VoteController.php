@@ -35,7 +35,7 @@ use AuthTrait;
             ]);
         }
 
-        $profile = Profile::find($this->_userId);
+        $profile = Profile::where('user_id', $this->_userId)->first();
         if(($profile->first_name) && ($profile->last_name) && ($profile->phone) && ($profile->email)){
             $vote = new VoteService($request);
             $profile_id =$request->profile_id;
@@ -114,11 +114,11 @@ use AuthTrait;
             $this->saveWinner($votingResult[0], $winner, $highestVoter, $spot);
             $this->resetVote();
             $this->resetVotingParam();
-//            return response()->json('Vote reset successfully');
+            return response()->json('Vote reset successfully');
 
         }else{
             $this->resetVotingParam();
-//            return response()->json('No action performed');
+            return response()->json('No action performed');
 
         }
     }
@@ -147,6 +147,7 @@ use AuthTrait;
                 $m->from(\MailConstants::SUPPORT_MAIL, \MailConstants::TEAM_NAME);
                 $name = $picker->first_name .' '. $picker->last_name;
                 $m->to($picker->email, $name)->subject('You just got yourself a new connection on Moore.me');
+                $m->bcc(\MailConstants::TEAM_MAIL, \MailConstants::TEAM_NAME);
             });
             /*Send to  Pick*/
             Mail::send('emails.connectionAlert', ['connection' => $picker, 'poll' => $poll, 'location' => $picker_location, 'user' => $pick],
@@ -154,6 +155,7 @@ use AuthTrait;
                     $m->from(\MailConstants::SUPPORT_MAIL, \MailConstants::TEAM_NAME);
                     $name = $pick->first_name .' '. $pick->last_name;
                     $m->to($pick->email, $name)->subject('You just got yourself a new connection on Moore.me');
+                    $m->bcc(\MailConstants::TEAM_MAIL, \MailConstants::TEAM_NAME);
                 });
         }
     }
@@ -198,12 +200,14 @@ use AuthTrait;
             $m->from(\MailConstants::SUPPORT_MAIL, \MailConstants::TEAM_NAME);
             $name = $winner->first_name .' '. $winner->last_name;
             $m->to($winner->email, $name)->subject('Congratulation! You are the winner');
+            $m->bcc(\MailConstants::TEAM_MAIL, \MailConstants::TEAM_NAME);
         });
 
         Mail::send('emails.highestVoter', ['winner' => $winner, 'user' => $highestVoter, 'poll' => $poll, 'expiryDate' => $expiryDate, 'location' => $location, 'ticket' => $ticket_number, 'reference' => $reference_number], function ($m) use ($highestVoter) {
             $m->from(\MailConstants::SUPPORT_MAIL, \MailConstants::TEAM_NAME);
             $name = $highestVoter->first_name .' '. $highestVoter->last_name;
             $m->to($highestVoter->email, $name)->subject('Congratulation! You just got yourself a date');
+            $m->bcc(\MailConstants::TEAM_MAIL, \MailConstants::TEAM_NAME);
         });
 
         Mail::send('emails.notifyWinnersToTeam', ['winner' => $winner, 'voter' => $highestVoter, 'poll' => $poll, 'expiryDate' => $expiryDate, 'location' => $location, 'ticket' => $ticket_number, 'reference' => $reference_number], function ($m) {
@@ -216,6 +220,7 @@ use AuthTrait;
             Mail::send('emails.notifyWinnersToSpot', ['winner' => $winner, 'voter' => $highestVoter, 'poll' => $poll, 'expiryDate' => $expiryDate, 'location' => $location, 'ticket' => $ticket_number,  'reference' => $reference_number], function ($m)  use($spot){
                 $m->from(\MailConstants::SUPPORT_MAIL, \MailConstants::TEAM_NAME);
                 $m->to($spot->email, $spot->name)->subject('We got winners on Moore.me');
+                $m->bcc(\MailConstants::TEAM_MAIL, \MailConstants::TEAM_NAME);
             });
         }
 
@@ -261,9 +266,22 @@ use AuthTrait;
                 Mail::send('emails.dailyPollVote', ['picked' => $picked, 'poll' => $p], function ($m)  use($picked){
                     $m->from(\MailConstants::SUPPORT_MAIL, \MailConstants::TEAM_NAME);
                     $m->to($picked->email)->subject('Your Daily Picks on Moore.me');
+                    $m->bcc(\MailConstants::TEAM_MAIL, \MailConstants::TEAM_NAME);
                 });
             }
             return response()->json('Polls sent successfully');
         }
+    }
+
+    public function voters($profile_id){
+        $poll = DB::table('voters')
+            ->select('profile_id', 'voter_id', DB::raw('SUM(frequency) as total'))
+            ->groupBy('voter_id')
+            ->orderBy('total', 'DESC')
+            ->where('profile_id', $profile_id)
+            ->where('deleted_at', null)
+            ->get();
+
+        return $poll;
     }
 }

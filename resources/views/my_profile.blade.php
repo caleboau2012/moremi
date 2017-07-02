@@ -122,7 +122,7 @@
                     <h4 class="text-primary text-center margin-bottom-md">Connections</h4>
 
                     <div class="row">
-                        @foreach($connections as $c)
+                        @foreach($connects as $c)
                             <div class="col-xs-3">
                                 <a href="{{route('my_profile', \Illuminate\Support\Facades\Crypt::encrypt($c[\ConnectionConstant::RECIPIENT_ID]))}}">
                                 <div class="connection-item" data-id="messages-between-{{$c[\TableConstant::PROFILE_ID]}}-{{$c[\ConnectionConstant::RECIPIENT_ID]}}">
@@ -142,7 +142,7 @@
     </div>
 
     @include('utils.votePay')
-    @include('utils.account');
+    @include('utils.account')
 @endsection
 
 @section('bottomScripts')

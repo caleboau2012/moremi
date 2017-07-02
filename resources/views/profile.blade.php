@@ -48,8 +48,9 @@
         <div class="row">
             <div class="col-md-8 bg-white">
                 <div class=" profile-court">
-                    <div class="row" data-step="2" data-intro="These are your pictures">
-                        <div class="col-md-6" data-step="5" data-intro="Drag a picture here to use as your profile picture">
+                    <div class="row">
+                        <div class="col-md-6" data-step="4" data-intro="Select or Drag a picture from your gallery to use as your profile picture">
+                            {{--<h4 class="no-margin-top">Profile Picture</h4>--}}
                             <div class="profile-pic">
                                 <div class="row">
                                     <div class="col-xs-12">
@@ -67,12 +68,12 @@
 
                                             @else
                                                 <p class="text-center hidden text-info image-placeholder">Drag best picture here</p>
-                                                <img class="img-responsive img-thumbnail" id="profile-dp" data-index="{{$profile_pic}}" src="{{asset($profile->photo->full_path)}}">
+                                                <img class="img-responsive img-thumbnail" id="profile-active-dp" data-index="{{$profile_pic}}" src="{{asset($profile->photo->full_path)}}">
                                             @endif
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row" data-step="3" data-intro="Click here to import pictures from your computer or Facebook">
+                                <div class="row" data-step="2" data-intro="Click here to import pictures from your computer or Facebook">
                                     <br>
                                     <div class="col-xs-12 col-sm-6">
                                         <a href="#" title="Upload image" class="btn btn-primary btn-block picture-upload">
@@ -88,23 +89,34 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-6" data-step="3" data-intro="This is your Gallery. Your imported pictures end up here.">
+                            <h4 class="no-margin text-primary">Gallery</h4>
+                            <p class="small text-muted no-margin">Use your best picture as your profile picture</p>
                             {{--Previous DP--}}
-                            <div class="row" id="pictures-panel">
+                            <div class="row" id="pictures-panel" data-url="{{route("photo_upload")}}">
                                 @if(!empty($photos))
-                                    <div class="masonry_items" id="masonry_items" data-step="4" data-intro="Your pictures show here">
-                                    @foreach($photos as $i => $photo)
-                                        <div class="col-md-4 col-sm-6 masonry_item">
-                                            <div class="image-box picture-panel pointer" draggable="true">
-                                                <div class="image">
-                                                    <img class="img-responsive" data-index="{{$i}}" src="{{Request::root() . "/" . $photo['full_path']}}">
-                                                    <span class="delete-picture icon icon-close" data-url="{{route("delete_pic", $photo['id'])}}"></span>
+                                    <div class="masonry_items" id="masonry_items">
+                                        @foreach($photos as $i => $photo)
+                                            <div class="col-xs-6 masonry_item">
+                                                <div class="image-box picture-panel pointer" draggable="true">
+                                                    <div class="image">
+                                                        <img class="img-responsive" data-index="{{$i}}" src="{{Request::root() . "/" . $photo['full_path']}}">
+                                                        {{--<span class="delete-picture icon icon-search" data-url="{{route("delete_pic", $photo['id'])}}"></span>--}}
+                                                    </div>
+                                                    <div class="action-button-bg text-center">
+                                                        <a class="action-btn drag-pp" data-img-src="{{Request::root() . "/" . $photo['full_path']}}" data-img-index="{{$i}}" >
+                                                            Make Profile Picture
+                                                        </a>
+                                                        <br>
+                                                        <a class="action-btn delete-picture" data-url="{{route("delete_pic", $photo['id'])}}">
+                                                            Delete Picture
+                                                        </a>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    @endforeach
+                                        @endforeach
                                     </div>
-                                    @else
+                                @else
                                     <p class="text-center text-muted">No image yet!</p>
                                 @endif
                             </div>
@@ -114,44 +126,7 @@
 
                     {{--profile--}}
                     <div class="profile-form">
-                        <div data-step="6" data-position="top" data-intro="Don't forget to change your status and select your Spot">
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <div class="form-group">
-                                        <div>
-                                            <label for="status" class="control-label"><strong>Status</strong></label>
-                                            <textarea placeholder="My status message" class="form-control margin-top-sm" id="status">{{$profile->about}}</textarea>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label for="venue"><strong>Preferred Spot</strong></label>
-                                        <select name="venue" id="venue" class="form-control">
-                                            <option value="0">Select your preferred meeting location</option>
-                                            @foreach($venues as $venue)
-                                                @if($venue->id == $profile->venue)
-                                                    <option selected value="{{$venue->id}}" data-url="{{$venue->url}}"
-                                                            data-title="{{$venue->title}}" data-image="{{$venue->thumb}}">{{$venue->name}}</option>
-                                                @else
-                                                    <option value="{{$venue->id}}" data-url="{{$venue->url}}"
-                                                            data-title="{{$venue->title}}" data-image="{{$venue->thumb}}">{{$venue->name}}</option>
-                                                @endif
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-sm-6">
-                                    <br>
-                                    <button data-step="7" data-intro="Click finish to save all you've done and become trending..." id="finish" data-loading-text="<i class='icon icon-circle-o-notch icon-spin'></i> Updating your profile" data-url="{{route("photo_upload")}}" class="btn btn-success btn-block"><span class="icon icon-upload"></span> Save Changes</button>
-                                    <br>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row">
+                        <div class="row" data-step="8" data-position="top" data-intro="Share your profile on social media to get more picks.">
                             <div class="row_">
                                 <div class="col-xs-12 col-sm-4">
                                     <br>
@@ -182,11 +157,21 @@
                     </div>
 
                     <script id="picture-template" type="text/html">
-                        <div class="col-md-4 col-xs-6">
+                        <div class="col-xs-6">
                             <div class="image-box picture-panel pointer" draggable="true">
                                 <div class="image">
-                                    <img data-index="[[i]]" src="[[src]]">
-                                    <span class="delete-picture icon icon-close"></span>
+                                    <img data-index="[[i]]" src="[[src]]" class="img-responsive">
+                                    {{--<span class="delete-picture icon icon-search"></span>--}}
+                                </div>
+                                <div class="action-button-bg text-center">
+                                    <a data-img-src="[[src]]" class="action-btn drag-pp" data-img-index="[[i]]">
+                                        Make Profile Picture
+                                    </a>
+                                    <br>
+                                    <a class="action-btn delete-picture">
+                                        Delete Picture
+                                    </a>
+
                                 </div>
                             </div>
                             <br>
@@ -229,14 +214,61 @@
 
             <div class="col-md-4">
                 <div class="connections-container">
-                    <h4 class="text-primary text-center margin-bottom-md">Your Connections</h4>
+                    <div class="status-container">
+                        <div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <form action="{{route('new-status')}}" id="statusForm">
+                                        <div class="form-group text-center">
+                                            <div data-step="5" data-position="top" data-intro="Don't forget to change your status, this appears on your public profile.">
+                                                <h4 class="text-primary">Status</h4>
+                                                <textarea placeholder="What's on your mind?" class="form-control margin-top-sm" id="statusContent">{{$profile->about}}</textarea>
+                                            </div>
+                                        </div>
+                                        <div class="form-group text-center" data-step="6" data-position="top" data-intro="Select your preferred spot, this where you will hangout">
+                                            <h4 class="text-primary">Preferred Spot</h4>
+                                            <select name="p_spot" id="p_spot" class="form-control">
+                                                <option value="0">Select your preferred meeting location</option>
+                                                @foreach($venues as $venue)
+                                                    @if($venue->id == $profile->venue)
+                                                        <option selected value="{{$venue->id}}" data-url="{{$venue->url}}"
+                                                                data-title="{{$venue->title}}" data-image="{{$venue->thumb}}">{{$venue->name}}</option>
+                                                    @else
+                                                        <option value="{{$venue->id}}" data-url="{{$venue->url}}"
+                                                                data-title="{{$venue->title}}" data-image="{{$venue->thumb}}">{{$venue->name}}</option>
+                                                    @endif
+                                                @endforeach
+                                            </select>
+                                            <div class="row">
+                                                <a target="_blank" href="" id="venue-url" class="hidden">
+                                                    <div class="col-xs-6">
+                                                        <div class="well-sm">
+                                                            <img src="" id="venue-image" style="width: 100%">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xs-6">
+                                                        <p id="venue-title"></p>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="form-group text-center">
+                                            <button class="btn btn-primary btn-sm" id="submitStatus" data-step="7" data-position="top" data-intro="Save when you are done">Save</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h4 class="text-primary text-center margin-bottom-sm">Your Connections</h4>
 
                     <div class="row">
                         @foreach($connections as $c)
                             <div class="col-xs-3">
                                 <div class="connection-item" data-id="messages-between-{{$c[\TableConstant::PROFILE_ID]}}-{{$c[\ConnectionConstant::RECIPIENT_ID]}}">
                                     @if($c[\ConnectionConstant::PHOTO])
-                                         <img data-toggle="tooltip" data-placement="top" data-original-title="{{ucwords($c[\ConnectionConstant::NAME])}}"  src="{{asset($c[\ConnectionConstant::PHOTO]->thumb_path)}}" alt="{{$c[\ConnectionConstant::NAME]}}" class="img-circle img-responsive">
+                                        <img data-toggle="tooltip" data-placement="top" data-original-title="{{ucwords($c[\ConnectionConstant::NAME])}}"  src="{{asset($c[\ConnectionConstant::PHOTO]->thumb_path)}}" alt="{{$c[\ConnectionConstant::NAME]}}" class="img-circle img-responsive">
                                     @else
                                         <img data-toggle="tooltip" data-placement="top" data-original-title="{{ucwords($c[\ConnectionConstant::NAME])}}" src="{{asset('images/default.png')}}" alt="{{$c[\ConnectionConstant::NAME]}}" class="img-circle img-responsive">
                                     @endif
@@ -245,70 +277,48 @@
                         @endforeach
                     </div>
 
-                    {{--CHAT BOX--}}
-                    <div id="chat-container">
-                        <div class="chat-box">
-                            <div class="chat-container-header text-center">
-                                <h5 class="no-margin text-white">
-                                    <span class="icon icon-lightning"></span>Chat Box
-                                </h5>
-                            </div>
-                        </div>
+                    {{-- Voters --}}
+                    <div class="row table-responsive">
+                        <h4 class="text-primary text-center">People who picked you</h4>
 
-                        @foreach($connections as $c)
-                            <div class="hidden chat-box" id="messages-between-{{$c[\TableConstant::PROFILE_ID]}}-{{$c[\ConnectionConstant::RECIPIENT_ID]}}">
-                                <div class="chat-container-header text-center">
-                                    <h3 class="panel-title text-capitalize">
-                                        @if($c[\ConnectionConstant::PHOTO])
-                                            <img src="{{asset($c[\ConnectionConstant::PHOTO]->thumb_path)}}" class="img-thumb img-circle img-small">
-                                        @else
-                                            <img src="{{asset('images/default.png')}}" alt="{{$c[\ConnectionConstant::NAME]}}" class="img-thumb img-circle img-small">
-                                        @endif
-                                        {{$c[\ConnectionConstant::NAME]}}
-                                    </h3>
-                                </div>
-                                <div class="chat-container-body">
-                                    <div class="row">
-                                        <div class="col-xs-12" >
-                                            <div class="chat-messages">
-                                                @if(isset($c[\ConnectionConstant::MESSAGES]))
-                                                    @foreach($c[\ConnectionConstant::MESSAGES] as $m)
-                                                        <div>
-                                                            <strong>{{$m->user}}:</strong>
-                                                            <p class="chat-message">{{$m->message}}</p>
-                                                            <small class="text-right chat-time format_time">{{$m->time}}</small>
-                                                        </div>
-                                                    @endforeach
-                                                {{--@else--}}
-                                                    {{--&nbsp;--}}
-                                                @endif
-                                            </div>
-                                        </div>
-                                        <div class="col-xs-8" >
-                                            <p class="hidden" id="id_user_to">{{$c[\ConnectionConstant::RECIPIENT_ID]}}</p>
-                                            <textarea class="form-control msg"></textarea>
-                                        </div>
-                                        <div class="col-xs-4">
-                                            <input type="button" value="Send" class="btn btn-block btn-success send-msg">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        @endforeach
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th colspan="2">Picked by</th>
+                                <th>Picks</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {{--{{dd($voters)}}--}}
+                            @if(isset($voters) && !is_null($voters))
+                                @foreach($voters as $v)
+                                    <tr>
+                                        <td class="text-center">
+                                            <a target="_blank" href='{{route('my_profile', \Illuminate\Support\Facades\Crypt::encrypt($v['profile']->id))}}'>
+                                                <img width="20px" src="{{asset($v['profile']->photo->thumb_path)}}" alt="{{$v['profile']->first_name}} {{$v['profile']->last_name}}" class="img-circle img-responsive">
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a target="_blank" href='{{route('my_profile', \Illuminate\Support\Facades\Crypt::encrypt($v['profile']->id))}}'>
+                                                {{$v['profile']->first_name}} {{$v['profile']->last_name}}
+                                            </a>
+                                        </td>
+                                        <td>{{$v['count']}}</td>
+                                    </tr>
+                                @endforeach
+                            @endif
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
-    @include('utils.votePay')
 @endsection
 
 @section('bottomScripts')
     @parent
     <script src="{{asset('js/app/Account.js')}}"></script>
-    <script src="https://cdn.socket.io/socket.io-1.3.4.js"></script>
-    <script src="{{asset('js/app/Chat.js')}}"></script>
     <script>
         $(window).load(function(){
             $('[data-toggle="tooltip"]').tooltip();

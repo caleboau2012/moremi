@@ -904,7 +904,7 @@ Profile Card
 
 }
 #partners_section{
-    min-height: 350px;
+    min-height: 200px;
 }
 
 /*Footer*/
@@ -950,11 +950,7 @@ font-size: 16px;
     margin-right: 15px;
 }
 .social-media>p {
-    width: 60%;
-    margin: 0 auto;
-    padding: 5px;
-    padding-left: 20px;
-
+    text-align: center;
 }
 
 .social-media>span>p {
@@ -990,7 +986,6 @@ font-size: 16px;
     background: url("../images/header_app.png") no-repeat;
     background-size: 100%;
     background-attachment: fixed;
-    margin-top: 64px;
 }
 #app-header{
     position: relative;
@@ -1097,6 +1092,19 @@ font-size: 16px;
     margin-bottom: 20px;
 }
 
+.status-container{
+    background-color: white; padding: 2em;
+    outline: rgba(232, 152, 99,.7) 1px dashed;
+    outline-offset: -10px;
+    margin-bottom: 20px;
+}
+.status-container textarea{
+    resize: none;
+}
+.status-container .btn{
+    padding: 7px 25px;
+}
+
 .connections-container{
     background: #ffe3d2;
     padding: 10px 20px;
@@ -1109,23 +1117,43 @@ font-size: 16px;
 .connection-item{
     margin-bottom: 15px;
 }
-#chat-container{
-    position: absolute;
-    bottom: 0;
-    background: #ffffff;
-    height: 500px;
-    width: 90%;
-}
-.chat-container-header{
-    background-image: linear-gradient(-146deg, #FF4B1F 0%, #F06B3B 83%);
-    color: #ffffff;
-    padding: 10px;
-}
 .profile-thumb {
     width: 25px;
     height: 25px;
     border-radius: 50%;
     border: 1px #e78f79 solid;
+}
+.image-box{
+    position: relative;
+}
+.image-box .action-button-bg{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.52);
+    width: 100%;
+    padding-top: 25%;
+    display: none;
+}
+.image-box:hover .action-button-bg{
+    display: block;
+}
+.image-box .action-button-bg .action-btn{
+    font-size: 10px;
+    overflow: hidden;
+    top: 20%;
+    border: none;
+    -webkit-box-shadow: 1px 1px 4px rgba(0,0,0,0.4);
+    box-shadow: 1px 1px 4px rgba(0,0,0,0.4);
+    -webkit-transition: all 0.4s;
+    -o-transition: all 0.4s;
+    transition: all 0.4s;
+    background: #fff;
+    padding: 4px;
+    border-radius: 7px;
+}
+.action-button-bg .action-btn:hover{
+    color: #FF4B1F !important;
 }
 .image-box img, .profile-pic img, .picture-pane img{
     display: block;
@@ -1194,26 +1222,6 @@ font-size: 16px;
 }
 #upload_image_placeholder #caption{
     margin-top: 50px;
-}
-.chat-box .chat-container-header img{
-    width: 20%;
-}
-
-.chat-box .chat-container-body{
-    padding: 10px;
-}
-
-.chat-box .msg{
-    resize: none;
-}
-
-.chat-box .chat-messages{
-    height: 340px;
-    overflow-y: scroll;
-}
-
-.chat-box .chat-messages small{
-    display: block;
 }
 
 /* ---------------------------------------------- /*
@@ -1322,4 +1330,28 @@ font-size: 16px;
 .masonry_item{
     margin-bottom: 10px;
     padding: 5px;
+}
+
+.loading-icon{
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    border: 4px solid transparent;
+    border-color: rgba(167, 70, 70, 0);
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    vertical-align: top;
+    background-color: transparent!important;
+    color: transparent;
+    cursor: default;
+    border-radius: 100%;
+    -webkit-animation: rotate-loading 1.5s linear 0s infinite normal;
+     animation: rotate-loading 1.5s linear 0s infinite normal;
+     -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    border-left-color: #ff4b1f;
+    border-right-color: #ff4b1f;
+    margin: 0 auto;
 }

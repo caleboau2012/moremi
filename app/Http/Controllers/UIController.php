@@ -17,6 +17,7 @@ class UIController extends Controller
         $this->loggedIn = false;
         $this->profile = null;
         $this->_userId = 0;
+        $this->connections = [];
 
         $token = session(\AppConstants::AUTH);
 
@@ -24,6 +25,7 @@ class UIController extends Controller
             $this->loggedIn = true;
             $this->_userId = customdecrypt($token);
             $this->profile = Profile::where('user_id', $this->_userId)->first();
+            $this->connections = $this->getConnections();
         }
 
         if($this->loggedIn && ($this->profile == null)) {
@@ -33,52 +35,7 @@ class UIController extends Controller
         }
     }
 
-    public function home(){
-        $males= Profile::where(\ProfileConstant::SEX, \ProfileConstant::MALE)->count();
-        $females = Profile::where(\ProfileConstant::SEX, \ProfileConstant::FEMALE)->count();
-        $dates = OldCheek::all();
-
-        $winner =OldCheek::orderBy('created_at', 'desc')->first();
-
-        $trending = Profile::orderBy('updated_at', 'desc')->take(10)->get();
-
-        $partners = Venue::all();
-
-        return view('home', [
-            'loggedIn' => $this->loggedIn,
-            'profile' => $this->profile,
-            'winner' => $winner,
-            'trending' => $trending,
-            'males' => $males,
-            'females' => $females,
-            'dates' => $dates,
-            'partners' => $partners,
-            'voteEnds' => VotingConfig::termination()
-        ]);
-    }
-    /*user homepage*/
-    public function app(){
-        if(!$this->loggedIn){
-            return redirect(route("index"));
-        };
-
-        $trending = Profile::orderBy('updated_at', 'desc')->take(10)->get();
-
-        $all = Profile::paginate(10);
-
-        return view('app', ['profile' => $this->profile, 'trending' => $trending, 'all' => $all, 'voteEnds' => VotingConfig::termination()]);
-    }
-
-    /*user profile*/
-    public function profile(){
-        if(!$this->loggedIn){
-            return redirect(route("index"));
-        };
-
-        $venues = Venue::all();
-
-        $profile = $this->profile;
-
+    public function getConnections(){
         $connections = Connection::where(\TableConstant::PROFILE_ID, $this->_userId)->
         orWhere(\ConnectionConstant::RECIPIENT_ID, $this->_userId)->get()->toArray();
 
@@ -111,11 +68,78 @@ class UIController extends Controller
             }
         }
 
+        return $connections;
+    }
+
+    public function home(){
+        $males= Profile::where(\ProfileConstant::SEX, \ProfileConstant::MALE)->count();
+        $females = Profile::where(\ProfileConstant::SEX, \ProfileConstant::FEMALE)->count();
+        $dates = OldCheek::all();
+
+        $winner =OldCheek::orderBy('created_at', 'desc')->first();
+
+        $trending = Profile::orderBy('updated_at', 'desc')->take(10)->get();
+
+        $partners = Venue::all();
+
+        return view('home', [
+            'loggedIn' => $this->loggedIn,
+            'profile' => $this->profile,
+            'winner' => $winner,
+            'trending' => $trending,
+            'males' => $males,
+            'females' => $females,
+            'dates' => $dates,
+            'venues' => $partners,
+            'connections' => $this->connections,
+            'voteEnds' => VotingConfig::termination()
+        ]);
+    }
+    /*user homepage*/
+    public function app(){
+        if(!$this->loggedIn){
+            return redirect(route("index"));
+        };
+
+        $trending = Profile::orderBy('updated_at', 'desc')->take(10)->get();
+
+        $all = Profile::paginate(10);
+        $venues = Venue::all();
+
+        return view('app', [
+            'profile' => $this->profile,
+            'trending' => $trending,
+            'all' => $all,
+            'venues' => $venues,
+            'connections' => $this->connections,
+            'voteEnds' => VotingConfig::termination()
+        ]);
+    }
+
+    /*user profile*/
+    public function profile(){
+        if(!$this->loggedIn){
+            return redirect(route("index"));
+        };
+
+        $venues = Venue::all();
+
+        $profile = $this->profile;
+
         $photos = $profile->photos->toArray();
         $profile_pic = -1;
         foreach($photos as $i => $photo){
             if($profile->photo->full_path == $photo['full_path'])
                 $profile_pic = $i;
+        }
+
+        $vote = new VoteController();
+        $voters = $vote->voters($this->_userId);
+        $people = [];
+
+        foreach($voters as $v){
+            $person = Profile::find($v->voter_id);
+            $people[] = ['profile' => $person, 'count' => $v->total];
         }
 
         return view('profile',[
@@ -124,7 +148,8 @@ class UIController extends Controller
                 'profile_pic' => $profile_pic,
                 'venues' => $venues,
                 'voteEnds' => VotingConfig::termination(),
-                'connections' => $connections
+                'connections' => $this->connections,
+                'voters' => $people
             ]
         );
     }
@@ -154,6 +179,7 @@ class UIController extends Controller
             if(isset($profile->photo->full_path) && $profile->photo->full_path == $photo['full_path'])
                 $profile_pic = $i;
         }
+        $venues = Venue::all();
 
         return view('my_profile',[
                 'profile' => $this->profile,
@@ -161,7 +187,9 @@ class UIController extends Controller
                 'p' => $profile,
                 'p_p' => $profile_pic,
                 'venue' => $profile->venue()->first(),
-                'connections' => $connections,
+                'venues' => $venues,
+                'connects' => $connections,
+                'connections' => $this->connections,
                 'voteEnds' => VotingConfig::termination()
             ]
         );
@@ -173,11 +201,19 @@ class UIController extends Controller
     }
 
     public function policy(){
-        return view('terms');
+        return view('terms', [
+            'profile' => $this->profile,
+            'connections' => $this->connections,
+            'voteEnds' => VotingConfig::termination()
+        ]);
     }
 
     public function faq(){
-        return view('faq');
+        return view('faq', [
+            'profile' => $this->profile,
+            'connections' => $this->connections,
+            'voteEnds' => VotingConfig::termination()
+        ]);
     }
 
 }

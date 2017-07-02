@@ -10,13 +10,13 @@
                 </tr>
                 <tr>
                     <td style="padding:20px 0 30px 0;color:#153643;font-family:Arial,sans-serif;font-size:16px;line-height:25px">
-                        Log into your account to track your progress.
+                        Log into your account to see who picked you.
                     </td>
                 </tr>
 
                 <tr>
                     <td style="padding:10px 0 30px 0;color:#153643;font-family:Arial,sans-serif;font-size:16px;line-height:25px;text-align:center">
-                        <a href="{{route('my_profile', \Illuminate\Support\Facades\Crypt::encrypt($picked->id))}}" style="padding:10px 30px 10px 30px;color:#ffffff;font-family:Arial,sans-serif;font-size:16px;line-height:25px;background-color:#fe574a;text-decoration:none">View Profile</a>
+                        <a href="{{route('profile')}}" style="padding:10px 30px 10px 30px;color:#ffffff;font-family:Arial,sans-serif;font-size:16px;line-height:25px;background-color:#fe574a;text-decoration:none">See Who Picked You</a>
                     </td>
                 </tr>
             </table>

@@ -12,6 +12,18 @@ var Profile = {
             swal('Wait a minute', 'We detect your browser is outdated. Kindly upgrade');
         }
 
+        $(document).undelegate('.drag-pp', 'click').delegate('.drag-pp', 'click' , function () {
+            var _src = $(this).attr('data-img-src');
+            var _index = $(this).attr('data-img-index');
+            $('#profile-active-dp').attr('src', _src).attr('data-index', _index);
+
+            console.log({
+                src: _src,
+                index: _index
+            });
+            Profile.finish($('#pictures-panel').attr("data-url"));
+        });
+
         /*masonry*/
         $('#masonry_items').masonry({
             itemSelector: '.masonry_item'
@@ -31,7 +43,7 @@ var Profile = {
             $('#accountModal').modal();
         });
 
-        $("#venue").change(function(e){
+        $("#p_spot").change(function(e){
             var selected = $(this).find('option:selected');
 
             if(this.value == 0)
@@ -145,13 +157,30 @@ var Profile = {
 
         $(".help").click(function(e){
             e.preventDefault();
-            introJs().start();
+            introJs().setOption('disableInteraction', true).start();
+        });
+
+        /*Save status*/
+        $('#statusForm').on('submit', function (e) {
+            e.preventDefault();
+            var status_ = $('#statusContent').val();
+            var spot_ = $('#p_spot').val();
+
+            if(spot_ == 0){
+                swal('Oh Snap!', "You didn't pick a spot");
+                return;
+            }
+
+            Utils.swalLoader();
+            Utils.post($(this).attr('action'), {
+                status: status_,
+                spot: spot_
+            }, 'POST', Profile.statusUploaded, Profile.uploadError);
         });
     },
     showDemo: function(){
-        console.log(localStorage.getItem('profile'));
         if((localStorage.getItem('profile') == null) && ($(window).width() > 750)){
-                introJs().start();
+            introJs().setOption('disableInteraction', true).start();
             if(typeof(Storage) !== "undefined"){
                 localStorage.setItem('profile', 'true');
             }
@@ -189,7 +218,7 @@ var Profile = {
             profile_pic: pPic
         };
 
-        console.log(data);
+        Utils.swalLoader('Relax and sit back...');
 
         Utils.post(url,
             data, "POST", Profile.uploaded, Profile.uploadError
@@ -197,13 +226,40 @@ var Profile = {
 
         $("#finish").button('loading');
     },
-    uploaded: function(data){
-        console.log(data);
+    statusUploaded: function(data){
+        // console.log(data);
         $("#finish").button('reset');
         if(data.status)
-            swal('Awesome', data.message);
+            swal({
+                title: "Awesome",
+                text: data.message,
+                confirmButtonColor: "#fe7447"
+            });
         else
-            swal('Oh Snap!', data.message);
+            swal({
+                title: "Oh Snap!",
+                text: data.message,
+                confirmButtonColor: "#fe7447"
+            });
+        $(".status-content").html($("#statusContent").val());
+    },
+    uploaded: function(data){
+        // console.log(data);
+        $("#finish").button('reset');
+        if(data.status){
+            swal({
+                title: "Awesome",
+                text: data.message,
+                confirmButtonColor: "#fe7447"
+            });
+            $(".profile-dp-img").attr('src', $('#profile-active-dp').attr('src'));
+        }
+        else
+            swal({
+                title: "Oh Snap!",
+                text: data.message,
+                confirmButtonColor: "#fe7447"
+            });
     },
     uploadError: function(data){
         swal('Oh Snap!', "We don't know what went wrong but we couldn't finish the operation");
@@ -289,7 +345,10 @@ var Profile = {
         for(var i = 0; i < Profile.facebookPhotos.length; i++){
             //console.log(Profile.facebookPhotos[i]);
             template = $("#picture-template").html();
-            HTML = template.replace("[[src]]", Profile.facebookPhotos[i]).replace("[[i]]", $(".picture-panel").length);
+            HTML = template.replace("[[src]]", Profile.facebookPhotos[i])
+                .replace("[[i]]", $(".picture-panel").length)
+                .replace("[[src]]", Profile.facebookPhotos[i])
+                .replace("[[i]]", $(".picture-panel").length);
             $("#pictures-panel").append(HTML);
         }
     },
