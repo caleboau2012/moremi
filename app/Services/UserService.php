@@ -31,7 +31,7 @@ class UserService
     }
 
     public function isValid($userId){
-        $count = Profile::where('id', $userId)->count();
+        $count = Profile::where('user_id', $userId)->count();
         if($count==1) {
             return true;
         }
@@ -48,7 +48,9 @@ class UserService
                  "profile" => $authUser
              ];
          }
-         DB::transaction(function () use ($facebookUser) {
+
+         $newUser = null;
+         DB::transaction(function () use ($facebookUser, &$newUser) {
              $user = new User();
              $user->name = $facebookUser->first_name." ".$facebookUser->last_name;
              $user->email = $facebookUser->email;
@@ -66,12 +68,16 @@ class UserService
              ]);
 
              $photoController = new PhotoController($facebookUser);
-             $profile = $photoController->storefb($profile, $facebookUser);
+             $photoController->storefb($profile, $facebookUser);
+             $newUser = $profile;
+         });
 
+         if($newUser != null){
              return [
                  "route" => route('profile'),
-                 "profile" => $profile
+                 "profile" => $newUser
              ];
-         });
+         }
+
      }
 }

@@ -986,7 +986,6 @@ font-size: 16px;
     background: url("../images/header_app.png") no-repeat;
     background-size: 100%;
     background-attachment: fixed;
-    margin-top: 15px;
 }
 #app-header{
     position: relative;

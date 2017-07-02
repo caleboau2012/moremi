@@ -29,7 +29,7 @@ class PaymentController extends Controller
         if(!$this->auth) {
             return response()->json(['status'=>false, "profile" => false, 'msg'=>'You must be logged in to pay']);
         }
-        $profile =Profile::find($this->_userId);
+        $profile = Profile::where('user_id', $this->_userId)->first();
 
 //            Store attempted payment.
         $payment = new Payment();

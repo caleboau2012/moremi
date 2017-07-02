@@ -25,7 +25,7 @@ class ProfileController extends Controller
         if(!$this->auth) {
             return response()->json(['status'=>false,'message'=>'You must be logged in to upload photo']);
         }
-        $profile =Profile::find($this->_userId);
+        $profile =Profile::where('user_id', $this->_userId)->first();
         return response()->json([
             'status'=>true,
             'data'=>[
@@ -44,7 +44,7 @@ class ProfileController extends Controller
 
         $venues = Venue::all();
 
-        $profile = Profile::find($this->_userId);
+        $profile = Profile::where('user_id', $this->_userId)->first();
 
         $connections = Connection::where(\TableConstant::PROFILE_ID, $this->_userId)->
         orWhere(\ConnectionConstant::RECIPIENT_ID, $this->_userId)->get()->toArray();
@@ -96,7 +96,7 @@ class ProfileController extends Controller
             ]);
         }
         else{
-            $profile = Profile::find($this->_userId);
+            $profile = Profile::where('user_id', $this->_userId)->first();
 
             $profile->first_name = $request->first_name;
             $profile->last_name = $request->last_name;
@@ -121,7 +121,7 @@ class ProfileController extends Controller
         if ($validator->fails()) {
             return response()->json(['status'=>false,'message'=>'Invalid status update']);
         }
-        $profile =Profile::find($this->_userId);
+        $profile =Profile::where('user_id', $this->_userId)->first();
         $profile->about = $request->status;
         $profile->venue = $request->spot;
         $profile->update();

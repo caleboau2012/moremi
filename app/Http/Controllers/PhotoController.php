@@ -72,7 +72,7 @@ class PhotoController extends Controller
         $photo->save();
 
         //go ahead and set as feature photo
-        $profile =Profile::find($this->_userId);
+        $profile = Profile::where('user_id', $this->_userId)->first();
         // echo $photo->id;
         $profile->photo_id=$photo->id;
         $profile->save();
@@ -98,7 +98,7 @@ class PhotoController extends Controller
         }
 
         $profile_id = $this->_userId;
-        $profile = Profile::find($profile_id);
+        $profile = Profile::where('user_id', $this->_userId)->first();
 
         if($request->has('photo')) {
             $upload = new UploadPicture();
@@ -206,9 +206,9 @@ class PhotoController extends Controller
     }
 
 
-    public  function getSpaceUsed($user_id,array $photos){
-        $profile =Profile::find($user_id);
-        $spaceRemain =abs(6-$profile->photos()->count());
+    public  function getSpaceUsed($user_id, array $photos){
+        $profile = Profile::where('user_id', $this->_userId)->first();
+        $spaceRemain = abs(6-$profile->photos()->count());
         if(count($photos)<$spaceRemain) {
             foreach($photos as $photo){
                 //$this->upload($uphoto);

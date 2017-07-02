@@ -35,7 +35,7 @@ use AuthTrait;
             ]);
         }
 
-        $profile = Profile::find($this->_userId);
+        $profile = Profile::where('user_id', $this->_userId)->first();
         if(($profile->first_name) && ($profile->last_name) && ($profile->phone) && ($profile->email)){
             $vote = new VoteService($request);
             $profile_id =$request->profile_id;
