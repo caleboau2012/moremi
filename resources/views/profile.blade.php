@@ -35,11 +35,7 @@
 @section('content')
     <div style="height: 65px;">
         <div class="row hidden">
-            <p class="hidden" id="_token">{{ csrf_token() }}"</p>
-            <h2 class="text-center hidden" id="user">{{$profile->first_name}} {{$profile->last_name}}</h2>
             <h3 class="text-center hidden"><span class="text-danger">Picks: {{$profile->vote}} <i class="icon icon-heart"></i></span> </h3>
-            <p class="hidden" id="id_user_from">{{$profile->id}}</p>
-            <p class="hidden" id="chat-url">{{route('chat-url')}}</p>
             <hr>
         </div>
     </div>
