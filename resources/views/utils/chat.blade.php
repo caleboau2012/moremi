@@ -1,4 +1,10 @@
 @if(isset($profile))
+    {{-- Constants --}}
+    <p class="hidden" id="_token">{{ csrf_token() }}"</p>
+    <p class="hidden" id="id_user_from">{{$profile->id}}</p>
+    <h2 class="text-center hidden" id="user">{{$profile->first_name}} {{$profile->last_name}}</h2>
+    <p class="hidden" id="chat-url">{{route('chat-url')}}</p>
+
     <div class="chat-widget">
         <div class="connections">
             <h4 class="text-primary text-center margin-bottom-md hidden-sm hidden-xs">Your Connections</h4>

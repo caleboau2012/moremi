@@ -2,7 +2,13 @@
  * Created by KayLee on 21/04/2017.
  */
 var app = require('express')();
-var server = require('http').Server(app);
+var fs = require('fs');
+var privateKey  = fs.readFileSync('/var/www/html/moremi/nodejs/privkey.pem');
+var certificate = fs.readFileSync('/var/www/html/moremi/nodejs/fullchain.pem');
+
+var credentials = {key: privateKey, cert: certificate};
+
+var server = require('https').Server(credentials, app);
 var io = require('socket.io')(server);
 var redis = require('redis');
 
