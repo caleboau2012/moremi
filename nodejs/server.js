@@ -3,13 +3,9 @@
  */
 var app = require('express')();
 var fs = require('fs');
-//var http = require('http');
-//var https = require('https');
 var privateKey  = fs.readFileSync('/var/www/html/moremi/nodejs/privkey.pem');
 var certificate = fs.readFileSync('/var/www/html/moremi/nodejs/fullchain.pem');
-//var chain = fs.readFileSync('/etc/letsencrypt/archive/moree.me/chain.pem');
 
-//var credentials = {key: privateKey, cert: certificate, ca: chain};
 var credentials = {key: privateKey, cert: certificate};
 
 var server = require('https').Server(credentials, app);
