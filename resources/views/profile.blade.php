@@ -291,7 +291,13 @@
                                     <tr>
                                         <td class="text-center">
                                             <a target="_blank" href='{{route('my_profile', \Illuminate\Support\Facades\Crypt::encrypt($v['profile']->id))}}'>
-                                                <img width="20px" src="{{asset($v['profile']->photo->thumb_path)}}" alt="{{$v['profile']->first_name}} {{$v['profile']->last_name}}" class="img-circle img-responsive">
+                                                @if(isset($v['profile']->photo->thumb_path))
+                                                    <img width="20px" src="{{asset($v['profile']->photo->thumb_path)}}" alt="{{$v['profile']->first_name}} {{$v['profile']->last_name}}" class="img-circle img-responsive">
+                                                @elseif($v['profile']->sex == ProfileConstant::MALE)
+                                                    <img width="20px" src="{{asset("images/default-male.png")}}" alt="{{$v['profile']->first_name}} {{$v['profile']->last_name}}" class="img-circle img-responsive">
+                                                @else
+                                                    <img width="20px" src="{{asset("images/default-female.png")}}" alt="{{$v['profile']->first_name}} {{$v['profile']->last_name}}" class="img-circle img-responsive">
+                                                @endif
                                             </a>
                                         </td>
                                         <td>
