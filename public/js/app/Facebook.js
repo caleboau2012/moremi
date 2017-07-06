@@ -180,7 +180,7 @@ var Facebook = {
                 }).then(function () {
                     swal({
                         type: 'success',
-                        html: 'Profile set up completed request finished!',
+                        html: 'Profile set up completed!',
                         confirmButtonColor: "#fe7447",
                         showCloseButton: true,
                         preConfirm : function () {

@@ -150,7 +150,9 @@ class ProfileController extends Controller
         }
         $profile =Profile::where('user_id', $this->_userId)->first();
         $profile->about = $request->status;
-        $profile->venue = $request->spot;
+        if($request->has('spot')){
+            $profile->venue = $request->spot;
+        }
         $profile->update();
         return response()->json(['status'=>true,'message'=>'Status updated successfully']);
 
