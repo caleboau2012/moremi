@@ -218,6 +218,7 @@ var Facebook = {
                             );
                     }
                     else{
+                        Utils.swalErrorAlert('Unable to login. Please, try again');
                         // console.log("The Login failed");
                         $(".profile-actions").addClass("hidden");
                         $("#login").removeClass("hidden");
@@ -233,7 +234,7 @@ var Facebook = {
     },
     loginError: function () {
         $(".profile-actions").addClass("hidden");
-        swal('Error','Error logging you in with facebook','error');
+        Utils.swalErrorAlert('Unable to login. Please, try again');
     },
     saveToken: function(response){
         /*save active profile on the client*/

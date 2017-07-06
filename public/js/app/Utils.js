@@ -36,5 +36,16 @@ Utils = {
             html: "<div class='loading-icon'>Loading...</div>",
             showConfirmButton: false
         });
+    },
+    swalErrorAlert: function (text) {
+        if(!text)
+            text = 'Oops!, currently unable to process your request. Please, try again!';
+        swal({
+            type: 'error',
+            html: text,
+            confirmButtonColor: "#fe7447",
+            showConfirmButton: true,
+            showCloseButton: true
+        });
     }
 };
