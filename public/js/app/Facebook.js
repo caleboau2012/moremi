@@ -7,6 +7,7 @@
 var Facebook = {
     profile: {},
     authResponse: {},
+    ACTIVE_PROFILE :null,
     init: function(){
         $("#login, .login").click(Facebook.login);
     },
@@ -21,6 +22,8 @@ var Facebook = {
         var PROFILE_UPDATE_URL = window.location.origin + '/profile-update';
         var STATUS_UPDATE_URL = window.location.origin + '/update/status';
         var SPOT_UPDATE_URL = window.location.origin + '/update/spot';
+        var SPOTS = null;
+
         swal({
             title: '<b>Profile Setup</b>',
             width: 600,
@@ -30,24 +33,24 @@ var Facebook = {
             '<form id="profile_swal">' +
             '<div class="col-xs-6 swal_con form-group text-left" id="first_name_swal_con">' +
              ' <label for="first_name">First Name</label> ' +
-            ' <input type="text" class="form-control" placeholder="First Name" name="first_name" id="first_name_swal" required/> ' +
+            ' <input type="text" class="form-control" placeholder="First Name" name="first_name" value="' + (Facebook.ACTIVE_PROFILE.first_name ? Facebook.ACTIVE_PROFILE.first_name : '') + '" id="first_name_swal" required/> ' +
             '<span class="help-block text-danger small swal_form_error" id="first_name_swal_error"></span>' +
             '</div> ' +
             '<div class="col-xs-6 swal_con form-group text-left" id="last_name_swal_con"> ' +
             '<label for="last_name"> Last Name</label>' +
-            '<input type="text" class="form-control" placeholder="Last Name" name="last_name" id="last_name_swal" required/>' +
+            '<input type="text" class="form-control" placeholder="Last Name" name="last_name" value="' + (Facebook.ACTIVE_PROFILE.last_name ? Facebook.ACTIVE_PROFILE.last_name : '') + '" id="last_name_swal" required/>' +
             '<span class="help-block text-danger small swal_form_error" id="last_name_swal_error"></span>' +
             '</div> ' +
             '</div> ' +
             '<div class="row">' +
             '<div class="col-xs-6 swal_con form-group text-left" id="phone_swal_con"> ' +
             '<label for="phone"> Phone Number</label>' +
-            '<input type="text" class="form-control" placeholder="Phone Number" name="phone" id="phone_swal" required/> ' +
+            '<input type="text" class="form-control" placeholder="Phone Number" name="phone" value="' + (Facebook.ACTIVE_PROFILE.phone ? Facebook.ACTIVE_PROFILE.phone : '') + '"  id="phone_swal" required/> ' +
             '<span class="help-block text-danger small swal_form_error" id="phone_swal_error"></span>' +
             '</div>' +
             '<div class="col-xs-6 swal_con form-group text-left" id="email_swal_con">' +
             '<label for="email">Email Address</label>' +
-            '<input type="text" class="form-control" placeholder="Email Address" name="email" id="email_swal" required/>' +
+            '<input type="text" class="form-control" placeholder="Email Address" name="email" value="' + (Facebook.ACTIVE_PROFILE.email ? Facebook.ACTIVE_PROFILE.email : '') + '"  id="email_swal" required/>' +
             '<span class="help-block text-danger small swal_form_error" id="email_swal_error"></span>' +
             '</div>' +
             '</form></div>' +
@@ -71,7 +74,8 @@ var Facebook = {
 
                     Utils.post(PROFILE_UPDATE_URL, payload, 'POST',
                         function (data) {
-                           resolve();
+                            SPOTS = data.venues;
+                            resolve();
                         },
                         function (data) {
                             var res = data.responseJSON;
@@ -88,6 +92,11 @@ var Facebook = {
                 })
             }
         }).then(function(){
+            var spotsOptionsHTML = "";
+            $.each(SPOTS, function(item, value){
+                spotsOptionsHTML += '<option value="'+ value.id +'">' + value.name + '</option>';
+            });
+
             swal({
                 title: '<b>Preferred Spot</b>',
                 width: 600,
@@ -98,8 +107,7 @@ var Facebook = {
                 '<div class="col-xs-12 form-group text-left" id="spot_swal_con">' +
                 ' <label for="first_name">Select Preferred Spot</label> ' +
                 ' <select type="text" class="form-control" name="spot" id="spot_swal" required>' +
-                '<option value="1">Ozone Cinemas</option>' +
-                '<option value="2">Hanger Cinemas</option>' +
+                  spotsOptionsHTML +
                 '</select> ' +
                 '</div> ' +
                 '</div> ' +
@@ -131,7 +139,7 @@ var Facebook = {
                 }
             }).then(function () {
                 swal({
-                    title: '<b>Status</b>',
+                    title: '<b>Profile Status</b>',
                     width: 600,
                     html:
                     '<div><br/>'+
@@ -139,7 +147,7 @@ var Facebook = {
                     '<form id="status_swal_form">' +
                     '<div class="col-xs-12 form-group swal-con text-left" id="status_swal_con">' +
                     ' <label for="status_swal">Status</label> ' +
-                    ' <textarea type="text" class="form-control" placeholder="What\'s on your mind?" name="status" id="status_swal" required></textarea>' +
+                    ' <textarea type="text" class="form-control" placeholder="What\'s on your mind?" name="status" id="status_swal" required>' + (Facebook.ACTIVE_PROFILE.about ? Facebook.ACTIVE_PROFILE : '') + '</textarea>' +
                     '<span class="help-block text-danger small swal_form_error" id="status_swal_error"></span>' +
                     '</div> ' +
                     '</form></div>' +
@@ -174,7 +182,10 @@ var Facebook = {
                         type: 'success',
                         html: 'Profile set up completed request finished!',
                         confirmButtonColor: "#fe7447",
-                        showCloseButton: true
+                        showCloseButton: true,
+                        preConfirm : function () {
+                            window.location = Facebook.ACTIVE_PROFILE.responseRoute;
+                        }
                     });
                 });
 
@@ -190,11 +201,6 @@ var Facebook = {
                     Facebook.profile = response;
 
                     if((Profile.checkToken())){
-
-                        /*todo specify when to trigger*/
-                        Facebook.profileSetupTour();
-                        return;
-
 
                         var url = $("#login, .login").attr("data-url");
 
@@ -229,10 +235,16 @@ var Facebook = {
         swal('Error','Error logging you in with facebook','error');
     },
     saveToken: function(response){
-        //console.log(response);
-        Profile.saveToken(response);
+        /*save active profile on the client*/
+        Facebook.ACTIVE_PROFILE = response.profile;
 
-        window.location = response.route;
+        if(!Facebook.ACTIVE_PROFILE.email || !Facebook.ACTIVE_PROFILE.about || !Facebook.ACTIVE_PROFILE.venue){
+            Facebook.profileSetupTour();
+            Facebook.ACTIVE_PROFILE.responseRoute = response.route;
+        }else{
+            Profile.saveToken(response);
+            window.location = response.route;
+        }
     },
     convertPhoto: function(url, callback){
             var xhr = new XMLHttpRequest();

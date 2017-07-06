@@ -114,11 +114,6 @@ class ProfileController extends Controller
     }
     //Dynamic Update profile Details
     public function updateProfileDetails(Requests\UpdateAccountRequest $request){
-        return response()->json([
-            'status' => true,
-            'msg' => "Profile saved successfully",
-            'venues' => Venue::all()
-        ]);
 
         if(!$this->auth) {
             return response()->json([
