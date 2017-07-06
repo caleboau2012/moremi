@@ -112,6 +112,31 @@ class ProfileController extends Controller
             ]);
         }
     }
+    //Dynamic Update profile Details
+    public function updateProfileDetails(Requests\UpdateAccountRequest $request){
+        if(!$this->auth) {
+            return response()->json([
+                "status" => false,
+                "msg" => "You must be logged in to updateProfile"
+            ]);
+        }
+        else{
+            $profile = Profile::where('user_id', $this->_userId)->first();
+
+            $profile->first_name = $request->first_name;
+            $profile->last_name = $request->last_name;
+            $profile->phone = $request->phone;
+            $profile->email = $request->email;
+            $profile->venue = $request->venue;
+
+            $profile->save();
+
+            return response()->json([
+                'status' => true,
+                'msg' => "Profile saved successfully"
+            ]);
+        }
+    }
 
     public  function updateStatus(Request $request){
         $validator = Validator::make($request->all(), [
