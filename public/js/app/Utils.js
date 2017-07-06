@@ -33,9 +33,7 @@ Utils = {
             title = 'Relax and sit back...';
         swal({
             title: title,
-            // text: "Relax and sit back...",
-            text: "<div class='loading-icon'>Loading...</div>",
-            html: true,
+            html: "<div class='loading-icon'>Loading...</div>",
             showConfirmButton: false
         });
     }

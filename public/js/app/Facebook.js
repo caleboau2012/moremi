@@ -14,6 +14,7 @@ var Facebook = {
     login: function(){
         FB.login(function(response) {
             //console.log(response);
+            Utils.swalLoader();
             Facebook.status();
         }, {scope: 'public_profile,email,user_photos'});
     },
