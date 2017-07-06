@@ -114,11 +114,17 @@ class ProfileController extends Controller
     }
     //Dynamic Update profile Details
     public function updateProfileDetails(Requests\UpdateAccountRequest $request){
+        return response()->json([
+            'status' => true,
+            'msg' => "Profile saved successfully",
+            'venues' => Venue::all()
+        ]);
+
         if(!$this->auth) {
             return response()->json([
                 "status" => false,
-                "msg" => "You must be logged in to updateProfile"
-            ]);
+                "msg" => "You must be logged in to update your profile"
+            ], 400);
         }
         else{
             $profile = Profile::where('user_id', $this->_userId)->first();
@@ -133,7 +139,8 @@ class ProfileController extends Controller
 
             return response()->json([
                 'status' => true,
-                'msg' => "Profile saved successfully"
+                'msg' => "Profile saved successfully",
+                'venues' => Venue::all()
             ]);
         }
     }
@@ -144,10 +151,25 @@ class ProfileController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return response()->json(['status'=>false,'message'=>'Invalid status update']);
+            return response()->json(['status'=>false,'message'=>'Invalid status update'], 400);
         }
         $profile =Profile::where('user_id', $this->_userId)->first();
         $profile->about = $request->status;
+        $profile->venue = $request->spot;
+        $profile->update();
+        return response()->json(['status'=>true,'message'=>'Status updated successfully']);
+
+    }
+
+    public  function updateUserSpot(Request $request){
+        $validator = Validator::make($request->all(), [
+            'spot' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(['status'=>false,'message'=>'Please, specify your preferred spot.'], 400);
+        }
+        $profile =Profile::where('user_id', $this->_userId)->first();
         $profile->venue = $request->spot;
         $profile->update();
         return response()->json(['status'=>true,'message'=>'Status updated successfully']);

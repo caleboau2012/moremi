@@ -11,9 +11,6 @@ var Facebook = {
         $("#login, .login").click(Facebook.login);
     },
     login: function(){
-        Facebook.profileSetupTour();
-        return;
-
         FB.login(function(response) {
             //console.log(response);
             Facebook.status();
@@ -21,6 +18,9 @@ var Facebook = {
     },
     profileSetupTour: function(){
 
+        var PROFILE_UPDATE_URL = window.location.origin + '/profile-update';
+        var STATUS_UPDATE_URL = window.location.origin + '/update/status';
+        var SPOT_UPDATE_URL = window.location.origin + '/update/spot';
         swal({
             title: '<b>Profile Setup</b>',
             width: 600,
@@ -28,23 +28,27 @@ var Facebook = {
             '<div><br/>'+
             '<div class="row">' +
             '<form id="profile_swal">' +
-            '<div class="col-xs-6 form-group text-left">' +
+            '<div class="col-xs-6 swal_con form-group text-left" id="first_name_swal_con">' +
              ' <label for="first_name">First Name</label> ' +
             ' <input type="text" class="form-control" placeholder="First Name" name="first_name" id="first_name_swal" required/> ' +
+            '<span class="help-block text-danger small swal_form_error" id="first_name_swal_error"></span>' +
             '</div> ' +
-            '<div class="col-xs-6 form-group text-left"> ' +
+            '<div class="col-xs-6 swal_con form-group text-left" id="last_name_swal_con"> ' +
             '<label for="last_name"> Last Name</label>' +
             '<input type="text" class="form-control" placeholder="Last Name" name="last_name" id="last_name_swal" required/>' +
+            '<span class="help-block text-danger small swal_form_error" id="last_name_swal_error"></span>' +
             '</div> ' +
             '</div> ' +
             '<div class="row">' +
-            '<div class="col-xs-6 form-group text-left"> ' +
+            '<div class="col-xs-6 swal_con form-group text-left" id="phone_swal_con"> ' +
             '<label for="phone"> Phone Number</label>' +
             '<input type="text" class="form-control" placeholder="Phone Number" name="phone" id="phone_swal" required/> ' +
+            '<span class="help-block text-danger small swal_form_error" id="phone_swal_error"></span>' +
             '</div>' +
-            '<div class="col-xs-6 form-group text-left">' +
+            '<div class="col-xs-6 swal_con form-group text-left" id="email_swal_con">' +
             '<label for="email">Email Address</label>' +
             '<input type="text" class="form-control" placeholder="Email Address" name="email" id="email_swal" required/>' +
+            '<span class="help-block text-danger small swal_form_error" id="email_swal_error"></span>' +
             '</div>' +
             '</form></div>' +
             '</div>',
@@ -56,18 +60,31 @@ var Facebook = {
                 '<i class="fa fa-thumbs-up"></i> Proceed!',
             preConfirm: function(payload){
                 return new Promise(function (resolve, reject) {
-                    var _user = $("#first_name_swal").val();
-                    if(_user == 'moses'){
-                        reject("I just want to still see your face! " + _user.toUpperCase());
+                    $('.swal_con').removeClass('has-error');
+                    $('.swal_form_error').empty();
+                    var payload = {
+                        first_name : $("#first_name_swal").val(),
+                        last_name : $("#last_name_swal").val(),
+                        phone : $("#phone_swal").val(),
+                        email : $("#email_swal").val()
+                    };
 
-                    }else{
-                        $.get('https://api.ipify.org?format=json')
-                            .done(function (data) {
-                                console.log(data);
-                                swal.insertQueueStep(data.ip);
-                                // resolve()
-                            })
-                    }
+                    Utils.post(PROFILE_UPDATE_URL, payload, 'POST',
+                        function (data) {
+                           resolve();
+                        },
+                        function (data) {
+                            var res = data.responseJSON;
+                            if(res.status != undefined){
+                                reject(res.msg);
+                            }else{
+                                $.each(res, function( index, value ) {
+                                    $("#" + index + "_swal_con").addClass('has-error');
+                                    $("#" + index + "_swal_error").html(value);
+                                });
+                                reject();
+                            }
+                        });
                 })
             }
         }).then(function(){
@@ -78,11 +95,11 @@ var Facebook = {
                 '<div><br/>'+
                 '<div class="row">' +
                 '<form id="pref_spot_swal">' +
-                '<div class="col-xs-12 form-group text-left">' +
+                '<div class="col-xs-12 form-group text-left" id="spot_swal_con">' +
                 ' <label for="first_name">Select Preferred Spot</label> ' +
                 ' <select type="text" class="form-control" name="spot" id="spot_swal" required>' +
-                '<option>Ozone Cinemas</option>' +
-                '<option>Hanger Cinemas</option>' +
+                '<option value="1">Ozone Cinemas</option>' +
+                '<option value="2">Hanger Cinemas</option>' +
                 '</select> ' +
                 '</div> ' +
                 '</div> ' +
@@ -95,18 +112,21 @@ var Facebook = {
                 confirmButtonText:
                     '<i class="fa fa-thumbs-up"></i> Proceed!',
                 preConfirm: function(payload){
-                    console.log(payload);
-                    console.log($("#profile_swal"));
                     return new Promise(function (resolve, reject) {
-                        setTimeout(function() {
-                            var _spt = $("#spot_swal").val();
-                            if(_spt == 'Hanger Cinemas'){
-                                reject("I just want to still see your face! " + _spt.toUpperCase());
+                        $('#spot_swal_con').removeClass('has-error');
+                        var payload = {
+                            spot : $("#spot_swal").val()
+                        };
 
-                            }else{
+                        Utils.post(SPOT_UPDATE_URL, payload, 'POST',
+                            function (data) {
                                 resolve();
-                            }
-                        }, 2000)
+                            },
+                            function (data) {
+                                var res = data.responseJSON;
+                                $('#spot_swal_con').addClass('has-error');
+                                reject(res.message);
+                            });
                     })
                 }
             }).then(function () {
@@ -117,9 +137,10 @@ var Facebook = {
                     '<div><br/>'+
                     '<div class="row">' +
                     '<form id="status_swal_form">' +
-                    '<div class="col-xs-12 form-group text-left">' +
-                    ' <label for="first_name">Status</label> ' +
+                    '<div class="col-xs-12 form-group swal-con text-left" id="status_swal_con">' +
+                    ' <label for="status_swal">Status</label> ' +
                     ' <textarea type="text" class="form-control" placeholder="What\'s on your mind?" name="status" id="status_swal" required></textarea>' +
+                    '<span class="help-block text-danger small swal_form_error" id="status_swal_error"></span>' +
                     '</div> ' +
                     '</form></div>' +
                     '</div>',
@@ -131,14 +152,21 @@ var Facebook = {
                         '<i class="fa fa-thumbs-up"></i> Proceed!',
                     preConfirm: function(payload){
                         return new Promise(function (resolve, reject) {
-                            setTimeout(function() {
-                                var _spt = $("#status_swal").val();
-                                if(_spt == ''){
-                                    reject("It is necessary you add a status");
-                                }else{
+                            $('#status_swal_con').removeClass('has-error');
+                            var payload = {
+                                status : $("#status_swal").val()
+                            };
+
+                            Utils.post(STATUS_UPDATE_URL, payload, 'POST',
+                                function (data) {
                                     resolve();
+                                },
+                                function (data) {
+                                    var res = data.responseJSON;
+                                    $('#status_swal_con').addClass('has-error');
+                                    reject(res.message);
                                 }
-                            }, 2000)
+                            );
                         })
                     }
                 }).then(function () {
@@ -153,52 +181,6 @@ var Facebook = {
             })
 
         });
-
-        return;
-        swal.setDefaults({
-            input: 'text',
-            confirmButtonText: 'Next &rarr;',
-            showCancelButton: true,
-            confirmButtonColor: "#fe7447",
-            animation: true,
-            background: '#fff url(//bit.ly/1Nqn9HU)',
-            progressSteps: ['1', '2', '3'],
-            allowOutsideClick: false
-        });
-
-        var steps = [
-            {
-                title: 'Profile',
-                text: 'Set up Profile'
-            },
-            {
-                title: 'Preferred Spot',
-                text: 'Set up Spot'
-            },
-            {
-                title: 'Status',
-                text: 'Set up status'
-            }
-        ];
-
-        swal.queue(steps).then(function (result) {
-            swal.resetDefaults();
-            swal({
-                title: 'All done!',
-                html:
-                'Your answers: <pre>' +
-                JSON.stringify(result) +
-                '</pre>',
-                confirmButtonText: 'Lovely!',
-                confirmButtonColor: "#fe7447",
-                showCancelButton: false,
-                background: '#fff url(//bit.ly/1Nqn9HU)',
-                allowOutsideClick: false
-            })
-        }, function () {
-            swal.resetDefaults()
-        })
-
     },
     status: function(){
         FB.getLoginStatus(function(response) {
@@ -208,6 +190,12 @@ var Facebook = {
                     Facebook.profile = response;
 
                     if((Profile.checkToken())){
+
+                        /*todo specify when to trigger*/
+                        Facebook.profileSetupTour();
+                        return;
+
+
                         var url = $("#login, .login").attr("data-url");
 
                         if(typeof url != "undefined")
