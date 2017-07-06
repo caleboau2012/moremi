@@ -41,6 +41,11 @@ Route::post('/pay', [
     'uses' => 'PaymentController@redirectToGateway',
     'as' => 'pay'
 ]);
+Route::post('/meet', [
+    'uses' => 'PaymentController@meet',
+    'as' => 'meet'
+]);
+
 Route::get('/payment/callback', ["as" => "payment_callback", "uses" => 'PaymentController@handleGatewayCallback']);
 
 /*CRON Activities*/

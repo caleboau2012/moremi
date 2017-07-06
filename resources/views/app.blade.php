@@ -211,6 +211,6 @@
     <script src="{{asset('js/app/infiniteScroll.js')}}"></script>
     <script src="{{asset('js/app/App.js')}}"></script>
     <script src="{{asset('js/app/Vote.js')}}"></script>
-    <script src="{{asset('js/app/VotePay.js')}}"></script>
+    <script src="{{asset('js/app/Pay.js')}}"></script>
     <script src="{{asset('js/app/Account.js')}}"></script>
 @endsection

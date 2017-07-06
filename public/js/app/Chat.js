@@ -14,6 +14,11 @@ var Chat = {
             Chat.send(this);
         });
 
+        $(".meet-from-chat").click(function(e){
+            e.preventDefault();
+            Chat.meet(this);
+        });
+
         $('.msg').keydown(function(event) {
             if (event.keyCode == 13) {
                 Chat.send(this);
@@ -39,6 +44,10 @@ var Chat = {
 
         $(".chat-box").addClass("hidden");
         $("#" + id).removeClass("hidden");
+    },
+    meet: function(element){
+        Vote.CONSTANT.profileID = $(element).parent().parent().find('#id_user_to').text();
+        $('#meetModal').modal('show');
     },
     send: function(element){
         var token = $("#_token").text();

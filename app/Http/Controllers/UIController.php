@@ -80,7 +80,8 @@ class UIController extends Controller
 
         $trending = Profile::orderBy('updated_at', 'desc')->take(10)->get();
 
-        $partners = Venue::all();
+        $venues = Venue::where(\VenueConstant::TYPE, \VenueConstant::IN_GAME)->get();
+        $spots = Venue::all();
 
         return view('home', [
             'loggedIn' => $this->loggedIn,
@@ -90,7 +91,8 @@ class UIController extends Controller
             'males' => $males,
             'females' => $females,
             'dates' => $dates,
-            'venues' => $partners,
+            'venues' => $venues,
+            'spots' => $spots,
             'connections' => $this->connections,
             'voteEnds' => VotingConfig::termination()
         ]);
@@ -104,13 +106,15 @@ class UIController extends Controller
         $trending = Profile::orderBy('updated_at', 'desc')->take(10)->get();
 
         $all = Profile::paginate(10);
-        $venues = Venue::all();
+        $spots = Venue::all();
+        $venues = Venue::where(\VenueConstant::TYPE, \VenueConstant::IN_GAME)->get();
 
         return view('app', [
             'profile' => $this->profile,
             'trending' => $trending,
             'all' => $all,
             'venues' => $venues,
+            'spots' => $spots,
             'connections' => $this->connections,
             'voteEnds' => VotingConfig::termination()
         ]);
@@ -122,7 +126,8 @@ class UIController extends Controller
             return redirect(route("index"));
         };
 
-        $venues = Venue::all();
+        $venues = Venue::where(\VenueConstant::TYPE, \VenueConstant::IN_GAME)->get();
+        $spots = Venue::all();
 
         $profile = $this->profile;
 
@@ -147,6 +152,7 @@ class UIController extends Controller
                 'profile' => $profile,
                 'profile_pic' => $profile_pic,
                 'venues' => $venues,
+                'spots' => $spots,
                 'voteEnds' => VotingConfig::termination(),
                 'connections' => $this->connections,
                 'voters' => $people
@@ -179,7 +185,9 @@ class UIController extends Controller
             if(isset($profile->photo->full_path) && $profile->photo->full_path == $photo['full_path'])
                 $profile_pic = $i;
         }
-        $venues = Venue::all();
+
+        $venues = Venue::where(\VenueConstant::TYPE, \VenueConstant::IN_GAME)->get();
+        $spots = Venue::all();
 
         return view('my_profile',[
                 'profile' => $this->profile,
@@ -188,6 +196,7 @@ class UIController extends Controller
                 'p_p' => $profile_pic,
                 'venue' => $profile->venue()->first(),
                 'venues' => $venues,
+                'spots' => $spots,
                 'connects' => $connections,
                 'connections' => $this->connections,
                 'voteEnds' => VotingConfig::termination()

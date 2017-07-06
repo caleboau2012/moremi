@@ -326,7 +326,7 @@
         <div class="row">
             <div class="col-md-12">
                 <ul class="clients-carousel list-unstyled">
-                    @foreach($venues as $venue)
+                    @foreach($spots as $venue)
                         <li>
                             <a href="{{route('spot_redirect', \Illuminate\Support\Facades\Crypt::encrypt($venue->url))}}" target="_blank">
                                 <img src="{{route('spot_redirect', \Illuminate\Support\Facades\Crypt::encrypt($venue->thumb))}}" class="img-responsive" alt="{{$venue->title}}">
@@ -355,7 +355,7 @@
     <script src="{{ asset('libs/jquery/jquery.event.drag.js') }}"></script>
     <script src="{{ asset('libs/jquery/jquery-event-drop.js') }}"></script>
     <script src="{{asset('js/app/Vote.js')}}"></script>
-    <script src="{{asset('js/app/VotePay.js')}}"></script>
+    <script src="{{asset('js/app/Pay.js')}}"></script>
     <script src="{{asset('js/app/Account.js')}}"></script>
     <script src="{{ asset('js/app/Home.js') }}"></script>
 @endsection

@@ -61,6 +61,7 @@
 {{--Game counter--}}
 @include('utils.game_counter')
 @include('utils.chat')
+@include('utils.meet')
 
 @yield('content')
 

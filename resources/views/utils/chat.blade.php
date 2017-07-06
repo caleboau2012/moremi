@@ -70,7 +70,7 @@
                             <textarea class="form-control msg" placeholder="Type Here..."></textarea>
                         </div>
                         <div class="col-xs-5">
-                            <button class="btn btn-sm btn-block btn-success send-msg"><span class="icon icon-send"></span> </button>
+                            <button class="btn btn-sm btn-block btn-default meet-from-chat"><img src="{{asset('images/favicon.png')}}" width="20px"></button>
                             {{--<input type="button" value="Send" class="btn btn-sm btn-block btn-success send-msg">--}}
                         </div>
                     </div>

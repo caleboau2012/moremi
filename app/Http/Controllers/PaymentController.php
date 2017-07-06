@@ -41,7 +41,38 @@ class PaymentController extends Controller
 
         $payment->save();
 
-        session(["payment_id" => $payment->id]);
+        session([
+            "payment_id" => $payment->id,
+            "payment_action" => "pick"
+        ]);
+
+        $request->orderID = $payment->id;
+        $request->message = $payment->id;
+
+        return Paystack::getAuthorizationUrl()->redirectNow();
+    }
+
+    public function meet(Request $request)
+    {
+        if(!$this->auth) {
+            return response()->json(['status'=>false, "profile" => false, 'msg'=>'You must be logged in to pay']);
+        }
+        $profile = Profile::where('user_id', $this->_userId)->first();
+
+//            Store attempted payment.
+        $payment = new Payment();
+        $payment->amount = $request->amount / 100;
+        $payment->accountNumber = config('constants.account_no');
+        $payment->profile_id = $profile->id;
+        $payment->voted_profile_id = $request->voted_profile_id;;
+        $payment->medium = config('constants.medium');
+
+        $payment->save();
+
+        session([
+            "payment_id" => $payment->id,
+            "payment_action" => "meet"
+        ]);
 
         $request->orderID = $payment->id;
         $request->message = $payment->id;
@@ -62,36 +93,38 @@ class PaymentController extends Controller
         $payment->status = 1;
         $payment->save();
 
-        $vote = new VoteService($this->request);
+        if(session("payment_action") == "pick") {
+            $vote = new VoteService($this->request);
 
-        switch($payment->amount){
-            case config('constants.small_bundle'):
-                $count = 0;
-                break;
-            case config('constants.medium_bundle'):
-                $count = 4;
-                break;
-            case config('constants.large_bundle'):
-                $count = 9;
-                break;
-            default:
-                $count = 0;
+            switch ($payment->amount) {
+                case config('constants.small_bundle'):
+                    $count = 0;
+                    break;
+                case config('constants.medium_bundle'):
+                    $count = 4;
+                    break;
+                case config('constants.large_bundle'):
+                    $count = 9;
+                    break;
+                default:
+                    $count = 0;
+            }
+
+            $vote->vote($payment->voted_profile_id, $count);
+            $vote->storeRequest($payment->voted_profile_id, $this->_userId, (config('settings.vote_counter') + $count));
+            $msg = [
+                'status' => true,
+                'auth' => true,
+                'free' => false,
+                'profile' => true,
+                'msg' => 'Picked successfully',
+                'count' => $vote->count
+            ];
+        }
+        else if(session("payment_action") == "meet"){
+
         }
 
-        $vote->vote($payment->voted_profile_id, $count);
-        $vote->storeRequest($payment->voted_profile_id,$this->_userId,(config('settings.vote_counter') +$count));
-        $msg =[
-            'status'=>true,
-            'auth' => true,
-            'free' => false,
-            'profile' => true,
-            'msg'=>'Picked successfully',
-            'count'=>$vote->count
-        ];
-
-//        dd(url()->previous());
-//
-//        return redirect()->back();
         return redirect()->route('app');
     }
 }

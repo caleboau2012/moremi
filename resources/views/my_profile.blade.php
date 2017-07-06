@@ -148,7 +148,7 @@
 @section('bottomScripts')
     @parent
     <script src="{{asset('js/app/Vote.js')}}"></script>
-    <script src="{{asset('js/app/VotePay.js')}}"></script>
+    <script src="{{asset('js/app/Pay.js')}}"></script>
     <script src="{{asset('js/app/Account.js')}}"></script>
     <script>
         $(document).ready(function(){
