@@ -37,6 +37,7 @@
                                             <input type="hidden" name="key" value="{{ config('paystack.secretKey') }}"> {{-- required --}}
                                             <input type="hidden" name="_token" value="{{ csrf_token() }}"> {{-- employ this in place of csrf_field only in laravel 5.0 --}}
                                             <input type="hidden" name="voted_profile_id" value="">
+                                            <input type="hidden" name="spot" value="{{$spot->id}}"> {{-- The spot ID --}}
                                             <p>
                                                 <button class="btn btn-danger btn-block" type="submit"
                                                         data-loading-text="<i class='icon icon-circle-o-notch icon-spin'></i> Processing...">

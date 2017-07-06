@@ -6,6 +6,7 @@ use App\Payment;
 use App\Profile;
 use App\Services\Vote\VoteService;
 use App\Traits\AuthTrait;
+use App\Venue;
 use Illuminate\Http\Request;
 
 use App\Http\Controllers\Controller;
@@ -71,7 +72,8 @@ class PaymentController extends Controller
 
         session([
             "payment_id" => $payment->id,
-            "payment_action" => "meet"
+            "payment_action" => "meet",
+            "spot_id" => $request->spot
         ]);
 
         $request->orderID = $payment->id;
@@ -122,7 +124,12 @@ class PaymentController extends Controller
             ];
         }
         else if(session("payment_action") == "meet"){
+            $payer = Profile::where("user_id", $this->_userId)->first();
+            $winner = Profile::find($payment->voted_profile_id);
+            $spot = Venue::find(session("spot_id"));
 
+            $meetControl = new VoteController();
+            $meetControl->saveMeet($winner, $payer, $spot);
         }
 
         return redirect()->route('app');
