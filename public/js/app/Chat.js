@@ -35,7 +35,6 @@ var Chat = {
         //});
     },
     open: function(id){
-        console.log(id);
 
         $(".chat-box").addClass("hidden");
         $("#" + id).removeClass("hidden");
@@ -82,7 +81,7 @@ var Chat = {
             var from = "#messages-between-" + data.id_user_to + '-' + data.id_user_from + " .chat-messages";
             var to = "#messages-between-" + data.id_user_from + '-' + data.id_user_to + " .chat-messages";
 
-            console.log(from, to, $(from)[0], $(to)[0]);
+            // console.log(from, to, $(from)[0], $(to)[0]);
 
             if(typeof $(from)[0] != 'undefined') {
                 $(from).append( "<div>" +
@@ -108,12 +107,12 @@ var Chat = {
     },
     scrollToBottom: function(){
         var element = Chat.CONSTANTS.messages;
-        console.log({
+        /*console.log({
             element: element,
             scrollTop: element.scrollTop,
             scrollHeight: element.scrollHeight,
             clientHeight: element.clientHeight
-        });
+        });*/
         element.scrollTop = element.scrollHeight - element.clientHeight;
     }
 };
