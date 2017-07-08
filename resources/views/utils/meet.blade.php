@@ -17,7 +17,7 @@
                             @foreach($spots as $spot)
                                 <div class="col-md-4">
                                     <form method="POST" action="{{ route('meet') }}" accept-charset="UTF-8" class="form-horizontal meet" role="form">
-                                        <div class="panel panel-danger">
+                                        <div class="panel panel-warning">
                                             <div class="panel-heading">
                                                 <h2 class="panel-title text-center">
                                                     {{$spot->title}}
