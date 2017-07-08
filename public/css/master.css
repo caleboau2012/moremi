@@ -1355,3 +1355,11 @@ font-size: 16px;
     border-right-color: #ff4b1f;
     margin: 0 auto;
 }
+
+.meet-spot{
+    height: 350px;
+}
+
+.meet-spot .spot-logo{
+    width: 50%;
+}

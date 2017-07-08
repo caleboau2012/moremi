@@ -9,14 +9,17 @@
         <div class="connections">
             <h4 class="text-primary text-center margin-bottom-md hidden-sm hidden-xs">Your Connections</h4>
             <div class="row">
+                {{--{{dd($connections)}}--}}
                 @if(sizeof($connections) != 0)
                     @foreach($connections as $c)
                         <div class="col-xs-12 col-sm-3">
                             <div class="connection-item" data-id="messages-between-{{$c[\TableConstant::PROFILE_ID]}}-{{$c[\ConnectionConstant::RECIPIENT_ID]}}">
                                 @if($c[\ConnectionConstant::PHOTO])
                                     <img data-toggle="tooltip" data-placement="top" data-original-title="{{ucwords($c[\ConnectionConstant::NAME])}}"  src="{{asset($c[\ConnectionConstant::PHOTO]->thumb_path)}}" alt="{{$c[\ConnectionConstant::NAME]}}" class="img-circle img-responsive">
-                                @else
-                                    <img data-toggle="tooltip" data-placement="top" data-original-title="{{ucwords($c[\ConnectionConstant::NAME])}}" src="{{asset('images/default.png')}}" alt="{{$c[\ConnectionConstant::NAME]}}" class="img-circle img-responsive">
+                                @elseif($c[ProfileConstant::SEX] == ProfileConstant::MALE)
+                                    <img data-toggle="tooltip" data-placement="top" data-original-title="{{ucwords($c[\ConnectionConstant::NAME])}}" src="{{asset('images/default-male.png')}}" alt="{{$c[\ConnectionConstant::NAME]}}" class="img-circle img-responsive">
+                                @elseif($c[ProfileConstant::SEX] == ProfileConstant::FEMALE)
+                                    <img data-toggle="tooltip" data-placement="top" data-original-title="{{ucwords($c[\ConnectionConstant::NAME])}}" src="{{asset('images/default-female.png')}}" alt="{{$c[\ConnectionConstant::NAME]}}" class="img-circle img-responsive">
                                 @endif
                             </div>
                         </div>
@@ -39,8 +42,10 @@
                     <h3 class="panel-title text-capitalize">
                         @if($c[\ConnectionConstant::PHOTO])
                             <img width="100px" src="{{asset($c[\ConnectionConstant::PHOTO]->thumb_path)}}" class="img-thumb img-circle img-small">
-                        @else
-                            <img width="100px" src="{{asset('images/default.png')}}" alt="{{$c[\ConnectionConstant::NAME]}}" class="img-thumb img-circle img-small">
+                        @elseif($c[ProfileConstant::SEX] == ProfileConstant::MALE)
+                            <img width="100px" src="{{asset('images/default-male.png')}}" alt="{{$c[\ConnectionConstant::NAME]}}" class="img-thumb img-circle img-small">
+                        @elseif($c[ProfileConstant::SEX] == ProfileConstant::FEMALE)
+                            <img width="100px" src="{{asset('images/default-female.png')}}" alt="{{$c[\ConnectionConstant::NAME]}}" class="img-thumb img-circle img-small">
                         @endif
                         {{$c[\ConnectionConstant::NAME]}}
                         <span class="icon icon-close"></span>

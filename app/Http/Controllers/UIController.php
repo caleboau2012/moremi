@@ -57,6 +57,7 @@ class UIController extends Controller
             $user = Profile::find($connections[$i][\ConnectionConstant::RECIPIENT_ID]);
             $connections[$i][\ConnectionConstant::NAME] = $user->first_name . " " . $user->last_name;
             $connections[$i][\ConnectionConstant::PHOTO] = $user->photo()->first();
+            $connections[$i][\ProfileConstant::SEX] = $user->sex;
 
             foreach($messages as $m){
                 if((($m->id_user_from == $connections[$i][\TableConstant::PROFILE_ID])
