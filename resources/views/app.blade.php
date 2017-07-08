@@ -21,12 +21,12 @@
                 <div class="col-md-6 col-md-offset-3">
                     <div class="btn-group btn-group-justified">
                          <p class="subtitle fancy"><span>Trending</span></p>
-                        
+
                         {{--<a href="#" class="btn  trending_menu">Trending</a>--}}
                     </div>
                 </div>
             </div>
-            <div class="row trending-items">
+            <div class="row trending-items"data-step="6" data-intro='Every week, we connect you to the person that picked you the most' data-position="right">
                 @foreach($trending as $i => $t)
                     <div class="trending-item">
                         @if($i == 1)
