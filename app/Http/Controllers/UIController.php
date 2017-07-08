@@ -28,6 +28,9 @@ class UIController extends Controller
             $this->connections = $this->getConnections();
         }
 
+        $this->venues = Venue::where(\VenueConstant::TYPE, \VenueConstant::IN_GAME)->get();
+        $this->spots = Venue::all();
+
         if($this->loggedIn && ($this->profile == null)) {
             Auth::logout();
             $this->loggedIn = false;
@@ -81,9 +84,6 @@ class UIController extends Controller
 
         $trending = Profile::orderBy('updated_at', 'desc')->take(10)->get();
 
-        $venues = Venue::where(\VenueConstant::TYPE, \VenueConstant::IN_GAME)->get();
-        $spots = Venue::all();
-
         return view('home', [
             'loggedIn' => $this->loggedIn,
             'profile' => $this->profile,
@@ -92,8 +92,8 @@ class UIController extends Controller
             'males' => $males,
             'females' => $females,
             'dates' => $dates,
-            'venues' => $venues,
-            'spots' => $spots,
+            'venues' => $this->venues,
+            'spots' => $this->spots,
             'connections' => $this->connections,
             'voteEnds' => VotingConfig::termination()
         ]);
@@ -107,15 +107,13 @@ class UIController extends Controller
         $trending = Profile::orderBy('updated_at', 'desc')->take(10)->get();
 
         $all = Profile::paginate(10);
-        $spots = Venue::all();
-        $venues = Venue::where(\VenueConstant::TYPE, \VenueConstant::IN_GAME)->get();
 
         return view('app', [
             'profile' => $this->profile,
             'trending' => $trending,
             'all' => $all,
-            'venues' => $venues,
-            'spots' => $spots,
+            'venues' => $this->venues,
+            'spots' => $this->spots,
             'connections' => $this->connections,
             'voteEnds' => VotingConfig::termination()
         ]);
@@ -126,9 +124,6 @@ class UIController extends Controller
         if(!$this->loggedIn){
             return redirect(route("index"));
         };
-
-        $venues = Venue::where(\VenueConstant::TYPE, \VenueConstant::IN_GAME)->get();
-        $spots = Venue::all();
 
         $profile = $this->profile;
 
@@ -152,8 +147,8 @@ class UIController extends Controller
                 'photos' => $profile->photos()->get()->toArray(),
                 'profile' => $profile,
                 'profile_pic' => $profile_pic,
-                'venues' => $venues,
-                'spots' => $spots,
+                'venues' => $this->venues,
+                'spots' => $this->spots,
                 'voteEnds' => VotingConfig::termination(),
                 'connections' => $this->connections,
                 'voters' => $people
@@ -187,17 +182,14 @@ class UIController extends Controller
                 $profile_pic = $i;
         }
 
-        $venues = Venue::where(\VenueConstant::TYPE, \VenueConstant::IN_GAME)->get();
-        $spots = Venue::all();
-
         return view('my_profile',[
                 'profile' => $this->profile,
                 'photos' => $profile->photos()->get()->toArray(),
                 'p' => $profile,
                 'p_p' => $profile_pic,
                 'venue' => $profile->venue()->first(),
-                'venues' => $venues,
-                'spots' => $spots,
+                'venues' => $this->venues,
+                'spots' => $this->spots,
                 'connects' => $connections,
                 'connections' => $this->connections,
                 'voteEnds' => VotingConfig::termination()
@@ -212,6 +204,8 @@ class UIController extends Controller
 
     public function policy(){
         return view('terms', [
+            'venues' => $this->venues,
+            'spots' => $this->spots,
             'profile' => $this->profile,
             'connections' => $this->connections,
             'voteEnds' => VotingConfig::termination()
@@ -220,10 +214,46 @@ class UIController extends Controller
 
     public function faq(){
         return view('faq', [
+            'venues' => $this->venues,
+            'spots' => $this->spots,
             'profile' => $this->profile,
             'connections' => $this->connections,
             'voteEnds' => VotingConfig::termination()
         ]);
+    }
+
+    public function meetReceipt(){
+        if(!$this->loggedIn){
+            return redirect(route("index"));
+        }
+
+        $reference = session("reference");
+        $location =session("location");
+        $ticket =session("ticket");
+        $expiry = session("expiry");
+        $winner_id = session("winner_id");
+
+        $user = Profile::where('user_id', $this->_userId)->first();
+        $winner = Profile::find($winner_id);
+
+        if(isset($reference, $location, $ticket, $expiry, $winner_id)) {
+            return view("meet", [
+                'venues' => $this->venues,
+                'spots' => $this->spots,
+                'profile' => $this->profile,
+                'connections' => $this->connections,
+                'voteEnds' => VotingConfig::termination(),
+                'reference' => $reference,
+                'location' => $location,
+                'ticket' => $ticket,
+                'expiryDate' => $expiry,
+                'winner' => $winner,
+                'user' => $user
+            ]);
+        }
+        else{
+            return redirect(route("index"));
+        }
     }
 
 }

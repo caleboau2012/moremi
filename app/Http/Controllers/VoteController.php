@@ -225,6 +225,7 @@ use AuthTrait;
             });
         }
 
+        return [ "reference" => $reference_number, "ticket" => $ticket_number, "expiry" => $expiryDate];
     }
 
     private static function saveWinner($poll, $winner, $highestVoter, $spot){

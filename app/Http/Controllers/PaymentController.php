@@ -62,7 +62,7 @@ class PaymentController extends Controller
         if($request->amount == 0){
             $this->scheduleMeeting($request->voted_profile_id, $request->spot);
 
-            return redirect()->route('app');
+            return redirect()->route('meet_receipt');
         }
         else{
             $profile = Profile::where('user_id', $this->_userId)->first();
@@ -133,6 +133,8 @@ class PaymentController extends Controller
         }
         else if(session("payment_action") == "meet"){
             $this->scheduleMeeting($payment->voted_profile_id, session("spot_id"));
+
+            return redirect()->route('meet_receipt');
         }
 
         return redirect()->route('app');
@@ -144,6 +146,14 @@ class PaymentController extends Controller
         $spot = Venue::find($spot);
 
         $meetControl = new VoteController();
-        $meetControl->saveMeet($winner, $payer, $spot);
+        $meeting = $meetControl->saveMeet($winner, $payer, $spot);
+
+        session([
+            "reference" => $meeting["reference"],
+            "location" => $spot->name,
+            "ticket" => $meeting["ticket"],
+            "expiry" => $meeting["expiry"],
+            "winner_id" => $winner->id
+        ]);
     }
 }

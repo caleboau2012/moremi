@@ -113,6 +113,8 @@
 
 	<script src="https://cdn.socket.io/socket.io-1.3.4.js"></script>
 	<script src="{{asset('js/app/Chat.js')}}"></script>
+	<script src="{{asset('js/app/Vote.js')}}"></script>
+	<script src="{{asset('js/app/Pay.js')}}"></script>
 
 	<!--Start of Tawk.to Script-->
 	<script type="text/javascript">

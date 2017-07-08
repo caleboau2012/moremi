@@ -20,6 +20,7 @@ Route::get('app/profile', array('uses'=>'UIController@profile', "as"=>"profile")
 Route::get('profile/{id}',["as" => "my_profile", "uses" => 'UIController@myProfile']);
 Route::get('faq', ['as' => 'faq', 'uses' => 'UIController@faq']);
 Route::get('privacy/policy', array("as" => "policy", "uses" => "UIController@policy"));
+Route::get('hangout', ["as" => "meet_receipt", "uses" => "UIController@meetReceipt"]);
 
 Route::resource('photo', 'PhotoController');
 Route::post('login', array("as" => "login", "uses" => 'LoginController@login'));
