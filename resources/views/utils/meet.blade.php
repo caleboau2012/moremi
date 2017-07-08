@@ -28,7 +28,7 @@
                                                     <img class="spot-logo" src="{{$spot->thumb}}">
                                                 </div>
                                                 <h3 class="text-center">
-                                                    <label class="label label-danger">Amount:</label> ₦ {{$spot->discounted}}
+                                                    <label class="label label-warning">Amount:</label> ₦ {{$spot->discounted}}
                                                 </h3>
                                                 <h5 class="text-center">
                                                     <label class="label label-default">Originally:</label> ₦ {{$spot->price}}
