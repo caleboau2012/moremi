@@ -115,7 +115,7 @@ class ProfileController extends Controller
 
     public  function updateStatus(Request $request){
         $validator = Validator::make($request->all(), [
-            'status' => 'required|max:255',
+            'status' => 'max:255',
         ]);
 
         if ($validator->fails()) {
