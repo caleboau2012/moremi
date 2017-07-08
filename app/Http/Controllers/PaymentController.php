@@ -58,28 +58,36 @@ class PaymentController extends Controller
         if(!$this->auth) {
             return response()->json(['status'=>false, "profile" => false, 'msg'=>'You must be logged in to pay']);
         }
-        $profile = Profile::where('user_id', $this->_userId)->first();
+
+        if($request->amount == 0){
+            $this->scheduleMeeting($request->voted_profile_id, $request->spot);
+
+            return redirect()->route('app');
+        }
+        else{
+            $profile = Profile::where('user_id', $this->_userId)->first();
 
 //            Store attempted payment.
-        $payment = new Payment();
-        $payment->amount = $request->amount / 100;
-        $payment->accountNumber = config('constants.account_no');
-        $payment->profile_id = $profile->id;
-        $payment->voted_profile_id = $request->voted_profile_id;;
-        $payment->medium = config('constants.medium');
+            $payment = new Payment();
+            $payment->amount = $request->amount / 100;
+            $payment->accountNumber = config('constants.account_no');
+            $payment->profile_id = $profile->id;
+            $payment->voted_profile_id = $request->voted_profile_id;
+            $payment->medium = config('constants.medium');
 
-        $payment->save();
+            $payment->save();
 
-        session([
-            "payment_id" => $payment->id,
-            "payment_action" => "meet",
-            "spot_id" => $request->spot
-        ]);
+            session([
+                "payment_id" => $payment->id,
+                "payment_action" => "meet",
+                "spot_id" => $request->spot
+            ]);
 
-        $request->orderID = $payment->id;
-        $request->message = $payment->id;
+            $request->orderID = $payment->id;
+            $request->message = $payment->id;
 
-        return Paystack::getAuthorizationUrl()->redirectNow();
+            return Paystack::getAuthorizationUrl()->redirectNow();
+        }
     }
 
     /**
@@ -124,14 +132,18 @@ class PaymentController extends Controller
             ];
         }
         else if(session("payment_action") == "meet"){
-            $payer = Profile::where("user_id", $this->_userId)->first();
-            $winner = Profile::find($payment->voted_profile_id);
-            $spot = Venue::find(session("spot_id"));
-
-            $meetControl = new VoteController();
-            $meetControl->saveMeet($winner, $payer, $spot);
+            $this->scheduleMeeting($payment->voted_profile_id, session("spot_id"));
         }
 
         return redirect()->route('app');
+    }
+
+    public function scheduleMeeting($winner, $spot){
+        $payer = Profile::where("user_id", $this->_userId)->first();
+        $winner = Profile::find($winner);
+        $spot = Venue::find($spot);
+
+        $meetControl = new VoteController();
+        $meetControl->saveMeet($winner, $payer, $spot);
     }
 }

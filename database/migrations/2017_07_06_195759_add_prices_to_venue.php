@@ -14,7 +14,8 @@ class AddPricesToVenue extends Migration
     {
         //
         Schema::table('venues', function (Blueprint $table) {
-            $table->integer('price')->after('thumb');
+            $table->text('description')->after('thumb');
+            $table->integer('price')->after('description');
             $table->integer('discounted')->after('price');
             $table->integer('type')->after('discounted');
         });
@@ -29,6 +30,7 @@ class AddPricesToVenue extends Migration
     {
         //
         Schema::table('venues', function (Blueprint $table) {
+            $table->dropColumn('description');
             $table->dropColumn('type');
             $table->dropColumn('discounted');
             $table->dropColumn('price');
