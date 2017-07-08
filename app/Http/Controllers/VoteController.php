@@ -45,7 +45,7 @@ use AuthTrait;
                     'auth' => true,
                     'free' => false,
                     'profile' => true,
-                    'msg'=>'You only have one free vote in a day. The rest will cost you.'
+                    'msg'=>'You only have one free vote every hour.'
                 ];
                 return response()->json($msg);
             }

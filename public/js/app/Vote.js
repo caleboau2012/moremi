@@ -76,7 +76,7 @@ Vote ={
                         type: "warning",
                         showCancelButton: true,
                         confirmButtonColor: "#fe7447",
-                        confirmButtonText: "Pay!"
+                        confirmButtonText: "Continue!"
                     },
                     function(){
                         $("#votePayModal").modal('show');
