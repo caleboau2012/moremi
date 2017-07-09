@@ -16,24 +16,30 @@
                         @if(isset($spots))
                             @foreach($spots as $spot)
                                 <div class="col-md-4">
-                                    <form method="POST" action="{{ route('meet') }}" accept-charset="UTF-8" class="form-horizontal meet" role="form">
-                                        <div class="panel panel-warning">
-                                            <div class="panel-heading">
-                                                <h2 class="panel-title text-center">
-                                                    {{$spot->title}}
-                                                </h2>
+                                    <div class="spot-item">
+                                        <form method="POST" action="{{ route('meet') }}" accept-charset="UTF-8" class="form-horizontal meet" role="form">
+                                         <div class="card hovercard">
+                                            <div class="cardheader"></div>
+                                            <div class="avatar center-block">
+                                                <img class="img-responsive img-circle" src="{{$spot->thumb}}" alt="{{$spot->title}}">
                                             </div>
-                                            <div class="panel-body meet-spot">
-                                                <div class="text-center">
-                                                    <img class="spot-logo" src="{{$spot->thumb}}">
+                                            <div class="info">
+                                                <div class="title name">
+                                                    <h4 class="text-center">{{$spot->title}}</h4>
+                                                    <div class="content-end"></div>
                                                 </div>
-                                                <h3 class="text-center">
-                                                    <label class="label label-warning">Amount:</label> ₦ {{$spot->discounted}}
-                                                </h3>
-                                                <h5 class="text-center">
-                                                    <label class="label label-default">Originally:</label> ₦ {{$spot->price}}
-                                                </h5>
+
                                                 <p>{{$spot->description}}</p>
+
+                                                <h1 class="no-margin">
+                                                    <strong class="font-main">&#x20a6;{{number_format($spot->discounted, 2)}}</strong>
+                                                </h1>
+
+                                                <h4 class="no-margin text-muted line-through">&#x20a6;{{number_format($spot->price, 2)}}</h4>
+
+                                            </div>
+
+                                            <div class="bottom">
                                                 <input type="hidden" name="email" value="{{$profile->email}}"> {{-- required --}}
                                                 <input type="hidden" name="amount" value="{{$spot->discounted * 100}}"> {{-- required in kobo --}}
                                                 <input type="hidden" name="quantity" value="1">
@@ -42,17 +48,14 @@
                                                 <input type="hidden" name="_token" value="{{ csrf_token() }}"> {{-- employ this in place of csrf_field only in laravel 5.0 --}}
                                                 <input type="hidden" name="voted_profile_id" value="">
                                                 <input type="hidden" name="spot" value="{{$spot->id}}"> {{-- The spot ID --}}
-                                            </div>
-                                            <div class="panel-footer">
-                                                <p>
-                                                    <button class="btn btn-danger btn-block" type="submit"
-                                                            data-loading-text="<i class='icon icon-circle-o-notch icon-spin'></i> Processing...">
-                                                        <img src="{{asset('images/favicon.png')}}" width="30px"> Meet Now!
-                                                    </button>
-                                                </p>
+                                                <button class="btn main-btn btn-block" type="submit"
+                                                        data-loading-text="<i class='icon icon-circle-o-notch icon-spin'></i> Processing...">
+                                                    <img src="{{asset('images/favicon.png')}}" width="30px"> Meet Here
+                                                </button>
                                             </div>
                                         </div>
-                                    </form>
+                                        </form>
+                                    </div>
                                 </div>
                             @endforeach
                         @endif
