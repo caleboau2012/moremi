@@ -30,33 +30,33 @@ var Facebook = {
             width: 600,
             html:
             '<div><br/>'+
-            '<div class="row">' +
-            '<form id="profile_swal">' +
-            '<div class="col-xs-6 swal_con form-group text-left" id="first_name_swal_con">' +
-             ' <label for="first_name">First Name</label> ' +
-            ' <input type="text" class="form-control" placeholder="First Name" name="first_name" value="' + (Facebook.ACTIVE_PROFILE.first_name ? Facebook.ACTIVE_PROFILE.first_name : '') + '" id="first_name_swal" required/> ' +
-            '<span class="help-block text-danger small swal_form_error" id="first_name_swal_error"></span>' +
-            '</div> ' +
-            '<div class="col-xs-6 swal_con form-group text-left" id="last_name_swal_con"> ' +
-            '<label for="last_name"> Last Name</label>' +
-            '<input type="text" class="form-control" placeholder="Last Name" name="last_name" value="' + (Facebook.ACTIVE_PROFILE.last_name ? Facebook.ACTIVE_PROFILE.last_name : '') + '" id="last_name_swal" required/>' +
-            '<span class="help-block text-danger small swal_form_error" id="last_name_swal_error"></span>' +
-            '</div> ' +
-            '</div> ' +
-            '<div class="row">' +
-            '<div class="col-xs-6 swal_con form-group text-left" id="phone_swal_con"> ' +
-            '<label for="phone"> Phone Number</label>' +
-            '<input type="text" class="form-control" placeholder="Phone Number" name="phone" value="' + (Facebook.ACTIVE_PROFILE.phone ? Facebook.ACTIVE_PROFILE.phone : '') + '"  id="phone_swal" required/> ' +
-            '<span class="help-block text-danger small swal_form_error" id="phone_swal_error"></span>' +
-            '</div>' +
-            '<div class="col-xs-6 swal_con form-group text-left" id="email_swal_con">' +
-            '<label for="email">Email Address</label>' +
-            '<input type="text" class="form-control" placeholder="Email Address" name="email" value="' + (Facebook.ACTIVE_PROFILE.email ? Facebook.ACTIVE_PROFILE.email : '') + '"  id="email_swal" required/>' +
-            '<span class="help-block text-danger small swal_form_error" id="email_swal_error"></span>' +
-            '</div>' +
-            '</form></div>' +
+                '<form id="profile_swal">' +
+                    '<div class="row">' +
+                        '<div class="col-xs-6 swal_con form-group text-left" id="first_name_swal_con">' +
+                            ' <label for="first_name">First Name</label> ' +
+                            ' <input type="text" class="form-control" placeholder="First Name" name="first_name" value="' + (Facebook.ACTIVE_PROFILE.first_name ? Facebook.ACTIVE_PROFILE.first_name : '') + '" id="first_name_swal" required/> ' +
+                            '<span class="help-block text-danger small swal_form_error" id="first_name_swal_error"></span>' +
+                        '</div> ' +
+                        '<div class="col-xs-6 swal_con form-group text-left" id="last_name_swal_con"> ' +
+                            '<label for="last_name"> Last Name</label>' +
+                            '<input type="text" class="form-control" placeholder="Last Name" name="last_name" value="' + (Facebook.ACTIVE_PROFILE.last_name ? Facebook.ACTIVE_PROFILE.last_name : '') + '" id="last_name_swal" required/>' +
+                            '<span class="help-block text-danger small swal_form_error" id="last_name_swal_error"></span>' +
+                        '</div> ' +
+                    '</div> ' +
+                    '<div class="row">' +
+                        '<div class="col-xs-6 swal_con form-group text-left" id="phone_swal_con"> ' +
+                            '<label for="phone"> Phone Number</label>' +
+                            '<input type="text" class="form-control" placeholder="Phone Number" name="phone" value="' + (Facebook.ACTIVE_PROFILE.phone ? Facebook.ACTIVE_PROFILE.phone : '') + '"  id="phone_swal" required/> ' +
+                            '<span class="help-block text-danger small swal_form_error" id="phone_swal_error"></span>' +
+                        '</div>' +
+                        '<div class="col-xs-6 swal_con form-group text-left" id="email_swal_con">' +
+                            '<label for="email">Email Address</label>' +
+                            '<input type="text" class="form-control" placeholder="Email Address" name="email" value="' + (Facebook.ACTIVE_PROFILE.email ? Facebook.ACTIVE_PROFILE.email : '') + '"  id="email_swal" required/>' +
+                            '<span class="help-block text-danger small swal_form_error" id="email_swal_error"></span>' +
+                        '</div>' +
+                   '</div>' +
+                '</form>' +
             '</div>',
-            background: '#fff url(//bit.ly/1Nqn9HU)',
             confirmButtonColor: "#fe7447",
             showLoaderOnConfirm: true,
             allowOutsideClick: false,
@@ -114,7 +114,6 @@ var Facebook = {
                 '</div> ' +
                 '</form></div>' +
                 '</div>',
-                background: '#fff url(//bit.ly/1Nqn9HU)',
                 confirmButtonColor: "#fe7447",
                 showLoaderOnConfirm: true,
                 allowOutsideClick: false,
@@ -153,7 +152,6 @@ var Facebook = {
                     '</div> ' +
                     '</form></div>' +
                     '</div>',
-                    background: '#fff url(//bit.ly/1Nqn9HU)',
                     confirmButtonColor: "#fe7447",
                     showLoaderOnConfirm: true,
                     allowOutsideClick: false,
