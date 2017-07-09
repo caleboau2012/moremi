@@ -265,8 +265,10 @@
                                 <div class="connection-item" data-id="messages-between-{{$c[\TableConstant::PROFILE_ID]}}-{{$c[\ConnectionConstant::RECIPIENT_ID]}}">
                                     @if($c[\ConnectionConstant::PHOTO])
                                         <img data-toggle="tooltip" data-placement="top" data-original-title="{{ucwords($c[\ConnectionConstant::NAME])}}"  src="{{asset($c[\ConnectionConstant::PHOTO]->thumb_path)}}" alt="{{$c[\ConnectionConstant::NAME]}}" class="img-circle img-responsive">
-                                    @else
-                                        <img data-toggle="tooltip" data-placement="top" data-original-title="{{ucwords($c[\ConnectionConstant::NAME])}}" src="{{asset('images/default.png')}}" alt="{{$c[\ConnectionConstant::NAME]}}" class="img-circle img-responsive">
+                                    @elseif($c[ProfileConstant::SEX] == ProfileConstant::MALE)
+                                        <img data-toggle="tooltip" data-placement="top" data-original-title="{{ucwords($c[\ConnectionConstant::NAME])}}" src="{{asset('images/default-male.png')}}" alt="{{$c[\ConnectionConstant::NAME]}}" class="img-circle img-responsive">
+                                    @elseif($c[ProfileConstant::SEX] == ProfileConstant::FEMALE)
+                                        <img data-toggle="tooltip" data-placement="top" data-original-title="{{ucwords($c[\ConnectionConstant::NAME])}}" src="{{asset('images/default-female.png')}}" alt="{{$c[\ConnectionConstant::NAME]}}" class="img-circle img-responsive">
                                     @endif
                                 </div>
                             </div>
@@ -277,40 +279,44 @@
                     <div class="row table-responsive">
                         <h4 class="text-primary text-center">People who picked you</h4>
 
-                        <table class="table table-striped">
-                            <thead>
-                            <tr>
-                                <th colspan="2">Picked by</th>
-                                <th>Picks</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            {{--{{dd($voters)}}--}}
-                            @if(isset($voters) && !is_null($voters))
-                                @foreach($voters as $v)
-                                    <tr>
-                                        <td class="text-center">
-                                            <a target="_blank" href='{{route('my_profile', \Illuminate\Support\Facades\Crypt::encrypt($v['profile']->id))}}'>
-                                                @if(isset($v['profile']->photo->thumb_path))
-                                                    <img width="20px" src="{{asset($v['profile']->photo->thumb_path)}}" alt="{{$v['profile']->first_name}} {{$v['profile']->last_name}}" class="img-circle img-responsive">
-                                                @elseif($v['profile']->sex == ProfileConstant::MALE)
-                                                    <img width="20px" src="{{asset("images/default-male.png")}}" alt="{{$v['profile']->first_name}} {{$v['profile']->last_name}}" class="img-circle img-responsive">
-                                                @else
-                                                    <img width="20px" src="{{asset("images/default-female.png")}}" alt="{{$v['profile']->first_name}} {{$v['profile']->last_name}}" class="img-circle img-responsive">
-                                                @endif
-                                            </a>
-                                        </td>
-                                        <td>
-                                            <a target="_blank" href='{{route('my_profile', \Illuminate\Support\Facades\Crypt::encrypt($v['profile']->id))}}'>
-                                                {{$v['profile']->first_name}} {{$v['profile']->last_name}}
-                                            </a>
-                                        </td>
-                                        <td>{{$v['count']}}</td>
-                                    </tr>
-                                @endforeach
-                            @endif
-                            </tbody>
-                        </table>
+                        @if(sizeof($voters) != 0)
+                            <table class="table table-striped">
+                                <thead>
+                                <tr>
+                                    <th colspan="2">Picked by</th>
+                                    <th>Picks</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {{--{{dd($voters)}}--}}
+                                @if(isset($voters) && !is_null($voters))
+                                    @foreach($voters as $v)
+                                        <tr>
+                                            <td class="text-center">
+                                                <a target="_blank" href='{{route('my_profile', \Illuminate\Support\Facades\Crypt::encrypt($v['profile']->id))}}'>
+                                                    @if(isset($v['profile']->photo->thumb_path))
+                                                        <img width="20px" src="{{asset($v['profile']->photo->thumb_path)}}" alt="{{$v['profile']->first_name}} {{$v['profile']->last_name}}" class="img-circle img-responsive">
+                                                    @elseif($v['profile']->sex == ProfileConstant::MALE)
+                                                        <img width="20px" src="{{asset("images/default-male.png")}}" alt="{{$v['profile']->first_name}} {{$v['profile']->last_name}}" class="img-circle img-responsive">
+                                                    @else
+                                                        <img width="20px" src="{{asset("images/default-female.png")}}" alt="{{$v['profile']->first_name}} {{$v['profile']->last_name}}" class="img-circle img-responsive">
+                                                    @endif
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a target="_blank" href='{{route('my_profile', \Illuminate\Support\Facades\Crypt::encrypt($v['profile']->id))}}'>
+                                                    {{$v['profile']->first_name}} {{$v['profile']->last_name}}
+                                                </a>
+                                            </td>
+                                            <td>{{$v['count']}}</td>
+                                        </tr>
+                                    @endforeach
+                                @endif
+                                </tbody>
+                            </table>
+                        @else
+                            <p class="text-center">No one has picked you yet ... :(</p>
+                        @endif
                     </div>
                 </div>
             </div>

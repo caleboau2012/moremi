@@ -182,6 +182,15 @@ class UIController extends Controller
                 $profile_pic = $i;
         }
 
+        $vote = new VoteController();
+        $voters = $vote->voters($id);
+        $people = [];
+
+        foreach($voters as $v){
+            $person = Profile::find($v->voter_id);
+            $people[] = ['profile' => $person, 'count' => $v->total];
+        }
+
         return view('my_profile',[
                 'profile' => $this->profile,
                 'photos' => $profile->photos()->get()->toArray(),
@@ -191,6 +200,7 @@ class UIController extends Controller
                 'venues' => $this->venues,
                 'spots' => $this->spots,
                 'connects' => $connections,
+                'voters' => $people,
                 'connections' => $this->connections,
                 'voteEnds' => VotingConfig::termination()
             ]
