@@ -8,7 +8,6 @@ Vote ={
     },
 
     init: function(){
-        console.log("Clicked");
         $(document).delegate('.vote-btn', 'click', function(e){
             e.preventDefault();
             var id =$(this).attr('data-id');

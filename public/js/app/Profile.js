@@ -17,10 +17,6 @@ var Profile = {
             var _index = $(this).attr('data-img-index');
             $('#profile-active-dp').attr('src', _src).attr('data-index', _index);
 
-            console.log({
-                src: _src,
-                index: _index
-            });
             Profile.finish($('#pictures-panel').attr("data-url"));
         });
 
@@ -99,11 +95,11 @@ var Profile = {
                 var newURL = e.originalEvent.dataTransfer.getData("url");
                 var index = e.originalEvent.dataTransfer.getData("index");
                 var oldURL = $(this).find("img").attr("src");
-                console.log({
+                /*console.log({
                     new: newURL,
                     old: oldURL,
                     index: index
-                });
+                });*/
                 $(this).find("img").attr("src", newURL).attr("data-index", index).removeClass("hidden").css('display', 'block');
                 if(oldURL == ""){
                     $(this).find(".image-placeholder").remove();
@@ -187,13 +183,11 @@ var Profile = {
         }
     },
     loadFromApi: function(response){
-        console.log(response);
         if(response.status){
             Profile.loadApiPix(response.data);
         }
     },
     loadFromApiError: function(error){
-        console.log(error);
     },
     finish: function(url){
         //console.log($(".picture-panel"));
@@ -277,7 +271,7 @@ var Profile = {
             swal('Oh Snap', "Something went wrong when deleting your beautiful picture");
     },
     deleteFailed: function(error){
-        console.log(error);
+        // console.log(error);
     },
     saveToken: function(response){
         //console.log(response);

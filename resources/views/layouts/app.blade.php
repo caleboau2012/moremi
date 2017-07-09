@@ -34,7 +34,8 @@
 	<link href="{{ asset('css/master.css') }}" rel="stylesheet" >
 	<link href="{{ asset('css/util.css') }}" rel="stylesheet" >
 	<link href="{{ asset('css/media.css') }}" rel="stylesheet" >
-	<link href="{{ asset('libs/sweetalert/sweetalert.css') }}" rel="stylesheet" >
+{{--	<link href="{{ asset('libs/sweetalert/sweetalert.css') }}" rel="stylesheet" >--}}
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.5/sweetalert2.min.css" rel="stylesheet" >
 	<link href="{{asset('libs/introjs/introjs.min.css')}}" rel="stylesheet">
 
 	<!-- Include a polyfill for ES6 Promises (optional) for IE11 and Android browser -->
@@ -72,7 +73,10 @@
 	{{-- Libs --}}
 	<script src="{{asset('libs/jquery/jquery.min.js')}}" ></script>
 	<script src="{{asset('libs/bootstrap/bootstrap.min.js')}}"></script>
-	<script src="{{asset('libs/sweetalert/sweetalert.min.js')}}" ></script>
+	{{--<script src="{{asset('libs/sweetalert/sweetalert.min.js')}}" ></script>--}}
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.5/sweetalert2.min.js" ></script>
+	<!-- Include a polyfill for ES6 Promises (optional) for IE11 and Android browser -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
 	<script src="{{ asset('libs/jquery/jquery-easing.js') }}"></script>
 	<script src="{{asset('libs/jquery/jquery.stellar.min.js')}}"></script>
 	<script src="{{asset('libs/jquery/jquery.stellar.min.js')}}"></script>
