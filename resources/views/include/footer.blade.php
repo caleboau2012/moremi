@@ -22,7 +22,7 @@
                             Moree.me is the quickest way to connect.
 
                             <br>
-                            There are only two clauses. You can only pick once a day. The day starts 0:00 GMT. Everything resets on Sunday.
+                            There are only two clauses. You can only pick once an hour in a day. The game resets on Sunday.
                         </p>
                     </div>
                 </div>

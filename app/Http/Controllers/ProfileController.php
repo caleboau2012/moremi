@@ -42,7 +42,7 @@ class ProfileController extends Controller
             return back();
         }
 
-        $venues = Venue::all();
+        $venues = Venue::where(\VenueConstant::TYPE, \VenueConstant::IN_GAME)->get();
 
         $profile = Profile::where('user_id', $this->_userId)->first();
 
@@ -142,7 +142,7 @@ class ProfileController extends Controller
 
     public  function updateStatus(Request $request){
         $validator = Validator::make($request->all(), [
-            'status' => 'required|max:255',
+            'status' => 'max:255',
         ]);
 
         if ($validator->fails()) {

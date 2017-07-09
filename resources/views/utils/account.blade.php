@@ -46,15 +46,17 @@
                                 <label for="venue">Preferred Spot</label>
                                 <select name="venue" id="venue" class="form-control">
                                     <option value="0">Select your preferred meeting location</option>
-                                    @foreach($venues as $venue)
-                                        @if($venue->id == $profile->venue)
-                                            <option selected value="{{$venue->id}}" data-url="{{$venue->url}}"
-                                                    data-title="{{$venue->title}}" data-image="{{$venue->thumb}}">{{$venue->name}}</option>
-                                        @else
-                                            <option value="{{$venue->id}}" data-url="{{$venue->url}}"
-                                                    data-title="{{$venue->title}}" data-image="{{$venue->thumb}}">{{$venue->name}}</option>
-                                        @endif
-                                    @endforeach
+                                    @if(isset($venues))
+                                        @foreach($venues as $venue)
+                                            @if($venue->id == $profile->venue)
+                                                <option selected value="{{$venue->id}}" data-url="{{$venue->url}}"
+                                                        data-title="{{$venue->title}}" data-image="{{$venue->thumb}}">{{$venue->name}}</option>
+                                            @else
+                                                <option value="{{$venue->id}}" data-url="{{$venue->url}}"
+                                                        data-title="{{$venue->title}}" data-image="{{$venue->thumb}}">{{$venue->name}}</option>
+                                            @endif
+                                        @endforeach
+                                    @endif
                                 </select>
                             </div>
                         </div>

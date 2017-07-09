@@ -46,7 +46,7 @@ class VoteService
 
     public function  HasVoted($voter_id){
         $cookie = $this->_request->cookie('vote');
-        $date =Carbon::parse(config('settings.days_allow_before_next_vote').' days ago')->toDateTimeString(); //2 days ago
+        $date =Carbon::parse(config('settings.hours_before_next_vote').' hours ago')->toDateTimeString(); //2 days ago
         $rw =Voter::where('voter_id',$voter_id)->where('created_at','>',$date)->first();
         if(empty($rw)){
             return false;

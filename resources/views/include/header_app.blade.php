@@ -58,7 +58,7 @@
         <div class="container" data-step="1" data-intro='The Moree.me game is on!' data-position="bottom">
             <div class="row">
                 <div class="col-md-4">
-                    <div class="profile_info_item_left" data-step="6" data-intro='Every week, we connect you to the person that picked you the most' data-position="right">
+                    <div class="profile_info_item_left">
                         <p class="text-right text-white no-margin">Picks this Week</p>
                         <h4 class="no-margin text-white text-right">
                             <strong class="icon icon-heart3 text-white"></strong> {{$profile->vote}}
