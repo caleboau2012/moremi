@@ -46,11 +46,11 @@
                         <div class="recipient_details_con">
                             <h5 class="text-capitalize text-white recipient_details">
                                 @if($c[\ConnectionConstant::PHOTO])
-                                    <img width="50px" src="{{asset($c[\ConnectionConstant::PHOTO]->thumb_path)}}" class="img-thumb img-circle img-small">
+                                    <img src="{{asset($c[\ConnectionConstant::PHOTO]->thumb_path)}}" class="img-thumb img-circle img-small">
                                 @elseif($c[ProfileConstant::SEX] == ProfileConstant::MALE)
-                                    <img width="50px" src="{{asset('images/default-male.png')}}" alt="{{$c[\ConnectionConstant::NAME]}}" class="img-thumb img-circle img-small">
+                                    <img src="{{asset('images/default-male.png')}}" alt="{{$c[\ConnectionConstant::NAME]}}" class="img-thumb img-circle img-small">
                                 @elseif($c[ProfileConstant::SEX] == ProfileConstant::FEMALE)
-                                    <img width="50px" src="{{asset('images/default-female.png')}}" alt="{{$c[\ConnectionConstant::NAME]}}" class="img-thumb img-circle img-small">
+                                    <img src="{{asset('images/default-female.png')}}" alt="{{$c[\ConnectionConstant::NAME]}}" class="img-thumb img-circle img-small">
                                 @endif
                                 {{$c[\ConnectionConstant::NAME] }}
                             </h5>
