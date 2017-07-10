@@ -17,7 +17,7 @@
 .chat-container-header{
     background-image: linear-gradient(-146deg, #FF4B1F 0%, #F06B3B 83%);
     color: #ffffff;
-    padding: 10px;
+    padding: 5px 5px 2px 5px;
 }
 .connections{
     background: #ffe3d2;
@@ -55,10 +55,14 @@
 }
 .chat-box .close_icon_con{
     line-height: 1px;
-    margin: 0;
+    font-size: 18px;
+    color: #f5c69e;
+    margin-top: 0;
+
 }
 .chat-box .recipient_details_con{
     position: relative;
+    top: -10px;
 }
 .chat-box .recipient_details{
     margin-bottom: 4px;

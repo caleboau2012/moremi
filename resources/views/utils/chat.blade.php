@@ -40,7 +40,7 @@
             <div class="hidden chat-box" id="messages-between-{{$c[\TableConstant::PROFILE_ID]}}-{{$c[\ConnectionConstant::RECIPIENT_ID]}}">
                 <div class="chat-container-header">
                     <div class="">
-                        <p class="text-right no-margin close_icon_con">
+                        <p class="text-right close_icon_con">
                             <span class="icon icon-close pointer close-icon"></span>
                         </p>
                         <div class="recipient_details_con">
