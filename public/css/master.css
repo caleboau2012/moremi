@@ -907,6 +907,11 @@ Profile Card
     min-height: 200px;
 }
 
+#partners_section img{
+    width: 70%;
+    margin: 0 auto;
+}
+
 /*Footer*/
 #footer{
     background: #181818;
