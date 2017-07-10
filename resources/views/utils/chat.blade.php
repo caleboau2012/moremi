@@ -39,7 +39,7 @@
         @foreach($connections as $c)
             <div class="hidden chat-box" id="messages-between-{{$c[\TableConstant::PROFILE_ID]}}-{{$c[\ConnectionConstant::RECIPIENT_ID]}}">
                 <div class="chat-container-header">
-                    <div class="">
+                    <div>
                         <p class="text-right close_icon_con">
                             <span class="icon icon-close pointer close-icon"></span>
                         </p>
