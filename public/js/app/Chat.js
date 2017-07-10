@@ -30,8 +30,8 @@ var Chat = {
             Chat.open($(this).attr('data-id'));
         });
 
-        $('.chat-box .icon-close').click(function(){
-            $(this).parent().parent().parent().addClass('hidden');
+        $('.chat-box .close-icon').click(function(){
+            $(this).parent().parent().parent().parent().addClass('hidden');
         });
 
         //$('.chat-messages').each(function(){
