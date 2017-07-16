@@ -140,7 +140,7 @@ use AuthTrait;
             $picker_spot = Venue::find($picker->venue);
             $picker_location = ($picker_spot ? $picker_spot->name : "Undisclosed");
             $pick_spot = Venue::find($pick->venue);
-            $pick_location = ($picker_spot ? $pick_spot->name : "Undisclosed");
+            $pick_location = ($pick_spot ? $pick_spot->name : "Undisclosed");
             /*Send to highest picker*/
             Mail::send('emails.connectionAlert', ['connection' => $pick, 'poll' => $poll, 'location' => $pick_location, 'user' => $picker],
                 function ($m) use ($picker) {
