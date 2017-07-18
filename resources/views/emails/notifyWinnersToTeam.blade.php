@@ -65,12 +65,16 @@
                                     <table border="0" cellpadding="0" cellspacing="0" width="100%">
                                         <tr>
                                             <td style="text-transform: capitalize; padding:25px 0 13px 0;color:#153643;font-family:Arial,sans-serif;font-size:16px;line-height:20px;border-bottom:solid 1px #ededed">
-                                                <b>{{ $winner->first_name }} {{$winner->last_name}}</b>
+                                                <a href="{{route("my_profile", \Illuminate\Support\Facades\Crypt::encrypt($winner->id))}}" target="_blank">
+                                                    <b>{{ $winner->first_name }} {{$winner->last_name}}</b>
+                                                </a>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td style="text-transform: capitalize; padding:25px 0 13px 0;color:#153643;font-family:Arial,sans-serif;font-size:16px;line-height:20px;border-bottom:solid 1px #ededed">
-                                                <b>{{ $voter->first_name }} {{$voter->last_name}}</b>
+                                                <a href="{{route("my_profile", \Illuminate\Support\Facades\Crypt::encrypt($voter->id))}}" target="_blank">
+                                                    <b>{{ $voter->first_name }} {{$voter->last_name}}</b>
+                                                </a>
                                             </td>
                                         </tr>
                                         <tr>

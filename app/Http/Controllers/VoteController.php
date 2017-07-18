@@ -322,6 +322,7 @@ class VoteController extends Controller
         /*send mail*/
         $today = Carbon::today();
         $people = Profile::all();
+        $spots = Venue::all();
 
         $connections = [];
 
@@ -387,7 +388,8 @@ class VoteController extends Controller
                 'picked' => $picked,
                 'poll' => (isset($c[\ConnectionConstant::POLL]))?$c[\ConnectionConstant::POLL]:null,
                 'connections' => (isset($c[\ConnectionConstant::CONNECTIONS]))?$c[\ConnectionConstant::CONNECTIONS]:null,
-                'suggestions' => $c['suggestions']
+                'suggestions' => $c['suggestions'],
+                'spots' => $spots
             ], function ($m)  use($picked){
                 $m->from(\MailConstants::SUPPORT_MAIL, \MailConstants::TEAM_NAME);
                 $m->to($picked->email)->subject('What you missed on Moore.me');
