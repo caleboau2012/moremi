@@ -23,11 +23,11 @@
                                                 <tr>
                                                     <td style="padding:25px 0 13px 0;color:#153643;font-family:Arial,sans-serif;font-size:16px;line-height:20px;border-bottom:solid 1px #ededed">
                                                         @if(isset($c["photo"]->thumb_path))
-                                                            <img src="{{asset($c["photo"]->thumb_path)}}" width="50px" alt="{{$c["name"]}}">
+                                                            <img src="{{asset($c["photo"]->thumb_path)}}" width="100px" alt="{{$c["name"]}}">
                                                         @elseif($c["sex"] == "female")
-                                                            <img src="{{asset("images/default-female.png")}}" width="50px" alt="{{$c["name"]}}">
+                                                            <img src="{{asset("images/default-female.png")}}" width="100px" alt="{{$c["name"]}}">
                                                         @else
-                                                            <img src="{{asset("images/default-male.png")}}" width="50px" alt="{{$c["name"]}}">
+                                                            <img src="{{asset("images/default-male.png")}}" width="100px" alt="{{$c["name"]}}">
                                                         @endif
                                                     </td>
                                                     <td style="padding:25px 0 13px 0;color:#153643;font-family:Arial,sans-serif;font-size:16px;line-height:20px;border-bottom:solid 1px #ededed">
@@ -51,27 +51,31 @@
 
                 <tr>
                     <td style="color:#fe574a;font-family:Arial,sans-serif;font-size:24px">
-                        Here are three people we think you would like to connect with...
+                        Here are people we think you should connect with...
                         <br>
                         <table border="0" cellpadding="0" cellspacing="0" width="100%">
                             @foreach($suggestions as $s)
                                 <tr>
                                     <td style="padding:25px 0 13px 0;color:#153643;font-family:Arial,sans-serif;font-size:16px;line-height:20px;border-bottom:solid 1px #ededed">
-                                        @if(isset($s["photo"]->full_path))
-                                            <img src="{{asset($s["photo"]->full_path)}}" width="50px" alt="{{$s["first_name"]}} {{$s["last_name"]}}">
-                                        @elseif($s["sex"] == "female")
-                                            <img src="{{asset("images/default-female.png")}}" width="50px" alt="{{$s["first_name"]}} {{$s["last_name"]}}">
-                                        @else
-                                            <img src="{{asset("images/default-male.png")}}" width="50px" alt="{{$s["first_name"]}} {{$s["last_name"]}}">
-                                        @endif
+                                        <a href="{{route('my_profile', \Illuminate\Support\Facades\Crypt::encrypt($s["id"]))}}">
+                                            @if(isset($s["photo"]->full_path))
+                                                <img src="{{asset($s["photo"]->full_path)}}" width="200px" alt="{{$s["first_name"]}} {{$s["last_name"]}}">
+                                            @elseif($s["sex"] == "female")
+                                                <img src="{{asset("images/default-female.png")}}" width="200px" alt="{{$s["first_name"]}} {{$s["last_name"]}}">
+                                            @else
+                                                <img src="{{asset("images/default-male.png")}}" width="200px" alt="{{$s["first_name"]}} {{$s["last_name"]}}">
+                                            @endif
+                                        </a>
                                     </td>
                                     <td style="padding:25px 0 13px 0;color:#153643;font-family:Arial,sans-serif;font-size:16px;line-height:20px;border-bottom:solid 1px #ededed">
-                                        {{$s["first_name"]}} {{$s["last_name"]}}
+                                        <a href="{{route('my_profile', \Illuminate\Support\Facades\Crypt::encrypt($s["id"]))}}">
+                                            {{$s["first_name"]}} {{$s["last_name"]}}
+                                        </a>
                                     </td>
                                 </tr>
                             @endforeach
-                            <br>
                         </table>
+                        <br>
                     </td>
                 </tr>
 

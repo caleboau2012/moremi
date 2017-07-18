@@ -378,8 +378,10 @@ class VoteController extends Controller
             }
         }
 
+//        dd($connections);
+
         foreach($connections as $c){
-            $c = $connections[0];
+//            $c = $connections[0];
             $picked = $c[\ConnectionConstant::PROFILE];
             Mail::send('emails.dailyPollVote', [
                 'picked' => $picked,
@@ -393,7 +395,7 @@ class VoteController extends Controller
             });
         }
 
-            return response()->json('Polls sent successfully');
+        return response()->json('Polls sent successfully');
     }
 
     public function voters($profile_id){
