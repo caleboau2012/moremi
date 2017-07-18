@@ -14,4 +14,5 @@ return [
     'hours_before_next_vote'=>1,
     'time-to-reset-vote'=>'12.00',
     'vote-cookie-name'=>'vote',
+    'suggestions'=>2
 ];
