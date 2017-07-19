@@ -114,7 +114,7 @@
     </div>
 
     {{--PICK OF THE MOMENT--}}
-    <div>
+    <div class="hidden-xs hidden-sm">
         @if($winner != null)
             <div class="week-pick" id="pick-of-the-week">
                 <div class="container">
