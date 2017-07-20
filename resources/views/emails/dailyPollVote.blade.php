@@ -33,7 +33,7 @@
                 </tr>
                 <tr>
                     <td style="color:#fe574a;font-family:Arial,sans-serif;font-size:24px">
-                    Don't go alone though. Here are people we suggest you should go there with...
+                    Don't go alone though. Go there with...
                     <br>
                     <table border="0" cellpadding="0" cellspacing="0" width="100%">
                         @foreach($suggestions as $s)
@@ -68,8 +68,8 @@
                 </tr>
 
                 <tr>
-                    <br>
                     <td style="padding:10px 0 30px 0;color:#153643;font-family:Arial,sans-serif;font-size:16px;line-height:25px;text-align:center">
+                        <br>
                         <a href="{{route('profile')}}" style="padding:10px 30px 10px 30px;color:#ffffff;font-family:Arial,sans-serif;font-size:16px;line-height:25px;background-color:#fe574a;text-decoration:none">See Who Picked You</a>
                     </td>
                 </tr>
