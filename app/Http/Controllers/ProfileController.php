@@ -132,10 +132,11 @@ class ProfileController extends Controller
 
             $profile->save();
 
+            $spots = Venue::where(\VenueConstant::TYPE, \VenueConstant::IN_GAME)->get();
             return response()->json([
                 'status' => true,
                 'msg' => "Profile saved successfully",
-                'venues' => Venue::all()
+                'venues' => $spots
             ]);
         }
     }
