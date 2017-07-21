@@ -63,7 +63,7 @@
 
                 <tr>
                     <td style="color:#fe574a;font-family:Arial,sans-serif;font-size:24px">
-                        Log into your account to connect with them...
+                        Log into your account to connect...
                     </td>
                 </tr>
 
