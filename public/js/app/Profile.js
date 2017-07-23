@@ -109,10 +109,10 @@ var Profile = {
                 var index = e.originalEvent.dataTransfer.getData("index");
                 var oldURL = $(this).find("img").attr("src");
                 /*console.log({
-                    new: newURL,
-                    old: oldURL,
-                    index: index
-                });*/
+                 new: newURL,
+                 old: oldURL,
+                 index: index
+                 });*/
                 $(this).find("img").attr("src", newURL).attr("data-index", index).removeClass("hidden").css('display', 'block');
                 if(oldURL == ""){
                     $(this).find(".image-placeholder").remove();
@@ -127,19 +127,15 @@ var Profile = {
         ).undelegate(".delete-picture", "click").delegate(".delete-picture", "click", function(e){
                 var element = this;
                 swal({
-                        title: "Are you sure?",
-                        text: "We cannot undo this action",
-                        type: "warning",
-                        showCancelButton: true,
-                        confirmButtonColor: "#fe7447"
-                        //confirmButtonColor: "#DD6B55",
-                        //confirmButtonText: "Yes, delete it!",
-                        //closeOnConfirm: false
-                    },
-                    function(){
-                        //console.log(element, this);
-                        Profile.deletePicture($(element).parent().parent().parent(), $(element).attr("data-url"));
-                    });
+                    title: "Are you sure?",
+                    text: "We cannot undo this action",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#fe7447"
+                }).then(function(){
+                    console.log(element, this, e);
+                    Profile.deletePicture($(element).parent().parent().parent(), $(element).attr("data-url"));
+                });
             }
         );
         //.undelegate(".picture-panel .fa-close").delegate(".picture-panel .fa-close", "click", function(e){
@@ -273,7 +269,7 @@ var Profile = {
         $("#finish").button('reset');
     },
     deletePicture: function(picture, url){
-        //console.log(url);
+        console.log(url);
         Utils.post(url, null, "GET", Profile.deleteSuccessful, Profile.deleteFailed);
         picture.remove();
     },
