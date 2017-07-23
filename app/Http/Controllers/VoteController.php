@@ -393,7 +393,7 @@ class VoteController extends Controller
             ], function ($m)  use($picked){
                 $m->from(\MailConstants::SUPPORT_MAIL, \MailConstants::TEAM_NAME);
                 $m->to($picked->email)->subject('What you missed on Moore.me');
-                $m->bcc(\MailConstants::TEAM_MAIL, \MailConstants::TEAM_NAME);
+//                $m->bcc(\MailConstants::TEAM_MAIL, \MailConstants::TEAM_NAME);
             });
         }
 
