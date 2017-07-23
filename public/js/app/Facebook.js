@@ -192,35 +192,26 @@ var Facebook = {
 
         });
     },
-    status: function(){
+    status: function(callback){
         FB.getLoginStatus(function(response) {
             if(response.status == "connected"){
                 Facebook.authResponse = response.authResponse;
                 FB.api('/me?fields=id,first_name,last_name,email,gender,cover', function(response) {
                     Facebook.profile = response;
 
-                    if((Profile.checkToken())){
+                    var url = $("#login, .login").attr("data-url");
 
-                        var url = $("#login, .login").attr("data-url");
-
-                        if(typeof url != "undefined")
-                            Utils.post(url,
-                                {
-                                    first_name: response.first_name,
-                                    last_name: response.last_name,
-                                    email: response.email,
-                                    sex: response.gender,
-                                    facebook_id: response.id,
-                                    cover: response.cover
-                                }, "POST", Facebook.saveToken,Facebook.loginError
-                            );
-                    }
-                    else{
-                        Utils.swalErrorAlert('Unable to login. Please, try again');
-                        // console.log("The Login failed");
-                        $(".profile-actions").addClass("hidden");
-                        $("#login").removeClass("hidden");
-                    }
+                    if(typeof url != "undefined")
+                        Utils.post(url,
+                            {
+                                first_name: response.first_name,
+                                last_name: response.last_name,
+                                email: response.email,
+                                sex: response.gender,
+                                facebook_id: response.id,
+                                cover: response.cover
+                            }, "POST", Facebook.saveToken,Facebook.loginError
+                        );
                 });
 
             }
@@ -235,14 +226,17 @@ var Facebook = {
         Utils.swalErrorAlert('Unable to login. Please, try again');
     },
     saveToken: function(response){
+        console.log(response);
         /*save active profile on the client*/
         Facebook.ACTIVE_PROFILE = response.profile;
+        Profile.saveToken(response);
+
+        console.log(!Facebook.ACTIVE_PROFILE.email || !Facebook.ACTIVE_PROFILE.about || !Facebook.ACTIVE_PROFILE.venue);
 
         if(!Facebook.ACTIVE_PROFILE.email || !Facebook.ACTIVE_PROFILE.about || !Facebook.ACTIVE_PROFILE.venue){
             Facebook.profileSetupTour();
             Facebook.ACTIVE_PROFILE.responseRoute = response.route;
         }else{
-            Profile.saveToken(response);
             window.location = response.route;
         }
     },
@@ -280,9 +274,11 @@ var Facebook = {
         );
     },
     userAlbums: function(){
+        console.log(Facebook.profile);
         FB.api(
             "/" + Facebook.profile.id + "/albums",
             function (response) {
+                console.log(response);
                 if (response && !response.error) {
                     for(var i = 0; i < response.data.length; i++){
                         if(response.data[i].name.toLowerCase() == "profile pictures"){

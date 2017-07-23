@@ -58,7 +58,20 @@ var Profile = {
         $("#login-cheek").addClass("hidden");
         $("#facebook-fetch").removeClass("hidden").on("click", function(e){
             //$("#picturesModal").modal("show");
-            Facebook.userAlbums();
+            e.preventDefault();
+            console.log(this);
+            FB.getLoginStatus(function(response) {
+                console.log(response);
+                if(response.status == "connected"){
+                    Facebook.authResponse = response.authResponse;
+                    FB.api('/me?fields=id,first_name,last_name,email,gender,cover', function(response) {
+                        console.log(response);
+                        Facebook.profile = response;
+
+                        Facebook.userAlbums();
+                    });
+                }
+            });
         });
         $(document).undelegate(".select-picture", "click").delegate(".select-picture", "click", function(e){
             var pix = $(".pictures-panel");
@@ -274,14 +287,14 @@ var Profile = {
         // console.log(error);
     },
     saveToken: function(response){
-        //console.log(response);
+        console.log(response);
         localStorage.setItem(TOKEN, response.authToken);
     },
     getToken: function(){
         return localStorage.getItem(TOKEN);
     },
     checkToken: function(){
-        if(Profile.getToken)
+        if(Profile.getToken())
             return true;
     },
     loadLocalPix: function(files){
@@ -294,7 +307,10 @@ var Profile = {
 
             reader.onload = function(e) {
                 template = $("#picture-template").html();
-                HTML = template.replace("[[src]]", e.target.result).replace("[[i]]", $(".picture-panel").length);
+                HTML = template.replace("[[src]]", e.target.result)
+                    .replace("[[src]]", e.target.result)
+                    .replace("[[i]]", $(".picture-panel").length)
+                    .replace("[[i]]", $(".picture-panel").length);
                 $("#pictures-panel").append(HTML);
             };
 

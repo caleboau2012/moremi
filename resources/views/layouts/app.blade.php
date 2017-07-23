@@ -56,9 +56,6 @@
 </head>
 <body id="app-body" data-target=".main-nav" data-spy="scroll">
 
-@section('header')
-@show
-
 <script>
 	window.fbAsyncInit = function() {
 		FB.init({
@@ -77,6 +74,9 @@
 		fjs.parentNode.insertBefore(js, fjs);
 	}(document, 'script', 'facebook-jssdk'));
 </script>
+
+@section('header')
+@show
 
 {{--Game counter--}}
 @include('utils.game_counter')
