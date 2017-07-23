@@ -333,9 +333,9 @@
 
 @section('bottomScripts')
     @parent
-{{--    <script src="{{ asset('libs/roundabout/roundabout.js') }}"></script>--}}
-{{--    <script src="{{ asset('libs/jquery/jquery.event.drag.js') }}"></script>--}}
-{{--<script src="{{ asset('libs/jquery/jquery-event-drop.js') }}"></script>--}}
+    <script src="{{ asset('libs/roundabout/roundabout.js') }}"></script>
+    <script src="{{ asset('libs/jquery/jquery.event.drag.js') }}"></script>
+    <script src="{{ asset('libs/jquery/jquery-event-drop.js') }}"></script>
     <script src="{{asset('js/app/Vote.js')}}"></script>
     <script src="{{asset('js/app/Pay.js')}}"></script>
     <script src="{{asset('js/app/Account.js')}}"></script>
