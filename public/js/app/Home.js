@@ -69,65 +69,65 @@ $(function () {
         ,fading2 = $('.hero-overlayer')
         ;
 
-    $(window).bind('scroll', function(){
-        var offset = $(document).scrollTop()
-            ,opacity=0
-            ,opacity2=1
-            ;
-        if( offset<=fadeStart ){
-            opacity=1;
-            opacity2=0;
-        }else if( offset<=fadeUntil ){
-            opacity=1-offset/fadeUntil;
-            opacity2=offset/fadeUntil;
-        }
-        fading.css({'opacity': opacity});
+    //$(window).bind('scroll', function(){
+    //    var offset = $(document).scrollTop()
+    //        ,opacity=0
+    //        ,opacity2=1
+    //        ;
+    //    if( offset<=fadeStart ){
+    //        opacity=1;
+    //        opacity2=0;
+    //    }else if( offset<=fadeUntil ){
+    //        opacity=1-offset/fadeUntil;
+    //        opacity2=offset/fadeUntil;
+    //    }
+    //    fading.css({'opacity': opacity});
+    //
+    //    if (offset >= 120) {
+    //        $('.st-navbar').addClass("st-navbar-mini");
+    //    } else if (offset <= 119) {
+    //        $('.st-navbar').removeClass("st-navbar-mini");
+    //    }
+    //});
 
-        if (offset >= 120) {
-            $('.st-navbar').addClass("st-navbar-mini");
-        } else if (offset <= 119) {
-            $('.st-navbar').removeClass("st-navbar-mini");
-        }
-    });
 
+    //$('.clients-carousel').owlCarousel({
+    //    items: 5,
+    //    autoPlay: true,
+    //    pagination: false
+    //});
 
-    $('.clients-carousel').owlCarousel({
-        items: 5,
-        autoPlay: true,
-        pagination: false
-    });
-
-    function init_Roundabout() {
-        $('.roundabout').roundabout({
-            tilt: 0.4,
-            autoplay: true,
-            autoplayDuration: 5000,
-            autoplayPauseOnHover: true,
-            minScale:0.5,
-            minOpacity: 1,
-            duration: 400,
-            easing: 'easeOutQuad',
-            enableDrag: true,
-            dropEasing: 'easeOutBack',
-            dragFactor: 2,
-            responsive: true
-        });
-    }
+    //function init_Roundabout() {
+    //    $('.roundabout').roundabout({
+    //        tilt: 0.4,
+    //        autoplay: true,
+    //        autoplayDuration: 5000,
+    //        autoplayPauseOnHover: true,
+    //        minScale:0.5,
+    //        minOpacity: 1,
+    //        duration: 400,
+    //        easing: 'easeOutQuad',
+    //        enableDrag: true,
+    //        dropEasing: 'easeOutBack',
+    //        dragFactor: 2,
+    //        responsive: true
+    //    });
+    //}
 
     /* Trending Block */
-    $(".trending-items").owlCarousel({
-        autoPlay: 3000, //Set AutoPlay to 3 seconds
-        items : 4,
-        itemsDesktop : [1199,4],
-        itemsDesktopSmall : [979,3],
-        itemsTablet	: [768,2],
-        navigation : false,
-        navigationText : ['Prev', 'Next'],
-        pagination : true
-    });
+    //$(".trending-items").owlCarousel({
+    //    autoPlay: 3000, //Set AutoPlay to 3 seconds
+    //    items : 4,
+    //    itemsDesktop : [1199,4],
+    //    itemsDesktopSmall : [979,3],
+    //    itemsTablet	: [768,2],
+    //    navigation : false,
+    //    navigationText : ['Prev', 'Next'],
+    //    pagination : true
+    //});
 
 
-    init_Roundabout();
+    //init_Roundabout();
 
     // [].slice.call( document.querySelectorAll( '.tabs' ) ).forEach( function( el ) {
     //     new CBPFWTabs( el );
