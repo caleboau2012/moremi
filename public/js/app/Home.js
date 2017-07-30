@@ -5,9 +5,9 @@
  * Time: 10:19 AM
  */
 $(function () {
-    //$(window).stellar({
-    //    horizontalScrolling: false
-    //});
+    $(window).stellar({
+        horizontalScrolling: false
+    });
 
     // Custom Scrollbar
     var nice = $("html").niceScroll({
@@ -129,8 +129,8 @@ $(function () {
 
     init_Roundabout();
 
-     //[].slice.call( document.querySelectorAll( '.tabs' ) ).forEach( function( el ) {
-     //    new CBPFWTabs( el );
-     //});
+     [].slice.call( document.querySelectorAll( '.tabs' ) ).forEach( function( el ) {
+         new CBPFWTabs( el );
+     });
 
 });

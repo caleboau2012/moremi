@@ -102,7 +102,12 @@ class VoteController extends Controller
                     $stack[] = $vResult;
                     $pick = Profile::find($vResult->profile_id);
                     $picker = Profile::find($vResult->voter_id);
-                    $this->createConnection($vResult, $pick, $picker);
+                    if(($vResult === NULL) || ($pick === NULL) || ($picker === NULL)){
+                        continue;
+                    }
+                    else{
+                        $this->createConnection($vResult, $pick, $picker);
+                    }
                 }
                 else{
                     continue;
