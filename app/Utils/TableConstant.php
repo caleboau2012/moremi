@@ -43,6 +43,9 @@ class ConnectionConstant{
     const NAME = 'name';
     const PHOTO = 'photo';
     const MESSAGES = 'messages';
+    const CONNECTIONS = "connections";
+    const PROFILE = "profile";
+    const POLL = "poll";
 }
 
 class TicketConstant{
@@ -53,4 +56,11 @@ class TicketConstant{
 class VotingConfigConstant{
     const STARTED_AT = 'started_at';
     const TERMINATED_AT = 'terminated_at';
+}
+
+class VenueConstant{
+    const TYPE = 'type';
+
+    const IN_GAME = 0;
+    const NOT_IN_GAME = 1;
 }

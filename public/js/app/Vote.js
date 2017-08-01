@@ -8,8 +8,7 @@ Vote ={
     },
 
     init: function(){
-        console.log("Clicked");
-        $(document).delegate('.vote-btn', 'click', function(e){
+        $(document).undelegate('.vote-btn', 'click').delegate('.vote-btn', 'click', function(e){
             e.preventDefault();
             var id =$(this).attr('data-id');
 
@@ -59,40 +58,37 @@ Vote ={
             }
             else if(!data.profile) {
                 swal({
-                        title: "Ouch...",
-                        text: data.msg,
-                        type: "warning",
-                        showCancelButton: true,
-                        confirmButtonColor: "#fe7447"
-                    },
-                    function(){
-                        $("#accountModal").modal('show');
-                    });
+                    title: "Ouch...",
+                    text: data.msg,
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#fe7447"
+                }).then(function(){
+                    $("#accountModal").modal('show');
+                });
             }
             else{
                 swal({
-                        title: "Ouch...",
-                        text: data.msg,
-                        type: "warning",
-                        showCancelButton: true,
-                        confirmButtonColor: "#fe7447",
-                        confirmButtonText: "Pay!"
-                    },
-                    function(){
-                        $("#votePayModal").modal('show');
-                    });
+                    title: "Ouch...",
+                    text: data.msg,
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#fe7447",
+                    confirmButtonText: "Continue!"
+                })
+                    //.then(function(){
+                    //    $("#votePayModal").modal('show');
+                    //});
             }
         }
         else if(data.status){
             swal({
-                    title: "Success",
-                    text: data.msg,
-                    type: "success",
-                    showCancelButton: true,
-                    confirmButtonColor: "#fe7447"
-                },
-                function(){
-                });
+                title: "Success",
+                text: data.msg,
+                type: "success",
+                showCancelButton: true,
+                confirmButtonColor: "#fe7447"
+            });
 
             // swal('Success',data.msg,'success');
 

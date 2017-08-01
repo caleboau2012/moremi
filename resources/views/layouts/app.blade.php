@@ -34,7 +34,8 @@
 	<link href="{{ asset('css/master.css') }}" rel="stylesheet" >
 	<link href="{{ asset('css/util.css') }}" rel="stylesheet" >
 	<link href="{{ asset('css/media.css') }}" rel="stylesheet" >
-	<link href="{{ asset('libs/sweetalert/sweetalert.css') }}" rel="stylesheet" >
+{{--	<link href="{{ asset('libs/sweetalert/sweetalert.css') }}" rel="stylesheet" >--}}
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.5/sweetalert2.min.css" rel="stylesheet" >
 	<link href="{{asset('libs/introjs/introjs.min.css')}}" rel="stylesheet">
 
 	<!-- Include a polyfill for ES6 Promises (optional) for IE11 and Android browser -->
@@ -55,12 +56,32 @@
 </head>
 <body id="app-body" data-target=".main-nav" data-spy="scroll">
 
+<script>
+	window.fbAsyncInit = function() {
+		FB.init({
+			appId      : '469144689836682',
+			xfbml      : true,
+			version    : 'v2.7'
+		});
+//		FB.Event.subscribe('xfbml.render', Facebook.status);
+	};
+
+	(function(d, s, id){
+		var js, fjs = d.getElementsByTagName(s)[0];
+		if (d.getElementById(id)) {return;}
+		js = d.createElement(s); js.id = id;
+		js.src = "//connect.facebook.net/en_US/sdk.js";
+		fjs.parentNode.insertBefore(js, fjs);
+	}(document, 'script', 'facebook-jssdk'));
+</script>
+
 @section('header')
 @show
 
 {{--Game counter--}}
 @include('utils.game_counter')
 @include('utils.chat')
+@include('utils.meet')
 
 @yield('content')
 
@@ -72,7 +93,10 @@
 	{{-- Libs --}}
 	<script src="{{asset('libs/jquery/jquery.min.js')}}" ></script>
 	<script src="{{asset('libs/bootstrap/bootstrap.min.js')}}"></script>
-	<script src="{{asset('libs/sweetalert/sweetalert.min.js')}}" ></script>
+	{{--<script src="{{asset('libs/sweetalert/sweetalert.min.js')}}" ></script>--}}
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.5/sweetalert2.min.js" ></script>
+	<!-- Include a polyfill for ES6 Promises (optional) for IE11 and Android browser -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
 	<script src="{{ asset('libs/jquery/jquery-easing.js') }}"></script>
 	<script src="{{asset('libs/jquery/jquery.stellar.min.js')}}"></script>
 	<script src="{{asset('libs/jquery/jquery.stellar.min.js')}}"></script>
@@ -112,6 +136,8 @@
 
 	<script src="https://cdn.socket.io/socket.io-1.3.4.js"></script>
 	<script src="{{asset('js/app/Chat.js')}}"></script>
+	<script src="{{asset('js/app/Vote.js')}}"></script>
+	<script src="{{asset('js/app/Pay.js')}}"></script>
 
 	<!--Start of Tawk.to Script-->
 	<script type="text/javascript">

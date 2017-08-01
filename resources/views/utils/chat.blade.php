@@ -9,14 +9,17 @@
         <div class="connections">
             <h4 class="text-primary text-center margin-bottom-md hidden-sm hidden-xs">Your Connections</h4>
             <div class="row">
+                {{--{{dd($connections)}}--}}
                 @if(sizeof($connections) != 0)
                     @foreach($connections as $c)
                         <div class="col-xs-12 col-sm-3">
                             <div class="connection-item" data-id="messages-between-{{$c[\TableConstant::PROFILE_ID]}}-{{$c[\ConnectionConstant::RECIPIENT_ID]}}">
                                 @if($c[\ConnectionConstant::PHOTO])
                                     <img data-toggle="tooltip" data-placement="top" data-original-title="{{ucwords($c[\ConnectionConstant::NAME])}}"  src="{{asset($c[\ConnectionConstant::PHOTO]->thumb_path)}}" alt="{{$c[\ConnectionConstant::NAME]}}" class="img-circle img-responsive">
-                                @else
-                                    <img data-toggle="tooltip" data-placement="top" data-original-title="{{ucwords($c[\ConnectionConstant::NAME])}}" src="{{asset('images/default.png')}}" alt="{{$c[\ConnectionConstant::NAME]}}" class="img-circle img-responsive">
+                                @elseif($c[ProfileConstant::SEX] == ProfileConstant::MALE)
+                                    <img data-toggle="tooltip" data-placement="top" data-original-title="{{ucwords($c[\ConnectionConstant::NAME])}}" src="{{asset('images/default-male.png')}}" alt="{{$c[\ConnectionConstant::NAME]}}" class="img-circle img-responsive">
+                                @elseif($c[ProfileConstant::SEX] == ProfileConstant::FEMALE)
+                                    <img data-toggle="tooltip" data-placement="top" data-original-title="{{ucwords($c[\ConnectionConstant::NAME])}}" src="{{asset('images/default-female.png')}}" alt="{{$c[\ConnectionConstant::NAME]}}" class="img-circle img-responsive">
                                 @endif
                             </div>
                         </div>
@@ -35,16 +38,25 @@
     <div id="chat-container">
         @foreach($connections as $c)
             <div class="hidden chat-box" id="messages-between-{{$c[\TableConstant::PROFILE_ID]}}-{{$c[\ConnectionConstant::RECIPIENT_ID]}}">
-                <div class="chat-container-header text-center">
-                    <h3 class="panel-title text-capitalize">
-                        @if($c[\ConnectionConstant::PHOTO])
-                            <img width="100px" src="{{asset($c[\ConnectionConstant::PHOTO]->thumb_path)}}" class="img-thumb img-circle img-small">
-                        @else
-                            <img width="100px" src="{{asset('images/default.png')}}" alt="{{$c[\ConnectionConstant::NAME]}}" class="img-thumb img-circle img-small">
-                        @endif
-                        {{$c[\ConnectionConstant::NAME]}}
-                        <span class="icon icon-close"></span>
-                    </h3>
+                <div class="chat-container-header">
+                    <div>
+                        <p class="text-right close_icon_con">
+                            <span class="icon icon-close pointer close-icon"></span>
+                        </p>
+                        <div class="recipient_details_con">
+                            <h5 class="text-capitalize text-white recipient_details">
+                                @if($c[\ConnectionConstant::PHOTO])
+                                    <img src="{{asset($c[\ConnectionConstant::PHOTO]->thumb_path)}}" class="img-thumb img-circle img-small">
+                                @elseif($c[ProfileConstant::SEX] == ProfileConstant::MALE)
+                                    <img src="{{asset('images/default-male.png')}}" alt="{{$c[\ConnectionConstant::NAME]}}" class="img-thumb img-circle img-small">
+                                @elseif($c[ProfileConstant::SEX] == ProfileConstant::FEMALE)
+                                    <img src="{{asset('images/default-female.png')}}" alt="{{$c[\ConnectionConstant::NAME]}}" class="img-thumb img-circle img-small">
+                                @endif
+                                {{$c[\ConnectionConstant::NAME] }}
+                            </h5>
+                            <div class="details-end"></div>
+                        </div>
+                    </div>
                 </div>
                 <div class="chat-container-body">
                     <div class="row">
@@ -70,7 +82,8 @@
                             <textarea class="form-control msg" placeholder="Type Here..."></textarea>
                         </div>
                         <div class="col-xs-5">
-                            <button class="btn btn-sm btn-block btn-success send-msg"><span class="icon icon-send"></span> </button>
+                            {{--<button class="btn btn-sm btn-block btn-default meet-from-chat"><img src="{{asset('images/favicon.png')}}" width="20px"></button>--}}
+                            <button class="btn btn-sm btn-block btn-default send-msg"><span class="icon icon-send"></span> </button>
                             {{--<input type="button" value="Send" class="btn btn-sm btn-block btn-success send-msg">--}}
                         </div>
                     </div>

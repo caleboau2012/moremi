@@ -14,6 +14,11 @@ var Chat = {
             Chat.send(this);
         });
 
+        $(".meet-from-chat").click(function(e){
+            e.preventDefault();
+            Chat.meet(this);
+        });
+
         $('.msg').keydown(function(event) {
             if (event.keyCode == 13) {
                 Chat.send(this);
@@ -25,8 +30,8 @@ var Chat = {
             Chat.open($(this).attr('data-id'));
         });
 
-        $('.chat-box .icon-close').click(function(){
-            $(this).parent().parent().parent().addClass('hidden');
+        $('.chat-box .close-icon').click(function(){
+            $(this).parent().parent().parent().parent().addClass('hidden');
         });
 
         //$('.chat-messages').each(function(){
@@ -35,10 +40,13 @@ var Chat = {
         //});
     },
     open: function(id){
-        console.log(id);
 
         $(".chat-box").addClass("hidden");
         $("#" + id).removeClass("hidden");
+    },
+    meet: function(element){
+        Vote.CONSTANT.profileID = $(element).parent().parent().find('#id_user_to').text();
+        $('#meetModal').modal('show');
     },
     send: function(element){
         var token = $("#_token").text();
@@ -82,7 +90,7 @@ var Chat = {
             var from = "#messages-between-" + data.id_user_to + '-' + data.id_user_from + " .chat-messages";
             var to = "#messages-between-" + data.id_user_from + '-' + data.id_user_to + " .chat-messages";
 
-            console.log(from, to, $(from)[0], $(to)[0]);
+            // console.log(from, to, $(from)[0], $(to)[0]);
 
             if(typeof $(from)[0] != 'undefined') {
                 $(from).append( "<div>" +
@@ -108,12 +116,12 @@ var Chat = {
     },
     scrollToBottom: function(){
         var element = Chat.CONSTANTS.messages;
-        console.log({
+        /*console.log({
             element: element,
             scrollTop: element.scrollTop,
             scrollHeight: element.scrollHeight,
             clientHeight: element.clientHeight
-        });
+        });*/
         element.scrollTop = element.scrollHeight - element.clientHeight;
     }
 };

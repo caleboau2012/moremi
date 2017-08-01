@@ -60,7 +60,6 @@ InfiniteScroll ={
                 InfiniteScroll.Render(response.data)
             },
             error: function(response){
-                console.log(response);
                 InfiniteScroll.CONSTANT.LOADING=false; ///reset loading back to true;
 
             }

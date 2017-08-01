@@ -21,14 +21,16 @@ class LoginController extends Controller
         if (!empty($user)) {
             $token = customencrypt($user['profile']->user_id);
             $data=[
-                'authToken'=>$token
+                'authToken'=>$token,
+                'profile' => $user['profile']
             ];
             session($data);
             return response()->json([
                 'status' => true,
                 'message' => 'Authentication successful',
                 'route' => $user['route'],
-                'authToken' =>$token
+                'authToken' =>$token,
+                'profile' => $user['profile']
             ]);
         }
         else{

@@ -17,10 +17,6 @@ var Profile = {
             var _index = $(this).attr('data-img-index');
             $('#profile-active-dp').attr('src', _src).attr('data-index', _index);
 
-            console.log({
-                src: _src,
-                index: _index
-            });
             Profile.finish($('#pictures-panel').attr("data-url"));
         });
 
@@ -62,7 +58,20 @@ var Profile = {
         $("#login-cheek").addClass("hidden");
         $("#facebook-fetch").removeClass("hidden").on("click", function(e){
             //$("#picturesModal").modal("show");
-            Facebook.userAlbums();
+            e.preventDefault();
+            console.log(this);
+            FB.getLoginStatus(function(response) {
+                console.log(response);
+                if(response.status == "connected"){
+                    Facebook.authResponse = response.authResponse;
+                    FB.api('/me?fields=id,first_name,last_name,email,gender,cover', function(response) {
+                        console.log(response);
+                        Facebook.profile = response;
+
+                        Facebook.userAlbums();
+                    });
+                }
+            });
         });
         $(document).undelegate(".select-picture", "click").delegate(".select-picture", "click", function(e){
             var pix = $(".pictures-panel");
@@ -99,11 +108,11 @@ var Profile = {
                 var newURL = e.originalEvent.dataTransfer.getData("url");
                 var index = e.originalEvent.dataTransfer.getData("index");
                 var oldURL = $(this).find("img").attr("src");
-                console.log({
-                    new: newURL,
-                    old: oldURL,
-                    index: index
-                });
+                /*console.log({
+                 new: newURL,
+                 old: oldURL,
+                 index: index
+                 });*/
                 $(this).find("img").attr("src", newURL).attr("data-index", index).removeClass("hidden").css('display', 'block');
                 if(oldURL == ""){
                     $(this).find(".image-placeholder").remove();
@@ -118,19 +127,15 @@ var Profile = {
         ).undelegate(".delete-picture", "click").delegate(".delete-picture", "click", function(e){
                 var element = this;
                 swal({
-                        title: "Are you sure?",
-                        text: "We cannot undo this action",
-                        type: "warning",
-                        showCancelButton: true,
-                        confirmButtonColor: "#fe7447"
-                        //confirmButtonColor: "#DD6B55",
-                        //confirmButtonText: "Yes, delete it!",
-                        //closeOnConfirm: false
-                    },
-                    function(){
-                        //console.log(element, this);
-                        Profile.deletePicture($(element).parent().parent().parent(), $(element).attr("data-url"));
-                    });
+                    title: "Are you sure?",
+                    text: "We cannot undo this action",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#fe7447"
+                }).then(function(){
+                    console.log(element, this, e);
+                    Profile.deletePicture($(element).parent().parent().parent(), $(element).attr("data-url"));
+                });
             }
         );
         //.undelegate(".picture-panel .fa-close").delegate(".picture-panel .fa-close", "click", function(e){
@@ -187,13 +192,11 @@ var Profile = {
         }
     },
     loadFromApi: function(response){
-        console.log(response);
         if(response.status){
             Profile.loadApiPix(response.data);
         }
     },
     loadFromApiError: function(error){
-        console.log(error);
     },
     finish: function(url){
         //console.log($(".picture-panel"));
@@ -266,7 +269,7 @@ var Profile = {
         $("#finish").button('reset');
     },
     deletePicture: function(picture, url){
-        //console.log(url);
+        console.log(url);
         Utils.post(url, null, "GET", Profile.deleteSuccessful, Profile.deleteFailed);
         picture.remove();
     },
@@ -277,17 +280,17 @@ var Profile = {
             swal('Oh Snap', "Something went wrong when deleting your beautiful picture");
     },
     deleteFailed: function(error){
-        console.log(error);
+        // console.log(error);
     },
     saveToken: function(response){
-        //console.log(response);
+        console.log(response);
         localStorage.setItem(TOKEN, response.authToken);
     },
     getToken: function(){
         return localStorage.getItem(TOKEN);
     },
     checkToken: function(){
-        if(Profile.getToken)
+        if(Profile.getToken())
             return true;
     },
     loadLocalPix: function(files){
@@ -300,7 +303,10 @@ var Profile = {
 
             reader.onload = function(e) {
                 template = $("#picture-template").html();
-                HTML = template.replace("[[src]]", e.target.result).replace("[[i]]", $(".picture-panel").length);
+                HTML = template.replace("[[src]]", e.target.result)
+                    .replace("[[src]]", e.target.result)
+                    .replace("[[i]]", $(".picture-panel").length)
+                    .replace("[[i]]", $(".picture-panel").length);
                 $("#pictures-panel").append(HTML);
             };
 

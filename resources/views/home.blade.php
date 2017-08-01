@@ -5,24 +5,6 @@
 
 @section('header')
     @include('include.header')
-    <script>
-        window.fbAsyncInit = function() {
-            FB.init({
-                appId      : '469144689836682',
-                xfbml      : true,
-                version    : 'v2.7'
-            });
-//            FB.Event.subscribe('xfbml.render', Facebook.status);
-        };
-
-        (function(d, s, id){
-            var js, fjs = d.getElementsByTagName(s)[0];
-            if (d.getElementById(id)) {return;}
-            js = d.createElement(s); js.id = id;
-            js.src = "//connect.facebook.net/en_US/sdk.js";
-            fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));
-    </script>
 @endsection
 
 @section('content')
@@ -132,7 +114,7 @@
     </div>
 
     {{--PICK OF THE MOMENT--}}
-    <div>
+    <div class="hidden-xs hidden-sm">
         @if($winner != null)
             <div class="week-pick" id="pick-of-the-week">
                 <div class="container">
@@ -169,11 +151,6 @@
                                     {{$winner->profile()->first()->status}}
                                 </p>
                                 @endif
-                                <h5 class="content">
-                                    <a href="#"><span class="icon icon-instagram text-primary"></span></a>
-                                    <a href="#"><span class="icon icon-facebook-official text-primary"></span></a>
-                                    <a href="#"><span class="icon icon-twitter text-primary"></span></a>
-                                </h5>
                             </div>
 
                             <div class="col-md-3 picker no-margin">
@@ -326,11 +303,11 @@
         <div class="row">
             <div class="col-md-12">
                 <ul class="clients-carousel list-unstyled">
-                    @foreach($venues as $venue)
+                    @foreach($spots as $venue)
                         <li>
                             <a href="{{route('spot_redirect', \Illuminate\Support\Facades\Crypt::encrypt($venue->url))}}" target="_blank">
-                                <img src="{{route('spot_redirect', \Illuminate\Support\Facades\Crypt::encrypt($venue->thumb))}}" class="img-responsive" alt="{{$venue->title}}">
                                 <h4 class="text-center text-primary">{{$venue->name}}</h4>
+                                <img src="{{route('spot_redirect', \Illuminate\Support\Facades\Crypt::encrypt($venue->thumb))}}" class="img-responsive" alt="{{$venue->title}}">
                             </a>
                         </li>
                     @endforeach
@@ -355,7 +332,7 @@
     <script src="{{ asset('libs/jquery/jquery.event.drag.js') }}"></script>
     <script src="{{ asset('libs/jquery/jquery-event-drop.js') }}"></script>
     <script src="{{asset('js/app/Vote.js')}}"></script>
-    <script src="{{asset('js/app/VotePay.js')}}"></script>
+    <script src="{{asset('js/app/Pay.js')}}"></script>
     <script src="{{asset('js/app/Account.js')}}"></script>
     <script src="{{ asset('js/app/Home.js') }}"></script>
 @endsection

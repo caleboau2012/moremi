@@ -14,7 +14,7 @@
                         <br> by a total of<strong>  {{ $poll->total }} picks.</strong><br> <br> <span style="color:#f59c43">
                             Find below, the details of your new connection
                         </span>
-                        Log into your account now to connect with your new connection.
+                        Log into your account now to chat.
                     </td>
                 </tr>
 
@@ -56,7 +56,9 @@
                                     <table border="0" cellpadding="0" cellspacing="0" width="100%">
                                         <tr>
                                             <td style="text-transform: capitalize; padding:25px 0 13px 0;color:#153643;font-family:Arial,sans-serif;font-size:16px;line-height:20px;border-bottom:solid 1px #ededed">
-                                                <b>{{ $connection->first_name }} {{$connection->last_name}}</b>
+                                                <a href="{{route('my_profile', \Illuminate\Support\Facades\Crypt::encrypt($connection->id))}}" target="_blank">
+                                                    <b>{{ $connection->first_name }} {{$connection->last_name}}</b>
+                                                </a>
                                             </td>
                                         </tr>
                                         <tr>
