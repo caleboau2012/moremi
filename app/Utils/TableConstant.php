@@ -43,6 +43,9 @@ class ConnectionConstant{
     const NAME = 'name';
     const PHOTO = 'photo';
     const MESSAGES = 'messages';
+    const CONNECTIONS = "connections";
+    const PROFILE = "profile";
+    const POLL = "poll";
 }
 
 class TicketConstant{

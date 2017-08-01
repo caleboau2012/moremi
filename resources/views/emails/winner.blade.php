@@ -12,7 +12,11 @@
                 <tr>
                     <td style="padding:20px 0 30px 0;color:#153643;font-family:Arial,sans-serif;font-size:16px;line-height:25px">
                         Congratulations!!! , You are the new <strong>pick of the week</strong> on <a href="{{route('index')}}" target="_blank">Moree.me</a>,
-                        <br> by a total of<strong>  {{ $poll->total }} picks.</strong><br> <br> <span style="color:#f59c43"> Find below, the ticket to your spot ,****please note that the ticket is only valid if you go with your new connection (<i style="text-transform: capitalize">{{ $voter->first_name }} {{$voter->last_name}}</i>)<br><br></span>
+                        <br> by a total of<strong>  {{ $poll->total }} picks.</strong><br> <br>
+                        <p style="color:#f59c43"> Find below, the ticket to your spot ,****please note that the ticket is only valid if you go with
+                            (<a href="{{route("my_profile", \Illuminate\Support\Facades\Crypt::encrypt($voter->id))}}" target="_blank"><i style="text-transform: capitalize">{{ $voter->first_name }} {{$voter->last_name}}</i></a>)
+                            <br><br>
+                        </p>
                         Log into your account now to connect with your new connection.
                     </td>
                 </tr>

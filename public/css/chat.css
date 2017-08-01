@@ -17,7 +17,8 @@
 .chat-container-header{
     background-image: linear-gradient(-146deg, #FF4B1F 0%, #F06B3B 83%);
     color: #ffffff;
-    padding: 10px;
+    /*padding: 10px;*/
+    padding: 5px 5px 2px 5px;
 }
 .connections{
     background: #ffe3d2;
@@ -29,7 +30,8 @@
     width: 250px;
 }
 .chat-box .chat-container-header img{
-    width: 20%;
+    /*width: 20%;*/
+    width: 50px;
 }
 
 .chat-box .chat-container-body{
@@ -51,4 +53,39 @@
 
 .chat-message-item{
     border-bottom: dashed thin;
+}
+.chat-box .close_icon_con{
+    line-height: 1px;
+    font-size: 18px;
+    color: #f5c69e;
+    margin-top: 0;
+
+}
+.chat-box .recipient_details_con{
+    position: relative;
+    top: -10px;
+}
+.chat-box .recipient_details{
+    margin-bottom: 4px;
+    font-size: 18px;
+    line-height: 1;
+    vertical-align: middle;
+    max-height: 53px;
+    min-height: 18px;
+    overflow: hidden;
+    text-decoration: none;
+    position: relative;
+    white-space: nowrap;
+}
+.chat-container-header .details-end {
+    background-image: -webkit-gradient(linear,left top,right top,color-stop(0%,rgba(255,255,255,0)),color-stop(100%,rgba(252, 86, 32, 0.42)));
+    background-image: -webkit-linear-gradient(left,rgba(255,255,255,0),rgba(252, 68, 20, 0.45));
+    background: linear-gradient(to right,rgba(242, 101, 54, 0.24),rgb(252, 84, 29));
+    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=1,StartColorStr='#00ffffff',EndColorStr='#ffffff');
+    bottom: 14px;
+    height: 25px;
+    max-height: 100%;
+    position: absolute;
+    right: 0;
+    width: 80px;
 }

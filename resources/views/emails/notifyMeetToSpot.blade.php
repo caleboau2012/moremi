@@ -6,7 +6,7 @@
                 <tr>
                     <td style="padding:20px 0 30px 0;color:#153643;font-family:Arial,sans-serif;font-size:16px;line-height:25px">
                         We got winners!!! on <a href="{{route('index')}}" target="_blank">Moree.me</a>,
-                        <br> <br> <span style="color:#f59c43"> Find below, the ticket to the spot</span>
+                        <br> <br> <span style="color:#f59c43"> Find below, the ticket details</span>
                     </td>
                 </tr>
                 <tr>
@@ -64,12 +64,16 @@
                                         </tr>
                                         <tr>
                                             <td style="text-transform: capitalize; padding:25px 0 13px 0;color:#153643;font-family:Arial,sans-serif;font-size:16px;line-height:20px;border-bottom:solid 1px #ededed">
-                                                <b>{{ $winner->first_name }} {{$winner->last_name}}</b>
+                                                <a href="{{route("my_profile", \Illuminate\Support\Facades\Crypt::encrypt($winner->id))}}" target="_blank">
+                                                    <b>{{ $winner->first_name }} {{$winner->last_name}}</b>
+                                                </a>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td style="text-transform: capitalize; padding:25px 0 13px 0;color:#153643;font-family:Arial,sans-serif;font-size:16px;line-height:20px;border-bottom:solid 1px #ededed">
-                                                <b>{{ $voter->first_name }} {{$voter->last_name}}</b>
+                                                <a href="{{route("my_profile", \Illuminate\Support\Facades\Crypt::encrypt($voter->id))}}" target="_blank">
+                                                    <b>{{ $voter->first_name }} {{$voter->last_name}}</b>
+                                                </a>
                                             </td>
                                         </tr>
                                         <tr>

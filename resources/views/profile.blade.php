@@ -7,29 +7,11 @@
 @section('stylesheets')
     @parent
     {{-- Drag Drop JS --}}
-    <script src="{{asset("js/utils/DragDropTouch.js")}}"></script>
+    {{--<script src="{{asset("js/utils/DragDropTouch.js")}}"></script>--}}
 @endsection
 
 @section('header')
     @include('include.header_app')
-    <script>
-        window.fbAsyncInit = function() {
-            FB.init({
-                appId      : '469144689836682',
-                xfbml      : true,
-                version    : 'v2.7'
-            });
-            FB.Event.subscribe('xfbml.render', Facebook.status);
-        };
-
-        (function(d, s, id){
-            var js, fjs = d.getElementsByTagName(s)[0];
-            if (d.getElementById(id)) {return;}
-            js = d.createElement(s); js.id = id;
-            js.src = "//connect.facebook.net/en_US/sdk.js";
-            fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));
-    </script>
 @endsection
 
 @section('content')
@@ -100,12 +82,11 @@
                                                         {{--<span class="delete-picture icon icon-search" data-url="{{route("delete_pic", $photo['id'])}}"></span>--}}
                                                     </div>
                                                     <div class="action-button-bg text-center">
-                                                        <a class="action-btn drag-pp" data-img-src="{{Request::root() . "/" . $photo['full_path']}}" data-img-index="{{$i}}" >
-                                                            Make Profile Picture
+                                                        <a class="drag-pp" data-img-src="{{Request::root() . "/" . $photo['full_path']}}" data-img-index="{{$i}}" >
+                                                            <span class="icon icon-left icon-check"></span>
                                                         </a>
-                                                        <br>
-                                                        <a class="action-btn delete-picture" data-url="{{route("delete_pic", $photo['id'])}}">
-                                                            Delete Picture
+                                                        <a class="delete-picture" data-url="{{route("delete_pic", $photo['id'])}}">
+                                                            <span class="icon icon-right icon-trash"></span>
                                                         </a>
                                                     </div>
                                                 </div>
@@ -160,14 +141,12 @@
                                     {{--<span class="delete-picture icon icon-search"></span>--}}
                                 </div>
                                 <div class="action-button-bg text-center">
-                                    <a data-img-src="[[src]]" class="action-btn drag-pp" data-img-index="[[i]]">
-                                        Make Profile Picture
+                                    <a class="drag-pp" data-img-src="[[src]]" data-img-index="[[i]]">
+                                        <span class="icon icon-left icon-check"></span>
                                     </a>
-                                    <br>
-                                    <a class="action-btn delete-picture">
-                                        Delete Picture
+                                    <a class="delete-picture">
+                                        <span class="icon icon-right icon-trash"></span>
                                     </a>
-
                                 </div>
                             </div>
                             <br>
@@ -191,7 +170,7 @@
                                             <div class="select-picture pointer image-box">
                                                 <div class="image">
                                                     <img class="img-responsive" src="[[src]]">
-                                                    <span class="icon icon-square-o"></span>
+                                                    <span class="icon icon-right icon-square-o"></span>
                                                 </div>
                                             </div>
                                         </div>

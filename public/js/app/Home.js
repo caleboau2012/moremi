@@ -129,8 +129,8 @@ $(function () {
 
     init_Roundabout();
 
-    // [].slice.call( document.querySelectorAll( '.tabs' ) ).forEach( function( el ) {
-    //     new CBPFWTabs( el );
-    // });
+     [].slice.call( document.querySelectorAll( '.tabs' ) ).forEach( function( el ) {
+         new CBPFWTabs( el );
+     });
 
 });

@@ -25,8 +25,7 @@ var Account = {
                     text: data.msg,
                     type: "success",
                     confirmButtonColor: "#fe7447"
-                },
-                function(){
+                }).then(function(){
                     $('#accountModal').modal('hide');
                 });
         }
