@@ -32,7 +32,7 @@ class VoteController extends Controller
             return response()->json([
                 'status'=>false,
                 'auth' => false,
-                'msg'=>'You must be logged in to vote'
+                'msg'=>'You must be logged in to pick'
             ]);
         }
 
@@ -46,7 +46,7 @@ class VoteController extends Controller
                     'auth' => true,
                     'free' => false,
                     'profile' => true,
-                    'msg'=>'You only have one free vote every hour.'
+                    'msg'=>'You only have one free pick every hour.'
                 ];
                 return response()->json($msg);
             }
