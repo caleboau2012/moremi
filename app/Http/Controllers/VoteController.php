@@ -437,6 +437,10 @@ class VoteController extends Controller
             }
 
             $user = Profile::find($connections[$i][\ConnectionConstant::RECIPIENT_ID]);
+
+            if(($user == null) || (is_null($user)) || !$user)
+                dd($user);
+
             $connections[$i][\ConnectionConstant::NAME] = $user->first_name . " " . $user->last_name;
             $connections[$i][\ConnectionConstant::PHOTO] = $user->photo()->first();
             $connections[$i][\ProfileConstant::SEX] = $user->sex;
