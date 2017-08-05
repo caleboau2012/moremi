@@ -384,7 +384,7 @@ class VoteController extends Controller
             }
         }
 
-//        dd($connections);
+        dd($connections);
 
         foreach($connections as $c){
 //            $c = $connections[0];
