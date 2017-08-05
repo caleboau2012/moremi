@@ -384,7 +384,7 @@ class VoteController extends Controller
             }
         }
 
-        dd($connections);
+//        dd($connections);
 
         foreach($connections as $c){
 //            $c = $connections[0];
@@ -436,7 +436,7 @@ class VoteController extends Controller
                 $connections[$i][\ConnectionConstant::RECIPIENT_ID] = $temp;
             }
 
-            $user = Profile::find($connections[$i][\ConnectionConstant::RECIPIENT_ID]);
+            $user = Profile::where('user_id', $connections[$i][\ConnectionConstant::RECIPIENT_ID])->first();
 
             if(($user == null) || (is_null($user)) || !$user)
                 dd($user, $connections[$i]);
