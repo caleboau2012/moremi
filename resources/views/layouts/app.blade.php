@@ -97,18 +97,17 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.5/sweetalert2.min.js" ></script>
 	<!-- Include a polyfill for ES6 Promises (optional) for IE11 and Android browser -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
-	<script src="{{ asset('libs/jquery/jquery-easing.js') }}"></script>
-	<script src="{{asset('libs/jquery/jquery.stellar.min.js')}}"></script>
-	<script src="{{asset('libs/jquery/jquery.stellar.min.js')}}"></script>
+{{--	<script src="{{ asset('libs/jquery/jquery-easing.js') }}"></script>--}}
+	{{--<script src="{{asset('libs/jquery/jquery.stellar.min.js')}}"></script>--}}
 	<script src="{{asset('libs/jquery/jquery.appear.js')}}"></script>
 	<script src="{{asset('libs/jquery/jquery.nicescroll.min.js')}}"></script>
 	<script src="{{asset('libs/jquery/jquery.countTo.js')}}"></script>
-	<script src="{{asset('libs/jquery/jquery.shuffle.modernizr.js')}}"></script>
-	<script src="{{asset('libs/jquery/jquery.shuffle.js')}}"></script>
-	<script src="{{asset('libs/jquery/jquery.ajaxchimp.min.js')}}"></script>
+{{--	<script src="{{asset('libs/jquery/jquery.shuffle.modernizr.js')}}"></script>--}}
+{{--	<script src="{{asset('libs/jquery/jquery.shuffle.js')}}"></script>--}}
+{{--	<script src="{{asset('libs/jquery/jquery.ajaxchimp.min.js')}}"></script>--}}
 
-	<script src="{{asset("libs/owl/owl.carousel.min.js")}}"></script>
-	<script src="{{asset("js/cbpFWTabs.js")}}"></script>
+	{{--<script src="{{asset("libs/owl/owl.carousel.min.js")}}"></script>--}}
+	{{--<script src="{{asset("js/cbpFWTabs.js")}}"></script>--}}
 	{{--Masonry --}}
 	<script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
 	<script src="{{asset("libs/masonry/imagesLoaded.js")}}"></script>

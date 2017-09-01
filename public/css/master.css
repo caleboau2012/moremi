@@ -297,7 +297,7 @@ a, a:hover{
 .week-pick{padding: 3em; background-color: #fe7447; padding-bottom: 10em;  font-family: "Boing",sans-serif;}
 .week-pick i{ margin-right: 7px; color:#fe7447; font-size:15px;}
 .pick-container{position: relative;}
-.m-title{margin-bottom:7em; font-family: "Nunito", "sans-serif", "Avenir-Roman", "Helvetica Neue",Arial,sans-serif;}
+.m-title{margin-bottom:3em; font-family: "Nunito", "sans-serif", "Avenir-Roman", "Helvetica Neue",Arial,sans-serif;}
 .pick-img{margin-bottom: 8em; margin-left: 12em;}
 .pick_profile{float:none; background-color: white; padding: 2em 5em 0 5em ; border-bottom-right-radius:10em !important; border-top-right-radius: 10em!important; position: absolute; top:-50%; right:15%; }
 

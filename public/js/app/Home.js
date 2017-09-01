@@ -5,9 +5,9 @@
  * Time: 10:19 AM
  */
 $(function () {
-    $(window).stellar({
-        horizontalScrolling: false
-    });
+    //$(window).stellar({
+    //    horizontalScrolling: false
+    //});
 
     // Custom Scrollbar
     var nice = $("html").niceScroll({
@@ -91,11 +91,11 @@ $(function () {
     });
 
 
-    $('.clients-carousel').owlCarousel({
-        items: 5,
-        autoPlay: true,
-        pagination: false
-    });
+    //$('.clients-carousel').owlCarousel({
+    //    items: 5,
+    //    autoPlay: true,
+    //    pagination: false
+    //});
 
     function init_Roundabout() {
         $('.roundabout').roundabout({
@@ -115,22 +115,22 @@ $(function () {
     }
 
     /* Trending Block */
-    $(".trending-items").owlCarousel({
-        autoPlay: 3000, //Set AutoPlay to 3 seconds
-        items : 4,
-        itemsDesktop : [1199,4],
-        itemsDesktopSmall : [979,3],
-        itemsTablet	: [768,2],
-        navigation : false,
-        navigationText : ['Prev', 'Next'],
-        pagination : true
-    });
+    //$(".trending-items").owlCarousel({
+    //    autoPlay: 3000, //Set AutoPlay to 3 seconds
+    //    items : 4,
+    //    itemsDesktop : [1199,4],
+    //    itemsDesktopSmall : [979,3],
+    //    itemsTablet	: [768,2],
+    //    navigation : false,
+    //    navigationText : ['Prev', 'Next'],
+    //    pagination : true
+    //});
 
 
-    init_Roundabout();
-
-     [].slice.call( document.querySelectorAll( '.tabs' ) ).forEach( function( el ) {
-         new CBPFWTabs( el );
-     });
+    //init_Roundabout();
+    //
+    // [].slice.call( document.querySelectorAll( '.tabs' ) ).forEach( function( el ) {
+    //     new CBPFWTabs( el );
+    // });
 
 });
