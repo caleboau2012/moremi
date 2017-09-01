@@ -208,50 +208,52 @@
             </div>
             <div class="row trending-items">
                 @foreach($trending as $t)
-                    <div class="trending-item">
-                        <div class="card hovercard">
-                            <div class="cardheader">
-                            </div>
-                            <a target="_blank" href="{{route("my_profile", \Illuminate\Support\Facades\Crypt::encrypt($t->id))}}">
-                                <div class="avatar">
-                                    @if($t->photo()->first())
-                                        <img class="img-responsive img-circle" src="{{asset($t->photo()->first()->full_path)}}" alt="{{$t->first_name .' '. $t->last_name}}">
-                                    @elseif($t->sex == "male")
-                                        <img class="img-responsive img-circle"  src="{{asset('images/default-male.png')}}">
-                                    @elseif($t->sex == "female")
-                                        <img class="img-responsive img-circle"  src="{{asset('images/default-female.png')}}">
-                                    @endif
+                        <div class="trending-item">
+                            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+                            <div class="card hovercard">
+                                <div class="cardheader">
                                 </div>
-                            </a>
-                            <div class="info">
-                                <div class="title name">
-                                    <h3 class="text-capitalize">{{$t->first_name}} {{$t->last_name}}</h3>
-                                    <div class="content-end"></div>
-                                </div>
-                                <div class="desc">
-                                    @if($t->about)
-                                        <p class="about text-center text-muted">{{$t->about}} &nbsp;</p>
-                                    @else
-                                        <p class="about">No info!</p>
-                                    @endif
-                                </div>
-
-                                <div class="desc">
-                                    @if($t->venue()->first())
-                                        <strong class="icon icon-location font-main">&nbsp;</strong>{{$t->venue()->first()->name}}
-                                    @else
-                                        <strong class="icon icon-location font-main">&nbsp;</strong>No venue yet!
-                                    @endif
-                                </div>
-                                <div class="desc">
-                                    <strong class="icon icon-heart3 font-main">&nbsp;</strong> <span class="vote-count">{{$t->vote}}</span>
-                                </div>
-                            </div>
-
-                            <div class="bottom">
-                                <a href="#" class="pick-btn main-btn vote-btn btn-sm pull-center " data-id="{{$t->id}}">
-                                    <strong class="icon icon-heart3" aria-hidden="true">&nbsp;</strong>Pick
+                                <a target="_blank" href="{{route("my_profile", \Illuminate\Support\Facades\Crypt::encrypt($t->id))}}">
+                                    <div class="avatar">
+                                        @if($t->photo()->first())
+                                            <img class="img-responsive img-circle" src="{{asset($t->photo()->first()->full_path)}}" alt="{{$t->first_name .' '. $t->last_name}}">
+                                        @elseif($t->sex == "male")
+                                            <img class="img-responsive img-circle"  src="{{asset('images/default-male.png')}}">
+                                        @elseif($t->sex == "female")
+                                            <img class="img-responsive img-circle"  src="{{asset('images/default-female.png')}}">
+                                        @endif
+                                    </div>
                                 </a>
+                                <div class="info">
+                                    <div class="title name">
+                                        <h3 class="text-capitalize">{{$t->first_name}} {{$t->last_name}}</h3>
+                                        <div class="content-end"></div>
+                                    </div>
+                                    <div class="desc">
+                                        @if($t->about)
+                                            <p class="about text-center text-muted">{{$t->about}} &nbsp;</p>
+                                        @else
+                                            <p class="about">No info!</p>
+                                        @endif
+                                    </div>
+
+                                    <div class="desc">
+                                        @if($t->venue()->first())
+                                            <strong class="icon icon-location font-main">&nbsp;</strong>{{$t->venue()->first()->name}}
+                                        @else
+                                            <strong class="icon icon-location font-main">&nbsp;</strong>No venue yet!
+                                        @endif
+                                    </div>
+                                    <div class="desc">
+                                        <strong class="icon icon-heart3 font-main">&nbsp;</strong> <span class="vote-count">{{$t->vote}}</span>
+                                    </div>
+                                </div>
+
+                                <div class="bottom">
+                                    <a href="#" class="pick-btn main-btn vote-btn btn-sm btn-block" data-id="{{$t->id}}">
+                                        <strong class="icon icon-heart3" aria-hidden="true">&nbsp;</strong>Pick
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
