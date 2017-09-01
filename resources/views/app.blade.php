@@ -5,7 +5,6 @@
 @endsection
 
 @section('stylesheets')
-    {{--<link href="{{asset('libs/owl/owl.carousel.css')}}" rel="stylesheet">--}}
     {{--<link href="{{asset('libs/bootstrap-slider/bslider.css')}}" rel="stylesheet">--}}
 @endsection
 

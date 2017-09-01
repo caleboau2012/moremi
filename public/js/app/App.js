@@ -36,17 +36,6 @@ var App = {
             $("#winner-photo").attr('src', this.src);
         });
 
-        /* Trending Block */
-        //$(".trending-items").owlCarousel({
-        //    autoPlay: 3000, //Set AutoPlay to 3 seconds
-        //    items : 4,
-        //    itemsDesktop : [1199,4],
-        //    itemsDesktopSmall : [979,3],
-        //    itemsTablet	: [768,2],
-        //    navigation : false,
-        //    pagination : false
-        //});
-
 //            /*Range slider*/
 //        $("#age_range").slider({});
 
