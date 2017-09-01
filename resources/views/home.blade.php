@@ -114,119 +114,69 @@
     </div>
 
     {{--PICK OF THE MOMENT--}}
-    <div class="hidden-xs hidden-sm">
+    <div>
         @if($winner != null)
             <div class="week-pick" id="pick-of-the-week">
-                <div class="container">
-                    <div class="row">
-                        <h3 id="header" class="text-center text-white m-title">Pick of the Moment</h3>
-                    </div>
+                <div class="row">
+                    <h3 id="header" class="text-center text-white m-title">Pick of the Moment</h3>
+                </div>
 
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <div class="row">
-                                @foreach($winner->profile()->first()->photos()->get() as $photo)
-                                    <div class="col-sm-3">
-                                        <img class="img-thumbnail img-responsive img-circle" src="{{ asset($photo->full_path) }}"
-                                             alt="Cheek of the moment">
-                                    </div>
-                                @endforeach
-                            </div>
-                            <br>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="row">
+                            @foreach($winner->profile()->first()->photos()->get() as $photo)
+                                <div class="col-sm-3">
+                                    <img class="img-thumbnail img-responsive img-circle" src="{{ asset($photo->full_path) }}"
+                                         alt="Cheek of the moment">
+                                </div>
+                            @endforeach
                         </div>
-                        <div class="col-sm-12 col-md-6 col-md-offset-3">
-                            <div class="row">
-                                <div class="panel">
-                                    <div class="panel-body">
-                                        <div class="col-sm-6 text-center">
-                                            <div class="content name_content">
-                                                <h3 class="no-margin-bottom name">{{$winner->profile()->first()->first_name}} {{$winner->profile()->first()->last_name}}</h3>
-                                            </div>
-                                            <p class="content no-margin">
-                                                @if($winner->profile()->first()->venue()->first() != null)
-                                                    <span class="icon icon-location text-primary">&nbsp;</span>{{$winner->profile()->first()->venue()->first()->name}}
-                                                @else
-                                                    <span class="icon icon-location text-primary">&nbsp;</span>Venue Undisclosed
-                                                @endif
-                                            </p>
-                                            <p class="content">
-                                                <span class="icon icon-heart3 text-primary">&nbsp;</span>{{$winner->votes}}
-                                            </p>
-                                            @if($winner->profile()->first()->status))
-                                            <p class="content">
-                                                <strong>Status:</strong> <br>
-                                                {{$winner->profile()->first()->status}}
-                                            </p>
-                                            @endif
+                        <br>
+                    </div>
+                    <div class="col-sm-12 col-md-6 col-md-offset-3">
+                        <div class="row">
+                            <div class="panel">
+                                <div class="panel-body">
+                                    <div class="col-sm-6 text-center">
+                                        <div class="content name_content">
+                                            <h3 class="no-margin-bottom name">{{$winner->profile()->first()->first_name}} {{$winner->profile()->first()->last_name}}</h3>
                                         </div>
-                                        <div class="col-sm-6">
-                                            <div class="well text-center no-margin-bottom">
-                                                @if($winner->picker()->first()->photo()->first())
-                                                    <img src="{{asset($winner->picker()->first()->photo()->first()->thumb_path)}}" alt="" width="65" class="img-circle">
-                                                @else
-                                                    <img class="img-circle"  src="{{asset('images/default.png')}}" alt="" width="65">
-                                                @endif
-                                                <div class="description" style="float:right;">
-                                                    <h5 class="no-margin">Highest Picker</h5>
-                                                    <p class="no-margin">{{$winner->picker()->first()->first_name}} {{$winner->picker()->first()->last_name}}</p>
-                                                </div>
-                                                <div class="clearfix"></div>
+                                        <p class="content no-margin">
+                                            @if($winner->profile()->first()->venue()->first() != null)
+                                                <span class="icon icon-location text-primary">&nbsp;</span>{{$winner->profile()->first()->venue()->first()->name}}
+                                            @else
+                                                <span class="icon icon-location text-primary">&nbsp;</span>Venue Undisclosed
+                                            @endif
+                                        </p>
+                                        <p class="content">
+                                            <span class="icon icon-heart3 text-primary">&nbsp;</span>{{$winner->votes}}
+                                        </p>
+                                        @if($winner->profile()->first()->status))
+                                        <p class="content">
+                                            <strong>Status:</strong> <br>
+                                            {{$winner->profile()->first()->status}}
+                                        </p>
+                                        @endif
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="well text-center no-margin-bottom">
+                                            @if($winner->picker()->first()->photo()->first())
+                                                <img src="{{asset($winner->picker()->first()->photo()->first()->thumb_path)}}" alt="" width="65" class="img-circle">
+                                            @else
+                                                <img class="img-circle"  src="{{asset('images/default.png')}}" alt="" width="65">
+                                            @endif
+                                            <div class="description" style="float:right;">
+                                                <h5 class="no-margin">Highest Picker</h5>
+                                                <p class="no-margin">{{$winner->picker()->first()->first_name}} {{$winner->picker()->first()->last_name}}</p>
                                             </div>
+                                            <div class="clearfix"></div>
                                         </div>
                                     </div>
                                 </div>
-
                             </div>
+
                         </div>
                     </div>
-
-                    {{--<div class="row relative">--}}
-                    {{--<div class="col-md-12 pick-container">--}}
-                    {{--<div class="col-md-3 col-xs-8 pick-img">--}}
-                    {{--<ul class="roundabout roundabout-holder" style="">--}}
-                    {{--@foreach($winner->profile()->first()->photos()->get() as $photo)--}}
-                    {{--<li class="roundabout-slide"><img class="img-thumbnail img-responsive" src="{{ asset($photo->full_path) }}" alt="Cheek of the moment"></li>--}}
-                    {{--@endforeach--}}
-                    {{--</ul>--}}
-                    {{--</div>--}}
-                    {{--<div class=" col-md-5 pick_profile">--}}
-                    {{--<div class="content name_content">--}}
-                    {{--<h4 class="no-margin-bottom name">{{$winner->profile()->first()->first_name}} {{$winner->profile()->first()->last_name}}</h4>--}}
-                    {{--</div>--}}
-                    {{--<p class="content no-margin">--}}
-                    {{--@if($winner->profile()->first()->venue()->first() != null)--}}
-                    {{--<span class="icon icon-location text-primary">&nbsp;</span>{{$winner->profile()->first()->venue()->first()->name}}--}}
-                    {{--@else--}}
-                    {{--<span class="icon icon-location text-primary">&nbsp;</span>Venue Undisclosed--}}
-                    {{--@endif--}}
-                    {{--</p>--}}
-                    {{--<p class="content">--}}
-                    {{--<span class="icon icon-heart3 text-primary">&nbsp;</span>{{$winner->votes}}--}}
-                    {{--</p>--}}
-                    {{--@if($winner->profile()->first()->status))--}}
-                    {{--<p class="content">--}}
-                    {{--<strong>Status:</strong> <br>--}}
-                    {{--{{$winner->profile()->first()->status}}--}}
-                    {{--</p>--}}
-                    {{--@endif--}}
-                    {{--</div>--}}
-
-                    {{--<div class="col-md-3 picker no-margin">--}}
-                    {{--<div class="picker-profile">--}}
-                    {{--@if($winner->picker()->first()->photo()->first())--}}
-                    {{--<img src="{{asset($winner->picker()->first()->photo()->first()->thumb_path)}}" alt="" width="65" class="img-circle">--}}
-                    {{--@else--}}
-                    {{--<img class="img-circle"  src="{{asset('images/default.png')}}" alt="" width="65">--}}
-                    {{--@endif--}}
-                    {{--<div class="description" style="float:right;">--}}
-                    {{--<h5 class="no-margin">Highest Picker</h5>--}}
-                    {{--<p class="no-margin text-white">{{$winner->picker()->first()->first_name}} {{$winner->picker()->first()->last_name}}</p>--}}
-                    {{--</div>--}}
-                    {{--</div>--}}
-                    {{--</div>--}}
-
-                    {{--</div>--}}
-                    {{--</div>--}}
                 </div>
             </div>
         @endif
