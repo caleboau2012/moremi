@@ -154,11 +154,8 @@
 
 </div>
 
-<div class="hidden visible-xs visible-sm" id="app-header">
-    <div class="container-fluid" style="height: 15px;">
-
-    </div>
-    <div class="container">
+<div class="hidden visible-xs visible-sm">
+    <div class="container"  id="app-header-mobile">
         @if(isset($p) && !is_null($p))
             <h4 class="text-center no-margin-bottom">{{$p->first_name}} {{$p->last_name}}</h4>
         @endif

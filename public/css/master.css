@@ -991,8 +991,13 @@ Profile Card
     background: url("../images/header_app.png") no-repeat;
     background-size: 100%;
     background-attachment: fixed;
+    position: relative;
 }
-#app-header{
+#app-header-mobile{
+    height: 50px;
+    margin-top: 70px;
+    background: url("../images/header_app.png") no-repeat;
+    background-size: 100%;
     position: relative;
 }
 #home_logo{
