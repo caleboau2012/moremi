@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Connection;
+use App\Jobs\SendDailyEmail;
 use App\OldCheek;
 use App\Photo;
 use App\Profile;
@@ -384,22 +385,19 @@ class VoteController extends Controller
             }
         }
 
-//        dd($connections);
+//        dd($connections, $spots);
 
         foreach($connections as $c){
 //            $c = $connections[0];
             $picked = $c[\ConnectionConstant::PROFILE];
-            Mail::send('emails.dailyPollVote', [
-                'picked' => $picked,
-                'poll' => (isset($c[\ConnectionConstant::POLL]))?$c[\ConnectionConstant::POLL]:null,
-                'connections' => (isset($c[\ConnectionConstant::CONNECTIONS]))?$c[\ConnectionConstant::CONNECTIONS]:null,
-                'suggestions' => $c['suggestions'],
-                'spots' => $spots
-            ], function ($m)  use($picked){
-                $m->from(\MailConstants::SUPPORT_MAIL, \MailConstants::TEAM_NAME);
-                $m->to($picked->email)->subject('What you missed on Moore.me');
-//                $m->bcc(\MailConstants::TEAM_MAIL, \MailConstants::TEAM_NAME);
-            });
+            $delay = rand(2, 10);
+
+            $job = (new SendDailyEmail(
+                $picked, (isset($c[\ConnectionConstant::POLL]))?$c[\ConnectionConstant::POLL]:null,
+                (isset($c[\ConnectionConstant::CONNECTIONS]))?$c[\ConnectionConstant::CONNECTIONS]:null,
+                $c['suggestions'], $spots))->delay(60 * $delay);
+
+            $this->dispatch($job);
         }
 
         return response()->json('Polls sent successfully');
