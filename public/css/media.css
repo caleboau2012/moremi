@@ -96,11 +96,11 @@
     .week-pick {
         padding: 3em;
         background-color: #fe7447;
-        padding-bottom: 25em;
+        /*padding-bottom: 25em;*/
     }
 
     .m-title {
-        margin-bottom: 5.5em;
+        margin-bottom: 2em;
     }
 
     .pick_profile .name{font-size: 15px;}
@@ -149,10 +149,6 @@
     .xs-mb10{margin-bottom:10px;}
 
     .trending nav{width:100%; margin:0 auto; }
-
-    .delete-picture, .select-picture{
-        font-size: xx-large;
-    }
     .counter{ width: 9%;}
     
 

@@ -7,18 +7,18 @@
  */
 ?>
 @if(isset($voteEnds) && $voteEnds != null)
-        <div class=" col-md-1 counter">
-            <div class="cter-label"> <p>Picking stops In</p></div>
+    <div class="hidden-xs col-md-1 counter">
+        <div class="cter-label"> <p>Picking stops In</p></div>
 
-            <ul>
-                <li><span id="cter_days">0</span>Days</li>
-                <li><span id="cter_hours">0</span>Hours</li>
-                <li><span id="cter_minutes">0</span>Minutes</li>
-                <li><span id="cter_seconds">0</span>Seconds</li>
-            </ul>
+        <ul>
+            <li><span id="cter_days">0</span>Days</li>
+            <li><span id="cter_hours">0</span>Hours</li>
+            <li><span id="cter_minutes">0</span>Minutes</li>
+            <li><span id="cter_seconds">0</span>Seconds</li>
+        </ul>
 
-            <div class="cter-label"><a href="{{route('app')}}"><span class="icon icon-play"></span></a> </div>
-        </div>
+        <div class="cter-label"><a href="{{route('app')}}"><span class="icon icon-play"></span></a> </div>
+    </div>
 
 @section('bottomScripts')
     @parent
@@ -31,12 +31,12 @@
 
         if(finalDate){
             $('div.counter').countdown(finalDate)
-                .on('update.countdown', function(event) {
-                    $("#cter_days").html(event.strftime('%D'));
-                    $("#cter_hours").html(event.strftime('%H'));
-                    $("#cter_minutes").html(event.strftime('%M'));
-                    $("#cter_seconds").html(event.strftime('%S'));
-                });
+                    .on('update.countdown', function(event) {
+                        $("#cter_days").html(event.strftime('%D'));
+                        $("#cter_hours").html(event.strftime('%H'));
+                        $("#cter_minutes").html(event.strftime('%M'));
+                        $("#cter_seconds").html(event.strftime('%S'));
+                    });
         }
 
     </script>

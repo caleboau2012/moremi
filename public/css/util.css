@@ -290,3 +290,8 @@ a.main-btn:hover{color: #FFFFFF;}
 .line-through{
     text-decoration: line-through;
 }
+
+#filter-container .col-sm-4{
+    padding-left: 5px;
+    padding-right: 5px;
+}

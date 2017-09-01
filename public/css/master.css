@@ -7,7 +7,7 @@
 @import url('https://fonts.googleapis.com/css?family=Nunito:200,400');
 @import url('font-awesome.min.css');
 body{
-     font-family: "Nunito", "sans-serif", "Avenir-Roman", "Helvetica Neue",Arial,sans-serif;
+    font-family: "Nunito", "sans-serif", "Avenir-Roman", "Helvetica Neue",Arial,sans-serif;
     color: #808080;
     font-weight: 400;
     font-size: 14px;
@@ -39,10 +39,10 @@ h6 {
 }
 
 h1, .h1 {
-     font-size: 36px;
+    font-size: 36px;
 }
 h2, .h2 {
-     font-size: 30px;
+    font-size: 30px;
 }
 h3, .h3{
     font-size: 24px;
@@ -74,9 +74,9 @@ h5, .h5 {
     color: #fe7447;
 }
 .navbar-default .navbar-nav > li.active > a, .navbar-default .navbar-nav > li.active a:hover, .navbar-default .navbar-nav > li.active a:focus, .navbar-default .navbar-nav > li.active a:active {
-     color: #fe7447;
-     font-weight: 400;
- }
+    color: #fe7447;
+    font-weight: 400;
+}
 
 
 .st-navbar-mini .navbar-default .navbar-nav > li.active > a, .st-navbar-mini .navbar-default .navbar-nav > li.active a:hover, .st-navbar-mini .navbar-default .navbar-nav > li.active a:focus, .st-navbar-mini .navbar-default .navbar-nav > li.active a:active {
@@ -95,7 +95,7 @@ h5, .h5 {
     transition: height 0.3s;
 }
 .navbar-nav > li > a {
-     font-family: "Nunito", "sans-serif", "Avenir-Roman", "Helvetica Neue",Arial,sans-serif;
+    font-family: "Nunito", "sans-serif", "Avenir-Roman", "Helvetica Neue",Arial,sans-serif;
     font-size: 15px;
     font-weight: 600;
     letter-spacing: 1px;
@@ -274,7 +274,7 @@ a, a:hover{
 }
 
 /*PICK Moment*/
-.week-pick{padding: 3em; background-color: #fe7447; padding-bottom: 10em;      font-family: "Nunito", "sans-serif", "Avenir-Roman", "Helvetica Neue",Arial,sans-serif;}
+.week-pick{background-color: #fe7447; padding-bottom: 10em;      font-family: "Nunito", "sans-serif", "Avenir-Roman", "Helvetica Neue",Arial,sans-serif;}
 .week-pick i{ margin-right: 7px; color:#fe7447; font-size:15px;}
 .pick-container{position: relative;}
 .m-title{margin-bottom:7em; }
@@ -294,10 +294,10 @@ a, a:hover{
 .picker-profile .description{ line-height: 15px; padding-top: 10px;}
 .picker-profile .description  h5{font-weight: bold;      font-family: "Nunito", "sans-serif", "Avenir-Roman", "Helvetica Neue",Arial,sans-serif;}
 
-.week-pick{padding: 3em; background-color: #fe7447; padding-bottom: 10em;  font-family: "Boing",sans-serif;}
+.week-pick{background-color: #fe7447; padding-bottom: 10em;  font-family: "Boing",sans-serif;}
 .week-pick i{ margin-right: 7px; color:#fe7447; font-size:15px;}
 .pick-container{position: relative;}
-.m-title{margin-bottom:7em; font-family: "Nunito", "sans-serif", "Avenir-Roman", "Helvetica Neue",Arial,sans-serif;}
+.m-title{margin-bottom:3em; font-family: "Nunito", "sans-serif", "Avenir-Roman", "Helvetica Neue",Arial,sans-serif;}
 .pick-img{margin-bottom: 8em; margin-left: 12em;}
 .pick_profile{float:none; background-color: white; padding: 2em 5em 0 5em ; border-bottom-right-radius:10em !important; border-top-right-radius: 10em!important; position: absolute; top:-50%; right:15%; }
 
@@ -549,7 +549,7 @@ a, a:hover{
     -moz-border-radius: 50%;
     border-radius: 50%;
     border:5px solid rgba(246, 148, 68, 0.49);
-    
+
 }
 
 .card.hovercard .info {
@@ -714,7 +714,7 @@ a, a:hover{
 
 /*Trending*/
 #trending_container{
-    padding: 50px 0 20px;
+    /*padding: 50px 0 20px;*/
 }
 .trending-items{
     padding: 20px 0 10px;
@@ -801,7 +801,7 @@ Profile Card
 
 #profile-counter-container{
     background: url(../images/counter/bg.png);
-      background-color: #000;
+    background-color: #000;
     background-position: center center !important;
     background-attachment: fixed;
     background-size: cover;
@@ -816,7 +816,7 @@ Profile Card
     margin-top: 25px;
 }
 #profile-counter-container .overlay{
- 
+
     /*height: 100%;*/
     /*background-color: rgba(0,0,0,0.12);*/
 }
@@ -854,7 +854,7 @@ Profile Card
     margin: 0 auto;
 }
 #profile-counter-container .funfact img{
-   
+
     margin: 0 auto
 }
 .profile-card-name{
@@ -927,12 +927,12 @@ Profile Card
 }
 .footer-bottom{border-top: 1px solid #484747; padding:1em;}
 .footerbg1 h4{color: #d0d0df;
-padding-bottom: 10px;
-border-bottom: 1px solid #484747;
-margin-bottom: 20px;
-font-weight: 200;
-font-size: 16px;
- text-align: center;    
+    padding-bottom: 10px;
+    border-bottom: 1px solid #484747;
+    margin-bottom: 20px;
+    font-weight: 200;
+    font-size: 16px;
+    text-align: center;
     margin: 0 auto;
     margin-bottom: 20px;
 }
@@ -1035,40 +1035,45 @@ font-size: 16px;
 
 
 .subtitle {
-          margin: 2em 0 1em 0;
-          font-size: 30px;
-          color: #FF4B1F;
-        }
-        .fancy {
-          line-height: 0.5;
-          text-align: center;
-        }
-        .fancy span {
-          display: inline-block;
-          position: relative;  
-        }
-        .fancy span:before,
-        .fancy span:after {
-          content: "";
-          position: absolute;
-          height: 10px;
-          border-bottom: 1px solid rgba(188,188,188,0.5);
+    margin: 2em 0 1em 0;
+    font-size: 30px;
+    color: #FF4B1F;
+}
+.fancy {
+    line-height: 0.5;
+    text-align: center;
+}
+.fancy span {
+    display: inline-block;
+    position: relative;
+}
+.fancy span:before,
+.fancy span:after {
+    content: "";
+    position: absolute;
+    height: 10px;
+    border-bottom: 1px solid rgba(188,188,188,0.5);
 
-          top: 0;
-          width: 520px;
-        }
-        .fancy span:before {
-          right: 100%;
-          margin-right: 15px;
-        }
-        .fancy span:after {
-          left: 100%;
-          margin-left: 15px;
-        }
+    top: 0;
+    width: 55px;
+}
+.fancy-long span:before,
+.fancy-long span:after {
+    width: 330px;
+}
+.fancy span:before {
+    right: 100%;
+    margin-right: 15px;
+}
+.fancy span:after {
+    left: 100%;
+    margin-left: 15px;
+}
 
 /*Filter*/
 #filter-container{
-    margin-bottom: 20px;
+    /*margin-bottom: 20px;*/
+    margin: 0 0 20px 0;
 }
 #filter-container .btn{
     border-radius: 20px;
@@ -1081,9 +1086,9 @@ font-size: 16px;
     font-size: 12px;
 }
 #filter-container .btn.active{
-        color: #Ffffff;
-        background-color:#FF4B1F;
-        box-shadow:none;
+    color: #Ffffff;
+    background-color:#FF4B1F;
+    box-shadow:none;
 }
 #filter-container #input-filter-search{
     height: 33px;
@@ -1141,7 +1146,7 @@ font-size: 16px;
     /*display: none;*/
 }
 /*.image-box:hover .action-button-bg{*/
-    /*display: block;*/
+/*display: block;*/
 /*}*/
 .image-box .action-button-bg .action-btn{
     font-size: 10px;
@@ -1208,7 +1213,7 @@ font-size: 16px;
     display: inline-block;
 }
 #profile-cover_dp{
-    width: 100px; height: 100px; border-radius: 50%; border:5px solid rgba(255,255,255,0.6); 
+    width: 100px; height: 100px; border-radius: 50%; border:5px solid rgba(255,255,255,0.6);
 }
 #profile_dp_container .dp-edit-btn{
     position: absolute;
@@ -1222,7 +1227,7 @@ font-size: 16px;
     font-weight: bold;
     display: block;
     transition: all 0.5s ease;
-    
+
 }
 #profile_dp_container:hover .dp-edit-btn{
     display: block;
@@ -1328,9 +1333,9 @@ font-size: 16px;
     background: rgba(0, 0, 0, 0.85);
     font-size: 18px;
     color: #ff4b1f;
-     -moz-border-radius: 50px;
-     -webkit-border-radius: 50px;
-     border-radius: 50px;
+    -moz-border-radius: 50px;
+    -webkit-border-radius: 50px;
+    border-radius: 50px;
     padding: 26px 15px;
     margin-bottom: 20px;
 }
@@ -1358,8 +1363,8 @@ font-size: 16px;
     cursor: default;
     border-radius: 100%;
     -webkit-animation: rotate-loading 1.5s linear 0s infinite normal;
-     animation: rotate-loading 1.5s linear 0s infinite normal;
-     -webkit-user-select: none;
+    animation: rotate-loading 1.5s linear 0s infinite normal;
+    -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;

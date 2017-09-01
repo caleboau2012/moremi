@@ -15,12 +15,7 @@
 @endsection
 
 @section('content')
-    <div style="height: 65px;">
-        <div class="row hidden">
-            <h3 class="text-center hidden"><span class="text-danger">Picks: {{$profile->vote}} <i class="icon icon-heart"></i></span> </h3>
-            <hr>
-        </div>
-    </div>
+    <div class="clearfix"></div>
 
     <div class="container">
         <div class="row">
