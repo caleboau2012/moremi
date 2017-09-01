@@ -126,15 +126,17 @@
                     <div class="col-sm-12">
                         <div class="row">
                             @foreach($winner->profile()->first()->photos()->get() as $photo)
-                                <div class="col-sm-3">
-                                    <img class="img-thumbnail img-responsive img-circle" src="{{ asset($photo->full_path) }}"
+                                <div class="col-sm-4 col-md-3">
+                                    <img class="img-thumbnail img-responsive" src="{{ asset($photo->full_path) }}"
                                          alt="Cheek of the moment">
+                                    <br>
+                                    <br>
                                 </div>
                             @endforeach
                         </div>
                         <br>
                     </div>
-                    <div class="col-sm-12 col-md-6 col-md-offset-3">
+                    <div class="col-sm-10 col-sm-offset-1 col-md-6 col-md-offset-3">
                         <div class="row">
                             <div class="panel">
                                 <div class="panel-body">
@@ -332,8 +334,7 @@
 
 @section('bottomScripts')
     @parent
-    <script src="{{ asset('libs/jquery/jquery.event.drag.js') }}"></script>
-    <script src="{{ asset('libs/jquery/jquery-event-drop.js') }}"></script>
+    <script src="{{asset('libs/jquery/jquery.appear.js')}}"></script>
     <script src="{{asset('js/app/Vote.js')}}"></script>
     <script src="{{asset('js/app/Pay.js')}}"></script>
     <script src="{{asset('js/app/Account.js')}}"></script>
