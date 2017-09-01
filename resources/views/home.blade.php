@@ -61,6 +61,7 @@
                                     <li> <i class="icon icon-check-square-o" aria-hidden="true"></i>Everything resets at the end of the week so you can pick someone new and get to meet every week </li>
                                 </ul>
                                 <div class="text-center xs-mb10"><a href="#" class="btn main-btn btn-sm pull-center "><span class="icon icon-play"></span> Get Started</a></div>
+                                <br>
                             </div>
                         </div>
 
@@ -114,9 +115,9 @@
     </div>
 
     {{--PICK OF THE MOMENT--}}
-    <div>
-        @if($winner != null)
-            <div class="week-pick" id="pick-of-the-week">
+    @if($winner != null)
+        <div class="week-pick" id="pick-of-the-week">
+            <div class="container">
                 <div class="row">
                     <h3 id="header" class="text-center text-white m-title">Pick of the Moment</h3>
                 </div>
@@ -165,7 +166,7 @@
                                             @else
                                                 <img class="img-circle"  src="{{asset('images/default.png')}}" alt="" width="65">
                                             @endif
-                                            <div class="description" style="float:right;">
+                                            <div class="description">
                                                 <h5 class="no-margin">Highest Picker</h5>
                                                 <p class="no-margin">{{$winner->picker()->first()->first_name}} {{$winner->picker()->first()->last_name}}</p>
                                             </div>
@@ -174,162 +175,155 @@
                                     </div>
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </div>
             </div>
-        @endif
-    </div>
+            @endif
+        </div>
 
-    <div class="trending" id="trending">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="tabs tabs-style-bar">
-                        <nav style="">
-                            <ul>
-                                <li class="left tab-current"><a href="#trending" class="left"><span>Trending</span></a></li>
-                                <li class="right">
-                                    @if($loggedIn)
-                                        <a href="{{route("app")}}" class="right"><span>Make Your Pick</span></a>
-                                    @else
-                                        <a href="#" data-url="{{route("app")}}" class="right login"><span>Make Your Pick</span></a>
-                                    @endif
+        <div class="trending" id="trending">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="tabs tabs-style-bar">
+                            <nav style="">
+                                <ul>
+                                    <li class="left tab-current"><a href="#trending" class="left"><span>Trending</span></a></li>
+                                    <li class="right">
+                                        @if($loggedIn)
+                                            <a href="{{route("app")}}" class="right"><span>Make Your Pick</span></a>
+                                        @else
+                                            <a href="#" data-url="{{route("app")}}" class="right login"><span>Make Your Pick</span></a>
+                                        @endif
 
-                                </li>
+                                    </li>
 
-                            </ul>
-                        </nav>
+                                </ul>
+                            </nav>
+                        </div>
+
                     </div>
 
                 </div>
-
-            </div>
-            <div class="row trending-items">
-                @foreach($trending as $t)
+                <div class="row trending-items">
+                    @foreach($trending as $t)
                         <div class="trending-item">
                             <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
-                            <div class="card hovercard">
-                                <div class="cardheader">
-                                </div>
-                                <a target="_blank" href="{{route("my_profile", \Illuminate\Support\Facades\Crypt::encrypt($t->id))}}">
-                                    <div class="avatar">
-                                        @if($t->photo()->first())
-                                            <img class="img-responsive img-circle" src="{{asset($t->photo()->first()->full_path)}}" alt="{{$t->first_name .' '. $t->last_name}}">
-                                        @elseif($t->sex == "male")
-                                            <img class="img-responsive img-circle"  src="{{asset('images/default-male.png')}}">
-                                        @elseif($t->sex == "female")
-                                            <img class="img-responsive img-circle"  src="{{asset('images/default-female.png')}}">
-                                        @endif
+                                <div class="card hovercard">
+                                    <div class="cardheader">
                                     </div>
-                                </a>
-                                <div class="info">
-                                    <div class="title name">
-                                        <h3 class="text-capitalize">{{$t->first_name}} {{$t->last_name}}</h3>
-                                        <div class="content-end"></div>
-                                    </div>
-                                    <div class="desc">
-                                        @if($t->about)
-                                            <p class="about text-center text-muted">{{$t->about}} &nbsp;</p>
-                                        @else
-                                            <p class="about">No info!</p>
-                                        @endif
-                                    </div>
-
-                                    <div class="desc">
-                                        @if($t->venue()->first())
-                                            <strong class="icon icon-location font-main">&nbsp;</strong>{{$t->venue()->first()->name}}
-                                        @else
-                                            <strong class="icon icon-location font-main">&nbsp;</strong>No venue yet!
-                                        @endif
-                                    </div>
-                                    <div class="desc">
-                                        <strong class="icon icon-heart3 font-main">&nbsp;</strong> <span class="vote-count">{{$t->vote}}</span>
-                                    </div>
-                                </div>
-
-                                <div class="bottom">
-                                    <a href="#" class="pick-btn main-btn vote-btn btn-sm btn-block" data-id="{{$t->id}}">
-                                        <strong class="icon icon-heart3" aria-hidden="true">&nbsp;</strong>Pick
+                                    <a target="_blank" href="{{route("my_profile", \Illuminate\Support\Facades\Crypt::encrypt($t->id))}}">
+                                        <div class="avatar">
+                                            @if($t->photo()->first())
+                                                <img class="img-responsive img-circle" src="{{asset($t->photo()->first()->full_path)}}" alt="{{$t->first_name .' '. $t->last_name}}">
+                                            @elseif($t->sex == "male")
+                                                <img class="img-responsive img-circle"  src="{{asset('images/default-male.png')}}">
+                                            @elseif($t->sex == "female")
+                                                <img class="img-responsive img-circle"  src="{{asset('images/default-female.png')}}">
+                                            @endif
+                                        </div>
                                     </a>
+                                    <div class="info">
+                                        <div class="title name">
+                                            <h3 class="text-capitalize">{{$t->first_name}} {{$t->last_name}}</h3>
+                                            <div class="content-end"></div>
+                                        </div>
+                                        <div class="desc">
+                                            @if($t->about)
+                                                <p class="about text-center text-muted">{{$t->about}} &nbsp;</p>
+                                            @else
+                                                <p class="about">No info!</p>
+                                            @endif
+                                        </div>
+
+                                        <div class="desc">
+                                            @if($t->venue()->first())
+                                                <strong class="icon icon-location font-main">&nbsp;</strong>{{$t->venue()->first()->name}}
+                                            @else
+                                                <strong class="icon icon-location font-main">&nbsp;</strong>No venue yet!
+                                            @endif
+                                        </div>
+                                        <div class="desc">
+                                            <strong class="icon icon-heart3 font-main">&nbsp;</strong> <span class="vote-count">{{$t->vote}}</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="bottom">
+                                        <a href="#" class="pick-btn main-btn vote-btn btn-sm btn-block" data-id="{{$t->id}}">
+                                            <strong class="icon icon-heart3" aria-hidden="true">&nbsp;</strong>Pick
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
+                    @endforeach
+                </div>
+            </div>
+        </div>
+
+        <div id="profile-counter-container" data-stellar-background-ratio="0.4">
+            <div class="">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="funfact">
+                                <div class="st-funfact-icon">
+                                    <img class="img-responsive" width="15%;" src="{{asset('images/counter/ladies.png')}}" >
+                                </div>
+                                <div class="st-funfact-counter" ><span class="st-ff-count" data-from="0" data-to="{{$females}}" data-runit="1">0</span>+</div>
+                                <strong class="funfact-title">Registered Ladies</strong>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="funfact">
+                                <div class="st-funfact-icon">
+                                    <img class="img-responsive" width="15%;" src="{{asset('images/counter/men.png')}}">
+                                </div>
+                                <div class="st-funfact-counter" ><span class="st-ff-count" data-from="0" data-to="{{$males}}" data-runit="1">0</span>+</div>
+                                <strong class="funfact-title">Registered Men</strong>
+                            </div><!-- .funfact -->
+                        </div>
+                        <div class="col-md-4">
+                            <div class="funfact">
+                                <div class="st-funfact-icon">
+                                    <img class="img-responsive" width="20%;" src="{{asset('images/counter/table.png')}}">
+                                </div>
+                                <div class="st-funfact-counter" ><span class="st-ff-count" data-from="0" data-to="{{$dates->count()}}" data-runit="1">0</span>+</div>
+                                <strong class="funfact-title">Sponsored Hangouts</strong>
+                            </div><!-- .funfact -->
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="text-center margin-top-sm">
+                            @if(!$loggedIn)
+                                <button class="btn get_started login"  data-url="{{route("login")}}"><span class="icon icon-play">&nbsp;</span>Get Started</button>
+                            @else
+                                <a href="{{route('app')}}" class="btn btn-lg get_started profile"  data-url="{{route("login")}}">Connect Now</a>
+                            @endif
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {{--PARTNERS--}}
+        <div class="container" id="partners_section">
+            <h3 class="text-center">Spots</h3>
+            <div class="row">
+                @foreach($spots as $venue)
+                    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+                        <a href="{{route('spot_redirect', \Illuminate\Support\Facades\Crypt::encrypt($venue->url))}}" target="_blank">
+                            <h4 class="text-center text-primary">{{$venue->name}}</h4>
+                            <img src="{{route('spot_redirect', \Illuminate\Support\Facades\Crypt::encrypt($venue->thumb))}}" class="img-responsive" alt="{{$venue->title}}">
+                        </a>
                     </div>
                 @endforeach
             </div>
         </div>
-    </div>
 
-    <div id="profile-counter-container" data-stellar-background-ratio="0.4">
-        <div class="">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="funfact">
-                            <div class="st-funfact-icon">
-                                <img class="img-responsive" width="15%;" src="{{asset('images/counter/ladies.png')}}" >
-                            </div>
-                            <div class="st-funfact-counter" ><span class="st-ff-count" data-from="0" data-to="{{$females}}" data-runit="1">0</span>+</div>
-                            <strong class="funfact-title">Registered Ladies</strong>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="funfact">
-                            <div class="st-funfact-icon">
-                                <img class="img-responsive" width="15%;" src="{{asset('images/counter/men.png')}}">
-                            </div>
-                            <div class="st-funfact-counter" ><span class="st-ff-count" data-from="0" data-to="{{$males}}" data-runit="1">0</span>+</div>
-                            <strong class="funfact-title">Registered Men</strong>
-                        </div><!-- .funfact -->
-                    </div>
-                    <div class="col-md-4">
-                        <div class="funfact">
-                            <div class="st-funfact-icon">
-                                <img class="img-responsive" width="20%;" src="{{asset('images/counter/table.png')}}">
-                            </div>
-                            <div class="st-funfact-counter" ><span class="st-ff-count" data-from="0" data-to="{{$dates->count()}}" data-runit="1">0</span>+</div>
-                            <strong class="funfact-title">Sponsored Hangouts</strong>
-                        </div><!-- .funfact -->
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="text-center margin-top-sm">
-                        @if(!$loggedIn)
-                            <button class="btn get_started login"  data-url="{{route("login")}}"><span class="icon icon-play">&nbsp;</span>Get Started</button>
-                        @else
-                            <a href="{{route('app')}}" class="btn btn-lg get_started profile"  data-url="{{route("login")}}">Connect Now</a>
-                        @endif
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    {{--PARTNERS--}}
-    <div class="container" id="partners_section">
-        <h3 class="text-center">Spots</h3>
-        <div class="row">
-            <div class="col-md-12">
-                <ul class="clients-carousel list-unstyled">
-                    @foreach($spots as $venue)
-                        <li>
-                            <a href="{{route('spot_redirect', \Illuminate\Support\Facades\Crypt::encrypt($venue->url))}}" target="_blank">
-                                <h4 class="text-center text-primary">{{$venue->name}}</h4>
-                                <img src="{{route('spot_redirect', \Illuminate\Support\Facades\Crypt::encrypt($venue->thumb))}}" class="img-responsive" alt="{{$venue->title}}">
-                            </a>
-                        </li>
-                    @endforeach
-                </ul>
-
-            </div>
-
-        </div>
-    </div>
-
-    @include('utils.votePay');
-    @include('utils.account');
+        @include('utils.votePay');
+        @include('utils.account');
 @endsection
 
 @section('footer')
@@ -338,7 +332,6 @@
 
 @section('bottomScripts')
     @parent
-    {{--<script src="{{ asset('libs/roundabout/roundabout.js') }}"></script>--}}
     <script src="{{ asset('libs/jquery/jquery.event.drag.js') }}"></script>
     <script src="{{ asset('libs/jquery/jquery-event-drop.js') }}"></script>
     <script src="{{asset('js/app/Vote.js')}}"></script>

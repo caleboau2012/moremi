@@ -96,11 +96,11 @@
     .week-pick {
         padding: 3em;
         background-color: #fe7447;
-        padding-bottom: 25em;
+        /*padding-bottom: 25em;*/
     }
 
     .m-title {
-        margin-bottom: 5.5em;
+        margin-bottom: 2em;
     }
 
     .pick_profile .name{font-size: 15px;}
