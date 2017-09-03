@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
 	@section("description")
 		<meta name="description" content="It's FREE. You PICK the person, you PICK the SPOT, we PAY for the HANGOUT. Moore.me will help you meet new people. All expenses paid by us. Simply pick someone and pick a spot. It all starts with a pick.">
 	@show
