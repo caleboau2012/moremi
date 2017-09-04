@@ -387,10 +387,10 @@ class VoteController extends Controller
 
 //        dd($connections, $spots);
 
-        foreach($connections as $c){
+        foreach($connections as $i=>$c){
 //            $c = $connections[0];
             $picked = $c[\ConnectionConstant::PROFILE];
-            $delay = rand(2, 10);
+            $delay = $i * 5;
 
             $job = (new SendDailyEmail(
                 $picked, (isset($c[\ConnectionConstant::POLL]))?$c[\ConnectionConstant::POLL]:null,
