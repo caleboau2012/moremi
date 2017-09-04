@@ -16,7 +16,7 @@
     <div class="clearfix"></div>
     <div class="container">
         <div class="row">
-            <div class="col-md-3 hidden-xs hidden-sm">
+            <div class="col-md-3">
                 {{--trending--}}
                 <div class="bg-grey" id="trending_container" >
                     <div class="">
@@ -29,12 +29,16 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row trending-items"data-step="6" data-intro='Every week, we connect you to the person that picked you the most' data-position="right">
+                        <div class="row trending-items">
                             @foreach($trending as $i => $t)
                                 <div class="col-sm-12">
                                     <div class="trending-item">
-                                        @if($i == 1)
-                                            <div class="card hovercard" data-step="2" data-intro='This is a potential connection!' data-position="bottom">
+                                        @if($i == 0)
+                                            <div class="card hovercard" data-step="6" data-intro='Every week, we connect you to the person that picked you the most' data-position="bottom">
+                                        @elseif($i == 1)
+                                            <div class="card hovercard" data-step="1" data-intro='This is a potential connection!'>
+                                        @elseif($i > 2)
+                                            <div class="card hovercard hidden-xs hidden-sm">
                                         @else
                                             <div class="card hovercard">
                                         @endif
@@ -66,7 +70,7 @@
                                                 </div>
 
                                                 @if($i == 1)
-                                                    <div class="desc" data-step="3" data-intro='This is the spot this person would like to meet!' data-position="bottom">
+                                                    <div class="desc" data-step="2" data-intro='This is the spot this person would like to meet!' data-position="bottom">
                                                 @else
                                                     <div class="desc">
                                                 @endif
@@ -77,7 +81,7 @@
                                                     @endif
                                                 </div>
                                                 @if($i == 1)
-                                                    <div class="desc" data-step="4" data-intro='This is the number of picks this person has so far this week!' data-position="bottom">
+                                                    <div class="desc" data-step="3" data-intro='This is the number of picks this person has so far this week!' data-position="bottom">
                                                 @else
                                                     <div class="desc">
                                                 @endif
@@ -87,7 +91,7 @@
                                             </div>
 
                                             @if($i == 1)
-                                                <div class="bottom" data-step="5" data-intro="Pick this person as many times as you can">
+                                                <div class="bottom" data-step="4" data-intro="Pick this person as many times as you can" data-position="top">
                                             @else
                                                 <div class="bottom">
                                             @endif
@@ -115,7 +119,7 @@
                     </div>
 
                     {{--Filter Panel--}}
-                    <div class="row" id="filter-container">
+                    <div class="row" id="filter-container" data-step="5" data-intro='Use this to filter, search and make your choice' data-position="top">
                         <div class="col-md-4">
                             <h5 class="text-muted">Filter</h5>
                             <div class="row">
@@ -179,7 +183,7 @@
                                         </div>
 
                                         <div class="bottom">
-                                            <a href="#" class="pick-btn main-btn vote-btn btn-sm pull-center " data-id="[[ID]]">
+                                            <a href="#" class="pick-btn main-btn vote-btn btn-sm btn-block" data-id="[[ID]]">
                                                 <strong class="icon icon-heart3" aria-hidden="true">&nbsp;</strong>Pick
                                             </a>
                                         </div>
