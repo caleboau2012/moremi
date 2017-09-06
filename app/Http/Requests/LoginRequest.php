@@ -29,7 +29,7 @@ class LoginRequest extends Request
             'last_name' => 'required|max:20',
             'phone' => 'max:16',
             'facebook_id' => 'required|numeric',
-            'email' => 'required|max:100',
+            'email' => 'sometimes|email',
         ];
 
     }
