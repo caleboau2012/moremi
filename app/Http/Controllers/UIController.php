@@ -26,6 +26,12 @@ class UIController extends Controller
             $this->_userId = customdecrypt($token);
             $this->profile = Profile::where('user_id', $this->_userId)->first();
             $this->connections = $this->getConnections();
+
+            if($this->profile->email == null ){
+                $this->loggedIn = false;
+                Auth::logout();
+                $this->profile = null;
+            }
         }
 
         $this->venues = Venue::where(\VenueConstant::TYPE, \VenueConstant::IN_GAME)->get();

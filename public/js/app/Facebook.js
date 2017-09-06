@@ -226,12 +226,13 @@ var Facebook = {
         Utils.swalErrorAlert('Unable to login. Please, try again');
     },
     saveToken: function(response){
-        console.log(response);
+        // console.log(response);
         /*save active profile on the client*/
         Facebook.ACTIVE_PROFILE = response.profile;
+
         Profile.saveToken(response);
 
-        console.log(!Facebook.ACTIVE_PROFILE.email || !Facebook.ACTIVE_PROFILE.about || !Facebook.ACTIVE_PROFILE.venue);
+        // console.log(!Facebook.ACTIVE_PROFILE.email || !Facebook.ACTIVE_PROFILE.about || !Facebook.ACTIVE_PROFILE.venue);
 
         if(!Facebook.ACTIVE_PROFILE.email || !Facebook.ACTIVE_PROFILE.about || !Facebook.ACTIVE_PROFILE.venue){
             Facebook.profileSetupTour();
@@ -274,11 +275,11 @@ var Facebook = {
         );
     },
     userAlbums: function(){
-        console.log(Facebook.profile);
+        // console.log(Facebook.profile);
         FB.api(
             "/" + Facebook.profile.id + "/albums",
             function (response) {
-                console.log(response);
+                // console.log(response);
                 if (response && !response.error) {
                     for(var i = 0; i < response.data.length; i++){
                         if(response.data[i].name.toLowerCase() == "profile pictures"){
