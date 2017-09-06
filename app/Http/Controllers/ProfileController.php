@@ -124,6 +124,13 @@ class ProfileController extends Controller
         else{
             $profile = Profile::where('user_id', $this->_userId)->first();
 
+            $emailExist = Profile::where('email', $request->email)->first();
+            if($emailExist){
+                return response()->json([
+                    "status" => false,
+                    "msg" => "Email already exist!"
+                ], 400);
+            }
             $profile->first_name = $request->first_name;
             $profile->last_name = $request->last_name;
             $profile->phone = $request->phone;

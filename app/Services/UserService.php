@@ -53,7 +53,7 @@ class UserService
          DB::transaction(function () use ($facebookUser, &$newUser) {
              $user = new User();
              $user->name = $facebookUser->first_name." ".$facebookUser->last_name;
-             $user->email = $facebookUser->email;
+//             $user->email = $facebookUser->email;
              $user->password = bcrypt(str_random(8));
              $user->save();
 
@@ -62,7 +62,7 @@ class UserService
                  'last_name'=>$facebookUser->last_name,
                  'phone'=>$facebookUser->phone,
                  'facebook_id'=>$facebookUser->facebook_id,
-                 'email'=>$facebookUser->email,
+//                 'email'=>$facebookUser->email,
                  'sex'=>$facebookUser->sex,
                  'user_id'=>$user->id
              ]);
