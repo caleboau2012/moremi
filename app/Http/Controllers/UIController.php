@@ -135,9 +135,12 @@ class UIController extends Controller
 
         $photos = $profile->photos->toArray();
         $profile_pic = -1;
-        foreach($photos as $i => $photo){
-            if($profile->photo->full_path == $photo['full_path'])
-                $profile_pic = $i;
+
+        if($profile->photo){
+            foreach($photos as $i => $photo){
+                if($profile->photo->full_path == $photo['full_path'])
+                    $profile_pic = $i;
+            }
         }
 
         $vote = new VoteController();
