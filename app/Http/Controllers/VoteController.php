@@ -37,7 +37,16 @@ class VoteController extends Controller
             ]);
         }
 
+        if($this->_userId == $request->profile_id){
+            return response()->json([
+                'status'=>false,
+                'auth' => false,
+                'msg'=>"Was that a mistake? You shouldn't be picking yourself."
+            ]);
+        }
+
         $profile = Profile::where('user_id', $this->_userId)->first();
+
         if(($profile->first_name) && ($profile->last_name) && ($profile->phone) && ($profile->email)){
             $vote = new VoteService($request);
             $profile_id =$request->profile_id;
