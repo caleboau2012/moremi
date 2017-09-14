@@ -37,7 +37,7 @@ var Account = {
         $.each(response, function(key, data){
             $('#' + key).parent().addClass('has-error');
             data.forEach(function(element){
-                $('#' + key).parent().append("<span class='small form-error'>" + element + "</span>");
+                $('#' + key + '-error-msg').html("<span class='small'>" + element + "</span>");
             });
         });
         $("#save_profile").removeClass('disabled');
