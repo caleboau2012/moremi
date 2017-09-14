@@ -67,7 +67,7 @@
                                 <button class="btn btn-danger" data-dismiss="modal">Cancel</button>
                             </div>
                             <div class="col-md-6 col-sm-6 col-xs-6">
-                                <input type="submit" class="btn btn-success btn-block" value="Save" />
+                                <input id="save_profile" type="submit" class="btn btn-success btn-block" value="Save" />
                             </div>
                         </div>
                     </div>

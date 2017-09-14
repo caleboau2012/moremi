@@ -5,7 +5,8 @@ var Account = {
     init: function(){
         $(document.account).on('submit', function(e){
             e.preventDefault();
-
+            $('.form-error').empty();
+            $("#save_profile").addClass('disabled');
             var url = $(this).attr('data-url');
             var data = {
                 first_name: this.first_name.value,
@@ -29,15 +30,17 @@ var Account = {
                     $('#accountModal').modal('hide');
                 });
         }
+        $("#save_profile").removeClass('disabled');
     },
     error: function(response){
         response = JSON.parse(response.responseText);
         $.each(response, function(key, data){
             $('#' + key).parent().addClass('has-error');
             data.forEach(function(element){
-                $('#' + key).parent().append("<span class='small'>" + element + "</span>");
+                $('#' + key).parent().append("<span class='small form-error'>" + element + "</span>");
             });
         });
+        $("#save_profile").removeClass('disabled');
     }
 };
 

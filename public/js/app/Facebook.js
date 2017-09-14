@@ -13,7 +13,6 @@ var Facebook = {
     },
     login: function(){
         FB.login(function(response) {
-            //console.log(response);
             Utils.swalLoader();
             Facebook.status();
         }, {scope: 'public_profile,email,user_photos'});
@@ -218,6 +217,7 @@ var Facebook = {
             else{
                 $(".profile-actions").addClass("hidden");
                 $("#login").removeClass("hidden");
+                Utils.swalErrorAlert("Are you sure you don't want to give this a shot!");
             }
         });
     },
