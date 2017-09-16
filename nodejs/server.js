@@ -12,8 +12,6 @@ var server = require('https').Server(credentials, app);
 var io = require('socket.io')(server);
 var redis = require('redis');
 
-process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
-
 server.listen(8890);
 io.on('connection', function (socket) {
     var redisClient = redis.createClient();
