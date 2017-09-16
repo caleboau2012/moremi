@@ -9,7 +9,7 @@ var certificate = fs.readFileSync('/var/www/html/moremi/nodejs/fullchain.ln');
 var credentials = {key: privateKey, cert: certificate};
 
 var server = require('https').Server(credentials, app);
-server.globalAgent.options.rejectUnauthorized = false;
+//server.globalAgent.options.rejectUnauthorized = false;
 var io = require('socket.io')(server);
 var redis = require('redis');
 
