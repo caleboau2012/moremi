@@ -9,9 +9,10 @@ var certificate = fs.readFileSync('/etc/letsencrypt/archive/moree.me/fullchain1.
 var credentials = {key: privateKey, cert: certificate};
 
 var server = require('https').Server(credentials, app);
-process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 var io = require('socket.io')(server);
 var redis = require('redis');
+
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 
 server.listen(8890);
 io.on('connection', function (socket) {
