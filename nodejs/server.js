@@ -3,8 +3,8 @@
  */
 var app = require('express')();
 var fs = require('fs');
-var privateKey  = fs.readFileSync('/etc/letsencrypt/archive/moree.me/privkey1.pem');
-var certificate = fs.readFileSync('/etc/letsencrypt/archive/moree.me/fullchain1.pem');
+var privateKey  = fs.readFileSync('/etc/letsencrypt/live/moree.me/privkey1.pem');
+var certificate = fs.readFileSync('/etc/letsencrypt/live/moree.me/fullchain1.pem');
 
 var credentials = {key: privateKey, cert: certificate};
 
