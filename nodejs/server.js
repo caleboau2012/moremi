@@ -16,8 +16,6 @@ process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 
 server.listen(8890);
 io.on('connection', function (socket) {
-    console.log("Connected");
-
     var redisClient = redis.createClient();
     redisClient.subscribe('message');
 
