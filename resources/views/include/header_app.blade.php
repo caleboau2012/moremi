@@ -55,7 +55,7 @@
         <div class="container-fluid">
             <div style="height: 70px;"></div>
         </div>
-        <div class="container" data-step="1" data-intro='The Moree.me game is on!' data-position="bottom">
+        <div class="container">
             <div class="row">
                 <div class="col-md-4">
                     <div class="profile_info_item_left">

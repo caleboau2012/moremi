@@ -3,8 +3,8 @@
  */
 var app = require('express')();
 var fs = require('fs');
-var privateKey  = fs.readFileSync('/var/www/html/moremi/nodejs/privkey.pem');
-var certificate = fs.readFileSync('/var/www/html/moremi/nodejs/fullchain.pem');
+var privateKey  = fs.readFileSync('/etc/letsencrypt/live/moree.me/privkey.pem');
+var certificate = fs.readFileSync('/etc/letsencrypt/live/moree.me/fullchain.pem');
 
 var credentials = {key: privateKey, cert: certificate};
 
@@ -14,7 +14,6 @@ var redis = require('redis');
 
 server.listen(8890);
 io.on('connection', function (socket) {
-
     var redisClient = redis.createClient();
     redisClient.subscribe('message');
 

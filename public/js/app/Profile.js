@@ -108,15 +108,16 @@ var Profile = {
                 var newURL = e.originalEvent.dataTransfer.getData("url");
                 var index = e.originalEvent.dataTransfer.getData("index");
                 var oldURL = $(this).find("img").attr("src");
-                /*console.log({
+                console.log({
                  new: newURL,
                  old: oldURL,
                  index: index
-                 });*/
+                 });
                 $(this).find("img").attr("src", newURL).attr("data-index", index).removeClass("hidden").css('display', 'block');
                 if(oldURL == ""){
                     $(this).find(".image-placeholder").remove();
                 }
+                Profile.finish($('#pictures-panel').attr("data-url"));
             }).delegate(".profile-pic", "dragover", function(e){
                 e.preventDefault();
                 e.stopPropagation();

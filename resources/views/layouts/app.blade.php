@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
 	@section("description")
 		<meta name="description" content="It's FREE. You PICK the person, you PICK the SPOT, we PAY for the HANGOUT. Moore.me will help you meet new people. All expenses paid by us. Simply pick someone and pick a spot. It all starts with a pick.">
 	@show
@@ -24,22 +24,18 @@
 	<link href="{{ asset('css/tabstyles.css') }}" rel="stylesheet" >
 	<link href="{{ asset('icomoon/style.css') }}" rel="stylesheet" >
 
-	<link href="{{asset('libs/owl/owl.carousel.css')}}" rel="stylesheet">
-	<link href="{{asset('libs/owl/owl.theme.css')}}" rel="stylesheet">
-	<link href="{{asset('libs/owl/owl.transitions.css')}}" rel="stylesheet">
-
 	{{--Chat--}}
 	<link href="{{asset('css/chat.css')}}" rel="stylesheet">
 
 	<link href="{{ asset('css/master.css') }}" rel="stylesheet" >
 	<link href="{{ asset('css/util.css') }}" rel="stylesheet" >
 	<link href="{{ asset('css/media.css') }}" rel="stylesheet" >
-{{--	<link href="{{ asset('libs/sweetalert/sweetalert.css') }}" rel="stylesheet" >--}}
+
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.5/sweetalert2.min.css" rel="stylesheet" >
 	<link href="{{asset('libs/introjs/introjs.min.css')}}" rel="stylesheet">
 
 	<!-- Include a polyfill for ES6 Promises (optional) for IE11 and Android browser -->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
+	{{--<script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>--}}
 
 	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -93,22 +89,12 @@
 	{{-- Libs --}}
 	<script src="{{asset('libs/jquery/jquery.min.js')}}" ></script>
 	<script src="{{asset('libs/bootstrap/bootstrap.min.js')}}"></script>
-	{{--<script src="{{asset('libs/sweetalert/sweetalert.min.js')}}" ></script>--}}
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.5/sweetalert2.min.js" ></script>
 	<!-- Include a polyfill for ES6 Promises (optional) for IE11 and Android browser -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
-	<script src="{{ asset('libs/jquery/jquery-easing.js') }}"></script>
-	<script src="{{asset('libs/jquery/jquery.stellar.min.js')}}"></script>
-	<script src="{{asset('libs/jquery/jquery.stellar.min.js')}}"></script>
 	<script src="{{asset('libs/jquery/jquery.appear.js')}}"></script>
 	<script src="{{asset('libs/jquery/jquery.nicescroll.min.js')}}"></script>
 	<script src="{{asset('libs/jquery/jquery.countTo.js')}}"></script>
-	<script src="{{asset('libs/jquery/jquery.shuffle.modernizr.js')}}"></script>
-	<script src="{{asset('libs/jquery/jquery.shuffle.js')}}"></script>
-	<script src="{{asset('libs/jquery/jquery.ajaxchimp.min.js')}}"></script>
-
-	<script src="{{asset("libs/owl/owl.carousel.min.js")}}"></script>
-	<script src="{{asset("js/cbpFWTabs.js")}}"></script>
 	{{--Masonry --}}
 	<script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
 	<script src="{{asset("libs/masonry/imagesLoaded.js")}}"></script>

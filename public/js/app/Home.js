@@ -5,9 +5,9 @@
  * Time: 10:19 AM
  */
 $(function () {
-    $(window).stellar({
-        horizontalScrolling: false
-    });
+    //$(window).stellar({
+    //    horizontalScrolling: false
+    //});
 
     // Custom Scrollbar
     var nice = $("html").niceScroll({
@@ -89,48 +89,4 @@ $(function () {
             $('.st-navbar').removeClass("st-navbar-mini");
         }
     });
-
-
-    $('.clients-carousel').owlCarousel({
-        items: 5,
-        autoPlay: true,
-        pagination: false
-    });
-
-    function init_Roundabout() {
-        $('.roundabout').roundabout({
-            tilt: 0.4,
-            autoplay: true,
-            autoplayDuration: 5000,
-            autoplayPauseOnHover: true,
-            minScale:0.5,
-            minOpacity: 1,
-            duration: 400,
-            easing: 'easeOutQuad',
-            enableDrag: true,
-            dropEasing: 'easeOutBack',
-            dragFactor: 2,
-            responsive: true
-        });
-    }
-
-    /* Trending Block */
-    $(".trending-items").owlCarousel({
-        autoPlay: 3000, //Set AutoPlay to 3 seconds
-        items : 4,
-        itemsDesktop : [1199,4],
-        itemsDesktopSmall : [979,3],
-        itemsTablet	: [768,2],
-        navigation : false,
-        navigationText : ['Prev', 'Next'],
-        pagination : true
-    });
-
-
-    init_Roundabout();
-
-     [].slice.call( document.querySelectorAll( '.tabs' ) ).forEach( function( el ) {
-         new CBPFWTabs( el );
-     });
-
 });

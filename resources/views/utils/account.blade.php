@@ -19,11 +19,13 @@
                                 <label for="first_name">First Name</label>
                                 <input type="text" class="form-control" placeholder="First Name" name="first_name"
                                        id="first_name" value="{{$profile->first_name}}" required/>
+                                <div class="form-error" id="first_name-error-msg"></div>
                             </div>
                             <div class="col-xs-6 form-group">
                                 <label for="last_name"> Last Name</label>
                                 <input type="text" class="form-control" placeholder="Last Name" name="last_name"
                                        id="last_name" value="{{$profile->last_name}}" required/>
+                                <div class="form-error" id="last_name-error-msg"></div>
                             </div>
                         </div>
 
@@ -32,12 +34,14 @@
                                 <label for="phone"> Phone Number (+2345678901234)</label>
                                 <input type="text" class="form-control" placeholder="Phone Number" name="phone"
                                        id="phone" value="{{$profile->phone}}" required/>
+                                <div class="form-error" id="phone-error-msg"></div>
                             </div>
                             <div class="col-xs-6 form-group">
                                 <label for="email">Email Address</label>
                                 {{--<span class="help-block text-muted small-font">  Email Address</span>--}}
                                 <input type="text" class="form-control" placeholder="Email Address" name="email"
                                        id="email" value="{{$profile->email}}" required/>
+                                <div class="form-error" id="email-error-msg"></div>
                             </div>
                         </div>
 
@@ -58,6 +62,7 @@
                                         @endforeach
                                     @endif
                                 </select>
+                                <div class="form-error" id="venue-error-msg"></div>
                             </div>
                         </div>
                     </div>
@@ -67,7 +72,7 @@
                                 <button class="btn btn-danger" data-dismiss="modal">Cancel</button>
                             </div>
                             <div class="col-md-6 col-sm-6 col-xs-6">
-                                <input type="submit" class="btn btn-success btn-block" value="Save" />
+                                <input id="save_profile" type="submit" class="btn btn-success btn-block" value="Save" />
                             </div>
                         </div>
                     </div>
