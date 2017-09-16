@@ -17,7 +17,13 @@
             <li><span id="cter_seconds">0</span>Seconds</li>
         </ul>
 
-        <div class="cter-label"><a href="{{route('app')}}"><span class="icon icon-play"></span></a> </div>
+        @if(isset($loggedIn) && !$loggedIn)
+            <div class="cter-label"><a href="#" class="login"><span class="icon icon-play"></span></a> </div>
+        @elseif(isset($loggedIn) && $loggedIn)
+            <div class="cter-label"><a href="{{route('app')}}"><span class="icon icon-play"></span></a> </div>
+        @else
+            <div class="cter-label"><a href="#"><span class="icon icon-play"></span></a> </div>
+        @endif
     </div>
 
 @section('bottomScripts')
