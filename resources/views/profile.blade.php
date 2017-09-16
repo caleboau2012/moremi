@@ -46,7 +46,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row" data-step="2" data-intro="Click here to import pictures from your computer or Facebook">
+                                <div class="row" data-step="1" data-intro="Click here to import pictures from your computer or Facebook">
                                     <br>
                                     <div class="col-xs-12 col-sm-6">
                                         <a href="#" title="Upload image" class="btn btn-primary btn-block picture-upload">
@@ -62,7 +62,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6" data-step="3" data-intro="This is your Gallery. Your imported pictures end up here.">
+                        <div class="col-md-6" data-step="2" data-intro="This is your Gallery. Your imported pictures end up here.">
                             <h4 class="no-margin text-primary">Gallery</h4>
                             <p class="small text-muted no-margin">Use your best picture as your profile picture</p>
                             {{--Previous DP--}}
@@ -98,7 +98,7 @@
 
                     {{--profile--}}
                     <div class="profile-form">
-                        <div class="row" data-step="8" data-position="top" data-intro="Share your profile on social media to get more picks.">
+                        <div class="row" data-step="7" data-intro="Share your profile on social media to get more picks.">
                             <div class="row_">
                                 <div class="col-xs-12 col-sm-4">
                                     <br>
@@ -190,12 +190,12 @@
                                 <div class="col-sm-12">
                                     <form action="{{route('new-status')}}" id="statusForm">
                                         <div class="form-group text-center">
-                                            <div data-step="5" data-position="top" data-intro="Don't forget to change your status, this appears on your public profile.">
+                                            <div data-step="4" data-position="top" data-intro="Don't forget to change your status, this appears on your public profile.">
                                                 <h4 class="text-primary">Status</h4>
                                                 <textarea placeholder="What's on your mind?" class="form-control margin-top-sm" id="statusContent">{{$profile->about}}</textarea>
                                             </div>
                                         </div>
-                                        <div class="form-group text-center" data-step="6" data-position="top" data-intro="Select your preferred spot, this where you will hangout">
+                                        <div class="form-group text-center" data-step="5" data-position="top" data-intro="Select your preferred spot, this where you will hangout">
                                             <h4 class="text-primary">Preferred Spot</h4>
                                             <select name="p_spot" id="p_spot" class="form-control">
                                                 <option value="0">Select your preferred meeting location</option>
@@ -223,7 +223,7 @@
                                             </div>
                                         </div>
                                         <div class="form-group text-center">
-                                            <button class="btn btn-primary btn-sm" id="submitStatus" data-step="7" data-position="top" data-intro="Save when you are done">Save</button>
+                                            <button class="btn btn-primary btn-sm" id="submitStatus" data-step="6" data-position="top" data-intro="Save when you are done">Save</button>
                                         </div>
                                     </form>
                                 </div>

@@ -17,16 +17,7 @@
 @endsection
 
 @section('content')
-    <div style="height: 65px;">
-        <div class="row hidden">
-            <p class="hidden" id="_token">{{ csrf_token() }}"</p>
-            <h2 class="text-center hidden" id="user">{{$p->first_name}} {{$p->last_name}}</h2>
-            <h3 class="text-center hidden"><span class="text-danger">Picks: {{$p->vote}} <i class="icon icon-heart"></i></span> </h3>
-            <p class="hidden" id="id_user_from">{{$p->id}}</p>
-            <p class="hidden" id="chat-url">{{route('chat-url')}}</p>
-            <hr>
-        </div>
-    </div>
+    <div class="clearfix"></div>
 
     <div class="container">
         <div class="row">

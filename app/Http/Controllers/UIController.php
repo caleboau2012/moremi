@@ -26,6 +26,12 @@ class UIController extends Controller
             $this->_userId = customdecrypt($token);
             $this->profile = Profile::where('user_id', $this->_userId)->first();
             $this->connections = $this->getConnections();
+
+            if($this->profile->email == null ){
+                $this->loggedIn = false;
+                Auth::logout();
+                $this->profile = null;
+            }
         }
 
         $this->venues = Venue::where(\VenueConstant::TYPE, \VenueConstant::IN_GAME)->get();
@@ -129,9 +135,12 @@ class UIController extends Controller
 
         $photos = $profile->photos->toArray();
         $profile_pic = -1;
-        foreach($photos as $i => $photo){
-            if($profile->photo->full_path == $photo['full_path'])
-                $profile_pic = $i;
+
+        if($profile->photo){
+            foreach($photos as $i => $photo){
+                if($profile->photo->full_path == $photo['full_path'])
+                    $profile_pic = $i;
+            }
         }
 
         $vote = new VoteController();

@@ -37,7 +37,7 @@ Vote ={
             beforeSend: function () {
             },
             success: function (result) {
-                callback(result,element)
+                callback(result,element);
             },
             complete: function () {
             },

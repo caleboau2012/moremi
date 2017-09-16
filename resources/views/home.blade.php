@@ -60,7 +60,11 @@
                                     <li><i class="icon icon-check-square-o" aria-hidden="true"></i> Keep picking the same person in a week. We connect the  highest pickers and the person they pick </li>
                                     <li> <i class="icon icon-check-square-o" aria-hidden="true"></i>Everything resets at the end of the week so you can pick someone new and get to meet every week </li>
                                 </ul>
-                                <div class="text-center xs-mb10"><a href="#" class="btn main-btn btn-sm pull-center "><span class="icon icon-play"></span> Get Started</a></div>
+                                @if(!$loggedIn)
+                                    <div class="text-center xs-mb10"><a href="#" class="btn main-btn btn-sm pull-center login"><span class="icon icon-play"></span> Get Started</a></div>
+                                @else
+                                    <div class="text-center xs-mb10"><a href="{{route('app')}}" class="btn btn-lg main-btn profile" ><span class="icon icon-play"></span> Connect Now</a></div>
+                                @endif
                                 <br>
                             </div>
                         </div>

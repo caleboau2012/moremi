@@ -59,6 +59,8 @@ var App = {
             introJs().setOption('disableInteraction', true).start();
         });
 
+        $('[data-toggle="tooltip"]').tooltip();
+
         App.showDemo();
     },
     showDemo: function(){
