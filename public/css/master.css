@@ -1402,3 +1402,8 @@ Profile Card
 .swal2-progresssteps .swal2-progressline {
     background: #fe7447 !important;
 }
+
+
+button:focus, a:focus{
+    outline: none !important;
+}

@@ -17,18 +17,18 @@ use App\VotingConfig;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Http\Request;
 
 class VoteController extends Controller
 {
     use AuthTrait;
 
-    public function __construct() {
-
+    public function __construct(Request $request) {
+        $this->request=$request;
+        $this->authenticate();
     }
 
     public function  vote(Requests\VoteRequest $request) {
-        $this->request=$request;
-        $this->authenticate();
         if(!$this->auth){
             return response()->json([
                 'status'=>false,
@@ -45,7 +45,7 @@ class VoteController extends Controller
             ]);
         }
 
-        $profile = Profile::where('user_id', $this->_userId)->first();
+        $profile = Profile::find($this->_userId);
 
         if(($profile->first_name) && ($profile->last_name) && ($profile->phone) && ($profile->email)){
             $vote = new VoteService($request);
@@ -443,7 +443,7 @@ class VoteController extends Controller
                 $connections[$i][\ConnectionConstant::RECIPIENT_ID] = $temp;
             }
 
-            $user = Profile::where('user_id', $connections[$i][\ConnectionConstant::RECIPIENT_ID])->first();
+            $user = Profile::find($connections[$i][\ConnectionConstant::RECIPIENT_ID])->first();
 
             if(($user == null) || (is_null($user)) || !$user)
                 dd($user, $connections[$i]);

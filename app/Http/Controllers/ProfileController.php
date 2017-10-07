@@ -25,7 +25,7 @@ class ProfileController extends Controller
         if(!$this->auth) {
             return response()->json(['status'=>false,'message'=>'You must be logged in to upload photo']);
         }
-        $profile =Profile::where('user_id', $this->_userId)->first();
+        $profile =Profile::find($this->_userId);
         return response()->json([
             'status'=>true,
             'data'=>[
@@ -44,7 +44,7 @@ class ProfileController extends Controller
 
         $venues = Venue::where(\VenueConstant::TYPE, \VenueConstant::IN_GAME)->get();
 
-        $profile = Profile::where('user_id', $this->_userId)->first();
+        $profile = Profile::find($this->_userId);
 
         $connections = Connection::where(\TableConstant::PROFILE_ID, $this->_userId)->
         orWhere(\ConnectionConstant::RECIPIENT_ID, $this->_userId)->get()->toArray();
@@ -96,7 +96,7 @@ class ProfileController extends Controller
             ]);
         }
         else{
-            $profile = Profile::where('user_id', $this->_userId)->first();
+            $profile = Profile::find($this->_userId);
 
             $profile->first_name = $request->first_name;
             $profile->last_name = $request->last_name;
@@ -122,7 +122,7 @@ class ProfileController extends Controller
             ], 400);
         }
         else{
-            $profile = Profile::where('user_id', $this->_userId)->first();
+            $profile = Profile::find($this->_userId)->first();
             if($profile->email == NULL){
                 /*New profile*/
                 $emailExist = Profile::where('email', $request->email)->first();
@@ -159,7 +159,7 @@ class ProfileController extends Controller
         if ($validator->fails()) {
             return response()->json(['status'=>false,'message'=>'Invalid status update'], 400);
         }
-        $profile =Profile::where('user_id', $this->_userId)->first();
+        $profile =Profile::find($this->_userId)->first();
         $profile->about = $request->status;
         if($request->has('spot')){
             $profile->venue = $request->spot;
@@ -177,7 +177,7 @@ class ProfileController extends Controller
         if ($validator->fails()) {
             return response()->json(['status'=>false,'message'=>'Please, specify your preferred spot.'], 400);
         }
-        $profile =Profile::where('user_id', $this->_userId)->first();
+        $profile =Profile::find($this->_userId)->first();
         $profile->venue = $request->spot;
         $profile->update();
         return response()->json(['status'=>true,'message'=>'Status updated successfully']);
