@@ -16,6 +16,7 @@ trait AuthTrait
     protected  $request;
     protected  $auth=false;
     protected $_userId;
+    protected $activeProfile;
 
 
     public  function authenticate(){
@@ -38,9 +39,11 @@ trait AuthTrait
     {
         $userId = customdecrypt($token);
         $userInstance = UserService::instance();
-        if ($userInstance->isValid($userId)) {
+        $checkUser = $userInstance->isValid($userId);
+        if ($checkUser) {
             $this->auth = true;
             $this->_userId = $userId;
+            $this->activeProfile = $checkUser;
         }
     }
 

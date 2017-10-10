@@ -30,7 +30,7 @@ class PaymentController extends Controller
         if(!$this->auth) {
             return response()->json(['status'=>false, "profile" => false, 'msg'=>'You must be logged in to pay']);
         }
-        $profile = Profile::find($this->_userId);
+        $profile = $this->activeProfile;
 
 //            Store attempted payment.
         $payment = new Payment();
@@ -141,7 +141,7 @@ class PaymentController extends Controller
     }
 
     public function scheduleMeeting($winner, $spot, Request $request){
-        $payer = Profile::where("user_id", $this->_userId)->first();
+        $payer = $this->activeProfile;
         $winner = Profile::find($winner);
         $spot = Venue::find($spot);
 
