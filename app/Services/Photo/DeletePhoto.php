@@ -32,7 +32,7 @@ class DeletePhoto
     }
 
     public function ValidateDelete(){
-    $profile =Profile::where('user_id',$this->user_id)->first();
+    $profile =Profile::find($this->user_id);
       if($profile->photo_id==$this->photo_id) {
           $this->msg="Can not delete profile photo. You have to change it before you can delete it";
           return false;
