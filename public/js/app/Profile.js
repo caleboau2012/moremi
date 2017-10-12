@@ -59,13 +59,10 @@ var Profile = {
         $("#facebook-fetch").removeClass("hidden").on("click", function(e){
             //$("#picturesModal").modal("show");
             e.preventDefault();
-            console.log(this);
             FB.getLoginStatus(function(response) {
-                console.log(response);
                 if(response.status == "connected"){
                     Facebook.authResponse = response.authResponse;
                     FB.api('/me?fields=id,first_name,last_name,email,gender,cover', function(response) {
-                        console.log(response);
                         Facebook.profile = response;
 
                         Facebook.userAlbums();
