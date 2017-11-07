@@ -7,31 +7,42 @@ use App\OldCheek;
 use App\Profile;
 use App\Venue;
 use App\VotingConfig;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
 use LRedis;
 
 class UIController extends Controller
 {
+
     public function __construct() {
         $this->loggedIn = false;
         $this->profile = null;
-        $this->_userId = 0;
         $this->connections = [];
+        $this->profileId = 0;
 
         $token = session(\AppConstants::AUTH);
 
         if(isset($token) == true) {
             $this->loggedIn = true;
-            $this->_userId = customdecrypt($token);
-            $this->profile = Profile::where('user_id', $this->_userId)->first();
-            $this->connections = $this->getConnections();
+            $profileId = customdecrypt($token);
+            $this->profile =  Profile::find($profileId);
 
-            if($this->profile->email == null ){
+            if($this->profile){
+                $this->profileId = $this->profile->id;
+                $this->connections = $this->getConnections();
+                if($this->profile->email == null ){
+                    $this->loggedIn = false;
+                    Auth::logout();
+                    session()->flush();
+                    $this->profile = null;
+                }
+            }else{
+                session()->flush();
                 $this->loggedIn = false;
-                Auth::logout();
-                $this->profile = null;
+                return redirect(route("index"));
             }
+
         }
 
         $this->venues = Venue::where(\VenueConstant::TYPE, \VenueConstant::IN_GAME)->get();
@@ -39,14 +50,16 @@ class UIController extends Controller
 
         if($this->loggedIn && ($this->profile == null)) {
             Auth::logout();
+            session()->flush();
             $this->loggedIn = false;
             return redirect(route("index"));
         }
     }
 
     public function getConnections(){
-        $connections = Connection::where(\TableConstant::PROFILE_ID, $this->_userId)->
-        orWhere(\ConnectionConstant::RECIPIENT_ID, $this->_userId)->get()->toArray();
+        $profileId =  $this->profileId;
+        $connections = Connection::where(\TableConstant::PROFILE_ID, $profileId)->
+        orWhere(\ConnectionConstant::RECIPIENT_ID, $profileId)->get()->toArray();
 
         $redis = LRedis::connection();
         $messages = $redis->lrange('message', 0, -1);
@@ -57,9 +70,9 @@ class UIController extends Controller
         }
 
         for($i = 0; $i < sizeof($connections); $i++){
-            if($connections[$i][\TableConstant::PROFILE_ID] != $this->_userId){
+            if($connections[$i][\TableConstant::PROFILE_ID] != $profileId){
                 $temp = $connections[$i][\TableConstant::PROFILE_ID];
-                $connections[$i][\TableConstant::PROFILE_ID] = $this->_userId;
+                $connections[$i][\TableConstant::PROFILE_ID] = $profileId;
                 $connections[$i][\ConnectionConstant::RECIPIENT_ID] = $temp;
             }
 
@@ -126,7 +139,7 @@ class UIController extends Controller
     }
 
     /*user profile*/
-    public function profile(){
+    public function profile(Request $request){
         if(!$this->loggedIn){
             return redirect(route("index"));
         };
@@ -143,8 +156,8 @@ class UIController extends Controller
             }
         }
 
-        $vote = new VoteController();
-        $voters = $vote->voters($this->_userId);
+        $vote = new VoteController($request);
+        $voters = $vote->voters($this->profileId);
         $people = [];
 
         foreach($voters as $v){
@@ -164,7 +177,7 @@ class UIController extends Controller
             ]
         );
     }
-    public function myProfile($id){
+    public function myProfile($id, Request $request){
         $id = Crypt::decrypt($id);
 
         $profile = Profile::find($id);
@@ -191,7 +204,7 @@ class UIController extends Controller
                 $profile_pic = $i;
         }
 
-        $vote = new VoteController();
+        $vote = new VoteController($request);
         $voters = $vote->voters($id);
         $people = [];
 
@@ -252,7 +265,7 @@ class UIController extends Controller
         $expiry = session("expiry");
         $winner_id = session("winner_id");
 
-        $user = Profile::where('user_id', $this->_userId)->first();
+        $user = Profile::find($this->profileId);
         $winner = Profile::find($winner_id);
 
         if(isset($reference, $location, $ticket, $expiry, $winner_id)) {
@@ -275,4 +288,10 @@ class UIController extends Controller
         }
     }
 
+
+    public function shutDown(){
+        session()->flush();
+        $this->loggedIn = false;
+        return redirect(route("index"));
+    }
 }

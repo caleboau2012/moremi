@@ -20,7 +20,7 @@
                                 It's <b>FREE</b>. You PICK the person, you PICK the SPOT, we PAY for the HANGOUT.
                             </h3>
                             <p class="">
-                                Moore.me will help you meet new people and give you the opportunity to hangout. All expenses paid by us.
+                                Moree.me will help you meet new people and give you the opportunity to hangout. All expenses paid by us.
                                 <br>
                                 Simply pick someone and pick a spot.
                             </p>

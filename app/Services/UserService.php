@@ -30,10 +30,10 @@ class UserService
         return self::$instance;
     }
 
-    public function isValid($userId){
-        $count = Profile::where('user_id', $userId)->count();
-        if($count==1) {
-            return true;
+    public function isValid($profileId){
+        $profile = Profile::find($profileId);
+        if($profile) {
+            return $profile;
         }
         return false;
 
@@ -51,11 +51,12 @@ class UserService
 
          $newUser = null;
          DB::transaction(function () use ($facebookUser, &$newUser) {
+             /*
              $user = new User();
              $user->name = $facebookUser->first_name." ".$facebookUser->last_name;
              $user->email = $facebookUser->email;
              $user->password = bcrypt(str_random(8));
-             $user->save();
+             $user->save();*/
 
              $profile =  Profile::create([
                  'first_name'=>$facebookUser->first_name,
@@ -64,7 +65,7 @@ class UserService
                  'facebook_id'=>$facebookUser->facebook_id,
                  'email'=>$facebookUser->email,
                  'sex'=>$facebookUser->sex,
-                 'user_id'=>$user->id
+//                 'user_id'=>$user->id
              ]);
 
              $photoController = new PhotoController($facebookUser);

@@ -7,7 +7,6 @@ use App\Photo;
 use App\Profile;
 use App\Services\Vote\VoteResetter;
 use App\Traits\AuthTrait;
-use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Requests;
@@ -83,11 +82,11 @@ class HomeController extends Controller
             $phone = $faker->phoneNumber;
             $facebook_id = $faker->randomNumber(8);
 
-            $user = new User();
+           /* $user = new User();
             $user->name = $firstName . " " . $lastName;
             $user->email = $email;
             $user->password = bcrypt('password1');
-            $user->save();
+            $user->save();*/
 
             $profile = new \App\Profile();
             $profile->first_name = $firstName;
@@ -97,7 +96,7 @@ class HomeController extends Controller
             $profile->phone = $phone;
             $profile->facebook_id = $facebook_id;
             $profile->show_private_info = 0;
-            $profile->user_id =$user->id;
+//            $profile->user_id =$user->id;
             $profile->save();
 
             for ($a = 0; $a < 6; $a++) {

@@ -22,14 +22,17 @@ class PhotoController extends Controller
     protected $_upload;
     private $_userId;
     private $auth=false;
+    private $profile;
     public function __construct(Request $request) {
         $access_token = $request->header('authToken');
         $userId =null;
         if(!is_null($access_token)) {
             $userId =customdecrypt($access_token);
             $userInstance = UserService::instance();
-            if($userInstance->isValid($userId)){
+            $checkUser = $userInstance->isValid($userId);
+            if($checkUser){
                 $this->auth =true;
+                $this->profile = $checkUser;
             }
         }
         $this->_userId =$userId;
@@ -72,7 +75,7 @@ class PhotoController extends Controller
         $photo->save();
 
         //go ahead and set as feature photo
-        $profile = Profile::where('user_id', $this->_userId)->first();
+        $profile = $this->profile;
         // echo $photo->id;
         $profile->photo_id=$photo->id;
         $profile->save();
@@ -98,7 +101,7 @@ class PhotoController extends Controller
         }
 
         $profile_id = $this->_userId;
-        $profile = Profile::where('user_id', $this->_userId)->first();
+        $profile =  $this->profile;
 
         if($request->has('photo')) {
             $upload = new UploadPicture();
@@ -207,7 +210,7 @@ class PhotoController extends Controller
 
 
     public  function getSpaceUsed($user_id, array $photos){
-        $profile = Profile::where('user_id', $this->_userId)->first();
+        $profile = Profile::find($this->_userId);
         $spaceRemain = abs(6-$profile->photos()->count());
         if(count($photos)<$spaceRemain) {
             foreach($photos as $photo){

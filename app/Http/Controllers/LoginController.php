@@ -19,7 +19,7 @@ class LoginController extends Controller
         $userService = new UserService();
         $user = $userService->findOrCreate($request);
         if (!empty($user)) {
-            $token = customencrypt($user['profile']->user_id);
+            $token = customencrypt($user['profile']->id);
             $data=[
                 'authToken'=>$token,
                 'profile' => $user['profile']

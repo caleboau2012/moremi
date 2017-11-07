@@ -30,7 +30,7 @@ class PaymentController extends Controller
         if(!$this->auth) {
             return response()->json(['status'=>false, "profile" => false, 'msg'=>'You must be logged in to pay']);
         }
-        $profile = Profile::where('user_id', $this->_userId)->first();
+        $profile = $this->activeProfile;
 
 //            Store attempted payment.
         $payment = new Payment();
@@ -65,7 +65,7 @@ class PaymentController extends Controller
             return redirect()->route('meet_receipt');
         }
         else{
-            $profile = Profile::where('user_id', $this->_userId)->first();
+            $profile = Profile::find($this->_userId);
 
 //            Store attempted payment.
             $payment = new Payment();
@@ -140,12 +140,12 @@ class PaymentController extends Controller
         return redirect()->route('app');
     }
 
-    public function scheduleMeeting($winner, $spot){
-        $payer = Profile::where("user_id", $this->_userId)->first();
+    public function scheduleMeeting($winner, $spot, Request $request){
+        $payer = $this->activeProfile;
         $winner = Profile::find($winner);
         $spot = Venue::find($spot);
 
-        $meetControl = new VoteController();
+        $meetControl = new VoteController($request);
         $meeting = $meetControl->saveMeet($winner, $payer, $spot);
 
         session([
