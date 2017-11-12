@@ -102,7 +102,7 @@
                             </p>
                             <br>
                             <p class="text-center">
-                                <a href="#" class="pick-btn main-btn vote-btn btn-sm" data-id="{{$p->id}}">
+                                <a href="#" class="pick-btn main-btn vote-btn btn-sm btn-block" data-id="{{$p->id}}">
                                     <strong class="icon icon-heart3" aria-hidden="true">&nbsp;</strong>Pick
                                 </a>
                             </p>

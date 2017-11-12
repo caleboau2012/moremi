@@ -161,7 +161,7 @@
                                 <div class="pick-item">
                                     <div class="card hovercard">
                                         <div class="cardheader"></div>
-                                        <a href="[[URL]]">
+                                        <a href="[[URL]]" target="_blank">
                                             <div class="avatar center-block">
                                                 <img class="img-responsive img-circle" src="{{\Illuminate\Support\Facades\URL::to('/')}}/[[PHOTO]]" alt="[[NAME]]">
                                             </div>

@@ -602,16 +602,15 @@ a, a:hover{
 
 
 
-.pick-btn{padding: 7px 80px;
+.pick-btn{
+    padding: 7px 10px;
     font-size: 16px;
     letter-spacing: 1px;
     border-radius: 40px;
-
     margin-bottom: 5px;
     -webkit-transition: color 0.3s, background-color 0.3s, border-color 0.3s;
-    transition: color 0.3s, background-color 0.3s, border-color 0.3s;}
-
-
+    transition: color 0.3s, background-color 0.3s, border-color 0.3s;
+}
 
 .trending{margin-top: 4em;}
 .trending nav{width:50%; margin:0 auto; border-radius:4em;}
@@ -1127,8 +1126,12 @@ Profile Card
     position: relative;
 }
 
-.about-me{background-color: white; padding: 5em; outline: rgba(232, 152, 99,.7) 1px dashed;
-    outline-offset: -10px;}
+.about-me{
+    background-color: white;
+    padding: 3em;
+    outline: rgba(232, 152, 99,.7) 1px dashed;
+    outline-offset: -10px;
+}
 .connection-item{
     margin-bottom: 15px;
 }
