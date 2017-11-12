@@ -148,6 +148,7 @@
                                 {{--{{dd($voters)}}--}}
                                 @if(isset($voters) && !is_null($voters))
                                     @foreach($voters as $v)
+                                        @if(isset($v["profile"]) && !is_null($v["profile"]))
                                         <tr>
                                             <td class="text-center">
                                                 <a target="_blank" href='{{route('my_profile', \Illuminate\Support\Facades\Crypt::encrypt($v['profile']->id))}}'>
@@ -167,6 +168,7 @@
                                             </td>
                                             <td>{{$v['count']}}</td>
                                         </tr>
+                                        @endif
                                     @endforeach
                                 @endif
                                 </tbody>
