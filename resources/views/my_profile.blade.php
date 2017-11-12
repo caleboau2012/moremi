@@ -102,7 +102,7 @@
                             </p>
                             <br>
                             <p class="text-center">
-                                <a href="#" class="pick-btn main-btn vote-btn btn-sm" data-id="{{$p->id}}">
+                                <a href="#" class="pick-btn main-btn vote-btn btn-sm btn-block" data-id="{{$p->id}}">
                                     <strong class="icon icon-heart3" aria-hidden="true">&nbsp;</strong>Pick
                                 </a>
                             </p>
@@ -148,6 +148,7 @@
                                 {{--{{dd($voters)}}--}}
                                 @if(isset($voters) && !is_null($voters))
                                     @foreach($voters as $v)
+                                        @if(isset($v["profile"]) && !is_null($v["profile"]))
                                         <tr>
                                             <td class="text-center">
                                                 <a target="_blank" href='{{route('my_profile', \Illuminate\Support\Facades\Crypt::encrypt($v['profile']->id))}}'>
@@ -167,6 +168,7 @@
                                             </td>
                                             <td>{{$v['count']}}</td>
                                         </tr>
+                                        @endif
                                     @endforeach
                                 @endif
                                 </tbody>
