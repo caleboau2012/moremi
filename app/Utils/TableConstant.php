@@ -46,6 +46,7 @@ class ConnectionConstant{
     const CONNECTIONS = "connections";
     const PROFILE = "profile";
     const POLL = "poll";
+    const VOTERS = "voters";
 }
 
 class TicketConstant{

@@ -19,13 +19,14 @@ class SendDailyEmail extends Job implements ShouldQueue
     protected $connections;
     protected $suggestions;
     protected $spots;
+    protected $voters;
 
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct(Profile $picked, $poll, $connections, $suggestions, Collection $spots)
+    public function __construct(Profile $picked, $poll, $connections, $suggestions, Collection $spots, $voters)
     {
         //
         $this->picked = $picked;
@@ -33,6 +34,7 @@ class SendDailyEmail extends Job implements ShouldQueue
         $this->connections = $connections;
         $this->suggestions = $suggestions;
         $this->spots = $spots;
+        $this->voters = $voters;
     }
 
     /**
@@ -50,7 +52,8 @@ class SendDailyEmail extends Job implements ShouldQueue
             'poll' => (isset($this->poll))?$this->poll:null,
             'connections' => (isset($this->connections))?$this->connections:null,
             'suggestions' => $this->suggestions,
-            'spots' => $this->spots
+            'spots' => $this->spots,
+            'voters' => $this->voters
         ], function ($m)  use($picked){
             $m->from(\MailConstants::SUPPORT_MAIL, \MailConstants::TEAM_NAME);
             $m->to($picked->email)->subject('What you missed on Moore.me');

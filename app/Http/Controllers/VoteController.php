@@ -331,11 +331,14 @@ class VoteController extends Controller
         $votingParam->save();
     }
 
-    /*Daily CRON of Poll  stat*/
-    public function dailyPollStat()
+    /*CRON of Poll  stat*/
+    public function pollStat()
     {
-        /*send mail*/
-        $today = Carbon::today();
+        /*get connections and messages*/
+        Carbon::setWeekStartsAt(Carbon::SUNDAY);
+        Carbon::setWeekEndsAt(Carbon::SATURDAY);
+
+        $sunday = Carbon::now()->startOfWeek();
         $people = Profile::all();
         $spots = Venue::all();
 
@@ -345,11 +348,21 @@ class VoteController extends Controller
             $connections[$i][\ConnectionConstant::PROFILE] = $p;
             $connections[$i][\ConnectionConstant::CONNECTIONS] = $this->getConnections($p->id);
 
+            $voters = $this->voters($p->id);
+            $p = [];
+
+            foreach($voters as $v){
+                $person = Profile::find($v->voter_id);
+                $p[] = ['profile' => $person, 'count' => $v->total];
+            }
+
+            $connections[$i][\ConnectionConstant::VOTERS] = $p;
+
             foreach($connections[$i][\ConnectionConstant::CONNECTIONS] as $j => $connect){
                 if(isset($connect[\ConnectionConstant::MESSAGES])) {
                     for ($k = 0; $k < sizeof($connect[\ConnectionConstant::MESSAGES]); $k++) {
                         $date = Carbon::parse($connect[\ConnectionConstant::MESSAGES][$k]->time);
-                        if ($today->gt($date))
+                        if ($sunday->gt($date))
                             unset($connections[$i][\ConnectionConstant::CONNECTIONS][$j][\ConnectionConstant::MESSAGES][$k]);
                         if ($connect[\ConnectionConstant::MESSAGES][$k]->id_user_from == $connect[\TableConstant::PROFILE_ID])
                             unset($connections[$i][\ConnectionConstant::CONNECTIONS][$j][\ConnectionConstant::MESSAGES][$k]);
@@ -363,12 +376,13 @@ class VoteController extends Controller
             }
         }
 
-        $now = $today->toDateString();
+        /* get poll */
+//        $now = $sunday->toDateString();
         $poll = DB::table('voters')
             ->select('profile_id', DB::raw('SUM(frequency) as total'))
             ->groupBy('profile_id')
             ->orderBy('total', 'DESC')
-            ->whereDate(\TableConstant::CREATED_AT, '=', $now)
+//            ->whereDate(\TableConstant::CREATED_AT, '>', $now)
             ->where('deleted_at', null)
             ->get();
 
@@ -379,6 +393,8 @@ class VoteController extends Controller
                 }
             }
         }
+
+        /* get people suggestions*/
 
         $people = $people->toArray();
 
@@ -396,23 +412,54 @@ class VoteController extends Controller
 
 //        dd($connections, $spots);
 
+//        $c = $connections[0];
+
+//        $success = $this::testMail(
+//            $c[\ConnectionConstant::PROFILE],
+//            (isset($c[\ConnectionConstant::POLL]))?$c[\ConnectionConstant::POLL]:null,
+//            (isset($c[\ConnectionConstant::CONNECTIONS]))?$c[\ConnectionConstant::CONNECTIONS]:null,
+//            $c['suggestions'],
+//            $spots,
+//            (isset($c[\ConnectionConstant::VOTERS]))?$c[\ConnectionConstant::VOTERS]:null
+//        );
+
         foreach($connections as $i=>$c){
-//            $c = $connections[0];
             $picked = $c[\ConnectionConstant::PROFILE];
             $delay = $i * 5;
 
             $job = (new SendDailyEmail(
-                $picked, (isset($c[\ConnectionConstant::POLL]))?$c[\ConnectionConstant::POLL]:null,
+                $picked,
+                (isset($c[\ConnectionConstant::POLL]))?$c[\ConnectionConstant::POLL]:null,
                 (isset($c[\ConnectionConstant::CONNECTIONS]))?$c[\ConnectionConstant::CONNECTIONS]:null,
-                $c['suggestions'], $spots))->delay(60 * $delay);
+                $c['suggestions'],
+                $spots,
+                (isset($c[\ConnectionConstant::VOTERS]))?$c[\ConnectionConstant::VOTERS]:null
+            ))->delay(60 * $delay);
 
             $this->dispatch($job);
         }
 
-        return response()->json('Polls sent successfully');
+        return response()->json('Polls sent successfully ');
     }
 
-    public function voters($profile_id){
+    public static function testMail($picked, $poll, $connections, $suggestions, $spots, $voters){
+        $success = Mail::send('emails.dailyPollVote', [
+            'picked' => $picked,
+            'poll' => $poll,
+            'connections' => $connections,
+            'suggestions' => $suggestions,
+            'spots' => $spots,
+            'voters' => $voters
+        ], function ($m)  use($picked){
+            $m->from(\MailConstants::SUPPORT_MAIL, \MailConstants::TEAM_NAME);
+            $m->to($picked->email)->subject('What you missed on Moore.me');
+//                $m->bcc(\MailConstants::TEAM_MAIL, \MailConstants::TEAM_NAME);
+        });
+
+        return $success;
+    }
+
+    public static function getVoters($profile_id){
         $poll = DB::table('voters')
             ->select('profile_id', 'voter_id', DB::raw('SUM(frequency) as total'))
             ->groupBy('voter_id')
@@ -422,6 +469,10 @@ class VoteController extends Controller
             ->get();
 
         return $poll;
+    }
+
+    public function voters($profile_id){
+        return $this::getVoters($profile_id);
     }
 
     public function getConnections($id){
