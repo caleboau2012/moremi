@@ -27,6 +27,7 @@ InfiniteScroll ={
         $("#cheek-search, #input-filter-search").on("keyup", function(e){
             //console.log(this.value);
             InfiniteScroll.CONSTANT.QUERY = this.value;
+            InfiniteScroll.CONSTANT.CURRENT_PAGE = 1;
             InfiniteScroll.Get();
 
             if(e.keyCode == 13){
