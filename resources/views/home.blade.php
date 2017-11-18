@@ -222,7 +222,7 @@
                                     <a target="_blank" href="{{route("my_profile", \Illuminate\Support\Facades\Crypt::encrypt($t->id))}}">
                                         <div class="avatar">
                                             @if($t->photo()->first())
-                                                <img class="img-responsive img-circle" src="{{asset($t->photo()->first()->full_path)}}" alt="{{$t->first_name .' '. $t->last_name}}">
+                                                <img class="img-responsive img-circle" src="{{asset($t->photo()->first()->thumb_path)}}" alt="{{$t->first_name .' '. $t->last_name}}">
                                             @elseif($t->sex == "male")
                                                 <img class="img-responsive img-circle"  src="{{asset('images/default-male.png')}}">
                                             @elseif($t->sex == "female")
