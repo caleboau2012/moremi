@@ -131,10 +131,11 @@
                         <div class="row">
                             @foreach($winner->profile()->first()->photos()->get() as $photo)
                                 <div class="col-sm-4 col-md-3">
-                                    <img class="img-thumbnail img-responsive" src="{{ asset($photo->full_path) }}"
-                                         alt="Cheek of the moment">
-                                    <br>
-                                    <br>
+                                    <a target="_blank" href="{{route("my_profile", \Illuminate\Support\Facades\Crypt::encrypt($winner->profile()->first()->id))}}">
+                                        <img class="img-responsive img-circle center-block" src="{{ asset($photo->thumb_path) }}"
+                                             alt="Cheek of the moment">
+                                        <br>
+                                    </a>
                                 </div>
                             @endforeach
                         </div>
@@ -145,38 +146,44 @@
                             <div class="panel">
                                 <div class="panel-body">
                                     <div class="col-sm-6 text-center">
-                                        <div class="content name_content">
-                                            <h3 class="no-margin-bottom name">{{$winner->profile()->first()->first_name}} {{$winner->profile()->first()->last_name}}</h3>
-                                        </div>
-                                        <p class="content no-margin">
-                                            @if($winner->profile()->first()->venue()->first() != null)
-                                                <span class="icon icon-location text-primary">&nbsp;</span>{{$winner->profile()->first()->venue()->first()->name}}
-                                            @else
-                                                <span class="icon icon-location text-primary">&nbsp;</span>Venue Undisclosed
+                                        <a target="_blank" href="{{route("my_profile", \Illuminate\Support\Facades\Crypt::encrypt($winner->profile()->first()->id))}}">
+                                            <div class="content name_content">
+                                                <h3 class="no-margin-bottom name">{{$winner->profile()->first()->first_name}} {{$winner->profile()->first()->last_name}}</h3>
+                                            </div>
+                                            <p class="content no-margin">
+                                                @if($winner->profile()->first()->venue()->first() != null)
+                                                    <span class="icon icon-location text-primary">&nbsp;</span>{{$winner->profile()->first()->venue()->first()->name}}
+                                                @else
+                                                    <span class="icon icon-location text-primary">&nbsp;</span>Venue Undisclosed
+                                                @endif
+                                            </p>
+                                            <p class="content">
+                                                <span class="icon icon-heart3 text-primary">&nbsp;</span>{{$winner->votes}}
+                                            </p>
+                                            @if($winner->profile()->first()->status))
+                                            <p class="content">
+                                                <strong>Status:</strong> <br>
+                                                {{$winner->profile()->first()->status}}
+                                            </p>
                                             @endif
-                                        </p>
-                                        <p class="content">
-                                            <span class="icon icon-heart3 text-primary">&nbsp;</span>{{$winner->votes}}
-                                        </p>
-                                        @if($winner->profile()->first()->status))
-                                        <p class="content">
-                                            <strong>Status:</strong> <br>
-                                            {{$winner->profile()->first()->status}}
-                                        </p>
-                                        @endif
+                                        </a>
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="well text-center no-margin-bottom">
-                                            @if($winner->picker()->first()->photo()->first())
-                                                <img src="{{asset($winner->picker()->first()->photo()->first()->thumb_path)}}" alt="" width="65" class="img-circle">
-                                            @else
-                                                <img class="img-circle"  src="{{asset('images/default.png')}}" alt="" width="65">
-                                            @endif
-                                            <div class="description">
-                                                <h5 class="no-margin">Highest Picker</h5>
-                                                <p class="no-margin">{{$winner->picker()->first()->first_name}} {{$winner->picker()->first()->last_name}}</p>
-                                            </div>
-                                            <div class="clearfix"></div>
+                                            <a target="_blank" href="{{route("my_profile", \Illuminate\Support\Facades\Crypt::encrypt($winner->picker()->first()->id))}}">
+                                                @if($winner->picker()->first()->photo()->first())
+                                                    <img src="{{asset($winner->picker()->first()->photo()->first()->thumb_path)}}" alt="{{$winner->picker()->first()->first_name}} {{$winner->picker()->first()->last_name}}" width="65" class="img-circle">
+                                                @elseif($winner->picker()->first()->sex == "male")
+                                                    <img class="img-circle"  src="{{asset('images/default-male.png')}}" width="65">
+                                                @elseif($winner->picker()->first()->sex == "female")
+                                                    <img class="img-circle"  src="{{asset('images/default-female.png')}}" width="65">
+                                                @endif
+                                                <div class="description">
+                                                    <h5 class="no-margin">Highest Picker</h5>
+                                                    <p class="no-margin">{{$winner->picker()->first()->first_name}} {{$winner->picker()->first()->last_name}}</p>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
