@@ -15,9 +15,10 @@
                             You have been picked <b>{{$poll->total }}</b> time{{($poll->total > 1)?"s":""}} thus far this week.
                             <br>
                         @endif
-                        Here's your leaderboard.
-                        <br>
                         @if(sizeof($voters) != 0)
+                            <br>
+                            Here's your leaderboard.
+                            <br>
                             <table border="0" cellpadding="0" cellspacing="0" width="100%">
                                 <thead>
                                 <tr>
