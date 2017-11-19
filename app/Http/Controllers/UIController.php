@@ -195,6 +195,7 @@ class UIController extends Controller
             $user = Profile::find($connections[$i][\ConnectionConstant::RECIPIENT_ID]);
             $connections[$i][\ConnectionConstant::NAME] = $user->first_name . " " . $user->last_name;
             $connections[$i][\ConnectionConstant::PHOTO] = $user->photo()->first();
+            $connections[$i][\ConnectionConstant::SEX] = $user->sex;
         }
 
         $photos = $profile->photos->toArray();
