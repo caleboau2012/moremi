@@ -64,3 +64,12 @@ Route::group(['prefix' => 'cron'], function(){
  * Chat routes
  */
 Route::post('sendmessage', ['as' => 'chat-url', 'uses' => 'ChatController@sendMessage']);
+
+
+/*
+ * Admin Route
+ */
+Route::group(['prefix' => 'admin'], function (){
+   Route::get('/', array('uses' => 'AdminController@home'));
+   Route::get('/hangout', array('uses' => 'AdminController@hangout', 'as' => 'admin-hangout'));
+});
