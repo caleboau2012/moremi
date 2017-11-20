@@ -39,11 +39,10 @@
                     </div>
 
                     {{--Hangouts AREA--}}
-                    <table class="table table-responsive table-hover">
+                    <table class="table table-responsive table-hover table-stripped">
                         <thead>
                         <tr>
-                            <th>S/N</th>
-                            <th>Recipients</th>
+                             <th>Recipients</th>
                             <th>Spot</th>
                             <th>Creator</th>
                             <th>Created On</th>
@@ -53,8 +52,7 @@
                         <tbody>
                         @foreach($hangouts as $hangout)
                             <tr>
-                                <td>#</td>
-                                <td>{{$hangout->profile->first_name}}</td>
+                                 <td>{{$hangout->profile->first_name}}</td>
                                 <td>{{$hangout->ticket}}</td>
                                 <td>{{$hangout->picker->first_name}}</td>
                                 <td>{{$hangout->created_at }}</td>
@@ -78,23 +76,36 @@
                     <h4 class="modal-title">Select people to hangout with </h4>
                 </div>
                 <div class="modal-body">
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <div class="form-group">
-                                <label for="users_select">Beneficiaries</label>
-                                <select name="users[]" id="users_select" class="form-control" multiple="multiple">
-                                    @foreach($users as $user)
-                                        <option value="{{$user->id}}">{{$user->first_name}} {{$user->last_name}}</option>
-                                    @endforeach
-                                </select>
+                    <form data-url="{{route("admin-set-hangout")}}" name="hangoutForm" accept-charset="UTF-8" class="form-horizontal_" role="form">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label>Spot</label>
+                                    <select class="form-control" name="spot" id="spot_sel">
+                                        @foreach($spots as $spot)
+                                            <option value="{{$spot->id}}" >{{$spot->name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label for="users_select">Beneficiaries</label>
+                                    <select name="users[]" id="users_select" class="form-control" multiple="multiple">
+                                        @foreach($users as $user)
+                                            <option value="{{$user->id}}" >{{$user->first_name}} {{$user->last_name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-12">
+                                <input type="submit" class="btn btn-primary" value="Submit">
+
                             </div>
                         </div>
+                    </form>
 
-                        <div class="col-sm-12">
-                            <button type="button" class="btn btn-primary" data-dismiss="modal">Submit</button>
-
-                        </div>
-                    </div>
                 </div>
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
@@ -104,6 +115,8 @@
 
 @section('bottomScripts')
     @parent
+    <script src="{{asset('js/app/Hangout.js') }}"></script>
+
     <script>
         $(document).ready(function() {
             $('#users_select').select2(

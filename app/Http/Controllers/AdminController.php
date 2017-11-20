@@ -10,6 +10,7 @@ use App\VotingConfig;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\Input;
 use LRedis;
 
 class AdminController extends Controller
@@ -79,13 +80,29 @@ class AdminController extends Controller
         };
 
         $hangouts = OldCheek::orderBy('id', 'desc')->get();
+        $spots = Venue::all();
         $users = Profile::all();
 
          return view('admin.hangout', [
              'hangouts' => $hangouts,
+             'spots' => $spots,
              'profile' => $this->profile,
              'users' => $users
          ]);
+    }
+     public function setHangout(){
+        if(!$this->loggedIn){
+            return response()->json([
+                "status" => false,
+                "msg" => "You must be logged in"
+            ]);
+        };
+
+         return response()->json([
+             "status" => false,
+             "msg" => Input::all()
+         ]);
+
     }
 
 }
