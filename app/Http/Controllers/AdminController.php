@@ -5,12 +5,15 @@ namespace App\Http\Controllers;
 use App\Connection;
 use App\OldCheek;
 use App\Profile;
+use App\Ticket;
+use App\User;
 use App\Venue;
 use App\VotingConfig;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Mail;
 use LRedis;
 
 class AdminController extends Controller
@@ -98,10 +101,88 @@ class AdminController extends Controller
             ]);
         };
 
-         return response()->json([
-             "status" => false,
-             "msg" => Input::all()
-         ]);
+        if(Input::has('beneficiaries') && Input::has('spot')){
+            if(is_array(Input::get('beneficiaries'))){
+                $users = [];
+                $spot = Venue::find(Input::get('spot'));
+
+                if($spot){
+                    $ticket = Ticket::where(\TableConstant::STATUS, \AppConstants::ACTIVE)->where(\TicketConstant::VENUE_ID, $spot->id)->first();
+                    $reference_number = uniqid('TK');
+
+                    if($ticket){
+                        $ticket_number = $ticket->code;
+                        $now_ = new \DateTime();
+                        $activeUserId = $this->profileId; //Auth::id();
+
+
+                        $user_ids = Input::get('beneficiaries');
+                        foreach ($user_ids as $uid){
+                            $bu = Profile::find($uid);//->toArray();
+                            array_push($users, $bu);
+
+                            $oc = new OldCheek();
+                            $oc->profile_id = $uid;
+                            $oc->won_photo = $bu->photo_id;
+                            $oc->voter_id = $activeUserId;
+                            $oc->created_at = $now_;
+                            $oc->ticket = $ticket_number;
+                            $oc->reference = $reference_number;
+
+                            $oc->save();
+
+                        }
+
+                        foreach ($users as $u){
+
+                            //Ticket Notification Mail
+                            Mail::send('emails.hangout', ['user' => $u, 'beneficiaries' => $users, 'spot' => $spot, 'ticket' => $ticket, 'reference' => $reference_number], function ($m) use ($u) {
+                                $m->from(\MailConstants::SUPPORT_MAIL, \MailConstants::TEAM_NAME);
+                                $name = $u->first_name .' '. $u->last_name;
+                                $m->to($u->email, $name)->subject('Congratulations! You just got an Hangout!');
+                                $m->bcc(\MailConstants::TEAM_MAIL, \MailConstants::TEAM_NAME);
+                            });
+                        }
+
+//                        Sold-out Ticket
+                        $ticket[\TableConstant::STATUS] = \AppConstants::USED;
+                        $ticket[\TableConstant::UPDATED_AT] = new \DateTime();
+                        $ticket->save();
+
+                        return response()->json([
+                            "status" => true,
+                            "message" => "Ticket generated successfully"
+                        ]);
+                    }else{
+
+                        return response()->json([
+                            "status" => false,
+                            "message" => 'No ticket available for selected spot.'
+                        ], 400);
+                    }
+
+
+                }else{
+                    return response()->json([
+                        "status" => false,
+                        "message" => 'Invalid spot selected'
+                    ], 400);
+                }
+
+            }else{
+                return response()->json([
+                    "status" => false,
+                    "message" => 'Invalid request'
+                ], 400);
+            }
+        }else{
+            return response()->json([
+                "status" => false,
+                "message" => 'Invalid request'
+            ], 400);
+        }
+
+
 
     }
 

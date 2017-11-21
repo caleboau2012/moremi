@@ -11,27 +11,28 @@ var Hangout = {
         });
     },
     initiateHangout: function (form, url) {
-        var requestForm = form.serializeArray();
-        var requestFormObject = {};
-        $.each(requestForm,
-            function(i, v) {
-                requestFormObject[v.name] = v.value;
-            });
+        $('#form_error').empty();
 
-        console.log(requestFormObject);
-        return;
+        Hangout.freezeHangoutForm();
 
-        Utils.swalLoader();
+        var spot = $('#spot_sel').val();
+        var beneficiaries = $('#users_select').val();
+
+        // Utils.swalLoader();
         Utils.post(url, {
-            users: status_
+            spot: spot,
+            beneficiaries: beneficiaries
         }, 'POST', Hangout.requestUploaded, Hangout.uploadError);
     },
     uploadError: function(data){
-        swal('Oh Snap!', "We don't know what went wrong but we couldn't finish the operation");
+         $('#form_error').html(data.responseJSON.message);
+         Hangout.releaseHangoutForm();
     },
     requestUploaded: function(data){
-        // console.log(data);
-        $("#finish").button('reset');
+        Hangout.releaseHangoutForm();
+        $("#hangoutForm").trigger('reset');
+        $('.modal').hide();
+
         if(data.status)
             swal({
                 title: "Awesome",
@@ -44,7 +45,14 @@ var Hangout = {
                 text: data.message,
                 confirmButtonColor: "#fe7447"
             });
-        $(".status-content").html($("#statusContent").val());
+     },
+    freezeHangoutForm : function () {
+        $('#hangoutBtn').addClass('disabled');
+        $('#hangoutBtn').html('<i class="fa fa-spinner fa-spin"></i> Submit');
+    },
+    releaseHangoutForm : function () {
+        $('#hangoutBtn').removeClass('disabled');
+        $('#hangoutBtn').html('Submit');
     }
 };
 

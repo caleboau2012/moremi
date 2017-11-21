@@ -76,14 +76,15 @@
                     <h4 class="modal-title">Select people to hangout with </h4>
                 </div>
                 <div class="modal-body">
-                    <form data-url="{{route("admin-set-hangout")}}" name="hangoutForm" accept-charset="UTF-8" class="form-horizontal_" role="form">
+                    <form data-url="{{route("admin-set-hangout")}}" id="hangoutForm" name="hangoutForm" accept-charset="UTF-8" class="form-horizontal_" role="form">
+                        <p class="text-center text-danger" id="form_error"></p>
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="form-group">
                                     <label>Spot</label>
                                     <select class="form-control" name="spot" id="spot_sel">
                                         @foreach($spots as $spot)
-                                            <option value="{{$spot->id}}" >{{$spot->name}}</option>
+                                            <option class="text-capitalize" value="{{$spot->id}}" >{{$spot->name}}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -93,14 +94,14 @@
                                     <label for="users_select">Beneficiaries</label>
                                     <select name="users[]" id="users_select" class="form-control" multiple="multiple">
                                         @foreach($users as $user)
-                                            <option value="{{$user->id}}" >{{$user->first_name}} {{$user->last_name}}</option>
+                                            <option value="{{$user->id}}">{{ ucwords($user->first_name .' '. $user->last_name) }} </option>
                                         @endforeach
                                     </select>
                                 </div>
                             </div>
 
                             <div class="col-sm-12">
-                                <input type="submit" class="btn btn-primary" value="Submit">
+                                <button type="submit" class="btn btn-primary">Submit</button>
 
                             </div>
                         </div>
