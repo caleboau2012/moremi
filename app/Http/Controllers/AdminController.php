@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Connection;
+use App\Hangout;
 use App\OldCheek;
 use App\Profile;
 use App\Ticket;
@@ -82,7 +83,7 @@ class AdminController extends Controller
             return redirect(route("index"));
         };
 
-        $hangouts = OldCheek::orderBy('id', 'desc')->get();
+        $hangouts = Hangout::orderBy('id', 'desc')->get();
         $spots = Venue::all();
         $users = Profile::all();
 
@@ -116,21 +117,28 @@ class AdminController extends Controller
                         $activeUserId = $this->profileId; //Auth::id();
 
 
+                        $hangout = new Hangout();
+                        $hangout[\HangoutConstant::REFERENCE] = uniqid('HNG');
+                        $hangout[\HangoutConstant::VENUE] = $spot->id;
+                        $hangout[\HangoutConstant::CREATOR] = $activeUserId;
+                        $hangout[\TableConstant::CREATED_AT] = $now_;
+                        $hangout->save();
+
                         $user_ids = Input::get('beneficiaries');
                         foreach ($user_ids as $uid){
                             $bu = Profile::find($uid);//->toArray();
                             array_push($users, $bu);
 
                             $oc = new OldCheek();
-                            $oc->profile_id = $uid;
-                            $oc->won_photo = $bu->photo_id;
-                            $oc->voter_id = $activeUserId;
-                            $oc->created_at = $now_;
-                            $oc->ticket = $ticket_number;
-                            $oc->reference = $reference_number;
+                            $oc[\TableConstant::PROFILE_ID] = $uid;
+                            $oc[\OldCheekConstant::WON_PHOTO] = $bu->photo_id;
+                            $oc[\OldCheekConstant::VOTER] = $activeUserId;
+                            $oc[\TableConstant::CREATED_AT] = $now_;
+                            $oc[\OldCheekConstant::TICKET] = $ticket_number;
+                            $oc[\OldCheekConstant::REFERENCE] = $reference_number;
+                            $oc[\OldCheekConstant::HANGOUT] = $hangout->id;
 
                             $oc->save();
-
                         }
 
                         foreach ($users as $u){

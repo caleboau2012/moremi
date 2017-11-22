@@ -45,6 +45,7 @@ var Hangout = {
                 text: data.message,
                 confirmButtonColor: "#fe7447"
             });
+        window.location.reload();
      },
     freezeHangoutForm : function () {
         $('#hangoutBtn').addClass('disabled');

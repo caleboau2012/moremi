@@ -36,6 +36,9 @@ class OldCheekConstant{
     const FACEBOOK_POST = 'facebook_post_id';
     const VOTER = 'voter_id';
     const VOTES = 'votes';
+    const REFERENCE = 'reference';
+    const TICKET = 'ticket';
+    const HANGOUT = 'hangout_id';
 }
 
 class ConnectionConstant{
@@ -64,4 +67,10 @@ class VenueConstant{
 
     const IN_GAME = 0;
     const NOT_IN_GAME = 1;
+}
+
+class HangoutConstant{
+    const REFERENCE = 'reference';
+    const CREATOR = 'creator_id';
+    const VENUE = 'venue_id';
 }

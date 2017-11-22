@@ -42,10 +42,11 @@
                     <table class="table table-responsive table-hover table-stripped">
                         <thead>
                         <tr>
-                             <th>Recipients</th>
+                             <th>Ref</th>
                             <th>Spot</th>
-                            <th>Ticket</th>
-                            <th>Creator</th>
+                            <th>Capacity</th>
+                            <th>Fee</th>
+                             <th>Creator</th>
                             <th>Created On</th>
                             <th>Action</th>
                         </tr>
@@ -53,11 +54,18 @@
                         <tbody>
                         @foreach($hangouts as $hangout)
                             <tr>
-                                 <td>{{$hangout->profile->first_name}}</td>
-                                <td>{{$hangout->venu}}</td>
-                                <td>{{$hangout->ticket}}</td>
-                                <td>{{$hangout->picker->first_name}}</td>
-                                <td>{{$hangout->created_at }}</td>
+                                 <td>{{$hangout->reference}}</td>
+                                <td>{{$hangout->venue->name}}</td>
+                                <td>{{sizeof($hangout->beneficiaries)}}</td>
+                                <td>
+                                    @if($hangout->fee)
+                                        <label class="label label-success">{{$hangout->fee}}</label>
+                                    @else
+                                        <label class="label label-danger">Sponsored</label>
+                                    @endif
+                                </td>
+                                <td class="text-capitalize">{{$hangout->creator->first_name .' '. $hangout->creator->last_name}}</td>
+                                 <td>{{$hangout->created_at }}</td>
                                 <td>
                                     <a href="">View</a>
                                 </td>
@@ -103,7 +111,7 @@
                             </div>
 
                             <div class="col-sm-12">
-                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <button type="submit" class="btn btn-primary" id="hangoutBtn">Submit</button>
 
                             </div>
                         </div>
