@@ -44,6 +44,7 @@
                         <tr>
                              <th>Recipients</th>
                             <th>Spot</th>
+                            <th>Ticket</th>
                             <th>Creator</th>
                             <th>Created On</th>
                             <th>Action</th>
@@ -53,6 +54,7 @@
                         @foreach($hangouts as $hangout)
                             <tr>
                                  <td>{{$hangout->profile->first_name}}</td>
+                                <td>{{$hangout->venu}}</td>
                                 <td>{{$hangout->ticket}}</td>
                                 <td>{{$hangout->picker->first_name}}</td>
                                 <td>{{$hangout->created_at }}</td>
