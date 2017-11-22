@@ -9,6 +9,10 @@ var Hangout = {
             console.log('Submittin');
             Hangout.initiateHangout($(this), $(this).attr('data-url'));
         });
+
+        $('.hangoutDetailsBtn').click(function () {
+            Hangout.processHangoutDetails($(this).attr('data-payload'));
+        })
     },
     initiateHangout: function (form, url) {
         $('#form_error').empty();
@@ -54,6 +58,9 @@ var Hangout = {
     releaseHangoutForm : function () {
         $('#hangoutBtn').removeClass('disabled');
         $('#hangoutBtn').html('Submit');
+    },
+    processHangoutDetails: function (payload) {
+        console.log(payload);
     }
 };
 

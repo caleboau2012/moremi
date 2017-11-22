@@ -23,7 +23,7 @@ class OldCheeksHangoutTableSeeder extends Seeder
                 $hangout = new \App\Hangout();
                 $hangout[\HangoutConstant::REFERENCE] = uniqid('HNG');
                 $hangout[\HangoutConstant::CREATOR] = $oc->voter_id;
-                $hangout[\TableConstant::CREATED_AT] = $now_;
+                $hangout[\TableConstant::CREATED_AT] = $oc->created_at;
                 $hangout[\HangoutConstant::VENUE] = $ticket->venue_id;
 
                 $hangout->save();

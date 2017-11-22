@@ -1427,3 +1427,12 @@ button:focus, a:focus{
 .select2-container--default .select2-results__option[aria-selected=true] {
     background-color: #fdfdfd;
 }
+
+.pagination>.active>a, .pagination>.active>span, .pagination>.active>a:hover, .pagination>.active>span:hover, .pagination>.active>a:focus, .pagination>.active>span:focus {
+   color: #fff;
+    background-color: #e6432e !important;
+    border-color: #e6432e !important;
+}
+.pagination>li>a {
+    color: #e6432e !important;
+}

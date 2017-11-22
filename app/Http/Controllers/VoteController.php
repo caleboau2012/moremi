@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Connection;
+use App\Hangout;
 use App\Jobs\SendDailyEmail;
 use App\OldCheek;
 use App\Photo;
@@ -252,6 +253,12 @@ class VoteController extends Controller
 
         $location = ($spot ? $spot->name : "Undisclosed");
 
+
+        $hangout = new Hangout();
+        $hangout[\HangoutConstant::REFERENCE] = uniqid('HNG');
+        $hangout[\HangoutConstant::CREATOR] = $poll->voter_id;;
+        $hangout[\TableConstant::CREATED_AT] = $now_;
+
         if($spot){
             $ticket = Ticket::where(\TableConstant::STATUS, \AppConstants::ACTIVE)->where(\TicketConstant::VENUE_ID, $spot->id)->first();
 
@@ -261,12 +268,16 @@ class VoteController extends Controller
                 $ticket->save();
                 $ticket_number = $ticket->code;
 
+                $hangout[\HangoutConstant::VENUE] = $spot->id;
+                $hangout->save();
+
             }else{
                 $ticket_number = 'Undisclosed';
             }
         }else{
             $ticket_number = 'Undisclosed';
         }
+
 
         $oldCheek = new OldCheek();
         $oldCheek->profile_id = $poll->profile_id;
@@ -277,6 +288,10 @@ class VoteController extends Controller
         $oldCheek->created_at = $now_;
         $oldCheek->ticket = $ticket_number;
         $oldCheek->reference = $reference_number;
+//        Check if Hangout venue is  disclosed
+        if($spot){
+            $oldCheek->hangout_id = $hangout->id;
+        }
 
         $oldCheek->save();
 

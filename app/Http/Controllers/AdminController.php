@@ -83,12 +83,15 @@ class AdminController extends Controller
             return redirect(route("index"));
         };
 
-        $hangouts = Hangout::orderBy('id', 'desc')->get();
+        $hangouts = Hangout::orderBy('id', 'desc')->paginate('20');
         $spots = Venue::all();
         $users = Profile::all();
 
+        $hangoutsCount = Hangout::count();
+
          return view('admin.hangout', [
              'hangouts' => $hangouts,
+             'hangoutsCount' => $hangoutsCount,
              'spots' => $spots,
              'profile' => $this->profile,
              'users' => $users

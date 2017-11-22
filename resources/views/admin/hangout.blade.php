@@ -29,7 +29,7 @@
                     <div class="row">
                         <div class="col-sm-12">
                             <h3 class="no-margin pull-left text-primary">
-                                {{sizeof($hangouts)}} hangouts
+                                {{$hangoutsCount}} hangouts
                             </h3>
                             <div class="pull-right">
                                 <button class="btn btn-block btn-primary btn-sm" data-target="#hangoutModal" data-toggle="modal">Create</button>
@@ -44,9 +44,9 @@
                         <tr>
                              <th>Ref</th>
                             <th>Spot</th>
-                             <th>Fee</th>
                              <th>Creator</th>
                             <th>Created On</th>
+                            <th>Status</th>
                             <th>Action</th>
                         </tr>
                         </thead>
@@ -55,22 +55,27 @@
                             <tr>
                                  <td>{{$hangout->reference}}</td>
                                 <td>{{$hangout->venue->name}}</td>
-                                 <td>
+                                <td class="text-capitalize">{{$hangout->creator->first_name .' '. $hangout->creator->last_name}}</td>
+                                 <td>{{$hangout->created_at->format('l, d F, Y') }}</td>
+                                <td>
                                     @if($hangout->fee)
-                                        <label class="label label-success">{{$hangout->fee}}</label>
+                                        <label class="label label-success">Paid</label>
                                     @else
                                         <label class="label label-danger">Sponsored</label>
                                     @endif
                                 </td>
-                                <td class="text-capitalize">{{$hangout->creator->first_name .' '. $hangout->creator->last_name}}</td>
-                                 <td>{{$hangout->created_at }}</td>
                                 <td>
-                                    <a href="">View</a>
+                                    <a href=""  class="text-primary" data-target="#hangoutDetailsModal" data-toggle="modal">
+                                        <i class="fa fa-search-plus text-primary hangoutDetailsBtn" data-payload="{{$hangout->id}}"></i>
+                                    </a>
                                 </td>
                             </tr>
                         @endforeach
+
                         </tbody>
                     </table>
+
+                    {{ $hangouts->links() }}
                 </div>
             </div>
         </div>
@@ -82,6 +87,49 @@
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     <h4 class="modal-title">Select people to hangout with </h4>
+                </div>
+                <div class="modal-body">
+                    <form data-url="{{route("admin-set-hangout")}}" id="hangoutForm" name="hangoutForm" accept-charset="UTF-8" class="form-horizontal_" role="form">
+                        <p class="text-center text-danger" id="form_error"></p>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label>Spot</label>
+                                    <select class="form-control" name="spot" id="spot_sel">
+                                        @foreach($spots as $spot)
+                                            <option class="text-capitalize" value="{{$spot->id}}" >{{$spot->name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label for="users_select">Beneficiaries</label>
+                                    <select name="users[]" id="users_select" class="form-control" multiple="multiple">
+                                        @foreach($users as $user)
+                                            <option value="{{$user->id}}">{{ ucwords($user->first_name .' '. $user->last_name) }} </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-12">
+                                <button type="submit" class="btn btn-primary" id="hangoutBtn">Submit</button>
+
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+    <div id="hangoutDetailsModal" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Hangout Details</h4>
                 </div>
                 <div class="modal-body">
                     <form data-url="{{route("admin-set-hangout")}}" id="hangoutForm" name="hangoutForm" accept-charset="UTF-8" class="form-horizontal_" role="form">
