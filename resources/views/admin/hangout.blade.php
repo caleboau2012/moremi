@@ -44,8 +44,7 @@
                         <tr>
                              <th>Ref</th>
                             <th>Spot</th>
-                            <th>Capacity</th>
-                            <th>Fee</th>
+                             <th>Fee</th>
                              <th>Creator</th>
                             <th>Created On</th>
                             <th>Action</th>
@@ -56,8 +55,7 @@
                             <tr>
                                  <td>{{$hangout->reference}}</td>
                                 <td>{{$hangout->venue->name}}</td>
-                                <td>{{sizeof($hangout->beneficiaries)}}</td>
-                                <td>
+                                 <td>
                                     @if($hangout->fee)
                                         <label class="label label-success">{{$hangout->fee}}</label>
                                     @else
