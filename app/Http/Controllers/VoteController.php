@@ -257,7 +257,7 @@ class VoteController extends Controller
         $hangout = new Hangout();
         $hangout[\HangoutConstant::REFERENCE] = uniqid('HNG');
         $hangout[\HangoutConstant::CREATOR] = $poll->voter_id;;
-        $hangout[\TableConstant::CREATED_AT] = $now_;
+        $hangout[\TableConstant::CREATED_AT] = new \DateTime();
 
         if($spot){
             $ticket = Ticket::where(\TableConstant::STATUS, \AppConstants::ACTIVE)->where(\TicketConstant::VENUE_ID, $spot->id)->first();
