@@ -48,7 +48,6 @@
                              <th>Beneficiaries</th>
                             <th>Created On</th>
                             <th>Status</th>
-                            <th>Action</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -77,11 +76,6 @@
                                     @else
                                         <label class="label label-danger">Sponsored</label>
                                     @endif
-                                </td>
-                                <td>
-                                    <a href=""  class="text-primary" data-target="#hangoutDetailsModal" data-toggle="modal">
-                                        <i class="fa fa-search-plus text-primary hangoutDetailsBtn" data-payload="{{print_r($hangout->beneficiaries->toArray())}}"></i>
-                                    </a>
                                 </td>
                             </tr>
                         @endforeach
@@ -138,50 +132,6 @@
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
-    <div id="hangoutDetailsModal" class="modal fade" tabindex="-1" role="dialog">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title">Hangout Details</h4>
-                </div>
-                <div class="modal-body">
-                    <form data-url="{{route("admin-set-hangout")}}" id="hangoutForm" name="hangoutForm" accept-charset="UTF-8" class="form-horizontal_" role="form">
-                        <p class="text-center text-danger" id="form_error"></p>
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <div class="form-group">
-                                    <label>Spot</label>
-                                    <select class="form-control" name="spot" id="spot_sel">
-                                        @foreach($spots as $spot)
-                                            <option class="text-capitalize" value="{{$spot->id}}" >{{$spot->name}}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-sm-12">
-                                <div class="form-group">
-                                    <label for="users_select">Beneficiaries</label>
-                                    <select name="users[]" id="users_select" class="form-control" multiple="multiple">
-                                        @foreach($users as $user)
-                                            <option value="{{$user->id}}">{{ ucwords($user->first_name .' '. $user->last_name) }} </option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div class="col-sm-12">
-                                <button type="submit" class="btn btn-primary" id="hangoutBtn">Submit</button>
-
-                            </div>
-                        </div>
-                    </form>
-
-                </div>
-            </div><!-- /.modal-content -->
-        </div><!-- /.modal-dialog -->
-    </div><!-- /.modal -->
-
 @endsection
 
 @section('bottomScripts')

@@ -6,13 +6,8 @@ var Hangout = {
 
         $(document.hangoutForm).on('submit', function(e){
             e.preventDefault();
-            console.log('Submittin');
-            Hangout.initiateHangout($(this), $(this).attr('data-url'));
+             Hangout.initiateHangout($(this), $(this).attr('data-url'));
         });
-
-        $('.hangoutDetailsBtn').click(function () {
-            Hangout.processHangoutDetails($(this).attr('data-payload'));
-        })
     },
     initiateHangout: function (form, url) {
         $('#form_error').empty();
@@ -58,9 +53,6 @@ var Hangout = {
     releaseHangoutForm : function () {
         $('#hangoutBtn').removeClass('disabled');
         $('#hangoutBtn').html('Submit');
-    },
-    processHangoutDetails: function (payload) {
-        console.log(payload);
     }
 };
 
