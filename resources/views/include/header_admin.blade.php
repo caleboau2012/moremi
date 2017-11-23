@@ -17,9 +17,7 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse main-nav" id="sept-main-nav">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="{{route('app')}}"><span class="icon icon-play">&nbsp;</span>Home</a></li>
-                    <li><a href="{{route('admin-hangout')}}"><span class="icon icon-play">&nbsp;</span>Hangout</a></li>
-
+                     <li><a href="{{route('admin-hangout')}}"><span class="icon icon-play">&nbsp;</span>Hangout</a></li>
                 </ul>
             </div><!-- /.navbar-collapse -->
         </div>

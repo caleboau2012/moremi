@@ -62,20 +62,7 @@ class AdminController extends Controller
     }
 
      public function home(){
-        if(!$this->loggedIn){
-            return redirect(route("index"));
-        };
-
-        $trending = Profile::orderBy('updated_at', 'desc')->take(10)->get();
-
-        $all = Profile::paginate(10);
-
-        return view('admin.home', [
-            'trending' => $trending,
-            'profile' => $this->profile,
-            'all' => $all,
-            'voteEnds' => VotingConfig::termination()
-        ]);
+         return redirect(route('admin-hangout'));
     }
 
      public function hangout(){
@@ -125,6 +112,7 @@ class AdminController extends Controller
                         $hangout[\HangoutConstant::VENUE] = $spot->id;
                         $hangout[\HangoutConstant::CREATOR] = $activeUserId;
                         $hangout[\TableConstant::CREATED_AT] = $now_;
+                        $hangout[\TableConstant::STATUS] = \HangoutConstant::GENERATED_HANGOUT;
                         $hangout->save();
 
                         $user_ids = Input::get('beneficiaries');

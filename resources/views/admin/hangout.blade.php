@@ -71,10 +71,14 @@
                                  </td>
                                 <td>{{$hangout->created_at->format('l, d F, Y') }}</td>
                                 <td>
-                                    @if($hangout->fee)
+                                    @if($hangout->status == HangoutConstant::WON_HANGOUT)
+                                        <label class="label label-danger">Won</label>
+                                    @elseif($hangout->status == HangoutConstant::BOUGHT_HANGOUT)
                                         <label class="label label-success">Paid</label>
+                                    @elseif($hangout->status == HangoutConstant::GENERATED_HANGOUT)
+                                        <label class="label label-warning">Generated</label>
                                     @else
-                                        <label class="label label-danger">Sponsored</label>
+                                        <label class="label label-danger">Unknown</label>
                                     @endif
                                 </td>
                             </tr>
