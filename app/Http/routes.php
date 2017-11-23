@@ -69,7 +69,7 @@ Route::post('sendmessage', ['as' => 'chat-url', 'uses' => 'ChatController@sendMe
 /*
  * Admin Route
  */
-Route::group(['prefix' => 'admin'], function (){
+Route::group(['prefix' => 'admin', 'middleware' => ['admin.auth']], function (){
    Route::get('/', array('uses' => 'AdminController@home'));
    Route::get('/hangout', array('uses' => 'AdminController@hangout', 'as' => 'admin-hangout'));
    Route::post('/hangout/set', array('uses' => 'AdminController@setHangout', 'as' => 'admin-set-hangout'));

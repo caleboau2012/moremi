@@ -28,6 +28,9 @@ class ProfileConstant{
 
     const MALE = 'male';
     const FEMALE = 'female';
+
+
+    const ADMIN_ROLE = '01';
 }
 
 class OldCheekConstant{
