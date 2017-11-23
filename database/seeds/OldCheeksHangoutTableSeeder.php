@@ -25,6 +25,7 @@ class OldCheeksHangoutTableSeeder extends Seeder
                 $hangout[\HangoutConstant::CREATOR] = $oc->voter_id;
                 $hangout[\TableConstant::CREATED_AT] = $oc->created_at;
                 $hangout[\HangoutConstant::VENUE] = $ticket->venue_id;
+                $hangout[\HangoutConstant::STATUS] = HangoutConstant::WON_HANGOUT;
 
                 $hangout->save();
 

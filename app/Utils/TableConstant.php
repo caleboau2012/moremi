@@ -76,4 +76,9 @@ class HangoutConstant{
     const REFERENCE = 'reference';
     const CREATOR = 'creator_id';
     const VENUE = 'venue_id';
+    const STATUS = 'status';
+
+    const GENERATED_HANGOUT = "01";
+    const WON_HANGOUT = "02";
+    const BOUGHT_HANGOUT = "03";
 }

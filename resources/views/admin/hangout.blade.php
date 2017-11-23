@@ -45,6 +45,7 @@
                              <th>Ref</th>
                             <th>Spot</th>
                              <th>Creator</th>
+                             <th>Beneficiaries</th>
                             <th>Created On</th>
                             <th>Status</th>
                             <th>Action</th>
@@ -53,10 +54,23 @@
                         <tbody>
                         @foreach($hangouts as $hangout)
                             <tr>
-                                 <td>{{$hangout->reference}}</td>
+                                 <td>{{$hangout->reference}} ({{sizeof($hangout->beneficiaries->toArray())}})</td>
                                 <td>{{$hangout->venue->name}}</td>
                                 <td class="text-capitalize">{{$hangout->creator->first_name .' '. $hangout->creator->last_name}}</td>
-                                 <td>{{$hangout->created_at->format('l, d F, Y') }}</td>
+                                 <td>
+                                     @if($hangout->status == HangoutConstant::WON_HANGOUT)
+                                         @foreach($hangout->beneficiaries as $b)
+                                             <span class="label label-danger text-capitalize">{{$b->picker->first_name .' ' . $b->picker->last_name }}</span>
+                                             <span class="label label-success text-capitalize">{{$b->profile->first_name .' ' . $b->profile->last_name }}</span>
+                                         @endforeach
+                                     @else
+                                         @foreach($hangout->beneficiaries as $b)
+                                             <span class="label label-success text-capitalize">{{$b->profile->first_name .' ' . $b->profile->last_name }}</span>
+                                         @endforeach
+                                     @endif
+
+                                 </td>
+                                <td>{{$hangout->created_at->format('l, d F, Y') }}</td>
                                 <td>
                                     @if($hangout->fee)
                                         <label class="label label-success">Paid</label>
@@ -66,7 +80,7 @@
                                 </td>
                                 <td>
                                     <a href=""  class="text-primary" data-target="#hangoutDetailsModal" data-toggle="modal">
-                                        <i class="fa fa-search-plus text-primary hangoutDetailsBtn" data-payload="{{$hangout->id}}"></i>
+                                        <i class="fa fa-search-plus text-primary hangoutDetailsBtn" data-payload="{{print_r($hangout->beneficiaries->toArray())}}"></i>
                                     </a>
                                 </td>
                             </tr>

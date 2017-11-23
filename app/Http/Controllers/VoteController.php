@@ -256,7 +256,8 @@ class VoteController extends Controller
 
         $hangout = new Hangout();
         $hangout[\HangoutConstant::REFERENCE] = uniqid('HNG');
-        $hangout[\HangoutConstant::CREATOR] = $poll->voter_id;;
+        $hangout[\HangoutConstant::CREATOR] = $poll->voter_id;
+        $hangout[\HangoutConstant::STATUS] = \HangoutConstant::WON_HANGOUT;
         $hangout[\TableConstant::CREATED_AT] = new \DateTime();
 
         if($spot){

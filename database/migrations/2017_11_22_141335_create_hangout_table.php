@@ -18,6 +18,7 @@ class CreateHangoutTable extends Migration
             $table->integer('venue_id');
             $table->integer('creator_id');
             $table->float('fee', 2)->nullable();
+            $table->string('status', 50);
             $table->timestamps();
             $table->softDeletes();
 
