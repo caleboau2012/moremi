@@ -18,4 +18,8 @@ class OldCheek extends Model
     public function picker(){
         return $this->hasOne('App\Profile','id','voter_id');
     }
+
+//    public function spot(){
+//        return $this->belongsTo('App\Venues', 'ticket', '')
+//    }
 }
