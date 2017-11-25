@@ -61,11 +61,11 @@ class AdminController extends Controller
         }
     }
 
-     public function home(){
-         return redirect(route('admin-hangout'));
+    public function home(){
+        return redirect(route('admin-hangout'));
     }
 
-     public function hangout(){
+    public function hangout(){
         if(!$this->loggedIn){
             return redirect(route("index"));
         };
@@ -76,15 +76,15 @@ class AdminController extends Controller
 
         $hangoutsCount = Hangout::count();
 
-         return view('admin.hangout', [
-             'hangouts' => $hangouts,
-             'hangoutsCount' => $hangoutsCount,
-             'spots' => $spots,
-             'profile' => $this->profile,
-             'users' => $users
-         ]);
+        return view('admin.hangout', [
+            'hangouts' => $hangouts,
+            'hangoutsCount' => $hangoutsCount,
+            'spots' => $spots,
+            'profile' => $this->profile,
+            'users' => $users
+        ]);
     }
-     public function setHangout(){
+    public function setHangout(){
         if(!$this->loggedIn){
             return response()->json([
                 "status" => false,
@@ -148,6 +148,22 @@ class AdminController extends Controller
                         $ticket[\TableConstant::UPDATED_AT] = new \DateTime();
                         $ticket->save();
 
+
+                        /*Notify spot*/
+                        Mail::send('emails.notifyHangoutToSpot', ['beneficiaries' => $users, 'spot' => $spot, 'ticket' => $ticket, 'reference' => $reference_number], function ($m)  use($spot){
+                            $m->from(\MailConstants::SUPPORT_MAIL, \MailConstants::TEAM_NAME);
+                            $m->to($spot->email, $spot->name)->subject('We got hangout on Moore.me');
+                            $m->bcc(\MailConstants::TEAM_MAIL, \MailConstants::TEAM_NAME);
+                        });
+
+
+                        /*Notify Team*/
+                        Mail::send('emails.notifyHangoutToTeam', ['beneficiaries' => $users, 'spot' => $spot, 'ticket' => $ticket, 'reference' => $reference_number], function ($m) {
+                            $m->from(\MailConstants::SUPPORT_MAIL, \MailConstants::TEAM_NAME);
+                            $m->to(\MailConstants::TEAM_MAIL, \MailConstants::TEAM_NAME)->subject('We got winners');
+                        });
+
+
                         return response()->json([
                             "status" => true,
                             "message" => "Ticket generated successfully"
@@ -180,8 +196,6 @@ class AdminController extends Controller
                 "message" => 'Invalid request'
             ], 400);
         }
-
-
 
     }
 
