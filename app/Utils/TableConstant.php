@@ -28,6 +28,9 @@ class ProfileConstant{
 
     const MALE = 'male';
     const FEMALE = 'female';
+
+
+    const ADMIN_ROLE = '01';
 }
 
 class OldCheekConstant{
@@ -36,6 +39,9 @@ class OldCheekConstant{
     const FACEBOOK_POST = 'facebook_post_id';
     const VOTER = 'voter_id';
     const VOTES = 'votes';
+    const REFERENCE = 'reference';
+    const TICKET = 'ticket';
+    const HANGOUT = 'hangout_id';
 }
 
 class ConnectionConstant{
@@ -46,6 +52,7 @@ class ConnectionConstant{
     const CONNECTIONS = "connections";
     const PROFILE = "profile";
     const POLL = "poll";
+    const VOTERS = "voters";
 }
 
 class TicketConstant{
@@ -63,4 +70,15 @@ class VenueConstant{
 
     const IN_GAME = 0;
     const NOT_IN_GAME = 1;
+}
+
+class HangoutConstant{
+    const REFERENCE = 'reference';
+    const CREATOR = 'creator_id';
+    const VENUE = 'venue_id';
+    const STATUS = 'status';
+
+    const GENERATED_HANGOUT = "01";
+    const WON_HANGOUT = "02";
+    const BOUGHT_HANGOUT = "03";
 }

@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 
 @section('title')
     <title>Moree.me - Connecting people: The Game Page</title>
@@ -9,7 +9,7 @@
 @endsection
 
 @section('header')
-    @include('include.header_app')
+    @include('include.header_admin')
 @endsection
 
 @section('content')

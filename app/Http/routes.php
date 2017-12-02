@@ -56,7 +56,7 @@ Route::get('/payment/callback', ["as" => "payment_callback", "uses" => 'PaymentC
 Route::group(['prefix' => 'cron'], function(){
     Route::get('end/votes', array("uses" => 'VoteController@endVotes'));
     Route::get('fetch/venue-previews', array("uses" => 'VenueController@fetchPreviews'));
-    Route::get('daily/poll', array("uses" => 'VoteController@dailyPollStat'));
+    Route::get('weekly/poll', array("uses" => 'VoteController@pollStat'));
 });
 
 
@@ -64,3 +64,13 @@ Route::group(['prefix' => 'cron'], function(){
  * Chat routes
  */
 Route::post('sendmessage', ['as' => 'chat-url', 'uses' => 'ChatController@sendMessage']);
+
+
+/*
+ * Admin Route
+ */
+Route::group(['prefix' => 'admin', 'middleware' => ['admin.auth']], function (){
+   Route::get('/', array('uses' => 'AdminController@home'));
+   Route::get('/hangout', array('uses' => 'AdminController@hangout', 'as' => 'admin-hangout'));
+   Route::post('/hangout/set', array('uses' => 'AdminController@setHangout', 'as' => 'admin-set-hangout'));
+});
