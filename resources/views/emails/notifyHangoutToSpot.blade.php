@@ -1,12 +1,12 @@
-@extends('emails.layout')
+@extends('emails.layout_plain')
 @section('content')
     <tr>
         <td bgcolor="#ffffff" style="padding:40px 30px 40px 30px">
             <table border="0" cellpadding="0" cellspacing="0" width="100%">
                 <tr>
                     <td style="padding:20px 0 30px 0;color:#153643;font-family:Arial,sans-serif;font-size:16px;line-height:25px">
-                        We got hangout!!! on <a href="{{route('index')}}" target="_blank">Moree.me</a>,
-                         You should be expecting <strong>  {{ sizeof($beneficiaries) }} beneficiaries.</strong> <span style="color:#f59c43">
+                        We got a hangout!!! on <a href="{{route('index')}}" target="_blank">Moree.me</a>,
+                         You should be expecting <strong>  {{ sizeof($beneficiaries) }} people.</strong> <span style="color:#f59c43">
                             Find below, the details of the hangout</span>
 
                     </td>

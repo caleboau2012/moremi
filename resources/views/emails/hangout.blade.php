@@ -1,5 +1,4 @@
-
-@extends('emails.layout')
+@extends('emails.layout_plain')
 @section('content')
     <tr>
         <td bgcolor="#ffffff" style="padding:40px 30px 40px 30px">
@@ -11,7 +10,7 @@
                 </tr>
                 <tr>
                     <td style="padding:20px 0 30px 0;color:#153643;font-family:Arial,sans-serif;font-size:16px;line-height:25px">
-                        Congratulations!!! , You have been selected for an Hangout on <a href="{{route('index')}}" target="_blank">Moree.me</a>,
+                        Congratulations!!! , You have been selected for a Hangout on <a href="{{route('index')}}" target="_blank">Moree.me</a>,
                         <br>
                         <p style="color:#f59c43"> Find below, the ticket to the hangout spot ,****please note that the ticket is only valid if you go with the following people selected for the hangout: </p>
 
