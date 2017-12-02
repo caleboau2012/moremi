@@ -1,4 +1,4 @@
-@extends('emails.layout')
+@extends('emails.layout_plain')
 @section('content')
     <tr>
         <td bgcolor="#ffffff" style="padding:40px 30px 40px 30px">

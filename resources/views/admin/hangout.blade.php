@@ -53,7 +53,7 @@
                         <tbody>
                         @foreach($hangouts as $hangout)
                             <tr>
-                                 <td>{{$hangout->reference}} ({{sizeof($hangout->beneficiaries->toArray())}})</td>
+                                 <td>{{$hangout->reference}} </td>
                                 <td>{{$hangout->venue->name}}</td>
                                 <td class="text-capitalize">{{$hangout->creator->first_name .' '. $hangout->creator->last_name}}</td>
                                  <td>
